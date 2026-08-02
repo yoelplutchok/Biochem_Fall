@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lecture 03 — Electron Transport Chain — Study Guide</title>
+<link rel="stylesheet" href="Lecture 03 - STUDY GUIDE (html source).css">
+</head>
+<body>
+
+<div class="hdr">
+  <div class="kicker">Medical Biochemistry &amp; Genetics I · Lecture 03</div>
+  <h1>The Electron Transport Chain</h1>
+  <div class="sub">Dr. Shilpika Bagh, MBBS, MD · Oxidative phosphorylation, uncouplers, inhibitors, and ROS</div>
+</div>
+
+<div class="metagrid">
+  <div class="row"><span class="k">Assessed on</span> &nbsp;<span class="v">Foundation Exam #1 — Sun 8/17, 11 AM–1 PM (with metabolic pathway overview, thermodynamics primer, enzymes/kinetics, signal transduction, carbohydrate digestion and structures)</span></div>
+  <div class="row"><span class="k">Deck</span> &nbsp;<span class="v">49 slides, titled "Lecture 06" in the source file · 5 stated learning objectives</span></div>
+  <div class="row"><span class="k">Note</span> &nbsp;<span class="v">This guide is built from the lecture transcript as the primary source, with the slide deck used to supply exact figures, names, numbers, and the content that existed only as diagrams. It contains no images by design — every diagram has been re-typeset as text.</span></div>
+</div>
+
+<p><b>What this lecture actually is.</b> You have spent the previous lectures breaking food down. That process does not directly make ATP — it makes <b>reduced coenzymes</b>, NADH and FADH<sub>2</sub>, which are batteries holding electrons at high energy. This lecture is about how the cell cashes those batteries in. The electrons are walked down a staircase of carriers in the inner mitochondrial membrane, each with a greater appetite for electrons than the last, and the energy released at three of those steps is used to pump protons out of the matrix. The protons then fall back in through one specific channel, and that fall is what makes ATP. Everything else in the lecture — the poisons, the uncouplers, the fever, the cherry-red skin — is a consequence of interfering with either the staircase or the proton circuit.</p>
+
+<p>Dr. Bagh opened with her standard instruction: <em>"the learning objectives are tied to your concepts, they are your guide."</em> This guide follows her five objectives in order. Her other recurring instruction — <em>"first know normal, then only you can know abnormal"</em> — is why the inhibitors come last, after each complex's normal job is fixed in place.</p>
+
+<h2><span class="onum">Objective 1 ·</span> Reducing equivalents, redox potential (E<sub>0</sub>′), ΔE<sub>0</sub>′, and its relationship to ΔG<sub>0</sub>′</h2>
+
+<h3>1.1 Biological oxidation is loss of reducing equivalents</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>The general chemistry definition of oxidation is <b>gain of oxygen or loss of hydrogen</b>. In the body, the version that matters is the second one — and Dr. Bagh's point is that when a metabolite loses hydrogen, it is really losing <b>two protons and two electrons</b>, and it is the <em>electrons</em> that carry the energy. Bundle them together and call them <b>reducing equivalents</b>; now "oxidation" and "handing off reducing equivalents" are the same sentence.</p>
+  <p>This reframing is what makes the rest of the lecture possible. Nothing is ever oxidized in isolation — if one molecule loses reducing equivalents, something else must gain them. So every biological oxidation is really a <b>pair</b> of half-reactions, and the whole chain that follows is just a queue of such pairs.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Oxidation</b> = gain of O<sub>2</sub> <em>or</em> loss of H<sub>2</sub>. <b>Biological oxidation</b> = loss of H<sub>2</sub> = loss of <b>2H<sup>+</sup> + 2e<sup>−</sup></b> = <b>loss of reducing equivalents</b>.</li>
+    <li><b>Reducing equivalent = (proton + electron).</b></li>
+    <li>Biological oxidation is <b>exergonic</b>; the energy released is Gibbs free energy, and it is trapped <b>stepwise</b> as ATP.</li>
+    <li>The enzymes that run these reactions are <b>oxidoreductases</b>, subclass <b>dehydrogenases</b> — one substrate oxidized, one reduced.</li>
+    <li>What gets oxidized: the <b>macronutrients</b> (carbohydrate, lipid, protein). What gets reduced: the <b>coenzymes</b> (NAD<sup>+</sup>, FAD), supplied by <b>micronutrients</b> — i.e. vitamins.</li>
+    <li><b>NAD<sup>+</sup> ← vitamin B3 (niacin)</b> &nbsp;·&nbsp; <b>FAD ← vitamin B2 (riboflavin)</b>. Carried over from the enzymes lecture.</li>
+    <li><b>NADH is an indirect reflection of ATP status.</b> NADPH is <em>not</em> — NADPH is for anabolism (carried over from Lecture 1: "NADPH is never a source of ATP").</li>
+  </ul>
+</div>
+
+<div class="chain"><b>THE WHOLE LECTURE IN ONE LINE</b>
+
+  macronutrients ──oxidised──> reduced coenzymes ──> ETC ──> O<sub>2</sub> ──> H<sub>2</sub>O
+   (carb/lipid/protein)         (NADH+H<sup>+</sup>, FADH<sub>2</sub>)      │
+                                                         └──> <b>ATP</b>
+                                        and NAD<sup>+</sup>/FAD are <b>regenerated</b> for reuse</div>
+<p class="diagcap"><b>Two products, not one.</b> The chain makes ATP <em>and</em> it hands back oxidised NAD<sup>+</sup>/FAD. Dr. Bagh stressed the second one: without regeneration, oxidation upstream stops for want of an acceptor.</p>
+
+<h3>1.2 Redox potential (E<sub>0</sub>′) — the single organizing quantity</h3>
+
+<div class="concept">
+  <span class="lbl">The idea — this is the concept everything else hangs on</span>
+  <p><b>E<sub>0</sub>′ is a measure of how badly a redox pair wants electrons</b>, measured under standard conditions (1 M each of oxidant and reductant, pH 7). Low E<sub>0</sub>′ = weak appetite for electrons; high E<sub>0</sub>′ = strong appetite. That is the entire definition, and it behaves exactly like intuition says it should: <b>electrons move from a carrier that wants them less to a carrier that wants them more.</b></p>
+  <p>Her repeated formulation: <b>the redox potential of the acceptor is always higher than that of the donor</b> — <em>"then only the electrons will move forward and the reaction will take place."</em> Because of that, ΔE<sub>0</sub>′ is defined <b>acceptor minus donor</b>, and a spontaneous transfer always gives a positive ΔE<sub>0</sub>′.</p>
+  <p>Now extend it: if you can chain <em>one</em> transfer this way, you can chain many. Line up carriers <b>in order of increasing redox potential</b> and electrons will run the whole length of the line on their own, releasing energy at every step. That is literally what the electron transport chain is, and it is why oxygen — with the highest redox potential of anything in the series — sits at the end.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>E<sub>0</sub>′</b> = standard redox potential of a compound; measured at <b>1 M oxidant and reductant, pH 7</b>.</li>
+    <li><b>Low E<sub>0</sub>′ → low affinity for electrons. High E<sub>0</sub>′ → high affinity for electrons.</b></li>
+    <li><b>ΔE<sub>0</sub>′ = E<sub>0</sub>′(acceptor) − E<sub>0</sub>′(donor)</b></li>
+    <li>Electrons flow toward the <b>more positive</b> standard reduction potential.</li>
+    <li>ETC components are arranged <b>in order of increasing redox potential</b>, spanning about <b>1.1 volts</b> from negative to more positive.</li>
+    <li><b>Oxygen is the best electron acceptor — the highest reduction potential in the series (+0.82 V).</b></li>
+  </ul>
+</div>
+
+<table class="ladder compact">
+<caption>The redox ladder (slide 29) — read it top to bottom as the direction electrons travel</caption>
+<thead><tr><th style="width:56%">Redox pair</th><th style="width:22%">E<sub>0</sub>′ (volts)</th><th style="width:22%">Where it sits</th></tr></thead>
+<tbody>
+<tr><td>NAD<sup>+</sup> / NADH</td><td class="hi"><b>− 0.32</b></td><td>entry, Complex I</td></tr>
+<tr><td>FMN / FMNH<sub>2</sub></td><td>− 0.30</td><td>inside Complex I</td></tr>
+<tr><td>FAD / FADH<sub>2</sub></td><td class="hi"><b>− 0.22</b></td><td>entry, Complex II</td></tr>
+<tr><td>Cytochrome b (Fe<sup>3+</sup>/Fe<sup>2+</sup>)</td><td>+ 0.07</td><td>Complex III</td></tr>
+<tr><td>Coenzyme Q</td><td>+ 0.10</td><td>mobile carrier</td></tr>
+<tr><td>Cytochrome c<sub>1</sub></td><td>+ 0.23</td><td>Complex III</td></tr>
+<tr><td>Cytochrome c</td><td>+ 0.25</td><td>mobile carrier</td></tr>
+<tr><td>Cytochrome a</td><td>+ 0.29</td><td>Complex IV</td></tr>
+<tr><td>½ O<sub>2</sub> / H<sub>2</sub>O</td><td class="hi"><b>+ 0.82</b></td><td><b>terminal acceptor</b></td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+  <span class="lbl">Trap — note where FAD enters</span>
+  <p>FAD/FADH<sub>2</sub> sits at <b>−0.22 V</b>, a full 0.10 V <em>above</em> NAD<sup>+</sup>/NADH at −0.32 V. FADH<sub>2</sub> therefore starts its descent from a lower rung of the staircase, and the drop it can pay for is correspondingly smaller. Hold onto this — it is the reason, three objectives from now, that FADH<sub>2</sub> yields <b>2 ATP</b> and NADH yields <b>3</b>. The number is not arbitrary; it is written into this table.</p>
+</div>
+
+<h3>1.3 Converting a voltage into an energy: ΔG<sub>0</sub>′ = −nFΔE<sub>0</sub>′</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize — the equation and every term in it</span>
+  <div class="eq"><b>ΔG<sub>0</sub>′ = − n F ΔE<sub>0</sub>′</b></div>
+  <ul>
+    <li><b>ΔG<sub>0</sub>′</b> = standard free energy change</li>
+    <li><b>n</b> = number of <b>electrons</b> transferred in the reaction</li>
+    <li><b>F</b> = Faraday constant = <b>23.06 kcal/V</b> (per mole of electrons)</li>
+    <li><b>ΔE<sub>0</sub>′</b> = standard redox potential change</li>
+  </ul>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why the minus sign is there — and why it is not a trick</span>
+  <p>The two conventions run in opposite directions, and the minus sign is what reconciles them. A <b>positive</b> ΔE<sub>0</sub>′ means the acceptor genuinely wants the electrons more than the donor does, so the transfer happens on its own — it is spontaneous. But in thermodynamics the marker of a spontaneous process is a <b>negative</b> ΔG. Same physical fact, opposite sign convention. The minus sign simply translates between them.</p>
+  <p>The practical consequence, stated on her key-points slide: <b>the more positive the ΔE, the more negative the ΔG</b> — the bigger the gap in electron appetite between two carriers, the more energy that single step releases. This is the reason the chain can afford to make ATP at some steps and not others.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — her key points slide, verbatim content</span>
+  <ul>
+    <li><b>Electron-transfer reactions are a source of free energy.</b></li>
+    <li>Low redox potential = low affinity for electrons.</li>
+    <li>The difference in redox potential between acceptor and donor <b>determines the magnitude of ΔG</b>.</li>
+    <li>Electron transfer reactions can be <b>linked in series in order of increasing redox potential</b> — her analogy: <b>an electrical circuit</b>.</li>
+  </ul>
+</div>
+
+<h2><span class="onum">Objective 2 ·</span> The carriers of reducing equivalents, and the energy yield from NADH</h2>
+
+<h3>2.1 Mitochondrial architecture — four compartments, and why each matters</h3>
+
+<div class="chain"><b>MITOCHONDRIAL ANATOMY — the geography every later concept depends on</b>
+
+  ┌────────────────────────────────────────────────────────────┐
+  │ <b>OUTER MEMBRANE — permeable</b>                                 │
+  │ ┌────────────────────────────────────────────────────────┐ │
+  │ │ <b>INTERMEMBRANE SPACE</b>  ← H⁺ pumped out here              │ │   more acidic, <b>POSITIVE</b>
+  │ │ ┌────────────────────────────────────────────────────┐ │ │
+  │ │ │ <b>INNER MEMBRANE</b> — semipermeable,                    │ │ │   ← ETC + ATP synthase
+  │ │ │ folded into <b>cristae</b>;                               │ │ │     live here
+  │ │ │ <b>IMPERMEABLE to H⁺</b>                                  │ │ │
+  │ │ │                                                    │ │ │
+  │ │ │ <b>MATRIX</b> — soluble; TCA cycle here;                  │ │ │   less acidic, <b>NEGATIVE</b>
+  │ │ │ reducing equivalents made here                     │ │ │
+  │ │ └────────────────────────────────────────────────────┘ │ │
+  │ └────────────────────────────────────────────────────────┘ │
+  └────────────────────────────────────────────────────────────┘</div>
+<p class="diagcap"><b>Two facts do all the work later:</b> the inner membrane is <b>impermeable to H<sup>+</sup></b> (so a pumped proton cannot simply drift back), and it is <b>folded into cristae</b> (surface area for a great many copies of the chain). Uncouplers destroy the first property; that is their entire mechanism.</p>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li>The mitochondrion is <b>the major energy-generating compartment</b> of most eukaryotic cells.</li>
+    <li><b>Reducing equivalents are generated in the matrix</b> (TCA cycle — the common final oxidation pathway for carbohydrate, lipid and protein). <b>Electron transport and ATP synthesis happen in the inner membrane.</b></li>
+    <li>Mitochondria contain <b>their own DNA and ribosomes</b>. <b>mtDNA is maternally inherited</b> and in humans <b>encodes 13 proteins of the ETC</b>.</li>
+    <li>More <b>NADH + H<sup>+</sup></b> is produced than FADH<sub>2</sub> — she stressed that NAD<sup>+</sup> is the more-used acceptor of the two.</li>
+  </ul>
+</div>
+
+<div class="clin">
+  <span class="lbl">Clinical — why maternal inheritance is worth remembering</span>
+  <p>Because mtDNA encodes 13 ETC subunits and is inherited <b>only from the mother</b>, mitochondrial ETC disorders show a distinctive pedigree: <b>an affected mother passes it to all of her children; an affected father passes it to none.</b> The tissues that fail first are the ones with the highest ATP demand — <b>nerve and muscle</b>. That inheritance pattern is a favourite exam hook, and it follows directly from a fact stated in one line on slide 11.</p>
+</div>
+
+<h3>2.2 Getting cytosolic reducing equivalents into the matrix</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>NADH generated inside the matrix has a short walk to the chain. But NADH generated <b>in the cytosol</b> — glycolysis is the example she flagged for a later lecture — faces the same impermeable inner membrane that makes the proton gradient possible. NADH cannot cross it. So the cell does not move the NADH; it moves the <em>reducing equivalents</em>, handing the electrons to a carrier that <em>can</em> cross, and reloading them onto an acceptor on the far side. That is what a shuttle is.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <p>Two shuttles transfer <b>extramitochondrial (cytosolic) reducing equivalents</b> into the mitochondrion:</p>
+  <ul>
+    <li><b>Glycerophosphate shuttle</b></li>
+    <li><b>Malate–aspartate shuttle</b></li>
+  </ul>
+  <p>Named only, and explicitly deferred by her to the glycolysis lecture. Know the two names and what problem they solve.</p>
+</div>
+
+<h3>2.3 The energy yield from one NADH — the calculation she said you must be able to do</h3>
+
+<div class="concept">
+  <span class="lbl">How to run this calculation without memorizing it</span>
+  <p>Her whole method is: <b>look at the overall equation and ask who accepts the reducing equivalents.</b> That identifies the acceptor; the other pair is the donor; then subtract, and feed the result into ΔG<sub>0</sub>′ = −nFΔE<sub>0</sub>′. There is nothing else to it.</p>
+</div>
+
+<div class="chain"><b>WORKED EXAMPLE — oxidation of one NADH by oxygen (slide 14)</b>
+
+  Overall:   NADH + H<sup>+</sup> + ½O<sub>2</sub>  ──>  NAD<sup>+</sup> + H<sub>2</sub>O
+
+  Two redox pairs:
+     NADH + H<sup>+</sup>  ⇄  NAD<sup>+</sup> + 2H<sup>+</sup> + 2e<sup>−</sup>       E<sub>0</sub>′ = <b>− 0.32 V</b>   (donor)
+     ½O<sub>2</sub> + 2H<sup>+</sup> + 2e<sup>−</sup>  ⇄  H<sub>2</sub>O           E<sub>0</sub>′ = <b>+ 0.82 V</b>   (acceptor)
+
+  Step 1   ΔE<sub>0</sub>′ = acceptor − donor = (+0.82) − (−0.32) = <b>+ 1.14 V</b>
+  Step 2   ΔG<sub>0</sub>′ = − n F ΔE<sub>0</sub>′ = − (2)(23.06)(1.14) = <b>− 52.6 kcal/mol</b>
+  Step 3   ATP costs <b>7.3 kcal/mol</b>  →  52.6 / 7.3 ≈ <b>7 ATP</b> if 100 % efficient
+
+  Actual yield: <b>3 ATP</b>   →   efficiency ≈ 22/52.6 ≈ <b>40 %</b>; the balance is heat</div>
+<p class="diagcap"><b>n = 2, always, for one NADH</b> — two electrons per reducing-equivalent pair. The commonest arithmetic slip on this calculation is using n = 1.</p>
+
+<div class="trap">
+  <span class="lbl">Trap — "7 ATP" is a hypothetical, not a yield</span>
+  <p>The 7 is what you would get at <b>100% efficiency</b>, and the slide says so in parentheses. The real answer to "how many ATP does one NADH give" is <b>3</b> (by this course's convention). If a stem gives you −52.6 kcal and asks for ATP yield, read carefully whether it is asking for the <b>thermodynamic maximum</b> (7) or the <b>physiological yield</b> (3). Both numbers are on the same slide precisely because the gap between them — energy lost as heat — is the point.</p>
+</div>
+
+<h2><span class="onum">Objective 3 ·</span> The sequence of ETC components, and ROS production</h2>
+
+<h3>3.1 The architecture: 5 fixed complexes, 2 mobile carriers</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize — the frame she repeated at least six times</span>
+  <ul>
+    <li><b>Location: the inner mitochondrial membrane.</b></li>
+    <li><b>5 fixed complexes</b> (I–IV plus <b>Complex V = the ATP synthase complex</b>, also called the <b>F<sub>0</sub>F<sub>1</sub> complex</b>).</li>
+    <li><b>2 mobile carriers: Coenzyme Q (lipid-soluble) and Cytochrome c (water-soluble).</b></li>
+    <li>Complexes are arranged in <b>order of increasing redox potential</b>, spanning <b>~1.1 V</b>.</li>
+    <li><b>ATP is made at Complexes I, III, and IV.</b> These are the three <b>coupling sites</b>.</li>
+    <li><b>Complex II is NOT a coupling site and does not make ATP.</b> No protons are pumped through Complex II.</li>
+  </ul>
+</div>
+
+<div class="chain"><b>THE CHAIN, IN ORDER — with the two entry points and three pumps</b>
+
+ NADH-linked substrates                    FADH₂-linked substrates
+ (pyruvate, α-KG, isocitrate, malate)      (succinate)
+             │                                        │
+             v                                        v
+    ┌───────────┐                           ┌───────────┐
+    │ <b>COMPLEX I</b> │  FMN, 7 Fe–S              │ <b>COMPLEX II</b>│  FAD, 2 Fe–S
+    │ <span class="pump">PUMPS H⁺</span>  │                           │  <span class="lo">no pump</span>  │  ← bypasses Complex I
+    └─────┬─────┘                           └─────┬─────┘
+          └────────────────┬─────────────────────-┘
+                           v
+              <b>Coenzyme Q</b> (mobile, lipid-soluble)
+                           │        ↑ accepts from BOTH I and II
+                           v
+                    ┌───────────┐
+                    │<b>COMPLEX III</b>│  Cyt b (b562, b566), Cyt c₁, 1 Fe–S
+                    │ <span class="pump">PUMPS H⁺</span>  │
+                    └─────┬─────┘
+                          v
+              <b>Cytochrome c</b> (mobile, water-soluble)
+                          │
+                          v
+                    ┌───────────┐
+                    │<b>COMPLEX IV</b> │  Cyt a, Cyt a₃, <b>Cu</b>
+                    │ <span class="pump">PUMPS H⁺</span>  │
+                    └─────┬─────┘
+                          v
+                    ½O₂ + 2H⁺ ──> <b>H₂O</b>
+
+ Electron flow is <b>UNIDIRECTIONAL</b> — there is no backward flow.</div>
+<p class="diagcap"><b>The one asymmetry that generates most of the exam questions:</b> NADH-linked substrates pass through I, III and IV — <b>three</b> pumps, <b>3 ATP</b>. FADH<sub>2</sub>-linked substrates enter at Complex II and <b>bypass Complex I</b> — <b>two</b> pumps, <b>2 ATP</b>.</p>
+
+<h3>3.2 Each complex: name it, and know its one job</h3>
+
+<div class="concept">
+  <span class="lbl">The idea — her framework, which makes the inhibitors free</span>
+  <p>She insisted that for every complex you should be able to state <b>one thing: what it hands to what.</b> Not the internal electron gymnastics — she explicitly said <em>"we are not going into details of this, all you need to know is the function."</em> The payoff is that once you know the job, you can derive the effect of any inhibitor without memorizing it: <b>block a complex, and whatever that complex was supposed to reduce simply does not get reduced.</b> She drilled exactly that question after each complex.</p>
+</div>
+
+<table class="compact">
+<caption>The four complexes — the "function" column is the one to memorize</caption>
+<thead><tr><th style="width:10%">Complex</th><th style="width:23%">Names</th><th style="width:22%">Prosthetic groups</th><th style="width:27%">Function: passes reducing equivalents…</th><th style="width:18%">Coupling site?</th></tr></thead>
+<tbody>
+<tr><td class="hi"><b>I</b></td><td><b>NADH dehydrogenase</b><br><b>NADH:Q oxidoreductase</b><br>&gt;25 polypeptides — <b>largest complex</b></td><td><b>FMN</b><br><b>7 Fe–S</b> centres</td><td class="hi"><b>from NADH+H<sup>+</sup> → Coenzyme Q</b><br><span class="chem">NADH + CoQ → CoQH<sub>2</sub> + NAD<sup>+</sup></span></td><td class="hi"><b>YES</b> — 1 ATP</td></tr>
+<tr><td class="hi"><b>II</b></td><td><b>Succinate dehydrogenase</b><br><b>FADH<sub>2</sub>:Q oxidoreductase</b><br>4 polypeptides</td><td><b>FAD</b> (covalently bound)<br><b>2 Fe–S</b></td><td class="hi"><b>from FADH<sub>2</sub> → Coenzyme Q</b><br><span class="chem">FADH<sub>2</sub> + CoQ → CoQH<sub>2</sub> + FAD</span></td><td class="hi"><b>NO</b> — no H<sup>+</sup> pumped, no ATP</td></tr>
+<tr><td class="hi"><b>III</b></td><td><b>CoQH<sub>2</sub>:Cyt c oxidoreductase</b><br>(the <b>bc<sub>1</sub></b> complex)<br>6 polypeptides</td><td><b>Cyt b</b> (2 hemes: b562, b566)<br><b>Cyt c<sub>1</sub></b> · <b>1 Fe–S</b></td><td class="hi"><b>from CoQH<sub>2</sub> → Cytochrome c</b></td><td class="hi"><b>YES</b> — 1 ATP</td></tr>
+<tr><td class="hi"><b>IV</b></td><td><b>Cytochrome c oxidase</b><br><b>Cyt c:O<sub>2</sub> oxidoreductase</b><br>13 polypeptides</td><td><b>Cyt a and Cyt a<sub>3</sub></b><br>each with one <b>Cu</b> atom</td><td class="hi"><b>from Cytochrome c → O<sub>2</sub></b>, reducing it to <b>H<sub>2</sub>O</b></td><td class="hi"><b>YES</b> — 1 ATP</td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+  <span class="lbl">Discriminate — her own "pay attention on that" pairs</span>
+  <p>She pointed out that the complexes come in look-alike pairs and told you what separates them:</p>
+  <ul>
+    <li><b>I vs II</b> — both feed Coenzyme Q, both carry a flavin and Fe–S. <b>Complex I has FMN; Complex II has FAD.</b></li>
+    <li><b>III vs IV</b> — both are cytochrome complexes. <b>Complex III has cytochrome bc<sub>1</sub>; Complex IV has cytochrome aa<sub>3</sub>.</b></li>
+    <li><b>Complex IV is the only complex that requires copper</b>, so <b>copper deficiency impairs Complex IV.</b> She tied this back to the enzymes lecture: <b>lysyl oxidase</b> also requires copper. Her mnemonic pairing — "no lysyl oxidase and copper, and no copper and Complex IV."</li>
+  </ul>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — the two mobile carriers</span>
+  <ul>
+    <li><b>Coenzyme Q (ubiquinone)</b> — the <b>only lipid-soluble</b> component; an <b>isoprenoid</b> unit and an <b>intermediate of cholesterol synthesis</b>. Accepts hydrogen atoms <b>from both Complex I (via FMNH<sub>2</sub>) and Complex II (via FADH<sub>2</sub>)</b> — it is the convergence point of the two entry routes.</li>
+    <li><b>Cytochrome c</b> — <b>water-soluble</b>; a soluble protein of the <b>intermembrane space</b> that donates electrons to the <b>copper ions of Complex IV</b>.</li>
+    <li><b>Cytochromes are heme proteins</b> — she noted that "hemeprotein" is an alternative name you may see. Types: cytochromes a, b, c.</li>
+  </ul>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why Complex II cannot be a coupling site — the reasoning, not the fact</span>
+  <p>Look back at the redox ladder. Complex I receives electrons at <b>−0.32 V</b> (NADH) and delivers them to CoQ at <b>+0.10 V</b> — a drop of <b>0.42 V</b>. Complex II receives them at <b>−0.22 V</b> (FADH<sub>2</sub>) and delivers to the same CoQ — a drop of only <b>0.32 V</b>. Complex II's step is shallower, and the energy it releases is <b>not enough to pay for pumping protons across the membrane</b>. It simply passes the electrons along.</p>
+  <p>So Complex II has no proton pump, contributes nothing to the gradient, and contributes nothing to ATP. Everything that enters through it forfeits the Complex I pump as well, because it enters <em>after</em> that point. Hence <b>2 ATP instead of 3</b> — a direct consequence of where FAD sits on the ladder.</p>
+</div>
+
+<h3>3.3 Reactive oxygen species from the chain</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Superoxide (O<sub>2</sub><sup>•−</sup>) is produced during normal ETC function</b> — this is ordinary metabolism, not pathology.</li>
+    <li>It leaks from two specific places: <b>FMN in Complex I</b> and <b>ubiquinone in Complex III</b>.</li>
+    <li>ROS include <b>O<sub>2</sub><sup>•−</sup>, H<sub>2</sub>O<sub>2</sub>, and OH<sup>•</sup></b>; other sources on the slide were radiation, inflammation, high pO<sub>2</sub>, smog (O<sub>3</sub>, NO<sub>2</sub>), chemicals and drugs, reperfusion injury, and aging. The endpoint is the <b>injured cell</b>.</li>
+    <li>She <b>explicitly deferred</b> the detoxification machinery to the <b>HMP shunt / pentose phosphate</b> lecture. Note the deferral; don't chase it.</li>
+  </ul>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why the leak happens exactly where it does</span>
+  <p>Complexes I and III are the two places where an electron sits, briefly, on a carrier that holds it <b>one at a time</b> — a flavin semiquinone in Complex I, a ubisemiquinone in Complex III. Molecular oxygen is diffusing freely through the membrane and is an excellent electron acceptor. If an electron escapes from one of those single-electron intermediates before the complex can pass it on properly, O<sub>2</sub> grabs it — and O<sub>2</sub> plus one electron <em>is</em> superoxide. This is the unavoidable cost of using oxygen as the terminal acceptor, which is why every aerobic cell also carries antioxidant defences.</p>
+</div>
+
+<h2><span class="onum">Objective 4 ·</span> ATP synthesis and the energy yield of the ETC</h2>
+
+<h3>4.1 Oxidative vs. substrate-level phosphorylation</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Oxidative phosphorylation</b> = transfer of electrons from reduced coenzymes through the respiratory chain to <b>O<sub>2</sub>, the final acceptor of reducing equivalents</b>, with the released energy trapped as ATP. <b>Coupling of oxidation with phosphorylation.</b> Requires <b>ETC + mitochondria + oxygen</b>.</li>
+    <li><b>Substrate-level phosphorylation</b> = ATP made <b>without</b> the ETC, where the substrate itself carries enough energy. Example flagged for later: <b>glycolysis</b>.</li>
+  </ul>
+</div>
+
+<h3>4.2 The chemiosmotic theory — the mechanism</h3>
+
+<div class="concept">
+  <span class="lbl">The idea — how a falling electron becomes a phosphate bond</span>
+  <p>The problem the cell has to solve is a translation problem. Electron transfer releases energy in one currency (redox); ATP stores it in another (a phosphoanhydride bond). Those two things cannot touch each other directly. The chemiosmotic theory is the answer: <b>convert the redox energy into a proton gradient, then convert the proton gradient into ATP.</b> The gradient is the intermediate currency, and it is physically a gradient across a membrane — which is why the membrane has to be impermeable for any of this to work.</p>
+  <p>Concretely: as electrons fall through Complexes I, III and IV, each of those complexes uses the released energy to <b>pump H<sup>+</sup> out of the matrix into the intermembrane space</b>. Because the inner membrane will not let protons back through, they accumulate. That builds <b>two</b> gradients at once, and the exam cares about both: a <b>chemical gradient (ΔpH)</b> — more acidic outside — and an <b>electrical gradient (ΔΨ)</b> — the matrix side becomes <b>negative</b>. Together they are the <b>proton-motive force</b>, and both of them pull the protons back toward the matrix.</p>
+  <p>The only route back is through <b>F<sub>0</sub>, the channel of the ATP synthase complex</b>. Protons flowing through it drive a <b>conformational change</b> in the F<sub>1</sub> head, and that conformational change is what forces <b>P<sub>i</sub> onto ADP</b>. That is the coupling — not a chemical intermediate, but a circuit.</p>
+</div>
+
+<div class="chain"><b>THE PROTON CIRCUIT (chemiosmotic theory)</b>
+
+  INTERMEMBRANE SPACE     ←── H⁺ ── H⁺ ── H⁺ ──┐        high [H⁺], <b>acidic</b>, <b>positive</b>
+        ▲       ▲       ▲                      │
+   ╔════╪═══════╪═══════╪══════════════════════╪════╗
+   ║   <span class="pump">I</span>      <span class="pump">III</span>     <span class="pump">IV</span>          II       <b>V (F₀F₁)</b>  ║  INNER MEMBRANE
+   ║  <span class="pump">pump</span>   <span class="pump">pump</span>   <span class="pump">pump</span>       <span class="lo">no pump</span>       │      ║  impermeable to H⁺
+   ╚════╪═══════╪═══════╪══════════════════════╪════╝
+        │       │       │                      ▼
+  MATRIX  e⁻ flow releases energy         H⁺ returns  →  <b>ADP + Pᵢ → ATP</b>
+                                                          low [H⁺], <b>negative</b>
+
+  <b>OUT</b> through the pumps (I, III, IV)  ·  <b>BACK IN</b> through F₀ of Complex V
+  The two legs together are the <b>PROTON CIRCUIT</b>. Break either leg and the whole thing stops.</div>
+<p class="diagcap"><b>Note Complex II sits in the membrane but has no arrow.</b> That single visual fact is the entire explanation for P:O = 2 versus 3.</p>
+
+<h3>4.3 P:O ratio</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>P:O ratio = the number of ATP produced per atom of oxygen reduced</b> (per ½ mol O<sub>2</sub> consumed). She gave this definition explicitly.</li>
+    <li>Substrate oxidized via <b>NAD-linked dehydrogenases</b> → <b>3 mol ATP per ½ mol O<sub>2</sub></b> → <b>P:O = 3</b></li>
+    <li>Substrate oxidized via <b>FAD-linked dehydrogenases</b> → <b>2 mol ATP per ½ mol O<sub>2</sub></b> → <b>P:O = 2</b></li>
+    <li>NAD-linked examples named on the slide: <b>pyruvate, α-ketoglutarate, isocitrate, malate</b>. FAD-linked: <b>succinate</b>.</li>
+  </ul>
+</div>
+
+<h3>4.4 Respiratory control — why the chain doesn't just run all the time</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>Once the gradient exists, it pushes back. Pumping another proton out means working <em>against</em> an already-steep gradient, and past a certain steepness the complexes can no longer do it — so electron flow stalls. The only way to relieve that back-pressure is to <b>let protons back in through ATP synthase</b>, which requires <b>ADP and P<sub>i</sub> to be available</b> as substrates.</p>
+  <p>The result is a self-regulating system that is exactly as fast as the cell's ATP demand: plenty of ADP (cell is spending energy) → protons flow back → gradient relaxes → chain runs → O<sub>2</sub> consumed. Little ADP because everything is already ATP (cell is satisfied) → nowhere for protons to go → gradient stays steep → chain stalls → O<sub>2</sub> consumption falls. <b>The chain is demand-driven, and ADP is the demand signal.</b></p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <div class="eq">Rate of oxidative phosphorylation ∝ <span class="frac"><span class="num">[ADP] [P<sub>i</sub>]</span><span class="den">[ATP]</span></span></div>
+  <ul>
+    <li>Once the electrochemical gradient is formed, <b>further transport of reducing equivalents is inhibited unless the gradient is discharged by ATP synthesis</b>.</li>
+    <li>This is <b>respiratory control</b>, and it depends on the <b>availability of ADP and P<sub>i</sub></b>.</li>
+    <li>It controls both the <b>speed of ATP synthesis and oxygen consumption</b> — the two move together.</li>
+  </ul>
+</div>
+
+<div class="trap">
+  <span class="lbl">Trap — she warned about this explicitly</span>
+  <p><em>"Does the ratio of ATP to ADP, or ADP to ATP? You have to be careful what they are asking — they can reverse it too."</em> Work it out from the concept rather than the memorized fraction: <b>ADP is the "go" signal.</b> High ADP (i.e. high ADP/ATP, low ATP/ADP) → chain speeds up. High ATP → chain slows down. If you reason from "ADP means the cell needs ATP," you cannot be caught by the inversion.</p>
+</div>
+
+<h2><span class="onum">Objective 5 ·</span> Inhibitors and uncouplers</h2>
+
+<div class="concept">
+  <span class="lbl">The organizing idea — three mechanisms, but only two outcomes</span>
+  <p>Everything in this objective is a lesion in the proton circuit, and there are exactly three places to put one.</p>
+  <p><b>(A) Block electron flow through a complex.</b> No electrons falling → no energy → no pumping → no gradient → no ATP. Oxygen is never reached, so O<sub>2</sub> consumption stops too.</p>
+  <p><b>(B) Block the proton's return path through ATP synthase.</b> Now protons are pumped out but cannot come back. The gradient builds until the back-pressure is so great the pumps stall — and when pumping stalls, <b>electron flow stalls with it</b>. This is respiratory control working exactly as designed, and it is why blocking ATP synthase shuts down the ETC even though the ETC itself is untouched. <b>Same three arrows down as (A).</b></p>
+  <p><b>(C) Put a hole in the membrane for protons.</b> This is categorically different. Protons now return <em>without</em> passing through ATP synthase, so the gradient can never build — which means <b>there is never any back-pressure</b>. The chain, freed from respiratory control, <em>"does not know when to stop"</em> and runs flat out. ETC function <b>up</b>, O<sub>2</sub> consumption <b>up</b>, and ATP <b>down</b>, because the energy bypasses the turbine entirely and leaves as <b>heat</b>.</p>
+  <p>So: <b>A and B look identical; C is the odd one out, and the only one that splits the arrows.</b> If you remember nothing else from this objective, remember that uncouplers are the only agents that <em>increase</em> oxygen consumption.</p>
+</div>
+
+<table>
+<caption>The comparison table (slide 48) — reproduce this from memory</caption>
+<thead><tr><th style="width:31%">Agent</th><th style="width:23%">Mechanism</th><th style="width:15%">ETC function</th><th style="width:16%">O<sub>2</sub> consumption</th><th style="width:15%">ATP synthesis</th></tr></thead>
+<tbody>
+<tr><td><b>A. Inhibitors of ETC complexes</b><br>Rotenone, antimycin, CO, CN<sup>−</sup></td><td>Block <b>electron flow</b> through complexes</td><td class="dn">↓ decreased</td><td class="dn">↓ decreased</td><td class="dn">↓ decreased</td></tr>
+<tr><td><b>B. Inhibitors of oxidative phosphorylation</b><br>Oligomycin, atractyloside</td><td>Block <b>H<sup>+</sup> flow</b> through the ATP synthase (F<sub>0</sub>F<sub>1</sub>) complex</td><td class="dn">↓ decreased</td><td class="dn">↓ decreased</td><td class="dn">↓ decreased</td></tr>
+<tr><td><b>C. Uncouplers</b><br>2,4-DNP, 2,4-DNC, thermogenin, aspirin toxicity</td><td><b>Increase permeability</b> of the inner membrane to H<sup>+</sup></td><td class="up"><b>↑ INCREASED</b></td><td class="up"><b>↑ INCREASED</b></td><td class="dn">↓ decreased</td></tr>
+</tbody>
+</table>
+
+<h3>5.1 Inhibitors of the ETC complexes, by site</h3>
+
+<table class="compact">
+<caption>Slide 39 and the Harper's figure on slide 48</caption>
+<thead><tr><th style="width:24%">Blocked step</th><th style="width:40%">Inhibitors</th><th style="width:36%">Identity / notes</th></tr></thead>
+<tbody>
+<tr><td class="hi"><b>Complex I → CoQ</b></td><td><b>Amobarbital</b> (a <b>barbiturate</b>)<br><b>Rotenone</b><br><b>Piericidin A</b></td><td>Amobarbital — sedative<br>Rotenone — <b>insecticide and fish poison</b>; not fatal to humans, has stomach-irritant properties causing vomiting<br>Piericidin A — antibiotic</td></tr>
+<tr><td class="hi"><b>Complex II → CoQ</b></td><td><b>Malonate</b><br><b>Carboxin</b>, TTFA</td><td><b>Malonate is a competitive inhibitor of succinate dehydrogenase</b> — a structural analog of succinate, tying straight back to the enzymes lecture<br>Carboxin — agricultural fungicide</td></tr>
+<tr><td class="hi"><b>Complex III → Cyt c</b></td><td><b>Antimycin A</b><br><b>Dimercaprol</b> (BAL)</td><td>Dimercaprol = British Anti-Lewisite; used clinically as a <b>chelator for arsenic, mercury and lead</b> poisoning</td></tr>
+<tr><td class="hi"><b>Complex IV → O<sub>2</sub></b></td><td><b>Carbon monoxide (CO)</b><br><b>Cyanide (CN<sup>−</sup>)</b><br><b>H<sub>2</sub>S</b></td><td>The two clinically important ones — see below.<br><b>Cyanide antidotes: amyl nitrite / nitrites, thiosulfate</b></td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+  <span class="lbl">Her exam drill — "first know normal, then know abnormal"</span>
+  <p>She asked the same question after every complex, and it is the fastest way to answer any ETC inhibitor item. <b>Take the complex's normal job and negate it:</b></p>
+  <ul>
+    <li>Complex I blocked → <b>will CoQ be reduced? No.</b></li>
+    <li>Complex II blocked → <b>will CoQ be reduced? No.</b></li>
+    <li>Complex III blocked → <b>can CoQH<sub>2</sub> be oxidized? No.</b> (Note the direction — she flagged this one as the easy place to answer carelessly, because the question is phrased about the <em>reduced</em> carrier being oxidized, not the other way round.)</li>
+    <li>Complex IV blocked → <b>will oxygen be reduced? No.</b></li>
+  </ul>
+  <p>A general consequence worth stating: everything <b>upstream</b> of a block stays <b>reduced</b> (electrons pile up behind the dam), and everything <b>downstream</b> stays <b>oxidized</b> (nothing arrives).</p>
+</div>
+
+<h3>5.2 Carbon monoxide vs. cyanide — the highest-yield discrimination in the lecture</h3>
+
+<div class="concept">
+  <span class="lbl">The idea — one difference explains everything else</span>
+  <p>Both poisons hit <b>Complex IV, at cytochrome a<sub>3</sub></b>. The distinction that generates every other difference is <b>which oxidation state of the iron they bind, and how tightly</b>. CO binds the <b>ferrous (Fe<sup>2+</sup>)</b> form <b>non-covalently</b> — so it can be competed off, and you treat by flooding the patient with the competitor, oxygen. Cyanide binds the <b>ferric (Fe<sup>3+</sup>)</b> form, and she taught this binding as <b>covalent and not reversible</b> — so you cannot compete it off, and the only strategy is to offer the cyanide <b>a more attractive Fe<sup>3+</sup> elsewhere in the body</b> and let it leave with that instead. That is precisely what the antidote does.</p>
+</div>
+
+<table>
+<thead><tr><th style="width:22%"></th><th style="width:39%">Carbon monoxide (CO)</th><th style="width:39%">Cyanide (CN<sup>−</sup>)</th></tr></thead>
+<tbody>
+<tr><td><b>Binds</b></td><td class="hi"><b>Fe<sup>2+</sup> (ferrous)</b> of heme in Cyt a<sub>3</sub></td><td class="hi"><b>Fe<sup>3+</sup> (ferric)</b> of heme in Cyt a<sub>3</sub></td></tr>
+<tr><td><b>Bond</b></td><td class="hi"><b>Non-covalent → reversible</b></td><td class="hi"><b>Covalent → not reversible</b> (as taught)</td></tr>
+<tr><td><b>Second target</b></td><td><b>Also binds hemoglobin</b> — this is what kills</td><td>Complex IV only</td></tr>
+<tr><td><b>Sources / history</b></td><td>Burning furnaces in closed spaces, camping lanterns in a closed tent, automobile exhaust, suicide attempts</td><td><b>Sodium nitroprusside</b> (IV antihypertensive — <b>releases cyanide as a by-product</b>); <b>cyanogenic glycosides</b>: cassava (manioc), bitter almonds, pits of cherry/apple/apricot</td></tr>
+<tr><td><b>Sign</b></td><td class="hi"><b>Cherry-red skin / cyanosis</b></td><td class="hi"><b>Flushed / cherry-red</b>; death from <b>tissue asphyxia, especially CNS</b></td></tr>
+<tr><td><b>Treatment</b></td><td class="hi"><b>100 % oxygen / hyperbaric oxygen</b> — out-competes CO because the bond is non-covalent</td><td class="hi"><b>Amyl nitrite</b> (or nitrites) → makes <b>methemoglobin</b>; then <b>sodium thiosulfate</b>. Also hydroxocobalamin. <b>Act within minutes.</b></td></tr>
+</tbody>
+</table>
+
+<div class="chain"><b>WHY THE CYANIDE ANTIDOTE WORKS — follow the Fe³⁺</b>
+
+  Problem:   CN⁻  ──binds──>  <b>Fe³⁺</b> of Complex IV   →  ETC stops  →  cell death
+
+  Step 1     Give <b>amyl nitrite</b>
+  Step 2     Nitrite oxidises haemoglobin iron:  Hb(<b>Fe²⁺</b>) ──> <b>metHb(Fe³⁺)</b>
+  Step 3     Now the blood is full of competing Fe³⁺ sites.
+             CN⁻ binds <b>metHb</b> instead of Complex IV  →  cyanmethaemoglobin
+  Step 4     <b>Sodium thiosulfate</b> converts it to <b>thiocyanate</b>  ──>  <b>excreted</b>
+
+  Logic: you cannot pull cyanide OFF Complex IV, so you give it
+         somewhere better to go BEFORE it gets there.</div>
+<p class="diagcap"><b>The cost of the antidote:</b> methemoglobin cannot carry oxygen. You are deliberately disabling some haemoglobin to save the entire electron transport chain — a trade worth making, but the reason nitrite therapy is not innocuous.</p>
+
+<div class="clin">
+  <span class="lbl">Clinical — why CO is lethal at 50% when anemia at 50% is not</span>
+  <p>This was a question posed directly on slide 40, and it is pure integration with the haemoglobin material. Losing half your haemoglobin to anaemia leaves the remaining half working <b>normally</b> — it loads oxygen in the lung and <b>unloads it in the tissues</b>. Losing half to CO is worse than useless, because <b>CO binding to one heme makes the remaining hemes hold their oxygen more tightly</b>: it shifts haemoglobin to the <b>relaxed (R) conformation</b>, shifts the <b>oxygen-binding curve to the left</b>, and changes the normal <b>sigmoid shape toward a hyperbola</b>. The affected haemoglobin <b>cannot release oxygen to the tissues.</b> So the patient has both a Complex IV block and a delivery failure at once.</p>
+  <p>CO's affinity for haemoglobin is roughly <b>220× that of oxygen</b> (slide 40; she said 210 verbally — see the reconciliation table).</p>
+</div>
+
+<h3>5.3 Inhibitors of oxidative phosphorylation</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Oligomycin</b> — an antibiotic. <b>Inhibits ATP synthase</b>; blocks the <b>F<sub>0</sub>F<sub>1</sub> ATPase</b> by blocking <b>conduction of H<sup>+</sup> through F<sub>0</sub></b>. Prevents ATP manufacture <b>with decreased oxygen consumption</b> — that last clause is the exam point.</li>
+    <li><b>Atractyloside</b> — a plant glycoside. <b>Inhibits translocation of ADP and ATP</b> across the inner membrane (the adenine nucleotide translocase). Different target, same net effect: ADP cannot reach the synthase, so the gradient cannot discharge.</li>
+  </ul>
+</div>
+
+<h3>5.4 Uncouplers</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Mechanism: leakage of H<sup>+</sup> across the inner membrane, collapsing the electrochemical proton gradient.</b> They <b>dissociate oxidation from phosphorylation</b> — hence the name.</li>
+    <li><b>2,4-Dinitrophenol (2,4-DNP)</b> — binds protons and <b>readily diffuses across the inner membrane</b>, losing the energy as <b>heat</b>. Causes electron transport to proceed <b>rapidly without producing a proton gradient</b>.</li>
+    <li>Others named: <b>dinitrocresol (2,4-DNC)</b>, <b>pentachlorophenol</b>, <b>CCCP</b> (chlorocarbonyl cyanide phenylhydrazone).</li>
+    <li><b>Aspirin / salicylates in high doses (toxicity) are uncouplers</b> — this is why salicylate overdose causes <b>fever</b>.</li>
+    <li><b>Thermogenin (uncoupling protein, UCP1) in brown adipose tissue is the natural, physiological uncoupler.</b></li>
+  </ul>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why an uncoupler makes you hot — and why that is the whole clinical story</span>
+  <p>In a normally coupled mitochondrion the energy of oxidation is captured in ATP; only the inefficiency (~60%) escapes as heat. An uncoupler removes the capture step entirely. The chain still runs — faster than ever, since nothing is holding it back — and <b>100% of the energy of oxidation now leaves as heat</b>. The patient burns substrate at maximum rate, makes no ATP from it, and cannot shed the heat fast enough. <b>Hyperthermia</b> is the presenting problem, and it is also what kills.</p>
+</div>
+
+<div class="clin">
+  <span class="lbl">Clinical — 2,4-DNP as a diet drug, and brown fat as the same trick used well</span>
+  <p>Her speaker note is blunt: <b>2,4-DNP "had people falling dead while on this diet drug — they died of hyperthermia."</b> The logic is seductive and genuinely correct: burn fuel, make no ATP, lose weight. The problem is that there is no dose control over body temperature, and the therapeutic window is effectively nonexistent. This is why the answer to "can uncouplers be used as anti-obesity drugs?" is a qualified no.</p>
+  <p><b>Brown adipose tissue does the same thing on purpose and safely</b>, because it is regulated. <b>Thermogenin</b> spans the inner membrane and acts as a <b>proton conductance pathway</b>, transporting protons back into the matrix and dissipating the gradient as heat. This is <b>non-shivering thermogenesis</b>, and it matters most in the <b>newborn</b>, who cannot shiver effectively and must protect the vital organs.</p>
+</div>
+
+<h2>Where the lecture was imprecise — reconciled</h2>
+
+<p>The transcript is a rough auto-transcription and has been silently normalized throughout (<em>"exagonic"</em> → exergonic, <em>"phosphorilation"</em> → phosphorylation, <em>"redux"</em> → redox, <em>"christe"</em> → cristae, <em>"co-enzyme"</em> → coenzyme, <em>"attractioside"</em> → atractyloside, <em>"oligyin/algyin"</em> → oligomycin, <em>"ditrophenol"</em> → dinitrophenol, <em>"thermogenine"</em> → thermogenin, <em>"metoglobin"</em> → methemoglobin, <em>"flush sinosis"</em> → flushed cyanosis, <em>"nasin"</em> → niacin, <em>"lysol oxidase"</em> → lysyl oxidase, <em>"cassava/Gari"</em> retained as spoken). The entries below are substantive, not transcription noise.</p>
+
+<table class="compact flow">
+<thead><tr><th style="width:25%">What was said / shown</th><th style="width:44%">What is precisely true</th><th style="width:31%">Does it matter for the exam?</th></tr></thead>
+<tbody>
+<tr><td><b>P:O = 3 for NADH, 2 for FADH<sub>2</sub></b> (slides 18, 35)</td><td>These are the classical integer values. Measured proton stoichiometry gives <b>≈2.5 ATP per NADH and ≈1.5 per FADH<sub>2</sub></b>, because the number of protons pumped is not an exact multiple of the number needed per ATP. Current editions of most textbooks use the decimal values.</td><td class="hi"><b>Use 3 and 2 for this course.</b> She taught the integers exclusively and every calculation on the slides uses them. Recognize 2.5/1.5 if another source uses them.</td></tr>
+
+<tr><td><b>Transcript: "carbon monoxide has high affinity to bind to heme than oxygen, 210 times more"</b></td><td>Her slide says <b>220 times</b>. Published values range ~200–250×. The two numbers are her own slide vs. her own speech.</td><td>Low. <b>Quote 220</b> if a number is demanded — it is what is written on the slide.</td></tr>
+
+<tr><td><b>Transcript: "Thermogenin is an unnatural uncoupler in your body"</b></td><td>Slip (and a transcription artifact). Thermogenin is the <b>natural / physiological</b> uncoupler — her slide says "a natural uncoupler," and she says "natural" correctly elsewhere in the same passage.</td><td>Yes, but only as a reading error. Thermogenin is <b>physiological</b>.</td></tr>
+
+<tr><td><b>Transcript: "malignant hypertension — diastolic more than systolic"</b></td><td>As transcribed this is not a meaningful statement; diastolic pressure is never above systolic. <b>Malignant hypertension</b> is severe hypertension (typically diastolic &gt;120–130 mmHg) <b>with acute end-organ damage</b>. The relevant point for this lecture is simply that it is treated with <b>IV sodium nitroprusside</b>, which releases cyanide.</td><td>Not for biochemistry. <b>The examinable link is nitroprusside → cyanide release.</b></td></tr>
+
+<tr><td><b>Cyanide binds Fe<sup>3+</sup> of Complex IV "covalently"</b> (slide 43, and repeated verbally)</td><td>The bond is a <b>coordinate (dative) bond</b> to the ferric heme iron, not a classical covalent bond, and it is in principle reversible — which is exactly why sequestering agents work at all. Her clinical point is sound: it is far too tight to displace with oxygen, so treat it as irreversible at the bedside.</td><td class="hi"><b>Answer "covalent" if contrasted with CO's "non-covalent."</b> That contrast is the tested discrimination and the treatment logic follows from it correctly.</td></tr>
+
+<tr><td><b>"Complex I has 7 Fe–S centres"</b> (slide 19 and speaker notes)</td><td>Counts vary by source (commonly quoted as 6–8 iron–sulfur clusters). Her deck states 7 twice, including in the speaker notes.</td><td>Low. <b>Use her numbers</b> — Complex I: FMN + 7 Fe–S; Complex II: FAD + 2 Fe–S; Complex III: 1 Fe–S.</td></tr>
+
+<tr><td><b>ETC components "in order of increasing redox potential"</b> — presented as strictly monotonic</td><td>Nearly true, with one visible exception <b>in her own table</b>: <b>cytochrome b sits at +0.07 V, below Coenzyme Q at +0.10 V</b>, yet comes after it in the sequence. This is real — cytochrome b is part of the Q cycle inside Complex III and carries electrons on a branch, not straight down the ladder.</td><td>Low, but do not be thrown if you notice it. <b>The overall direction — negative to positive, ending at O<sub>2</sub> — is the examinable claim.</b></td></tr>
+
+<tr><td><b>"Uncouplers abolish the proton circuit"</b></td><td>Precisely, they abolish the <b>gradient</b>, not the pumping. The complexes keep pumping — harder than ever — but the protons leak straight back without passing through ATP synthase. Saying the circuit is "abolished" is shorthand for "short-circuited."</td><td>Conceptually yes: the reason O<sub>2</sub> consumption <b>rises</b> is that pumping continues and is never opposed.</td></tr>
+
+<tr><td><b>Slide 41: "Respiration inhibitor ions block the ETC and are always effective in decreasing oxygen uptake"</b></td><td>True for inhibitors, and a useful "always" — but note it is <b>false for uncouplers</b>, which raise oxygen uptake. The sentence is safe only because it is scoped to inhibitors.</td><td class="hi"><b>Yes.</b> "Always decreases oxygen uptake" is true of inhibitors and is exactly the wrong answer for an uncoupler.</td></tr>
+
+<tr><td><b>ATP yield of NADH given as "7 if 100 % efficient"</b> (slide 14)</td><td>A thermodynamic ceiling, not a yield. Actual = 3 ATP ≈ 22 kcal of the 52.6 kcal available ≈ <b>40 % efficiency</b>; the rest is heat.</td><td class="hi"><b>Yes — read the stem carefully.</b> "Maximum possible" = 7; "how many are actually made" = 3.</td></tr>
+
+<tr><td><b>Complex II described as having "no protons pumped"</b> and separately as "not a coupling site"</td><td>These are the same fact stated two ways, not two facts. No pumping → no contribution to the gradient → no ATP attributable to that step.</td><td>Yes — but as one idea. It is why FADH<sub>2</sub> yields 2 rather than 3.</td></tr>
+</tbody>
+</table>
+
+<div class="pagebreak"></div>
+<h2>Rapid review — two-column recall sheet</h2>
+<p style="font-size:8.4pt;color:#555;margin-bottom:2mm">Keyword-level recall only; explanations live in the body above. <b>Bold</b> = always/never rule or high-yield discrimination point.</p>
+
+<div class="two-col cheat">
+
+<h3>Redox basics</h3>
+<ul>
+<li><b>Reducing equivalent = proton + electron (2H<sup>+</sup> + 2e<sup>−</sup>)</b></li>
+<li>Oxidation = gain O<sub>2</sub> <b>or</b> loss H<sub>2</sub>; biological oxidation = <b>loss of reducing equivalents</b></li>
+<li>Enzymes: <b>oxidoreductases / dehydrogenases</b></li>
+<li>NAD<sup>+</sup> ← <b>B3 niacin</b> · FAD ← <b>B2 riboflavin</b></li>
+<li><b>NADH reflects ATP status; NADPH does not</b> (NADPH = anabolism)</li>
+<li>More <b>NADH</b> made than FADH<sub>2</sub></li>
+</ul>
+
+<h3>Redox potential</h3>
+<ul>
+<li><b>E<sub>0</sub>′ = affinity for electrons</b>, at 1 M oxidant + reductant, <b>pH 7</b></li>
+<li><b>Low E<sub>0</sub>′ = low affinity · High E<sub>0</sub>′ = high affinity</b></li>
+<li><b>Electrons flow toward MORE POSITIVE E<sub>0</sub>′</b></li>
+<li><b>ΔE<sub>0</sub>′ = acceptor − donor</b>; acceptor is <b>always</b> higher</li>
+<li><b>ΔG<sub>0</sub>′ = −nFΔE<sub>0</sub>′</b>; F = <b>23.06 kcal/V</b>; n = number of <b>electrons</b></li>
+<li><b>More positive ΔE → more negative ΔG</b></li>
+<li>ETC spans <b>~1.1 V</b>, arranged in <b>increasing</b> E<sub>0</sub>′</li>
+<li><b>O<sub>2</sub> has the highest E<sub>0</sub>′ (+0.82) — best acceptor</b></li>
+<li>NAD<sup>+</sup>/NADH <b>−0.32</b> · FAD/FADH<sub>2</sub> <b>−0.22</b> · CoQ +0.10 · Cyt c +0.25</li>
+</ul>
+
+<h3>NADH energy calculation</h3>
+<ul>
+<li>ΔE<sub>0</sub>′ = +0.82 − (−0.32) = <b>+1.14 V</b></li>
+<li>ΔG<sub>0</sub>′ = −(2)(23.06)(1.14) = <b>−52.6 kcal/mol</b></li>
+<li>ATP = <b>7.3 kcal/mol</b> → <b>7 ATP if 100 % efficient</b></li>
+<li><b>Actual = 3 ATP (~40 % efficiency)</b></li>
+</ul>
+
+<h3>Mitochondrion</h3>
+<ul>
+<li>Outer membrane <b>permeable</b>; inner <b>semipermeable</b>, folded into <b>cristae</b></li>
+<li><b>Inner membrane is IMPERMEABLE to H<sup>+</sup></b> — the whole gradient depends on it</li>
+<li><b>Matrix</b> = TCA cycle = where reducing equivalents are made</li>
+<li><b>Inner membrane</b> = ETC + ATP synthase</li>
+<li><b>mtDNA is maternally inherited; encodes 13 ETC proteins</b></li>
+<li>Cytosolic equivalents need shuttles: <b>glycerophosphate</b>, <b>malate–aspartate</b></li>
+</ul>
+
+<h3>ETC architecture</h3>
+<ul>
+<li><b>5 fixed complexes + 2 mobile carriers</b>, inner mitochondrial membrane</li>
+<li><b>Complex V = ATP synthase = F<sub>0</sub>F<sub>1</sub> complex</b></li>
+<li><b>Coupling sites: I, III, IV</b></li>
+<li><b>Complex II is NOT a coupling site — no H<sup>+</sup> pumped, no ATP</b></li>
+<li><b>CoQ = lipid-soluble</b>, isoprenoid, cholesterol-synthesis intermediate; accepts from <b>I and II</b></li>
+<li><b>Cyt c = water-soluble</b>, intermembrane space, donates to <b>Cu of Complex IV</b></li>
+<li>Cytochromes = <b>heme proteins</b> (a, b, c)</li>
+<li><b>Electron flow is unidirectional</b></li>
+</ul>
+
+<h3>The four complexes</h3>
+<ul>
+<li><b>I</b> — NADH dehydrogenase / NADH:Q oxidoreductase; <b>FMN + 7 Fe–S</b>; largest, &gt;25 chains; <b>NADH → CoQ</b></li>
+<li><b>II</b> — succinate dehydrogenase / FADH<sub>2</sub>:Q oxidoreductase; <b>FAD + 2 Fe–S</b>; <b>FADH<sub>2</sub> → CoQ</b>; <b>no ATP</b></li>
+<li><b>III</b> — CoQH<sub>2</sub>:Cyt c oxidoreductase, <b>bc<sub>1</sub></b>; <b>Cyt b (b562, b566) + Cyt c<sub>1</sub> + 1 Fe–S</b>; <b>CoQH<sub>2</sub> → Cyt c</b></li>
+<li><b>IV</b> — cytochrome c oxidase, Cyt c:O<sub>2</sub> oxidoreductase; <b>Cyt a + a<sub>3</sub>, Cu</b>; <b>Cyt c → O<sub>2</sub> → H<sub>2</sub>O</b></li>
+<li><b>I vs II: FMN vs FAD</b> · <b>III vs IV: bc<sub>1</sub> vs aa<sub>3</sub></b></li>
+<li><b>Only Complex IV needs copper → Cu deficiency impairs Complex IV</b> (cf. lysyl oxidase)</li>
+</ul>
+
+<h3>ROS</h3>
+<ul>
+<li><b>Superoxide is made during NORMAL ETC function</b></li>
+<li><b>Leaks from FMN in Complex I and ubiquinone in Complex III</b></li>
+<li>ROS: <b>O<sub>2</sub><sup>•−</sup>, H<sub>2</sub>O<sub>2</sub>, OH<sup>•</sup></b>; detox deferred to HMP shunt lecture</li>
+</ul>
+
+<h3>Oxidative phosphorylation</h3>
+<ul>
+<li><b>Oxidative phosphorylation = ATP made WITH the ETC</b> (needs mitochondria + O<sub>2</sub>)</li>
+<li><b>Substrate-level phosphorylation = ATP WITHOUT the ETC</b> (e.g. glycolysis)</li>
+<li><b>Chemiosmotic theory:</b> I, III, IV pump H<sup>+</sup> <b>out</b> → gradient → H<sup>+</sup> back <b>in</b> through <b>F<sub>0</sub></b> → conformational change → <b>ADP + P<sub>i</sub> → ATP</b></li>
+<li>Two gradients: <b>ΔpH</b> (acidic outside) + <b>ΔΨ</b> (<b>matrix negative</b>)</li>
+<li><b>P:O = ATP per atom of oxygen reduced</b></li>
+<li><b>NADH → P:O = 3</b> (pyruvate, α-KG, isocitrate, malate)</li>
+<li><b>FADH<sub>2</sub> → P:O = 2</b> (succinate) — <b>bypasses Complex I</b></li>
+</ul>
+
+<h3>Respiratory control</h3>
+<ul>
+<li>Rate ∝ <b>[ADP][P<sub>i</sub>] / [ATP]</b></li>
+<li><b>ADP is the "go" signal</b>; high ATP slows the chain</li>
+<li>Gradient cannot discharge without <b>ADP + P<sub>i</sub></b></li>
+<li>Controls <b>both ATP synthesis and O<sub>2</sub> consumption</b></li>
+<li><b>Watch for the ratio being inverted in the stem</b></li>
+</ul>
+
+<h3>The three lesions</h3>
+<ul>
+<li><b>ETC inhibitors</b> — block electron flow: <b>ETC ↓, O<sub>2</sub> ↓, ATP ↓</b></li>
+<li><b>ATP synthase inhibitors</b> — block H<sup>+</sup> return: <b>ETC ↓, O<sub>2</sub> ↓, ATP ↓</b> (same, via back-pressure)</li>
+<li><b>UNCOUPLERS</b> — H<sup>+</sup> leak: <b>ETC ↑, O<sub>2</sub> ↑, ATP ↓</b> + <b>HEAT</b></li>
+<li><b>Uncouplers are the ONLY agents that increase O<sub>2</sub> consumption</b></li>
+</ul>
+
+<h3>Inhibitors by site</h3>
+<ul>
+<li><b>I</b> — <b>rotenone</b> (insecticide/fish poison), <b>amobarbital</b>/barbiturates, piericidin A</li>
+<li><b>II</b> — <b>malonate</b> (<b>competitive</b> inhibitor of SDH), carboxin, TTFA</li>
+<li><b>III</b> — <b>antimycin A</b>, dimercaprol (BAL)</li>
+<li><b>IV</b> — <b>CO, CN<sup>−</sup>, H<sub>2</sub>S</b></li>
+<li><b>ATP synthase</b> — <b>oligomycin</b> (blocks H<sup>+</sup> through F<sub>0</sub>)</li>
+<li><b>ADP/ATP translocase</b> — <b>atractyloside</b></li>
+<li>Rule: <b>upstream of a block stays reduced, downstream stays oxidized</b></li>
+</ul>
+
+<h3>CO vs cyanide</h3>
+<ul>
+<li>Both hit <b>Complex IV, cytochrome a<sub>3</sub></b></li>
+<li><b>CO → Fe<sup>2+</sup>, NON-covalent → reversible → 100 % / hyperbaric O<sub>2</sub></b></li>
+<li><b>CN<sup>−</sup> → Fe<sup>3+</sup>, covalent → amyl nitrite → metHb(Fe<sup>3+</sup>) sequesters CN<sup>−</sup> → thiosulfate → thiocyanate → excreted</b></li>
+<li>CO also binds Hb (<b>220×</b> O<sub>2</sub>): shifts curve <b>LEFT</b>, sigmoid → hyperbolic, <b>cannot offload O<sub>2</sub></b></li>
+<li>CN<sup>−</sup> sources: <b>nitroprusside</b>, <b>cassava</b>, bitter almonds, fruit pits</li>
+<li>Both: <b>cherry-red</b></li>
+</ul>
+
+<h3>Uncouplers</h3>
+<ul>
+<li><b>2,4-DNP</b> — former diet drug, <b>fatal hyperthermia</b></li>
+<li>2,4-DNC, pentachlorophenol, CCCP</li>
+<li><b>Aspirin/salicylate overdose = uncoupler → fever</b></li>
+<li><b>Thermogenin (UCP1), brown adipose tissue = the NATURAL uncoupler</b>; non-shivering thermogenesis, critical in the <b>newborn</b></li>
+</ul>
+
+</div>
+
+<h2>Self-test — 15 questions</h2>
+
+<ol class="qlist">
+<li>Define a reducing equivalent, and restate "biological oxidation" using it.<br><span class="ans">A proton plus an electron. Biological oxidation = loss of H<sub>2</sub> = loss of 2H<sup>+</sup> + 2e<sup>−</sup> = loss of reducing equivalents.</span></li>
+
+<li>In which direction do electrons move along a redox series, and how is ΔE<sub>0</sub>′ defined?<br><span class="ans">Toward the more positive (higher) standard redox potential — the acceptor always exceeds the donor. ΔE<sub>0</sub>′ = E<sub>0</sub>′(acceptor) − E<sub>0</sub>′(donor).</span></li>
+
+<li>Why does ΔG<sub>0</sub>′ = −nFΔE<sub>0</sub>′ carry a minus sign?<br><span class="ans">A positive ΔE<sub>0</sub>′ means spontaneous, and spontaneity is signalled by a negative ΔG. The sign converts between two opposite conventions.</span></li>
+
+<li>Calculate ΔE<sub>0</sub>′ and ΔG<sub>0</sub>′ for NADH + H<sup>+</sup> + ½O<sub>2</sub> → NAD<sup>+</sup> + H<sub>2</sub>O.<br><span class="ans">ΔE<sub>0</sub>′ = +0.82 − (−0.32) = +1.14 V. ΔG<sub>0</sub>′ = −(2)(23.06)(1.14) = −52.6 kcal/mol. Enough for 7 ATP at 100% efficiency; actually yields 3.</span></li>
+
+<li>Where in the mitochondrion are reducing equivalents generated, and where are they spent?<br><span class="ans">Generated in the matrix (TCA cycle); spent in the inner membrane, where the ETC and ATP synthase sit.</span></li>
+
+<li>A disease is caused by a mutation in an ETC subunit encoded by mtDNA. What inheritance pattern do you expect?<br><span class="ans">Maternal — an affected mother transmits to all offspring, an affected father to none. mtDNA encodes 13 ETC proteins.</span></li>
+
+<li>Name the five complexes' jobs in one line each.<br><span class="ans">I: NADH → CoQ. II: FADH<sub>2</sub> → CoQ. III: CoQH<sub>2</sub> → cytochrome c. IV: cytochrome c → O<sub>2</sub> → H<sub>2</sub>O. V: ATP synthase, H<sup>+</sup> back in → ATP.</span></li>
+
+<li>Which complex is not a coupling site, and why does that follow from the redox ladder?<br><span class="ans">Complex II. FADH<sub>2</sub> enters at −0.22 V rather than −0.32 V, so the drop to CoQ is too small to pay for pumping protons. No pump → no ATP → P:O = 2.</span></li>
+
+<li>Which two prosthetic-group differences separate the look-alike complexes?<br><span class="ans">Complex I has FMN, Complex II has FAD. Complex III has cytochrome bc<sub>1</sub>, Complex IV has cytochrome aa<sub>3</sub> (plus copper).</span></li>
+
+<li>A patient is copper deficient. Which ETC complex is impaired, and which other enzyme from the enzymes lecture shares this requirement?<br><span class="ans">Complex IV (cytochrome c oxidase) — the only copper-requiring complex. Lysyl oxidase, in collagen processing, also requires Cu<sup>2+</sup>.</span></li>
+
+<li>Where is superoxide produced during normal electron transport?<br><span class="ans">Leaking from FMN in Complex I and from ubiquinone in Complex III.</span></li>
+
+<li>State the chemiosmotic theory in one sentence, and name the two components of the gradient.<br><span class="ans">Complexes I, III and IV pump H<sup>+</sup> out of the matrix; the protons return through F<sub>0</sub> of ATP synthase, and that flow drives a conformational change that joins ADP and P<sub>i</sub>. The gradient has a chemical component (ΔpH, acidic outside) and an electrical one (ΔΨ, matrix negative).</span></li>
+
+<li>Oligomycin blocks ATP synthase, not the ETC. Why does oxygen consumption still fall?<br><span class="ans">Protons cannot return, so the gradient builds until back-pressure stalls the pumps; electron flow stops with them. This is respiratory control, and it is why ETC inhibitors and ATP synthase inhibitors give identical arrows.</span></li>
+
+<li>An agent increases ETC function and oxygen consumption but decreases ATP. What class is it, what is the mechanism, and what is the clinical consequence?<br><span class="ans">An uncoupler. It makes the inner membrane permeable to H<sup>+</sup>, so no gradient forms and no back-pressure exists — the chain runs unchecked and the energy leaves as heat. Consequence: hyperthermia. Examples: 2,4-DNP, salicylate overdose, thermogenin (physiological).</span></li>
+
+<li>A patient is found unconscious after eating improperly processed cassava. Which complex is inhibited, at which iron oxidation state, and what is the antidote logic?<br><span class="ans">Cyanide inhibits Complex IV at the Fe<sup>3+</sup> of cytochrome a<sub>3</sub>. Because that binding cannot be competed off, amyl nitrite is given to convert hemoglobin to methemoglobin (Fe<sup>3+</sup>), which sequesters cyanide; thiosulfate then converts it to thiocyanate for excretion. Contrast CO, which binds Fe<sup>2+</sup> non-covalently and is treated with 100% or hyperbaric oxygen.</span></li>
+</ol>
+
+</body>
+</html>

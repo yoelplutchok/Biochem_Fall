@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lecture 01 — Overview of Metabolic Pathways — Study Guide</title>
+<link rel="stylesheet" href="Lecture 01 - STUDY GUIDE (html source).css">
+</head>
+<body>
+
+<div class="hdr">
+  <div class="kicker">Medical Biochemistry &amp; Genetics I &nbsp;·&nbsp; Fall 2026 &nbsp;·&nbsp; Week 1, Session 1</div>
+  <h1>Lecture 01 — Overview of Metabolic Pathways</h1>
+  <div class="sub">Complete study guide — PowerPoint (all 41 slides + speaker notes) and lecture transcript, reconciled</div>
+</div>
+
+<div class="metagrid">
+  <div class="row"><span class="k">Instructor</span> &nbsp; <span class="v">Shilpika Bagh, MBBS, MD — Course Director, Medical Biochemistry</span></div>
+  <div class="row"><span class="k">Session</span> &nbsp; <span class="v">Tuesday 8/4, 1:00–2:00 PM, in person (Poll Everywhere participation)</span></div>
+  <div class="row"><span class="k">Required reading</span> &nbsp; <span class="v">Lippincott Illustrated Reviews: Biochemistry, Ch. 8 (Introduction to Metabolism) &nbsp;·&nbsp; <span class="k">Suggested</span> Marks' Basic Medical Biochemistry 5th ed., Ch. 1 and Ch. 9</span></div>
+  <div class="row"><span class="k">Assessed on</span> &nbsp; <span class="v">Foundation Exam #1, 8/17, 11 AM–1 PM (with Enzymes &amp; Kinetics, ETC, Thermodynamics primer, Signal Transduction, Carbohydrate digestion, Carbohydrate structures)</span></div>
+</div>
+
+<div class="concept">
+<span class="lbl">How to read this document</span>
+<p><b>Blue</b> = the concept, the why. <b>Gold</b> = the specifics to memorize. <b>Red</b> = traps and "always/never" statements Dr. Bagh repeated. <b>Green</b> = clinical. <b>Grey</b> = corrections where the slides or the spoken lecture were imprecise. Each fact appears once, in whichever block it belongs to — the blue blocks explain, the gold blocks list, and they do not restate each other.</p>
+<p><b>What this lecture actually is:</b> scaffolding, not content. Dr. Bagh said some version of <em>"you will learn this later"</em> more than twenty times. There is not a single pathway here you must be able to draw. What you must own is the vocabulary and the rules every later pathway will obey — catabolism vs anabolism, which carrier does which job, what makes a step irreversible, what "committed" and "rate-limiting" mean, and the ways a cell turns an enzyme up or down.</p>
+</div>
+
+<h2><span class="onum">Part 0 &nbsp;/&nbsp;</span> The professor's own mental map</h2>
+
+<p>Dr. Bagh opened by putting her <em>own</em> handwritten summary on screen before any slide content — "that's how I think the lecture has to be introduced." It is the spine of everything that follows. (The scanned image on slide 4 is cut off at the bottom; the missing lines, which she spoke, are restored here.)</p>
+
+<div class="map">
+<span class="stage">METABOLISM</span><br>
+&nbsp;&nbsp;├── <span class="cat">CATABOLISM</span><br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;<b>Macronutrients</b> (carbohydrate, lipid, protein) <b>+ Micronutrients</b> (vitamins, minerals)<br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;<b>OXIDATION</b> &nbsp;(in the body = <b>loss of hydrogen</b>, not gain of oxygen)<br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Glycolysis →→ acetyl-CoA &nbsp;&nbsp;• TCA cycle → CO<sub>2</sub> + H<sub>2</sub>O &nbsp;&nbsp;• HMP shunt → NADPH + pentoses <span style="color:#b3282d">(no ATP)</span><br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;<b>Burn carbohydrate</b> (↑ insulin) →→ acetyl-CoA + ATP &nbsp;&nbsp;&nbsp;<b>Burn fat</b> (↓ insulin) →→ acetyl-CoA + ATP<br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;<b>NADH → ATP</b> &nbsp;&nbsp;&nbsp;<b>NADPH <span style="color:#b3282d">✗</span> ATP</b><br>
+&nbsp;&nbsp;└── <span class="ana">ANABOLISM</span> &nbsp;<span class="chem">CH<sub>3</sub>–CH<sub>2</sub>–CH<sub>2</sub>–COOH</span> <span style="color:#666">(e.g. a fatty acid — needs C and H)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• <b>ATP</b> — the universal requirement &nbsp;&nbsp;• <b>Acetyl-CoA</b> — source of carbon &nbsp;&nbsp;• <b>NADPH</b> — source of hydrogen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• <b>↑ Insulin</b> — the anabolic hormone … <span style="text-decoration:line-through; color:#b3282d">gluconeogenesis</span> <span style="text-decoration:line-through; color:#b3282d">ketogenesis</span>
+</div>
+
+<div class="concept">
+<span class="lbl">The whole lecture in one paragraph</span>
+<p>You eat macronutrients. They can't be used as eaten, so they are digested to their simplest absorbable forms, absorbed, and taken up by cells. Inside the cell, <b>catabolism</b> oxidizes them — and oxidation here means <em>stripping hydrogens off</em>, not adding oxygen. Those hydrogens must land somewhere, and the things that catch them are NAD<sup>+</sup>, NADP<sup>+</sup> and FAD, which become NADH, NADPH and FADH<sub>2</sub>. NADH and FADH<sub>2</sub> are cashed in for ATP. Once ATP is plentiful — a <b>high energy charge</b> — the cell flips to <b>anabolism</b>. Building needs energy (ATP), carbon (acetyl-CoA) and hydrogen (NADPH), all three of which came out of catabolism. The hormone that turns the anabolic program on is insulin.</p>
+</div>
+
+<h2><span class="onum">Objective 1 &nbsp;/&nbsp;</span> Compare and contrast catabolic and anabolic pathways</h2>
+
+<div class="concept">
+<span class="lbl">What metabolism is</span>
+<p><b>Metabolism</b> is the sum of all chemical changes in a cell, tissue, or body. Reactions almost never happen in isolation — they are organized into multi-step <b>pathways</b>, and pathways intersect into one integrated network. Every pathway is either <b>degradative (catabolic)</b> or <b>synthetic (anabolic)</b>.</p>
+<p>The Stanford "Pathways of Human Metabolism" map on slide 3 (also in the repo as <span class="chem">FullSubwayMap222.pdf</span>) exists to make one point: carbohydrate, lipid and protein metabolism are not three separate subjects — they share intermediates and feed each other. You are not expected to memorize it, only to keep returning to it as each pathway is taught.</p>
+</div>
+
+<figure>
+  <img src="Lecture_01_figures/slide06_1.png" alt="Catabolism and anabolism wheel">
+  <figcaption><b>Slide 6 — the central wheel.</b> Two counter-rotating arrows sharing one hub: catabolism converts the <b>oxidized</b> carriers (ADP + HPO<sub>4</sub><sup>2−</sup>, NAD<sup>+</sup>, NADP<sup>+</sup>, FAD) into the <b>charged</b> ones (ATP, NADH, NADPH, FADH<sub>2</sub>), and anabolism spends them.</figcaption>
+</figure>
+
+<h3>1.1 &nbsp;Catabolism</h3>
+
+<div class="detail">
+<span class="lbl">The five defining features (slide 7, verbatim)</span>
+<ol>
+<li><b>Breakdown</b> of complex molecules into simple ones</li>
+<li>Generally <b>exergonic</b> — proceeds with release of free energy</li>
+<li><b>Releases energy</b>, captured as ATP</li>
+<li><b>Oxidative</b> — NAD<sup>+</sup> / NADP<sup>+</sup> → NADH / NADPH (and FAD → FADH<sub>2</sub>)</li>
+<li><b>Provides the energy for the synthesis</b> of complex molecules — it exists to fund anabolism</li>
+</ol>
+</div>
+
+<div class="trap">
+<span class="lbl">Her most-repeated point in the entire lecture</span>
+<p><b>Oxidation in the human body is by LOSS OF HYDROGEN, not gain of oxygen.</b> She said this at least eight times. Biological oxidation is <em>dehydrogenation</em> — hence the enzymes are called <b>dehydrogenases</b>. Her follow-on question, asked and answered repeatedly: <em>"and who accepts those hydrogens?"</em> The <b>acceptors of reducing equivalents</b> — <b>NAD<sup>+</sup>, NADP<sup>+</sup>, FAD</b>. She defined a reducing equivalent as <b>2H<sup>+</sup> + 2e<sup>−</sup></b>.</p>
+</div>
+
+<div class="note">
+<span class="lbl">Precision on what each acceptor actually takes</span>
+<p>Strictly, a "reducing equivalent" is one electron (or one hydrogen atom); the 2H<sup>+</sup> + 2e<sup>−</sup> she describes is what a dehydrogenase removes from the substrate, so her usage is right in context. The two acceptors then differ:</p>
+<ul>
+<li><b>NAD<sup>+</sup></b> accepts a <b>hydride (H<sup>−</sup> = 1H<sup>+</sup> + 2e<sup>−</sup>)</b>; the other proton is released into solution — which is why it is always written <b>NADH + H<sup>+</sup></b>, a detail she was careful about.</li>
+<li><b>FAD</b> accepts <b>both</b> hydrogens (2H<sup>+</sup> + 2e<sup>−</sup>) → <b>FADH<sub>2</sub></b>, releasing no free H<sup>+</sup>.</li>
+</ul>
+</div>
+
+<h4>The three oxidative (catabolic) pathways</h4>
+<p>She listed this triad roughly six separate times. If one fact from Objective 1 is tested, it is likely this.</p>
+
+<table>
+<thead><tr><th style="width:24%">Pathway</th><th style="width:29%">What it mainly oxidizes</th><th style="width:27%">What it produces</th><th style="width:20%">Source of ATP?</th></tr></thead>
+<tbody>
+<tr><td><b>Glycolysis</b></td><td>Mainly <b>carbohydrate</b></td><td>Pyruvate → acetyl-CoA; NADH; some ATP</td><td class="hi">Yes</td></tr>
+<tr><td><b>TCA cycle</b><br><span style="font-size:7.7pt;color:#666">= citric acid cycle = tricarboxylic acid cycle — three names, one cycle</span></td><td><b>Common final pathway</b> for carbohydrate, lipid <em>and</em> protein; all three converge on acetyl-CoA, the cycle's starting molecule</td><td>NADH + H<sup>+</sup>, FADH<sub>2</sub>, CO<sub>2</sub></td><td class="hi">Yes (indirectly, via the carriers)</td></tr>
+<tr><td><b>HMP shunt</b><br><span style="font-size:7.7pt;color:#666">= hexose monophosphate shunt = pentose phosphate pathway</span></td><td>Glucose-6-phosphate — an <b>alternate</b> oxidative route</td><td><b>NADPH</b> and <b>pentoses</b></td><td class="hi" style="background:#fdeeee !important;color:#b3282d">NO</td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+<span class="lbl">Trap</span>
+<p>The HMP shunt is an oxidative pathway that <b>does not give you ATP</b>. It makes NADPH (reducing power for synthesis) and pentoses (ribose for nucleotides). Don't let "oxidative pathway" reflexively produce the answer "ATP."</p>
+</div>
+
+<div class="detail">
+<span class="lbl">Three stages of catabolism, and what gets absorbed</span>
+<p>She described the staging verbally — "first they are digested and absorbed as simple molecules, picked up by the cells, and <em>then</em> starts catabolism." It is Figure 8.3 of the required Lippincott chapter:</p>
+<ol>
+<li><b>Hydrolysis of complex molecules → building blocks.</b> Proteins → amino acids; polysaccharides → monosaccharides; triacylglycerols → free fatty acids + glycerol. This is digestion and absorption, before the cell is involved.</li>
+<li><b>Building blocks → acetyl-CoA</b> and a few simple intermediates. Some ATP captured, but little.</li>
+<li><b>Oxidation of acetyl-CoA</b> in the TCA cycle, electrons flowing from NADH and FADH<sub>2</sub> to oxygen via <b>oxidative phosphorylation</b>. This is where the large ATP yield comes from.</li>
+</ol>
+<table class="compact" style="margin:2mm 0 0 0">
+<thead><tr><th style="width:22%">Macronutrient</th><th style="width:30%">Major absorbable form</th><th>Role she assigned it</th></tr></thead>
+<tbody>
+<tr><td>Carbohydrate</td><td>Glucose (monosaccharide)</td><td><b>Preferred fuel</b></td></tr>
+<tr><td>Fat</td><td>Fatty acids</td><td><b>Concentrated fuel</b></td></tr>
+<tr><td>Protein</td><td>Amino acids</td><td><b>Mainly building blocks</b> — but also used for energy</td></tr>
+</tbody>
+</table>
+<p style="margin-top:1.6mm; font-size:9.2pt">Other absorbable forms exist for each and are taught later. Two extras she stated: <b>alcohol is not "empty calories"</b> — it supplies real calories, entering metabolism directly at acetyl-CoA. And both carbohydrate and fat yield acetyl-CoA → ATP, but <b>carbohydrate is burned in the fed, high-insulin state and fat in the low-insulin state</b>.</p>
+</div>
+
+<h3>1.2 &nbsp;The NADH-versus-NADPH rule</h3>
+
+<div class="concept">
+<span class="lbl">Why two nearly identical molecules exist</span>
+<p>NADH and NADPH differ by exactly one phosphate group (on the 2′-OH of the adenosine ribose). Chemically they do the same thing — carry two electrons. That phosphate is a <b>molecular tag</b> letting the cell run two separate pools with two separate jobs, and letting enzymes recognize which one they are meant to use. <b>NAD<sup>+</sup>/NADH</b> is kept mostly <b>oxidized</b>, ready to <em>accept</em> electrons from catabolism and pass them to the electron transport chain — catabolic currency. <b>NADP<sup>+</sup>/NADPH</b> is kept mostly <b>reduced</b>, ready to <em>donate</em> electrons into biosynthesis — anabolic currency.</p>
+<p><b>Reductive synthesis</b> = any biosynthetic reaction requiring hydrogen (electrons added to the substrate); the donor is NADPH. Her two examples were <b>fatty acid synthesis</b> and <b>cholesterol synthesis</b> — look at either molecule and it is nothing but carbon and hydrogen, so the cell must supply both a carbon source (acetyl-CoA) and a hydrogen source (NADPH). The main producer of NADPH in this lecture is the HMP shunt.</p>
+</div>
+
+<div class="rule-strip red">NADH and FADH<sub>2</sub> → sources of ATP &nbsp;&nbsp;·&nbsp;&nbsp; NADPH → <u>NEVER</u> a source of ATP</div>
+
+<div class="trap">
+<span class="lbl">"Kindly remember this very important fact"</span>
+<ul>
+<li><b>NADH</b> is an <b>indirect</b> source of ATP — it is oxidized in the electron transport chain and the resulting proton gradient drives ATP synthase. "Indirect" is her word and it is the correct word.</li>
+<li><b>FADH<sub>2</sub></b> is also a source of ATP by the same route, but <b>less is produced</b>, because NAD<sup>+</sup> is a far more common acceptor than FAD. That is why she always names NADH first.</li>
+<li><b>NADPH is never a source of ATP.</b> It is the <b>source of hydrogen</b> for reductive synthesis.</li>
+</ul>
+</div>
+
+<h3>1.3 &nbsp;Anabolism</h3>
+
+<div class="detail">
+<span class="lbl">Slide 9 — the requirements</span>
+<ul>
+<li><b>Synthesis</b> of complex molecules; generally <b>endergonic</b></li>
+<li><b>Energy</b> as <b>ATP / GTP</b> to drive enzyme-catalyzed reactions — e.g. ligases, as in glutamine formation by glutamate–ammonia ligase; GTP as with PEP carboxykinase. Some syntheses use ATP, some GTP; requiring one of them is universal.</li>
+<li><b>Reducing power</b> as <b>NADPH</b> (and NADH) to supply electrons for reduction of substrates</li>
+<li><b>Carbon skeletons</b> — e.g. for cholesterol biosynthesis, <b>acetyl-CoA</b> is required</li>
+</ul>
+</div>
+
+<div class="rule-strip gold">Anabolism needs: ① ATP (universal) &nbsp; ② Acetyl-CoA (carbon) &nbsp; ③ NADPH (hydrogen) &nbsp; ④ ↑ Insulin</div>
+
+<p>She paused twice and asked the class to recite that list from memory. Expect to be asked for it.</p>
+
+<div class="trap">
+<span class="lbl">Two "never pick this" warnings, in her words</span>
+<ul>
+<li><b>"Please never pick low energy state as active for anabolism."</b> Anabolism is ATP-<em>utilizing</em>; it can only switch on when ATP is already high inside the cell. Low energy state → catabolism.</li>
+<li><b>Insulin supports every "-genesis" EXCEPT gluconeogenesis and ketogenesis.</b> Repeated five times.</li>
+</ul>
+</div>
+
+<div class="concept">
+<span class="lbl">Why insulin is exempt from those two</span>
+<p>Gluconeogenesis (glucose from non-carbohydrate sources) and ketogenesis (ketone bodies) are <em>synthetic in form</em> but belong to the <b>fasting</b> program — their purpose is to supply fuel when food is absent. Insulin signals "fed," so it actively <b>inhibits</b> both. This is the one place where "anabolic = insulin" breaks, which is exactly why it is examinable.</p>
+</div>
+
+<h3>1.4 &nbsp;ATP and the energy charge</h3>
+
+<figure>
+  <img src="Lecture_01_figures/slide10_ph0.jpg" alt="ATP structure showing phosphoanhydride and phosphoester bonds">
+  <figcaption><b>Slide 10 — which bonds are the "high-energy" ones.</b> The two bonds <em>between</em> phosphates are <b>phosphoanhydride</b> bonds (high energy); the bond joining the α-phosphate to ribose is a <b>phosphoester</b> bond and is <em>not</em>.</figcaption>
+</figure>
+
+<div class="detail">
+<span class="lbl">ATP facts</span>
+<ul>
+<li>ATP is a <b>high-energy phosphate compound</b> and the most commonly used energy source in the body; it comes from <b>catabolism of macronutrients</b>. A <b>high-energy compound</b> is one liberating energy equal to or greater than ATP (others come later in the course).</li>
+<li>"High-energy" bonds are written with a <b>squiggle ( ~ )</b>.</li>
+<li><b>ATP contains TWO high-energy bonds; ADP contains ONE</b> (the β and γ phosphoanhydride bonds).</li>
+<li>Standard free energy of hydrolysis = <b>−7,300 cal/mol (−7.3 kcal/mol)</b> for <b>both</b> the β and γ phosphate.</li>
+<li>Definition to be able to state: a <b>high-energy bond</b> is a covalent bond whose hydrolysis releases a <b>useful amount of energy to perform work</b>.</li>
+<li><b>Energy charge</b> = <span class="chem">([ATP] + ½[ADP]) / ([ATP]+[ADP]+[AMP])</span> — ADP counts as half because it carries one of the two high-energy bonds. Range <b>0 (all AMP) to 1 (all ATP)</b>; <b>buffered like the pH of a cell</b>, sitting at <b>0.8–0.95</b> in most cells.</li>
+<li><b>High energy charge → catabolic pathways INHIBITED, anabolic pathways STIMULATED.</b></li>
+</ul>
+</div>
+
+<figure>
+  <img src="Lecture_01_figures/slide11_1.jpg" alt="Energy charge graph">
+  <figcaption><b>Slide 11 — why the system is stable.</b> The two curves cross at a high energy charge (~0.85–0.9), which is precisely where cells sit, so any drift in either direction is immediately opposed. <em>(Berg/Tymoczko/Stryer 5th ed.)</em></figcaption>
+</figure>
+
+<div class="note">
+<span class="lbl">A misconception worth pre-empting</span>
+<p>"High-energy bond" is biochemist's shorthand, not a physics statement. Energy is not stored inside the bond — the large negative ΔG of hydrolysis comes from relief of electrostatic repulsion between the negatively charged phosphates, greater resonance stabilization of the products, and better solvation of the products. Use the course's definition on the exam; just don't build a wrong mental picture on it.</p>
+</div>
+
+<h3>1.5 &nbsp;Convergent versus divergent, and the summary table</h3>
+
+<figure>
+  <img src="Lecture_01_figures/slide12_1.jpg" alt="Converging catabolism, diverging anabolism, cyclic pathway">
+  <figcaption><b>Slide 12 — the shape of metabolism.</b> <b>(a)</b> Starch, glycogen, sucrose, phospholipids, triacylglycerols and many amino acids all funnel into one node, <b>acetyl-CoA</b>. <b>(b)</b> From that same node diverge cholesterol (→ bile acids, steroid hormones, vitamin K), fatty acids → triacylglycerols, and phospholipids. <b>(c)</b> The TCA cycle regenerates its own oxaloacetate — a pathway that regenerates a component is a <b>cycle</b>, which is why cycles have no committed step (§3.2).</figcaption>
+</figure>
+
+<table>
+<thead><tr><th style="width:24%">Feature</th><th style="width:38%">Catabolism</th><th style="width:38%">Anabolism</th></tr></thead>
+<tbody>
+<tr><td><b>Shape</b></td><td><b>Convergent</b> — many molecules → few end products</td><td><b>Divergent</b> — few precursors → many products</td></tr>
+<tr><td><b>End products</b></td><td>Simple molecules (CO<sub>2</sub>, H<sub>2</sub>O, NH<sub>3</sub>)</td><td>Complex molecules</td></tr>
+<tr><td><b>What it does</b></td><td>Breaks something down</td><td>Builds something up</td></tr>
+<tr><td><b>Energy</b></td><td><b>Releases</b> energy, stored as ATP — <b>exergonic</b></td><td><b>Requires</b> energy, spends ATP/GTP — <b>endergonic</b></td></tr>
+<tr><td><b>Redox direction</b></td><td><b>Oxidative</b> — NAD<sup>+</sup>/NADP<sup>+</sup>/FAD reduced to NADH/NADPH/FADH<sub>2</sub></td><td><b>Reductive</b> — NADPH oxidized, donating H to the growing molecule</td></tr>
+<tr><td><b>Trigger</b></td><td class="hi">Stimulated by <b>LOW</b> energy charge</td><td class="hi">Stimulated by <b>HIGH</b> energy charge</td></tr>
+<tr><td><b>Hormonal context</b></td><td>Carbohydrate burned at high insulin; fat at low insulin</td><td><b>Insulin</b> — except gluconeogenesis and ketogenesis</td></tr>
+</tbody>
+</table>
+
+<div class="clin">
+<span class="lbl">Slide 14 — in-class question</span>
+<p><b>"Anabolism and catabolism are 2 phases of metabolism. Anabolism:"</b> &nbsp; A. refers to the breakdown of complex molecules to a few simple molecules &nbsp;·&nbsp; B. is generally exergonic &nbsp;·&nbsp; C. often involves oxidative reactions &nbsp;·&nbsp; <b>D. often requires NADPH</b> &nbsp;·&nbsp; E. produces NADH</p>
+<p style="margin-bottom:0"><span class="ans">Answer: D.</span> Note the construction — <b>every distractor is a true statement about catabolism</b>, offered as if it described anabolism. This is the deck's favorite question format; watch for it.</p>
+</div>
+
+<h2><span class="onum">Objective 2 &nbsp;/&nbsp;</span> Key components of metabolism and the role of activated carriers</h2>
+
+<div class="concept">
+<span class="lbl">Nutrients — why both kinds are needed</span>
+<p>Her framing: <b>you cannot have catabolism without nutrients, and you need both kinds.</b> Macronutrients are the fuel and the carbon skeletons. Micronutrients (vitamins and minerals) are <b>used by the enzymes</b> that metabolize the macronutrients — they enhance enzyme activity so those macronutrients can be efficiently utilized. Neither works without the other, which is why she always names them together.</p>
+</div>
+
+<div class="detail">
+<span class="lbl">Stored vs. must-be-replenished (slide 16)</span>
+<table class="compact" style="margin:1.4mm 0 0 0">
+<thead><tr><th style="width:50%">STORED within the body</th><th style="width:50%">NOT stored — needed on a regular / near-daily basis</th></tr></thead>
+<tbody>
+<tr><td>
+• Carbohydrate → as <b>glycogen</b><br>
+• Fat → as <b>triacylglycerols</b><br>
+• Amino acids → as <b>muscle protein</b> and the <b>free amino acid pool</b><br>
+• <b>Fat-soluble vitamins</b><br>
+• Some <b>minerals</b> (e.g. iron)
+</td><td>
+• <b>Water-soluble vitamins</b><br><br>
+<span style="font-size:7.9pt;color:#555">This single fact explains the activated-carrier table below: most coenzymes come from water-soluble vitamins, which is why those vitamins must be eaten continually and why their deficiencies produce disease quickly.</span>
+</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="clin">
+<span class="lbl">From the speaker notes — nutrition and disease</span>
+<p style="margin-bottom:0">Ill health can result from <b>dietary deficiency</b> (beriberi — thiamine/B<sub>1</sub>; pellagra — niacin/B<sub>3</sub>; protein-energy malnutrition) <b>or from excess</b> (e.g. alcohol). Some essential nutrients are <b>toxic, even deadly, in excess</b> — water, salt and iron. Most foods contain a mix of all nutrient types plus other compounds, including toxins.</p>
+</div>
+
+<div class="detail">
+<span class="lbl">What a "metabolic pathway" is (slide 17)</span>
+<ul>
+<li>A metabolic pathway <b>describes all the chemical transformations</b> of a given starting material.</li>
+<li>Reactions are <b>almost always catalyzed by enzymes</b> (protein molecules); very few reactions in organisms occur without catalysis.</li>
+<li>Reactants go <b>SUBSTRATE → PRODUCT</b>, and <b>the product of one enzyme is the substrate for the next enzyme.</b></li>
+<li>Enzymes are <b>largely protein in nature</b> and convert substrate into product <b>per unit time</b> — this is velocity, the bridge into Lecture 2.</li>
+</ul>
+<p style="margin-top:1.6mm; margin-bottom:0; font-size:9.2pt">The slide illustrates this with glycolysis. Worth noticing on that figure: straight double-headed arrows are freely reversible steps run by one enzyme, while curved paired arrows mark steps whose forward and reverse reactions use <b>different</b> enzymes — those are the irreversible, regulated steps of Objective 3.</p>
+</div>
+
+<div class="detail">
+<span class="lbl">The six recurring reaction types (slide 18)</span>
+<p style="font-size:9.2pt">She walked this list verbally almost word for word.</p>
+<table class="compact" style="margin:1.4mm 0 0 0">
+<thead><tr><th style="width:34%">Type of reaction</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><b>Oxidation–reduction</b></td><td>Electron transfer</td></tr>
+<tr><td><b>Ligation requiring ATP cleavage</b></td><td>Formation of covalent bonds (i.e. carbon–carbon bonds)</td></tr>
+<tr><td><b>Isomerization</b></td><td>Rearrangement of atoms to form isomers</td></tr>
+<tr><td><b>Group transfer</b></td><td>Transfer of a functional group from one molecule to another</td></tr>
+<tr><td><b>Hydrolytic</b></td><td>Cleavage of bonds by the addition of water</td></tr>
+<tr><td><b>Addition or removal of functional groups</b></td><td>Addition to double bonds, or removal to form double bonds</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>2.1 &nbsp;Activated carriers — the big memorization table</h3>
+
+<div class="concept">
+<span class="lbl">Concept</span>
+<p>Metabolism does not invent a new mechanism for every reaction. It uses a small set of reusable <b>shuttle molecules</b>, each carrying <b>one specific chemical group</b> and handing it off where needed. Learn the carrier and its cargo and you can predict what a reaction is doing the moment you see the carrier's name in it. The unifying fact — and the reason this sits in the same objective as the nutrition slide — is that <b>most of these carriers are coenzymes derived from water-soluble vitamins</b>. That is the entire link between "eat your B vitamins" and "run your metabolism." She called slide 19 <em>"a very important slide"</em> and read out every row.</p>
+</div>
+
+<table>
+<thead><tr><th style="width:38%">Carrier molecule (activated form)</th><th style="width:26%">Group carried</th><th style="width:36%">Vitamin precursor</th></tr></thead>
+<tbody>
+<tr><td><b>ATP</b></td><td>Phosphoryl</td><td>—</td></tr>
+<tr><td><b>NADH and NADPH</b></td><td>Electrons</td><td>Nicotinate (<b>niacin</b>, B<sub>3</sub>)</td></tr>
+<tr><td><b>FADH<sub>2</sub></b></td><td>Electrons</td><td><b>Riboflavin</b> (vitamin B<sub>2</sub>)</td></tr>
+<tr><td><b>FMNH<sub>2</sub></b></td><td>Electrons</td><td><b>Riboflavin</b> (vitamin B<sub>2</sub>)</td></tr>
+<tr><td><b>Coenzyme A</b></td><td>Acyl</td><td><b>Pantothenate</b> (B<sub>5</sub>)</td></tr>
+<tr><td><b>Lipoamide</b></td><td>Acyl</td><td><b>Lipoic acid</b></td></tr>
+<tr><td><b>Thiamine pyrophosphate (TPP)</b></td><td>Aldehyde</td><td><b>Thiamine</b> (vitamin B<sub>1</sub>)</td></tr>
+<tr><td><b>Biotin</b></td><td>CO<sub>2</sub></td><td><b>Biotin</b></td></tr>
+<tr><td><b>Tetrahydrofolate (THF)</b></td><td>One-carbon units</td><td><b>Folate</b></td></tr>
+<tr><td><b>S-Adenosylmethionine (SAM)</b></td><td>Methyl</td><td>—</td></tr>
+<tr><td><b>Uridine diphosphate glucose (UDP-glucose)</b></td><td>Glucose</td><td>—</td></tr>
+<tr><td><b>Cytidine diphosphate diacylglycerol (CDP-DAG)</b></td><td>Phosphatidate</td><td>—</td></tr>
+<tr><td><b>Nucleoside triphosphates</b></td><td>Nucleotides</td><td>—</td></tr>
+</tbody>
+</table>
+
+<div class="detail">
+<span class="lbl">Hooks to make this table stick</span>
+<ul>
+<li><b>Niacin makes the N's</b> (NAD<sup>+</sup>, NADP<sup>+</sup>); <b>riboflavin makes the F's</b> (FAD, FMN). Two vitamins, four electron carriers.</li>
+<li><b>Pantothenate is <u>Pa</u>rt of CoA</b> — and CoA carries <b>acyl</b> groups, which is why acetyl-CoA is the universal carbon carrier.</li>
+<li><b>Lipoamide</b> is the protein-bound form of lipoic acid and also carries acyl groups. CoA, lipoamide, TPP, FAD and NAD<sup>+</sup> all appear together in one enzyme complex — pyruvate dehydrogenase — later in the course.</li>
+<li><b>Biotin = CO<sub>2</sub>.</b> Whenever you see a <b>carboxylase</b>, think biotin.</li>
+<li><b>THF = one-carbon units</b> generally; <b>SAM = methyl</b> specifically. Her line: <em>"Sam is not your next-door neighbor — SAM is the active carrier of methyl groups."</em></li>
+<li><b>UDP-glucose</b> carries glucose and is used for <b>glycogen synthesis</b> — she named this application explicitly.</li>
+<li>The rows with <b>no vitamin precursor</b> are the nucleotide-derived ones: ATP, SAM, UDP-glucose, CDP-DAG, nucleoside triphosphates.</li>
+</ul>
+</div>
+
+<div class="note">
+<span class="lbl">Three notes on this slide</span>
+<ul>
+<li>She pronounced SAM as "<em>acetyl-S-methionine</em>." It is <b>S-adenosyl-methionine</b>, and it donates a <b>methyl</b>, not an acetyl, group — acetyl transfer is coenzyme A's job.</li>
+<li>"Biotin is used as such" is <em>not</em> a slip: biotin is one of the rare cases where the vitamin and the coenzyme have the same name and essentially the same structure.</li>
+<li>The leftover title text box on slide 19 reads "Lipoic Acid" — ignore it; the slide is the full carrier table.</li>
+</ul>
+</div>
+
+<div class="detail">
+<span class="lbl">Slide 20 — her four-line summary of Objective 2</span>
+<ol>
+<li>Nutrients are linked to biochemical pathways.</li>
+<li>Biochemical pathways are organized into metabolic pathways.</li>
+<li>Key reactions repeated throughout the metabolic pathways are catalyzed by enzymes.</li>
+<li>Many of the activated carriers in metabolism are derived from <b>water-soluble vitamins</b>.</li>
+</ol>
+</div>
+
+<h2><span class="onum">Objective 3 &nbsp;/&nbsp;</span> Common themes; committed vs. rate-limiting steps</h2>
+
+<div class="concept">
+<span class="lbl">The five common themes (slide 22)</span>
+<p>Every metabolic pathway you will meet is a <b>multi-step, enzyme-catalyzed sequence</b>: A →<sub>E1</sub> B →<sub>E2</sub> C →<sub>E3</sub> D →<sub>E4</sub> E, in which some arrows are double-headed (reversible) and some single-headed (irreversible). Five themes recur in all of them: <b>① irreversibility &nbsp;② committed step &nbsp;③ rate-limiting step &nbsp;④ regulation &nbsp;⑤ compartmentalization.</b></p>
+</div>
+
+<h3>3.1 &nbsp;Irreversibility — the theme everything hangs on</h3>
+
+<div class="detail">
+<span class="lbl">Slide 23</span>
+<p style="margin-bottom:0">If the reaction sequences for anabolic and catabolic pathways were identical: ① their <b>simultaneous operation would be wasteful</b>, and ② they <b>could not be separately regulated</b>. Therefore metabolic pathways have <b>one or more steps that are essentially irreversible under physiological conditions</b>.</p>
+</div>
+
+<div class="concept">
+<span class="lbl">Her way of explaining it — the bottleneck and the futile cycle</span>
+<p>An irreversible step is the <b>bottleneck of the pathway</b>: block it and the entire pathway slows. That is why irreversible steps are the ones that get regulated — they are the only place where a single intervention controls the whole flow.</p>
+<p>Her worked example, used four times: <b>fatty acid synthesis and fatty acid oxidation</b>. You do not want both running at once — the cell would build fat and immediately burn it, spending ATP for nothing, and the purpose of fat metabolism would become <b>futile</b>. So when synthesis is on, oxidation slows, and vice versa. Irreversible, separately regulated steps are what make that switching possible.</p>
+<p style="margin-bottom:0">Two qualifiers she stated twice: <b>a pathway can have more than one irreversible step</b>, and <b>steps other than the committed and rate-limiting ones can also be regulated.</b></p>
+</div>
+
+<div class="rule-strip">"None of the pathways in your body is shut down. One is active over the other — one is active and the other is slowed down."</div>
+
+<div class="note">
+<span class="lbl">Two different properties she blended together</span>
+<p>Describing the rate-limiting step, she said it "has a very high activation energy … they have a very high delta G and is negative and that is why they are irreversible." Those are <b>two separate physical properties</b>, and exams ask about them separately:</p>
+<table class="compact" style="margin:1.4mm 0 0 0">
+<thead><tr><th style="width:28%">Property</th><th style="width:22%">Branch</th><th>What it determines</th></tr></thead>
+<tbody>
+<tr><td><b>ΔG</b> — large and negative</td><td>Thermodynamics</td><td><b>Direction.</b> The reaction goes one way and effectively does not come back → the step is <b>irreversible</b>.</td></tr>
+<tr><td><b>E<sub>a</sub></b> — highest in the pathway</td><td>Kinetics</td><td><b>Speed.</b> A high energy barrier makes the step the <b>slowest</b> → the step is <b>rate-limiting</b>.</td></tr>
+</tbody>
+</table>
+<p style="margin-top:1.6mm; margin-bottom:0">In practice these usually land on the same step, which is why her sentence works — but "why is it irreversible?" and "why is it slow?" have different answers. You formalize ΔG in the Thermodynamics primer this same week.</p>
+</div>
+
+<h3>3.2 &nbsp;Committed step</h3>
+
+<div class="detail">
+<span class="lbl">Slide 24, all four bullets</span>
+<ul>
+<li><b>Early in each linear pathway</b> there is usually an <b>irreversible</b> reaction that <b>commits the product to continue down that pathway</b>.</li>
+<li>It is <b>generally the target of regulation</b>.</li>
+<li>In many instances, <b>but not always</b>, the committed step is <b>also</b> the rate-limiting step.</li>
+<li><b>Circular pathways do not have a committed step</b> — though they <em>do</em> have a rate-limiting step.</li>
+</ul>
+</div>
+
+<div class="concept">
+<span class="lbl">Why a cycle can't have a committed step</span>
+<p style="margin-bottom:0">"Committed" means that once a molecule crosses this step it has <b>only one possible fate</b>. In a cyclic pathway the intermediates are <b>regenerated</b> — oxaloacetate becomes citrate becomes … becomes oxaloacetate again — so nothing is ever irreversibly committed to a single destination. A cycle still has a slowest step, hence a rate-limiting step, but no point of no return.</p>
+</div>
+
+<h3>3.3 &nbsp;Rate-limiting step</h3>
+
+<div class="detail">
+<span class="lbl">Slide 25, all five bullets</span>
+<ul>
+<li>The <b>slowest reaction</b> in a metabolic pathway.</li>
+<li><b>Generally has the highest activation energy</b> of all reactions in the pathway.</li>
+<li>Its <b>velocity determines the overall flux of metabolites</b> through the pathway.</li>
+<li><b>Usually subject to intense regulation, both positive and negative.</b></li>
+<li><b>Rate-limiting steps are regulated, but a regulated step may not be rate-limiting.</b></li>
+</ul>
+<p style="margin-top:1.6mm; margin-bottom:0">The enzyme catalyzing it is the <b>rate-limiting enzyme</b> — a term you will use constantly for the rest of the course.</p>
+</div>
+
+<div class="trap">
+<span class="lbl">The logic rule she stated four separate times</span>
+<p style="text-align:center; font-size:10.5pt; margin:1.4mm 0">rate-limiting &nbsp;<b>⟹</b>&nbsp; regulated &nbsp;<span class="tick">TRUE</span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; regulated &nbsp;<b>⟹</b>&nbsp; rate-limiting &nbsp;<span class="cross">FALSE</span></p>
+<p style="margin-bottom:0">In her words: <em>"rate limiting steps are always regulated, subjected to intense regulation — but the regulated steps may not be rate limiting always."</em> The counterexample is built into the slide, below.</p>
+</div>
+
+<figure class="small">
+  <img src="Lecture_01_figures/slide25_1.png" alt="Purine synthesis pathway showing regulated vs rate-limiting steps">
+  <figcaption><b>Slide 25's inset — the pathway that proves the rule.</b> Purine synthesis: ribose-5-P → <b>[regulated]</b> → PRPP → <b>[rate-limiting AND regulated]</b> → 5-phosphoribosylamine → IMP → AMP and GMP, both feeding back to inhibit. <b>Step 1 is regulated but not rate-limiting; step 2 is both.</b></figcaption>
+</figure>
+
+<table>
+<thead><tr><th style="width:22%"></th><th style="width:39%">Committed step</th><th style="width:39%">Rate-limiting step</th></tr></thead>
+<tbody>
+<tr><td><b>Reversibility</b></td><td>Irreversible</td><td>Irreversible</td></tr>
+<tr><td><b>Position</b></td><td><b>Early</b> in a <b>linear</b> pathway</td><td>Anywhere in the pathway</td></tr>
+<tr><td><b>Defining property</b></td><td>Commits the metabolite to that pathway — no turning back, no diversion</td><td>The <b>slowest</b> step; <b>highest activation energy</b></td></tr>
+<tr><td><b>What it controls</b></td><td>Whether material enters the pathway at all</td><td>The <b>overall flux</b> through the pathway</td></tr>
+<tr><td><b>Regulation</b></td><td>Generally the target of regulation</td><td><b>Intense</b> regulation, positive and negative</td></tr>
+<tr><td><b>In cyclic pathways</b></td><td class="hi">Does <b>not</b> exist</td><td class="hi"><b>Does</b> exist</td></tr>
+<tr><td><b>Relationship</b></td><td colspan="2" style="text-align:center">Often the same step — but <b>not always</b></td></tr>
+</tbody>
+</table>
+
+<div class="detail">
+<span class="lbl">Slide 26 — her summary of Objective 3</span>
+<ul>
+<li>Certain enzymes catalyze irreversible reactions, and those enzymes can be influential in regulation.</li>
+<li><b>Committed step</b> — irreversible, generally the target of regulation, early in a linear pathway.</li>
+<li><b>Rate-limiting step</b> — irreversible, subject to intense regulation, slowest in the metabolic pathway.</li>
+</ul>
+</div>
+
+<h2><span class="onum">Objective 4 &nbsp;/&nbsp;</span> Mechanisms of regulation of metabolic pathways</h2>
+
+<div class="concept">
+<span class="lbl">The frame</span>
+<p style="margin-bottom:0">Enzyme activity can be regulated by <b>activation or inhibition</b>, to <b>control metabolic pathways to match the body's requirements</b> moment by moment. Everything here applies primarily to the enzymes catalyzing the <b>irreversible</b> (committed / rate-limiting) steps — though, as she repeated, other steps can be regulated too.</p>
+</div>
+
+<figure class="small">
+  <img src="Lecture_01_figures/slide28_1.jpg" alt="Diagram showing product inhibition, feedback inhibition and gene transcription">
+  <figcaption><b>Slide 28 — three mechanisms in one picture.</b> <b>Product inhibition:</b> the immediate product B inhibits enzyme 1, which just made it. <b>Feedback inhibition:</b> the end product E inhibits enzyme 2, the first enzyme <em>after the branch point</em>, shutting down only its own branch while F→G keeps running. <b>Gene transcription:</b> E also represses the enzyme's gene — the slow, long-term arm.</figcaption>
+</figure>
+
+<div class="trap">
+<span class="lbl">Two terms students constantly swap</span>
+<table class="compact" style="margin:1.4mm 0 0 0">
+<thead><tr><th style="width:32%">Term</th><th>Inhibition by…</th></tr></thead>
+<tbody>
+<tr><td><b>Product inhibition</b></td><td>the <b>IMMEDIATE product</b> — the very next molecule made by that enzyme</td></tr>
+<tr><td><b>Feedback inhibition</b></td><td>the <b>FINAL / end product</b> of the pathway, acting anywhere upstream at the level of an enzyme</td></tr>
+</tbody>
+</table>
+<p style="margin-top:1.4mm; margin-bottom:0">Her plain-English gloss on product inhibition: <em>"the product is saying — enough has been formed, slow down."</em></p>
+</div>
+
+<h3>4.1 &nbsp;The master split: long-term vs. short-term</h3>
+
+<div class="rule-strip">LONG term regulation alters enzyme <u>QUANTITY</u> &nbsp;&nbsp;·&nbsp;&nbsp; SHORT term regulation modifies enzyme <u>ACTIVITY</u></div>
+
+<table>
+<thead><tr><th style="width:20%"></th><th style="width:40%">Long-term regulation</th><th style="width:40%">Short-term regulation</th></tr></thead>
+<tbody>
+<tr><td><b>What changes</b></td><td>The <b>amount</b> of enzyme protein present</td><td>The <b>activity</b> of enzyme molecules that already exist</td></tr>
+<tr><td><b>Where it acts</b></td><td>At the level of the <b>gene</b> (transcription) and protein degradation</td><td>On the existing enzyme protein</td></tr>
+<tr><td><b>Speed</b></td><td><b>Hours to days</b></td><td><b>Minutes to hours</b></td></tr>
+<tr><td><b>Reversible?</b></td><td>Only by re-synthesis / re-degradation</td><td><b>Reversible and rapid</b> — one exception (proenzyme activation)</td></tr>
+<tr><td><b>Mechanisms</b></td><td>Induction · Repression · Degradation</td><td>Substrate concentration · Product inhibition · Proenzyme activation · Reversible covalent modification · Allosteric regulation</td></tr>
+<tr><td><b>Role</b></td><td>Sets the cell's long-run capacity for a pathway</td><td>Carries out <b>most of the moment-to-moment</b> physiological regulation</td></tr>
+</tbody>
+</table>
+
+<div class="detail">
+<span class="lbl">Long-term regulation — the specifics (slides 29–30)</span>
+<ul>
+<li><b>Regulation of gene expression</b> controls the <b>quantity and rate of enzyme synthesis</b>; a <b>slow process taking hours to days</b>.</li>
+<li><b>INDUCTION</b> — increasing the rate of enzyme synthesis by <b>enhancing the rate of gene transcription</b> → <b>more</b> enzyme.</li>
+<li><b>REPRESSION</b> — decreasing the rate of enzyme synthesis by <b>decreasing the rate of gene transcription</b> → <b>less</b> enzyme.</li>
+<li><b>DEGRADATION</b> — by the <b>ubiquitin/proteasome pathway</b> and the <b>lysosomal pathway</b>. These are the body's only two major routes of protein degradation; memorize the pair.</li>
+<li><b>Insulin is an anabolic hormone: it INDUCES the key enzymes of anabolic pathways.</b></li>
+<li>Speaker note: this applies mainly to <b>enzymes used once at a particular stage</b>, rather than enzymes in constant use.</li>
+</ul>
+</div>
+
+<div class="detail">
+<span class="lbl">Short-term regulation — the five mechanisms (slide 31, in the deck's order)</span>
+<ol>
+<li>Effect of <b>substrate concentration</b></li>
+<li><b>Product inhibition</b></li>
+<li><b>Activation of pre-existing pools of inactive pro-enzymes</b> to produce active enzymes</li>
+<li><b>Reversible covalent modification</b></li>
+<li><b>Allosteric regulation</b></li>
+</ol>
+<p style="margin-top:1.6mm; margin-bottom:0">Short-term regulation <b>usually does not affect the concentration of enzyme protein</b>; it is <b>reversible and rapid</b>, and carries out most moment-to-moment regulation of enzyme activity.</p>
+</div>
+
+<div class="trap">
+<span class="lbl">The exception, flagged in her own speaker notes</span>
+<p style="margin-bottom:0"><b>Proenzyme activation is the odd one out.</b> It is short-term and rapid, but because it activates pre-formed proenzymes it <b>does increase the concentration of active enzyme</b> and is <b>NOT reversible</b>. Every other short-term mechanism is reversible and leaves enzyme concentration alone.</p>
+</div>
+
+<h4>Mechanisms 1 &amp; 2 — Substrate concentration (glucokinase) and product inhibition (hexokinase)</h4>
+
+<div class="detail">
+<span class="lbl">Slides 32–33</span>
+<ul>
+<li><b>The velocity of ALL enzymes is dependent on the concentration of substrate.</b></li>
+<li><b>Liver glucokinase</b> phosphorylates large amounts of glucose for <b>glycogen synthesis</b>. <b>Fasting</b>: [glucose] low → <b>glucokinase inactive</b>. <b>After a meal</b>: [glucose] rises → <b>glucokinase activated</b>.</li>
+<li><b>Peripheral tissue hexokinase</b>: during <b>fasting</b>, [glucose] is low <b>but hexokinase still efficiently phosphorylates glucose</b>. If <b>glucose-6-phosphate accumulates, it inhibits hexokinase</b>.</li>
+<li><b>NB — in the liver, glucokinase is NOT inhibited by glucose-6-phosphate.</b></li>
+</ul>
+</div>
+
+<div class="concept">
+<span class="lbl">Why this works — build the story the way she did</span>
+<p><b>The liver is the chief site of metabolism.</b> After a meal, glucose is absorbed and reaches the liver via transporters. Once inside it must be committed, and the first step of essentially any glucose metabolism is <b>adding a phosphate</b> — the enzymes that add phosphate are <b>kinases</b>. Phosphorylating glucose to <b>glucose-6-phosphate</b> does two things at once: it puts a negative charge on the molecule so it <b>cannot leave the cell</b> (her phrase: it prevents "irreversible exit," meaning the glucose is trapped inside), and it activates it for the downstream pathways.</p>
+<p style="margin-bottom:0">The underlying mechanism, formalized in Lecture 2, is <b>K<sub>m</sub></b>. Glucokinase has a <b>high K<sub>m</sub></b> (~10 mM), well above normal blood glucose, so it only works meaningfully when portal glucose is high — which is <em>why</em> substrate concentration is its regulator. Hexokinase has a <b>low K<sub>m</sub></b> (~0.1 mM) and is essentially saturated at normal glucose, so substrate concentration tells it nothing and it needs a different control — its product.</p>
+</div>
+
+<div class="trap">
+<span class="lbl">The paired-enzyme grid — a near-certain exam item</span>
+<p>She spent several minutes insisting that <b>not all enzymes undergo the same kind of regulation</b>, and used this pair as the proof. Know the grid in both directions.</p>
+<table class="compact" style="margin:1.6mm 0 0 0">
+<thead><tr><th style="width:30%"></th><th style="width:35%">Hexokinase</th><th style="width:35%">Glucokinase</th></tr></thead>
+<tbody>
+<tr><td><b>Tissue</b></td><td>Most / peripheral tissues</td><td><b>Liver</b> (and pancreatic β cells)</td></tr>
+<tr><td><b>K<sub>m</sub> for glucose</b></td><td><b>Low</b> (~0.1 mM) — high affinity</td><td><b>High</b> (~10 mM) — low affinity</td></tr>
+<tr><td><b>Active when?</b></td><td>Essentially always — works even in fasting</td><td><b>Only when glucose is high</b> (after a meal)</td></tr>
+<tr><td><b>Regulated by substrate concentration?</b></td><td><span class="cross">NO</span> — already saturated</td><td><span class="tick">YES</span> — this is its regulation</td></tr>
+<tr><td><b>Inhibited by glucose-6-P?</b></td><td><span class="tick">YES</span> — classic product inhibition</td><td><span class="cross">NO</span></td></tr>
+<tr><td><b>Induced by insulin?</b></td><td>No</td><td><span class="tick">Yes</span> — so it also appears under long-term regulation</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+<span class="lbl">One word of precision</span>
+<p style="margin-bottom:0">"Glucokinase is inactive during fasting" is the answer the course wants. Strictly, the enzyme is present and functional but, because of its high K<sub>m</sub>, operates far below V<sub>max</sub> at fasting glucose — so its contribution is negligible. Same practical conclusion, cleaner mechanism. (It is also sequestered in the nucleus by glucokinase regulatory protein when glucose is low, but that is beyond this lecture.)</p>
+</div>
+
+<h4>Mechanism 3 — Pro-enzyme (zymogen) activation</h4>
+
+<div class="detail">
+<span class="lbl">Slide 34</span>
+<ul>
+<li>Pro-enzymes are also known as <b>zymogens</b>.</li>
+<li>Activation is a <b>rapid</b> way to increase enzyme activity, but has the <b>disadvantage of not being a reversible process</b>.</li>
+<li>Canonical example: <b>pancreatic proteases</b>. Pro-enzymes are <b>synthesized in abundance, stored in secretory granules, and covalently activated on release</b> at the site of action.</li>
+<li>The cascade: <b>trypsinogen → trypsin</b> (releasing <b>TAP</b>, trypsinogen activation peptide), and trypsin then <b>amplifies</b> by activating every other pancreatic zymogen — chymotrypsinogen→chymotrypsin, proelastase→elastase, kallikreinogen→kallikrein, procarboxypeptidase→carboxypeptidase, prophospholipase→phospholipase, procolipase→colipase.</li>
+<li>Activation routes on the figure: <b>normal</b> — <b>enterokinase (enteropeptidase)</b> in the <b>brush border of the small intestine</b>, plus trypsinogen <b>autoactivation</b> (a unique feature of human trypsinogen); <b>abnormal</b> — <b>cathepsin B, located within acinar cells</b>.</li>
+<li>Speaker note: the <b>blood clotting cascade</b> is another example — each factor activated by proteolysis catalyzed by the previous factor.</li>
+</ul>
+</div>
+
+<div class="clin">
+<span class="lbl">Clinical correlation — acute pancreatitis (slide 35)</span>
+<p><b>The logic:</b> pancreatic proteases are proteolytic. Active inside the acinar cell, they would digest the cell that made them. So the pancreas builds them as inactive zymogens, stores them, and activates them only in the <b>lumen of the intestine</b>, at the site of action.</p>
+<p style="margin-bottom:0"><b>When that fails:</b> inappropriate <b>intracellular</b> activation of trypsinogen → active trypsin inside the acinar cell → autoactivation of the whole protease cascade → <b>pancreatic cell autolysis</b> → <b>acute pancreatitis</b>. She noted this can also be an <b>inherited</b> condition. Her stated philosophy, repeated: <em>"we are not learning pure biochemistry — we are learning biochemistry applicable to clinical medicine."</em></p>
+</div>
+
+<h4>Mechanism 4 — Reversible covalent modification</h4>
+
+<div class="detail">
+<span class="lbl">Slides 36–37</span>
+<ul>
+<li><b>Rapid and transient</b> regulation of enzyme activity, by addition or removal of a phosphate.</li>
+<li><b>Protein kinase</b> adds the phosphate (ATP → ADP); <b>phosphoprotein phosphatase</b> removes it (H<sub>2</sub>O → releases P<sub>i</sub>).</li>
+<li><b>Usual sites: the hydroxyl group of SERINE, THREONINE and TYROSINE residues</b> of the key enzyme. The phosphate lands on an –OH, which is exactly why those three residues.</li>
+<li>It switches <b>entire sets of opposing metabolic pathways</b> on or off at once. Depending on where you are in the <b>fed–fasting cycle</b>: <b>ALL</b> target proteins are phosphorylated by protein kinases, <b>OR ALL</b> are dephosphorylated by phosphoprotein phosphatases.</li>
+<li>The <b>phosphorylated form may be active or inactive</b>, and likewise the dephosphorylated form. <b>It depends on the specific enzyme, and you must learn each one as it comes.</b></li>
+<li>Speaker note — other groups that can be attached covalently: <b>phosphoryl, methyl, uridylyl, adenylyl, ADP-ribosyl</b>.</li>
+</ul>
+</div>
+
+<figure class="small">
+  <img src="Lecture_01_figures/slide37_1.jpg" alt="Hormonal control of phosphorylation state">
+  <figcaption><b>Slide 37 — who pushes which button.</b> <b>Glucagon and epinephrine</b> drive the top arrow (protein kinase → phosphorylated); <b>insulin</b> drives the bottom arrow (phosphatase → dephosphorylated). The targets are both <b>enzymes and gene regulatory proteins</b>, and the two forms have different activity.</figcaption>
+</figure>
+
+<div class="rule-strip red">INSULIN always <u>DE</u>phosphorylates &nbsp;&nbsp;·&nbsp;&nbsp; GLUCAGON and EPINEPHRINE always PHOSPHORYLATE</div>
+
+<div class="trap">
+<span class="lbl">The single highest-yield sentence in Objective 4</span>
+<p>Her words: <em>"Insulin always and always dephosphorylates the key enzyme. Please don't mess up there. Insulin never phosphorylates the key enzymes. Glucagon and epinephrine always and always phosphorylate the key enzyme."</em></p>
+<p style="margin-bottom:0"><b>The corollary she derived, which is the useful form:</b> since insulin always dephosphorylates, <b>any pathway supported by insulin is active in the DEPHOSPHORYLATED form</b> — and any pathway driven by glucagon/epinephrine is active in the phosphorylated form. You can now predict the phosphorylation state of a regulated enzyme from nothing but knowing which hormone turns its pathway on.</p>
+</div>
+
+<div class="note">
+<span class="lbl">Two clarifications on slide 37</span>
+<ul>
+<li>The slide reads <em>"the counter-regulatory hormones (glucagon and insulin)."</em> That is loose: <b>insulin is not a counter-regulatory hormone</b> — glucagon, epinephrine, cortisol and growth hormone are counter-regulatory <em>to insulin</em>. The intended meaning, which she stated correctly out loud, is that insulin and its opponents together control most of intermediary metabolism.</li>
+<li><b>Why</b> they act in opposite directions (Lippincott background, not required here): glucagon and epinephrine bind <b>G protein-coupled receptors</b> → G<sub>s</sub> → <b>adenylyl cyclase</b> → <b>cAMP</b> → <b>protein kinase A</b> → phosphorylates Ser/Thr. Insulin acts through a receptor tyrosine kinase and ultimately activates <b>phosphoprotein phosphatases</b>. Covered fully in Signal Transduction later this same week.</li>
+</ul>
+</div>
+
+<h4>Mechanism 5 — Allosteric regulation</h4>
+<div class="detail">
+<span class="lbl">What she said about it here</span>
+<ul>
+<li><b>Allosteric modifiers</b> alter enzyme activity by binding at a site <b>other than the active site</b>.</li>
+<li>Two kinds: <b>allosteric activators</b> (increase activity) and <b>allosteric inhibitors</b> (decrease activity). Time frame: <b>minutes</b>.</li>
+<li>She deferred the mechanism explicitly — <em>"which will be taught with enzymes"</em>, i.e. Lecture 2, in the very same session.</li>
+</ul>
+</div>
+
+<h3>4.2 &nbsp;Compartmentalization</h3>
+
+<div class="concept">
+<span class="lbl">Concept</span>
+<p style="margin-bottom:0">Physically separating two opposing pathways is itself a form of regulation. If fatty acid synthesis and fatty acid oxidation happen in different places, they can have different enzymes, different carriers and different controls — and cannot short-circuit each other into a futile cycle. It operates at two levels, and the second has a diagnostic payoff.</p>
+</div>
+
+<div class="detail">
+<span class="lbl">Slide 38 — both levels with their examples</span>
+<table class="compact" style="margin:1.4mm 0 0 0">
+<thead><tr><th style="width:20%">Level</th><th style="width:40%">Purpose</th><th style="width:40%">Examples she gave</th></tr></thead>
+<tbody>
+<tr><td><b>Cellular</b></td><td>To <b>segregate catabolic and anabolic pathways in the same cell</b>. Pathways are <b>cytosolic / mitochondrial / both</b>.</td><td><b>Fatty acid OXIDATION → mitochondria</b><br><b>Fatty acid SYNTHESIS → cytoplasm</b></td></tr>
+<tr><td><b>Tissue</b></td><td>To carry out <b>organ-specific metabolic processes</b>. Also a <b>clinical indicator of tissue damage</b>.</td><td><b>Urea synthesis → liver</b><br><b>Steroid hormone synthesis → adrenals</b></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="clin">
+<span class="lbl">Clinical correlation — using compartmentalization to localize damage</span>
+<p><b>Her worked example:</b> the urea cycle operates in the <b>liver</b>, and urea is reported clinically as <b>blood urea nitrogen (BUN)</b>. A damaged liver cannot make urea — so a <b>low BUN</b> can point to <b>liver damage</b> (alcohol, toxins, any liver insult).</p>
+<p><b>Round this out so you don't get caught:</b> low BUN's causes are advanced liver failure, low protein intake/malnutrition, and overhydration. A <b>high</b> BUN is the far more common clinical finding and points elsewhere — kidney impairment, dehydration, or an upper GI bleed. She is making a biochemical point (no urea cycle → no urea), not a full differential.</p>
+<p style="margin-bottom:0"><b>The general principle</b>, which you will use all year: because pathways are compartmentalized to specific tissues, finding a tissue-specific enzyme in the blood tells you <em>which</em> tissue was damaged. This is the entire basis of the enzyme panels in clinical medicine.</p>
+</div>
+
+<h3>4.3 &nbsp;Timeline of regulation</h3>
+
+<table>
+<caption>Slide 39 — reproduce this exactly; it is the most compressed, most testable content in the lecture.</caption>
+<thead><tr><th style="width:50%">Event</th><th style="width:50%">Time</th></tr></thead>
+<tbody>
+<tr><td>Substrate stimulation</td><td><b>Minutes</b></td></tr>
+<tr><td>Product inhibition</td><td><b>Minutes</b></td></tr>
+<tr><td>Allosteric regulation</td><td><b>Minutes</b></td></tr>
+<tr><td>Covalent modification</td><td><b>Minutes – Hours</b></td></tr>
+<tr><td class="hi">Synthesis or degradation</td><td class="hi"><b>Hours – Days</b></td></tr>
+</tbody>
+</table>
+
+<div class="concept">
+<span class="lbl">The one rule that generates the whole table</span>
+<p style="margin-bottom:0"><b>If it touches the gene, it takes hours to days. If it touches an enzyme that already exists, it takes minutes.</b> Covalent modification straddles the boundary because a phosphorylation cascade can be near-instant but hormone-driven whole-body switching takes longer to play out. Only the last row is long-term regulation; the top four are all short-term.</p>
+</div>
+
+<div class="clin">
+<span class="lbl">Slide 41 — the closing in-class question</span>
+<p><b>"Hormones regulate certain metabolic pathways by altering the rate of expression of genes that encode enzymes. What would be the time frame of such regulation?"</b></p>
+<p style="margin-bottom:0"><span class="ans">Answer:</span> Regulation of gene expression alters the <b>amount</b> of the protein encoded by that gene, so the time frame is <b>several hours to days</b> — this is <b>long-term regulation</b>, acting by <b>induction or repression</b>, changing enzyme <b>quantity</b> rather than modifying activity.</p>
+</div>
+
+<div class="detail">
+<span class="lbl">Slide 40 — her summary of Objective 4</span>
+<ul>
+<li>General mechanisms regulate enzyme-catalyzed reactions, each with its own time course; regulation is <b>long-term</b> or <b>short-term</b>.</li>
+<li>Short-term regulation is usually <b>reversible and rapid</b>.</li>
+<li><b>Proenzyme activation is not reversible</b>; inappropriate activation causes <b>pancreatitis</b>.</li>
+<li><b>Compartmentation</b> of enzymes into multienzyme complexes or organelles is itself a means of regulation.</li>
+</ul>
+</div>
+
+<h2><span class="onum">Part 5 &nbsp;/&nbsp;</span> Where the lecture was imprecise — reconciled</h2>
+
+<p>Nothing here changes an exam answer. It is here so that when you meet the correct version in the textbook or on a board-style question, you recognize it rather than assuming you learned it wrong.</p>
+
+<table class="compact">
+<thead><tr><th style="width:29%">What was said / shown</th><th style="width:37%">What is precisely true</th><th style="width:34%">Does it matter for the exam?</th></tr></thead>
+<tbody>
+<tr><td>SAM described as "acetyl-S-methionine"</td><td><b>S-adenosyl-methionine</b>; it donates a <b>methyl</b> group</td><td>Yes — know the name and that its cargo is methyl</td></tr>
+<tr><td>Rate-limiting step "has high activation energy … high negative ΔG and that is why it is irreversible"</td><td>Two different properties: <b>large negative ΔG → irreversible</b> (thermodynamics); <b>highest E<sub>a</sub> → slowest / rate-limiting</b> (kinetics)</td><td>Yes if asked "why irreversible" vs "why slow." Usually the same step, so her sentence works in practice</td></tr>
+<tr><td>Slide 37: "the counter-regulatory hormones (glucagon and insulin)"</td><td><b>Insulin is not counter-regulatory.</b> Glucagon, epinephrine, cortisol and GH are counter-regulatory <em>to</em> insulin</td><td>Only if a question uses the term precisely — but worth knowing</td></tr>
+<tr><td>"Glucokinase is inactive in fasting"</td><td>Present and functional, but its <b>high K<sub>m</sub></b> means it operates far below V<sub>max</sub> at fasting glucose, so its contribution is negligible</td><td>No — answer "inactive"; the K<sub>m</sub> reasoning is the <em>why</em></td></tr>
+<tr><td>"NADH is the source of ATP"</td><td>NADH is oxidized in the ETC; the proton gradient it builds drives ATP synthase. She said "<b>indirect</b> source," which is exactly right</td><td>No — her wording is already correct</td></tr>
+<tr><td>"Reducing equivalents are hydrogen, 2H<sup>+</sup> and 2 electrons"</td><td>That is what is <b>removed from the substrate</b>. NAD<sup>+</sup> then takes a hydride and a free H<sup>+</sup> is released → <b>NADH + H<sup>+</sup></b>; FAD takes both hydrogens → <b>FADH<sub>2</sub></b></td><td>Only for why NADH is written "NADH + H<sup>+</sup>" — which she was careful about</td></tr>
+<tr><td>"Energy stored in the high-energy bond"</td><td>The large negative ΔG of hydrolysis comes from charge-repulsion relief, resonance stabilization and solvation of products</td><td>No — use the course definition; just don't build a wrong mental model</td></tr>
+<tr><td>HMP shunt grouped as one of the three "oxidative pathways"</td><td>Only its <b>first (oxidative) phase</b> is oxidative and irreversible; the non-oxidative phase is reversible sugar interconversion. "Alternate pathway of oxidation" is fair</td><td>No — the triad glycolysis / TCA / HMP shunt is what she is testing</td></tr>
+</tbody>
+</table>
+
+<h2><span class="onum">Part 6 &nbsp;/&nbsp;</span> Self-test</h2>
+<p>Cover the answers. Say each one out loud before you look — the goal is recall, not recognition.</p>
+
+<ol class="qlist">
+<li>Name the three oxidative pathways, what each handles, and which yields no ATP. <span class="ans">Glycolysis (mainly carbohydrate); TCA (common to carbohydrate, lipid, protein, from acetyl-CoA); HMP shunt — NADPH + pentoses, NO ATP.</span></li>
+<li>Oxidation in the body occurs by what change, and what are the three acceptors? <span class="ans">Loss of hydrogen. NAD<sup>+</sup>, NADP<sup>+</sup>, FAD → NADH + H<sup>+</sup>, NADPH, FADH<sub>2</sub>.</span></li>
+<li>List the four requirements for anabolism. <span class="ans">ATP (universal; GTP for some), acetyl-CoA (carbon), NADPH (hydrogen), insulin.</span></li>
+<li>Which two "-geneses" does insulin not support, and why? <span class="ans">Gluconeogenesis and ketogenesis — both are fasting/low-insulin programs, so insulin inhibits them.</span></li>
+<li>How many high-energy bonds in ATP and ADP, and what is ΔG°′ of hydrolysis? <span class="ans">Two (β and γ phosphoanhydride) and one. −7.3 kcal/mol for both. The α-to-ribose bond is a phosphoester and is not high energy.</span></li>
+<li>Energy charge: range, real-cell range, and effect of a high value? <span class="ans">0 (all AMP) to 1 (all ATP); buffered at 0.8–0.95. High EC inhibits catabolic and stimulates anabolic pathways.</span></li>
+<li>Which nutrients are stored, and which must be consumed regularly? <span class="ans">Stored: glycogen, triacylglycerol, muscle protein + free amino acid pool, fat-soluble vitamins, some minerals (iron). Not stored: water-soluble vitamins.</span></li>
+<li>Vitamin precursor for NAD<sup>+</sup>/NADP<sup>+</sup>, FAD/FMN, CoA, TPP, THF, lipoamide? <span class="ans">Niacin; riboflavin; pantothenate; thiamine; folate; lipoic acid.</span></li>
+<li>Group carried by biotin, THF, SAM, UDP-glucose, CoA, ATP? <span class="ans">CO<sub>2</sub>; one-carbon units; methyl; glucose; acyl; phosphoryl.</span></li>
+<li>Define the committed step — where is it found and where never? <span class="ans">Irreversible reaction early in a linear pathway committing the product to that pathway; generally the target of regulation; often but not always also rate-limiting. Never in circular pathways, which still have a rate-limiting step.</span></li>
+<li>State the logical relationship between "rate-limiting" and "regulated." <span class="ans">Rate-limiting ⟹ regulated (always). Regulated ⟹ rate-limiting (NOT always).</span></li>
+<li>Why can't anabolic and catabolic pathways use identical reaction sequences? <span class="ans">Simultaneous operation would be wasteful (futile cycling), and they could not be separately regulated.</span></li>
+<li>Contrast glucokinase and hexokinase in four ways. <span class="ans">GK: liver, high K<sub>m</sub>, substrate-regulated (active only after a meal), NOT inhibited by G6P, insulin-induced. HK: peripheral, low K<sub>m</sub>, works in fasting, IS inhibited by G6P, not substrate-regulated.</span></li>
+<li>Product inhibition vs feedback inhibition? <span class="ans">Product = by the immediate product of that enzyme. Feedback = by the final product of the pathway.</span></li>
+<li>Which short-term mechanism is irreversible, and what happens when it misfires? <span class="ans">Proenzyme (zymogen) activation. Intracellular trypsinogen activation → trypsin → acinar cell autolysis → acute pancreatitis.</span></li>
+<li>Which residues are phosphorylated, by which enzyme, and what reverses it? <span class="ans">The hydroxyls of serine, threonine, tyrosine. Protein kinase adds (ATP); phosphoprotein phosphatase removes (H<sub>2</sub>O, releasing P<sub>i</sub>).</span></li>
+<li>What do insulin, glucagon and epinephrine do to key enzymes? <span class="ans">Insulin always dephosphorylates; glucagon and epinephrine always phosphorylate. So insulin-supported pathways are active dephosphorylated.</span></li>
+<li>Name the long-term mechanisms and the two protein degradation routes. <span class="ans">Induction and repression (± gene transcription → ± enzyme quantity). Degradation via ubiquitin/proteasome and lysosomal pathways.</span></li>
+<li>Give one cellular and one tissue example of compartmentalization, plus one clinical use. <span class="ans">Fatty acid oxidation (mitochondria) vs synthesis (cytoplasm); urea synthesis in liver, steroid hormones in adrenals; low BUN can indicate liver damage.</span></li>
+<li>Time course for substrate stimulation, product inhibition, allosteric regulation, covalent modification, synthesis/degradation? <span class="ans">Minutes; minutes; minutes; minutes–hours; hours–days.</span></li>
+</ol>
+
+<h2 class="pagebreak"><span class="onum">Part 7 &nbsp;/&nbsp;</span> Rapid-review sheet</h2>
+<p style="font-size:8.6pt; margin-bottom:2mm">Everything in <b>bold</b> is one of Dr. Bagh's "always / never" statements — the ones she repeated most, or flagged with <em>"please know that," "kindly remember," "don't mess up there," "very very important."</em> If you review one page before the exam, review this one.</p>
+
+<div class="cheat">
+<div class="two-col">
+
+<h3 style="margin-top:0">Catabolism vs anabolism</h3>
+<p><b>Catabolism:</b> convergent · complex→simple · exergonic · oxidative · releases energy → ATP · <b>triggered by LOW energy charge</b><br>
+<b>Anabolism:</b> divergent · simple→complex · endergonic · reductive · spends ATP · <b>triggered by HIGH energy charge — never a low energy state</b> · insulin</p>
+
+<h3>Oxidation in the body</h3>
+<p><b>= LOSS OF HYDROGEN, not gain of oxygen</b> (dehydrogenation)<br>
+NAD<sup>+</sup> → NADH + H<sup>+</sup> · NADP<sup>+</sup> → NADPH · FAD → FADH<sub>2</sub><br>
+<b>NADH and FADH<sub>2</sub> → ATP (indirectly). NADPH → NEVER ATP</b> — it is the H donor for reductive synthesis</p>
+
+<h3>The three oxidative pathways</h3>
+<p><b>Glycolysis</b> — mainly carbohydrate → acetyl-CoA<br>
+<b>TCA cycle</b> — <b>common to carbohydrate + lipid + protein</b>; starts at acetyl-CoA → CO<sub>2</sub> + H<sub>2</sub>O, NADH, FADH<sub>2</sub><br>
+<b>HMP shunt</b> — alternate; <b>NADPH + pentoses, NO ATP</b></p>
+
+<h3>Anabolism needs</h3>
+<p>① <b>ATP</b> (universal; sometimes GTP) ② <b>acetyl-CoA</b> = carbon ③ <b>NADPH</b> = hydrogen ④ <b>↑ insulin</b><br>
+<b>Insulin supports every "-genesis" EXCEPT gluconeogenesis and ketogenesis</b></p>
+
+<h3>ATP / energy charge</h3>
+<p>ATP = <b>2</b> high-energy (phosphoanhydride) bonds; ADP = <b>1</b>; ΔG°′ = <b>−7.3 kcal/mol</b><br>
+EC = ([ATP] + ½[ADP]) / ([ATP]+[ADP]+[AMP]); range <b>0–1</b>; buffered at <b>0.8–0.95</b><br>
+High EC → catabolism ↓, anabolism ↑</p>
+
+<h3>Activated carriers</h3>
+<p>ATP → phosphoryl<br>
+NADH/NADPH → electrons — <b>niacin</b><br>
+FADH<sub>2</sub>, FMNH<sub>2</sub> → electrons — <b>riboflavin</b><br>
+Coenzyme A → acyl — <b>pantothenate</b><br>
+Lipoamide → acyl — <b>lipoic acid</b><br>
+TPP → aldehyde — <b>thiamine</b><br>
+Biotin → CO<sub>2</sub> — <b>biotin</b><br>
+THF → one-carbon — <b>folate</b><br>
+SAM → methyl · UDP-glucose → glucose<br>
+CDP-DAG → phosphatidate · NTPs → nucleotides<br>
+<span style="color:#555">Most are coenzymes from water-soluble vitamins.</span></p>
+
+<h3>Five common themes</h3>
+<p>Irreversibility · committed step · rate-limiting step · regulation · compartmentalization<br>
+<b>A pathway may have more than one irreversible step, and steps other than the committed/rate-limiting ones can also be regulated.</b></p>
+
+<h3>Committed vs rate-limiting</h3>
+<p><b>Committed:</b> irreversible · early · linear pathways only · target of regulation · <b>absent from cycles</b><br>
+<b>Rate-limiting:</b> irreversible · <b>slowest</b> · <b>highest E<sub>a</sub></b> · sets overall flux · intensely regulated<br>
+<b>Rate-limiting ⟹ regulated. Regulated ⇏ rate-limiting.</b><br>
+<b>No pathway is ever fully shut down</b> — one is active while the opposing one slows.</p>
+
+<h3>Long vs short term</h3>
+<p><b>LONG = enzyme QUANTITY</b> · gene level · <b>hours–days</b> · induction / repression / degradation (ubiquitin-proteasome, lysosomal)<br>
+<b>SHORT = enzyme ACTIVITY</b> · <b>minutes–hours</b> · reversible &amp; rapid</p>
+
+<h3>Five short-term mechanisms</h3>
+<p>① substrate concentration — <b>glucokinase</b><br>
+② product inhibition — <b>hexokinase ← G6P</b><br>
+③ proenzyme activation — <b>NOT reversible</b><br>
+④ reversible covalent modification — Ser/Thr/Tyr −OH<br>
+⑤ allosteric regulation — activators / inhibitors<br>
+<b>Product inhibition = immediate product. Feedback inhibition = final product.</b></p>
+
+<h3>Hexokinase vs glucokinase</h3>
+<p><b>HK:</b> peripheral · low K<sub>m</sub> · always on · <b>inhibited by G6P</b><br>
+<b>GK:</b> liver · high K<sub>m</sub> · <b>only after a meal</b> · <b>NOT inhibited by G6P</b> · induced by insulin</p>
+
+<h3>Phosphorylation rule</h3>
+<p><b>Insulin → always DEphosphorylates</b> (phosphatase)<br>
+<b>Glucagon / epinephrine → always PHOSPHORYLATE</b> (kinase, uses ATP)<br>
+Sites: <b>Ser, Thr, Tyr −OH</b>. At any moment ALL targets are phosphorylated OR ALL dephosphorylated.<br>
+<b>Insulin-driven pathways are active dephosphorylated.</b></p>
+
+<h3>Compartmentalization</h3>
+<p><b>Cellular:</b> FA oxidation = <b>mitochondria</b>; FA synthesis = <b>cytoplasm</b><br>
+<b>Tissue:</b> urea = <b>liver</b>; steroid hormones = <b>adrenals</b><br>
+<b>Clinical:</b> low BUN → possible liver damage</p>
+
+<h3>Timeline</h3>
+<p>Substrate stimulation — minutes<br>
+Product inhibition — minutes<br>
+Allosteric regulation — minutes<br>
+Covalent modification — minutes–hours<br>
+<b>Synthesis / degradation — hours–days</b><br>
+<span style="color:#555">Touches the gene → hours–days. Touches an existing enzyme → minutes.</span></p>
+
+<h3>Clinical hooks</h3>
+<p><b>Acute pancreatitis</b> — intracellular trypsinogen activation → acinar autolysis (can be inherited; cathepsin B route)<br>
+<b>Low BUN</b> — liver damage (urea cycle is hepatic)<br>
+<b>Beriberi</b> — thiamine · <b>Pellagra</b> — niacin · <b>PEM</b> — protein-energy malnutrition<br>
+Toxic in excess: alcohol, water, salt, iron</p>
+
+</div>
+</div>
+
+<div class="note" style="margin-top:4mm">
+<span class="lbl">Sources reconciled</span>
+<p style="margin-bottom:0"><b>Lecture 01 _Bagh_Overview of Metabolic Pathway.pptx</b> — all 41 slides plus every speaker note. <b>Lecture 1 transcript Biochem.txt</b> — the full spoken lecture. <b>DO Med Biochem Genetics I syllabus, Fall 2026 (7/22)</b> — scheduling, readings, exam scope. <b>Lippincott Illustrated Reviews: Biochemistry, Ch. 8</b> — the required chapter, used for the three stages of catabolism and the hormone-signaling background. Figures reproduced from the lecture slides; original credits shown there are Berg/Tymoczko/Stryer <em>Biochemistry</em> 5th ed., Lippincott Williams &amp; Wilkins, Lieberman <em>Marks' Basic Medical Biochemistry</em> 4th ed., and Frossard &amp; Pastor, <em>Frontiers in Bioscience</em> 7:d275–287 (2002).</p>
+</div>
+
+</body>
+</html>

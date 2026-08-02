@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lecture 02 — Enzymes and Enzyme Kinetics — Study Guide</title>
+<link rel="stylesheet" href="Lecture 02 - STUDY GUIDE (html source).css">
+</head>
+<body>
+
+<div class="hdr">
+  <div class="kicker">Medical Biochemistry &amp; Genetics I · Lecture 02</div>
+  <h1>Enzymes and Enzyme Kinetics</h1>
+  <div class="sub">Dr. Shilpika Bagh, MBBS, MD · Week 1, Session 1 · Tue 8/4, 1–2 PM</div>
+</div>
+
+<div class="metagrid">
+  <div class="row"><span class="k">Required reading</span> &nbsp;<span class="v">Lippincott <em>Illustrated Reviews: Biochemistry</em> Ch. 5 (Enzymes) · Panini, <em>Medical Biochemistry: An Essential Textbook</em> 2e, Ch. 5</span></div>
+  <div class="row"><span class="k">Suggested</span> &nbsp;<span class="v">Marks' <em>Basic Medical Biochemistry</em> 5e, Ch. 8</span></div>
+  <div class="row"><span class="k">Assessed on</span> &nbsp;<span class="v">Foundation Exam #1 — Sun 8/17, 11 AM–1 PM (also covers: metabolic pathway overview, ETC/uncouplers/inhibitors/ROS, thermodynamics primer, signal transduction, carbohydrate digestion, carbohydrate structures)</span></div>
+  <div class="row"><span class="k">Deck</span> &nbsp;<span class="v">55 slides · delivered in the same session as Lecture 1</span></div>
+</div>
+
+<p><b>What this lecture actually is.</b> Almost everything here reduces to two numbers and what moves them. <b>V<sub>max</sub></b> is the ceiling — how fast the reaction goes when every enzyme molecule is working flat out — and it is set by <em>how many enzyme molecules you have</em>. <b>K<sub>m</sub></b> is the substrate concentration that gets you halfway to that ceiling, and it is set by <em>how tightly the enzyme holds its substrate</em>. Every inhibitor, activator, isoenzyme, and regulatory mechanism in this lecture is classified by which of those two it moves and which it leaves alone. Dr. Bagh's own instruction for graph questions is to stop panicking and read the axes first, then the shape of the curve, then ask what changed — that procedure answers most of the questions this material generates.</p>
+
+<p>She stated her learning objectives up front and said <em>"pay close attention to your learning objectives because they are tied to your questions."</em> This guide is organized as her five objectives, in her order.</p>
+
+<h2><span class="onum">Objective 1 ·</span> Terms, classes of enzymes, and clinical uses of enzymes</h2>
+
+<h3>1.1 What an enzyme is</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>An enzyme does not make a reaction happen that couldn't happen — it makes a reaction that <em>would</em> happen eventually happen <em>now</em>. Every reaction has an energy hill between reactants and products (the transition state). Only molecules that happen to carry enough energy get over it, and at body temperature that is very few of them. An enzyme provides an alternate route with a lower hill, so a far larger fraction of molecules clear it per second. It does this by binding the substrate and <em>stabilizing the transition state</em> — holding the substrate in the strained, half-broken geometry it has to pass through anyway. The enzyme is not consumed and comes out unchanged, which is why a small amount of it turns over an enormous amount of substrate.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Enzyme</b> — a biocatalyst; speeds the rate of a chemical reaction without itself undergoing change.</li>
+    <li><b>Substrate</b> — the molecule being transformed. <b>Product</b> — the result of the transformation.</li>
+    <li><b>Active site</b> — pocket or cleft formed by protein folding; contains the side chains that bind substrate and perform catalysis. Substrate binding causes a conformational change (<b>induced fit</b>).</li>
+    <li><b>In nearly all cases enzymes are PROTEIN.</b> The exception: <b>ribozymes</b>, which are RNA molecules that catalyze reactions with other RNAs.</li>
+    <li>Enzymes provide three things: <b>speed, specificity, and regulatory control</b>.</li>
+    <li>Rate enhancement: 10<sup>3</sup>–10<sup>8</sup>× over the uncatalyzed reaction.</li>
+  </ul>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision</span>
+  <p>Dr. Bagh added a distinction the slide does not make: <em>"sometimes the active site is the substrate binding site, sometimes the active site may not be the substrate binding site."</em> The standard usage is that the active site contains both the substrate-binding residues and the catalytic residues; they are two functional roles within one pocket, not two separate places. The point she is protecting is that a <b>regulatory (allosteric) site is a different site entirely</b> — that distinction is the one the exam tests, and it arrives in Objective 5.</p>
+</div>
+
+<h3>1.2 Holoenzyme, apoenzyme, cofactor, coenzyme</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>The twenty amino acid side chains are chemically limited — they are good at acid–base chemistry and not much else. They cannot carry electrons, transfer one-carbon units, or hold a positive charge strong enough to polarize a carbonyl. So enzymes that need that chemistry rent it: they recruit a non-protein partner that supplies the chemistry the protein cannot. The protein contributes specificity and positioning; the partner contributes the reactive capability. Neither works alone, which is exactly why the naming has three terms — the protein alone (<b>apoenzyme</b>, inactive), the partner, and the working assembly (<b>holoenzyme</b>).</p>
+</div>
+
+<div class="rule-strip">Holoenzyme = Apoenzyme (protein) + non-protein part &nbsp;·&nbsp; apoenzyme alone is inactive</div>
+
+<table>
+<caption>The non-protein part</caption>
+<thead><tr><th style="width:15%">Type</th><th style="width:21%">Chemical nature</th><th style="width:32%">Behavior</th><th style="width:32%">Examples</th></tr></thead>
+<tbody>
+<tr><td class="hi"><b>Cofactor</b></td><td><b>Inorganic</b> — a metal ion</td><td>Enzymes requiring one are called <b>metalloenzymes</b></td><td>Fe<sup>2+</sup>, Mg<sup>2+</sup>, Zn<sup>2+</sup>, Cu<sup>2+</sup><br><b>Carbonic anhydrase</b> requires <b>Zn<sup>2+</sup></b><br><b>Lysyl oxidase</b> requires <b>Cu<sup>2+</sup></b></td></tr>
+<tr><td class="hi"><b>Coenzyme:</b><br>co-substrate</td><td><b>Organic</b> small molecule</td><td><b>Transiently</b> associated; <b>dissociates in an altered state</b> (it is chemically changed and must be regenerated elsewhere)</td><td><b>NAD<sup>+</sup></b>, <b>Coenzyme A</b></td></tr>
+<tr><td class="hi"><b>Coenzyme:</b><br>prosthetic group</td><td><b>Organic</b> small molecule</td><td><b>Permanently</b> associated; <b>returns to its original state</b> on the enzyme (regenerated in place, never leaves)</td><td><b>FAD</b>, <b>Biotin</b></td></tr>
+</tbody>
+</table>
+
+<div class="detail">
+  <span class="lbl">Memorize — she called this "very very important"</span>
+  <p><b>Coenzymes are derived from vitamins.</b> She named three and said the exam will later ask you to link vitamin → active form/coenzyme → enzyme → pathway:</p>
+  <ul>
+    <li><b>NAD<sup>+</sup></b> ← vitamin <b>B3, niacin</b></li>
+    <li><b>FAD</b> ← vitamin <b>B2, riboflavin</b></li>
+    <li><b>Biotin</b> ← vitamin B7 (itself the vitamin)</li>
+  </ul>
+</div>
+
+<div class="trap">
+  <span class="lbl">Discriminate</span>
+  <p><b>Co-substrate vs. prosthetic group is decided by whether it leaves and whether it leaves <em>changed</em>.</b> NAD<sup>+</sup> picks up electrons, floats off as NADH, and is re-oxidized somewhere else — co-substrate. FAD picks up electrons, becomes FADH<sub>2</sub>, and is re-oxidized while still bolted to the same enzyme — prosthetic group. This is the whole distinction; "tightly bound" is a consequence, not the definition.</p>
+</div>
+
+<h3>1.3 How enzymes accelerate a reaction — and what they leave untouched</h3>
+
+<figure class="narrow">
+  <img src="Lecture_02_figures/fig7_activation_energy.png" alt="Free energy diagram showing activation energy of catalyzed and uncatalyzed reactions with unchanged ΔG">
+  <figcaption><b>The one energy diagram to know.</b> Blue = uncatalyzed, red = catalyzed. The enzyme lowers the peak (E<sub>a</sub>) but both curves start and end at the same heights, so ΔG is identical. <span class="tag">Slide 6 · Lippincott Fig. 5.4</span></figcaption>
+</figure>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>Look at the diagram as a landscape with two fixed endpoints. The <b>height difference between start and finish</b> is ΔG — it is a property of the molecules themselves, and no catalyst can touch it. What the enzyme changes is the <b>height of the pass you must climb to get between them</b>. Dr. Bagh's phrasing: <em>"only this uphill is a problem; once the uphill is gone, the downhill is easy."</em></p>
+  <p>Because the enzyme lowers the barrier <b>from both directions equally</b>, it accelerates the forward and reverse reactions by the same factor. That is precisely why K<sub>eq</sub> cannot move: K<sub>eq</sub> is the <em>ratio</em> of forward to reverse rate, and multiplying both by the same number leaves the ratio alone. An enzyme changes <b>how fast equilibrium is reached, never where equilibrium sits.</b></p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Free energy of activation (ΔG<sup>‡</sup>, E<sub>a</sub>)</b> = the energy difference between the reactants and the high-energy intermediate (<b>transition state, T*</b>) that occurs during product formation. <span class="chem">A ↔ T* → B</span></li>
+    <li>Enzymes <b>lower the free energy of activation</b> so substrate reaches the transition state more easily.</li>
+    <li><b>Enzymes DO NOT alter: ΔG, ΔG°′ (standard free energy change), or the equilibrium constant K<sub>eq</sub>.</b></li>
+  </ul>
+</div>
+
+<div class="trap">
+  <span class="lbl">Trap — this is the classic distractor pair</span>
+  <p>"Lowers activation energy" and "makes the reaction more favorable" are <b>different claims</b>, and the exam writes distractors out of confusing them. An enzyme cannot make an endergonic reaction exergonic, cannot change ΔG or ΔG°′, cannot shift the equilibrium position, and cannot change the amount of product present at equilibrium. It changes <b>only the rate</b>. If an answer choice says an enzyme changes ΔG, K<sub>eq</sub>, or the direction of a reaction — it is wrong, every time.</p>
+</div>
+
+<h3>1.4 The six classes of enzymes</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>The classification asks one question: <b>what happened to the substrate?</b> Electrons moved → oxidoreductase. A group moved from one molecule to another → transferase. A bond was broken <em>using water</em> → hydrolase. A bond was broken <em>without</em> water and without oxidation → lyase. The atoms rearranged without anything entering or leaving → isomerase. Two molecules were joined <em>and it cost ATP</em> → ligase. Work through those five questions in order and every enzyme lands in exactly one bin.</p>
+</div>
+
+<table class="compact">
+<caption>EC classes — she said "don't mess with the number," meaning know the order 1–6</caption>
+<thead><tr><th style="width:6%">EC</th><th style="width:17%">Class</th><th style="width:40%">Reaction catalyzed</th><th style="width:37%">Example from the slide</th></tr></thead>
+<tbody>
+<tr><td class="hi"><b>1</b></td><td><b>Oxidoreductase</b></td><td>Oxidation–reduction: one substrate oxidized, the other reduced</td><td><b>Lactate dehydrogenase</b>: lactate + NAD<sup>+</sup> → pyruvate + NADH + H<sup>+</sup></td></tr>
+<tr><td class="hi"><b>2</b></td><td><b>Transferase</b></td><td>Transfer of a C-, N-, or P-containing <b>group</b></td><td><b>Serine hydroxymethyltransferase</b>: serine + THF → glycine<br><b>Hexokinase</b> (transfers phosphoryl from ATP)</td></tr>
+<tr><td class="hi"><b>3</b></td><td><b>Hydrolase</b></td><td>Cleavage of bonds <b>by addition of water</b></td><td><b>Urease</b>: urea + H<sub>2</sub>O → CO<sub>2</sub> + 2 NH<sub>3</sub></td></tr>
+<tr><td class="hi"><b>4</b></td><td><b>Lyase</b></td><td>Cleavage of C–C, C–S, and certain C–N bonds <b>without water</b></td><td><b>Pyruvate decarboxylase</b>: pyruvate → acetaldehyde + CO<sub>2</sub></td></tr>
+<tr><td class="hi"><b>5</b></td><td><b>Isomerase</b></td><td>Rearrangement of optical or geometric <b>isomers</b></td><td><b>Methylmalonyl-CoA mutase</b>: methylmalonyl-CoA → succinyl-CoA</td></tr>
+<tr><td class="hi"><b>6</b></td><td><b>Ligase</b></td><td>Formation of bonds between C and O, S, or N, <b>coupled to hydrolysis of a high-energy phosphate (ATP)</b></td><td><b>Pyruvate carboxylase</b>: pyruvate + CO<sub>2</sub> + ATP → oxaloacetate + ADP + P<sub>i</sub></td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+  <span class="lbl">Trap — transferase vs. ligase</span>
+  <p>Both can involve ATP, and that is the whole trap. A <b>ligase</b> uses ATP hydrolysis as an <em>energy source</em> to join two separate molecules into one. A <b>kinase</b> (a transferase) takes the <b>phosphoryl group itself</b> off ATP and puts it on the substrate — ATP is the <em>donor</em>, not the fuel. So hexokinase is a <b>transferase</b>, not a ligase, even though ATP appears in the equation. Her rule: <b>"kinases always add phosphate."</b> Mnemonic for the order: <em>Over The Hill, Little Indian Lady</em> — Oxidoreductase, Transferase, Hydrolase, Lyase, Isomerase, Ligase.</p>
+</div>
+
+<div class="qstem">
+  <span class="qh">In-class Question 1 (slide 15)</span>
+  <p>Hexokinase catalyzes <span class="chem">Glucose + ATP → Glucose 6-phosphate + ADP</span>. It may be classified as a(n):</p>
+  <ol type="A"><li>Oxidoreductase</li><li>Transferase</li><li>Hydrolase</li><li>Lyase</li><li>Isomerase</li><li>Ligase</li></ol>
+  <p><span class="ans">Answer: B — Transferase.</span> A phosphoryl <em>group</em> is transferred from ATP to glucose. <b>Why the others fail:</b> <b>A</b> — no atom changes oxidation state. <b>C</b> — water is neither consumed nor produced. <b>D</b> — nothing is cleaved without water; a bond is made, not broken. <b>E</b> — glucose and glucose-6-P are not isomers; a phosphate was added. <b>F</b> — the ATP tempts you, but a ligase joins two substrates together using ATP as fuel; here ATP <em>is</em> the group donor.</p>
+</div>
+
+<h3>1.5 Clinical enzymology — why enzymes are measured in blood</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>Enzymes are concentrated <em>inside</em> cells and have no job in plasma. The small amount normally present in serum is the steady-state leak from ordinary cell turnover — release balanced by clearance. When a tissue is injured by infection, toxin, poison, or ischemia, its membranes fail and its intracellular contents dump into the circulation, and the serum level jumps far above that steady state. So the measurement is not really an assay of enzyme function — it is an <b>assay of membrane integrity in a specific tissue</b>. That is also why specificity matters: an enzyme present in many tissues tells you damage happened but not where; an enzyme concentrated in one tissue tells you the address.</p>
+</div>
+
+<table class="compact flow">
+<caption>Principal serum enzymes used in diagnosis (slide 10, Harper's Table 7–2) — the aminotransferase rows were boxed in red on the slide</caption>
+<thead><tr><th style="width:44%">Serum enzyme</th><th style="width:56%">Major diagnostic use</th></tr></thead>
+<tbody>
+<tr><td class="hi"><b>Aspartate aminotransferase (AST, SGOT)</b></td><td class="hi">Listed on the slide as <b>myocardial infarction</b> (see the precision note below)</td></tr>
+<tr><td class="hi"><b>Alanine aminotransferase (ALT, SGPT)</b></td><td class="hi"><b>Viral hepatitis</b> — highly concentrated in and highly specific for <b>liver</b></td></tr>
+<tr><td>Amylase</td><td>Acute pancreatitis</td></tr>
+<tr><td>Lipase</td><td>Acute pancreatitis</td></tr>
+<tr><td>Ceruloplasmin</td><td>Hepatolenticular degeneration (<b>Wilson disease</b>)</td></tr>
+<tr><td><b>Creatine kinase (CK)</b></td><td>Muscle disorders and myocardial infarction</td></tr>
+<tr><td>γ-Glutamyl transpeptidase (GGT)</td><td>Various liver diseases</td></tr>
+<tr><td><b>Lactate dehydrogenase (LDH), isozymes</b></td><td>Myocardial infarction</td></tr>
+<tr><td>Acid phosphatase</td><td>Metastatic carcinoma of the <b>prostate</b></td></tr>
+<tr><td>Alkaline phosphatase, isozymes</td><td>Various <b>bone</b> disorders, <b>obstructive liver</b> disease</td></tr>
+</tbody>
+</table>
+
+<div class="clin">
+  <span class="lbl">Clinical — the case she told</span>
+  <p><b>Mushroom poisoning</b> (the slide's photograph; <em>Amanita</em>-type hepatotoxicity) causes hepatocellular damage. The slide's inset graph shows the time course after ingestion: <b>ALT rises first and steeply</b>, peaking around 36 hours at &gt;20× the upper normal value, while <b>bilirubin rises later and more slowly</b>. A rise in <b>both ALT and bilirubin</b> is the signature of <b>hepatocellular jaundice</b> — the cells are being destroyed (ALT leak) <em>and</em> losing their ability to conjugate and excrete bilirubin. Both ALT and AST rise in liver damage; <b>ALT is the more liver-specific of the two.</b></p>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision — the AST row is a legacy entry</span>
+  <p>This table is old. AST was used as a cardiac marker decades ago, but AST is present in heart, liver, skeletal muscle, kidney, and red cells, and it has been <b>completely replaced by troponin for myocardial infarction</b>. In current practice both AST and ALT are read as <b>liver</b> enzymes (the AST:ALT ratio is used to characterize the pattern of liver injury). Dr. Bagh taught them as the hepatic pair, which is correct; the slide table is the outdated part. <b>Answer the slide's version if the question is clearly drawn from it, but do not carry "AST = MI" into clinical reasoning.</b></p>
+</div>
+
+<h3>1.6 Isoenzymes — locating the damaged tissue</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>Isoenzymes solve the specificity problem. They are different protein molecules that catalyze the <b>same reaction</b> but are built from different subunits encoded by different genes, so they differ in amino acid sequence — and therefore in <b>net charge</b>. Different charge means they <b>separate on electrophoresis</b>. Different tissues express characteristic proportions of them. So instead of "some tissue was damaged," a serum isoenzyme <em>pattern</em> tells you <b>which</b> tissue, because you are effectively reading the tissue's expression signature in the blood.</p>
+  <p>Her electrophoresis reasoning, which she wanted you to reconstruct rather than memorize: these enzymes are <b>negatively charged</b>, so they migrate <b>toward the anode (+)</b>. The most negative species travels furthest toward the positive pole — that is CK-1 (BB) and LDH-1. Numbering runs in order of decreasing migration toward the anode.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — Creatine kinase (CK): a dimer of B and M subunits, three isoenzymes</span>
+  <ul>
+    <li><b>CK-1 = BB</b> — brain</li>
+    <li><b>CK-2 = MB</b> — <b>predominant in cardiac muscle</b>; myocardium is the only tissue with &gt;5% of its CK as MB</li>
+    <li><b>CK-3 = MM</b> — <b>predominant in skeletal muscle</b></li>
+    <li>A rise of <b>CK-2 (MB) as a fraction of total CK</b> indicates cardiac damage — the ratio matters, not just the absolute value.</li>
+  </ul>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — Lactate dehydrogenase (LDH): a tetramer of H and M subunits, five isoenzymes</span>
+  <ul>
+    <li><b>LDH-1 = HHHH</b> — predominant in <b>heart</b></li>
+    <li><b>LDH-2 = HHHM</b> — <b>predominant in normal serum</b></li>
+    <li>LDH-3 = HHMM &nbsp;·&nbsp; LDH-4 = HMMM</li>
+    <li><b>LDH-5 = MMMM</b> — predominant in <b>liver</b></li>
+  </ul>
+</div>
+
+<div class="rule-strip red">Normal serum: LDH-2 &gt; LDH-1 &nbsp;·&nbsp; Myocardial infarction <b>flips</b> it: LDH-1 &gt; LDH-2 &nbsp;·&nbsp; Hepatic damage: <b>LDH-5</b> rises</div>
+
+<div class="clin">
+  <span class="lbl">Clinical — markers of myocardial infarction, and why they changed</span>
+  <p><b>Cardiac troponin T and troponin I have superseded both LDH and CK-MB</b> as the diagnostic markers of MI: they are more <b>sensitive and more specific</b>, and cardiac troponin I in particular is essentially cardiac-exclusive. The figure shows why the LDH flip is now a historical exam fact rather than a clinical tool.</p>
+</div>
+
+<figure class="narrow">
+  <img src="Lecture_02_figures/fig8_ckmb_troponin.png" alt="Plasma CK-MB and cardiac troponin over days after myocardial infarction">
+  <figcaption><b>CK-MB vs. cardiac troponin after MI.</b> CK-MB peaks at ~24 h and is back below the reference limit by ~72 h; troponin rises to a much higher multiple and stays elevated for days, which is what makes it useful in a patient who presents late. <span class="tag">Slide 13</span></figcaption>
+</figure>
+
+<div class="note">
+  <span class="lbl">Precision — a specimen-handling detail from her speaker notes</span>
+  <p><b>Hemolysis releases LDH from red blood cells</b> and will falsely elevate serum LDH, confounding the isoenzyme pattern. Blood samples for LDH must be handled with care. This is the kind of pre-analytical detail that appears as a "why is this lab result wrong?" question.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Review of Objective 1 (her slide 14, verbatim content)</span>
+  <ul>
+    <li>Define: enzyme, substrate, product, cofactor, coenzyme, holoenzyme, apoenzyme</li>
+    <li>Enzymes accelerate a chemical reaction by <b>lowering the activation energy</b></li>
+    <li>Enzymes <b>DO NOT change either ΔG or the equilibrium constant</b></li>
+    <li>There are <b>six classes</b> of enzymes based on the type of reaction they catalyze</li>
+    <li><b>Tissue enzymes detected in blood serve as markers for tissue damage</b></li>
+  </ul>
+</div>
+
+<h2><span class="onum">Objective 2 ·</span> Michaelis-Menten enzyme kinetics; K<sub>m</sub> and V<sub>max</sub></h2>
+
+<h3>2.1 The model</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>Michaelis and Menten's insight was that catalysis is not a collision, it is a <b>two-step process with an obligatory intermediate</b>. The enzyme must first <em>capture</em> the substrate (reversibly, forming ES), and only then can it <em>convert</em> it. Everything about enzyme kinetics falls out of that: velocity is set by how much ES exists at any moment, because only ES makes product. Add more substrate and you push more enzyme into the ES form — until every enzyme molecule is already in the ES form, at which point adding substrate does nothing, because there is no free enzyme left to capture it. That saturation point is V<sub>max</sub>, and the existence of saturation is the single feature that separates enzyme kinetics from ordinary chemical kinetics.</p>
+</div>
+
+<div class="eq">
+  E + S &nbsp;<span style="font-size:1.2em">⇄</span><sub>&nbsp;k<sub>2</sub></sub><sup>&nbsp;k<sub>1</sub></sup>&nbsp; ES &nbsp;<span style="font-size:1.2em">→</span><sup>&nbsp;k<sub>3</sub></sup>&nbsp; E + P
+  &nbsp;&nbsp;&nbsp;<span class="tag">v = k<sub>3</sub>[ES]</span>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li>The model <b>ignores the reverse reaction</b> (E + P → ES). This is legitimate because we use <b>initial velocities</b>: at the start, essentially no product exists, so there is nothing to run backwards and <b>no product inhibition</b>.</li>
+    <li>Velocity of the forward reaction is <b>directly proportional to [ES]</b>: <span class="chem">v = k<sub>3</sub>[ES]</span>.</li>
+    <li><b>K<sub>m</sub> is the ratio of the rate constants for breakdown of ES over formation of ES</b> — the Michaelis constant.</li>
+  </ul>
+  <div class="eq">
+    K<sub>M</sub> =
+    <span class="frac"><span class="num">k<sub>2</sub> + k<sub>3</sub></span><span class="den">k<sub>1</sub></span></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    v<sub>o</sub> =
+    <span class="frac"><span class="num">V<sub>max</sub>[S]</span><span class="den">K<sub>m</sub> + [S]</span></span>
+  </div>
+  <ul>
+    <li><b>v<sub>o</sub></b> = initial reaction velocity &nbsp;·&nbsp; <b>V<sub>max</sub></b> = maximal velocity &nbsp;·&nbsp; <b>K<sub>m</sub></b> = Michaelis constant &nbsp;·&nbsp; <b>[S]</b> = substrate concentration</li>
+    <li>She said explicitly: <b>you are not deriving this equation.</b> Know what each term means and how the equation behaves at the extremes.</li>
+  </ul>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why K<sub>m</sub> and affinity run in opposite directions — the one thing that makes the rest automatic</span>
+  <p>Read the formula literally. The numerator, <b>k<sub>2</sub> + k<sub>3</sub></b>, is every way the ES complex <em>falls apart</em> — either backwards to E + S, or forwards to E + P. The denominator, <b>k<sub>1</sub></b>, is the rate at which ES <em>forms</em>. So K<sub>m</sub> is a <b>ratio of losing the substrate to catching it</b>.</p>
+  <p>A <b>large K<sub>m</sub></b> means ES falls apart much faster than it forms — the enzyme keeps dropping its substrate. To keep half the enzyme population occupied despite that, you must flood it with substrate. Hence high K<sub>m</sub> = <b>low affinity</b> and a high half-saturating concentration. A <b>small K<sub>m</sub></b> means the enzyme grabs and holds, so a trace of substrate is enough to keep half of it busy: low K<sub>m</sub> = <b>high affinity</b>. The inverse relationship is not a rule to memorize — it is what the formula says.</p>
+</div>
+
+<div class="rule-strip gold">Low K<sub>m</sub> → HIGH affinity &nbsp;&nbsp;·&nbsp;&nbsp; High K<sub>m</sub> → LOW affinity &nbsp;&nbsp;<span style="opacity:.75">(she said "please memorize" this five separate times)</span></div>
+
+<h3>2.2 The two graphs</h3>
+
+<figure>
+  <img src="Lecture_02_figures/fig1_mm_lineweaver.png" alt="Michaelis-Menten hyperbola and Lineweaver-Burk double reciprocal plot with intercepts labeled">
+  <figcaption><b>The same data, two ways.</b> <b>A</b> — v vs. [S] is a <b>hyperbola</b>; the low-[S] arm is first order, the plateau is zero order. <b>B</b> — 1/v vs. 1/[S] is a <b>straight line</b>, so K<sub>m</sub> and V<sub>max</sub> can be read off the intercepts instead of estimated from a curve. <span class="tag">Slide 19</span></figcaption>
+</figure>
+
+<div class="concept">
+  <span class="lbl">Why the Lineweaver-Burk plot exists at all</span>
+  <p>The hyperbola never actually reaches V<sub>max</sub> — it creeps toward it asymptotically. So you cannot read V<sub>max</sub> off the curve by eye, and since K<sub>m</sub> is defined <em>relative</em> to V<sub>max</sub>, an error in V<sub>max</sub> propagates straight into K<sub>m</sub>. Taking reciprocals of both axes converts the hyperbola into a straight line, and a straight line can be extrapolated confidently to its intercepts. You get both constants from a ruler.</p>
+  <p>The cost, which the slide flags: you are plotting <b>reciprocals</b>, so the points at low [S] — the least accurate measurements — become the largest 1/[S] values and dominate the fit. <b>A small experimental error produces a large error in the graphically determined K<sub>m</sub> and V<sub>max</sub>.</b></p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — Lineweaver-Burk (double-reciprocal) plot</span>
+  <div class="eq">
+    <span class="frac"><span class="num">1</span><span class="den">v</span></span> =
+    <span class="frac"><span class="num">K<sub>m</sub></span><span class="den">V<sub>max</sub></span></span>
+    ·
+    <span class="frac"><span class="num">1</span><span class="den">[S]</span></span>
+    +
+    <span class="frac"><span class="num">1</span><span class="den">V<sub>max</sub></span></span>
+  </div>
+  <ul>
+    <li><b>x-intercept = −1 / K<sub>m</sub></b></li>
+    <li><b>y-intercept = 1 / V<sub>max</sub></b></li>
+    <li><b>slope = K<sub>m</sub> / V<sub>max</sub></b></li>
+    <li>Given an intercept value you can compute the constant — she asked "why not?" Take the reciprocal.</li>
+  </ul>
+</div>
+
+<div class="trap">
+  <span class="lbl">Her graph procedure — she repeated it seven times, use it</span>
+  <p><b>"Don't panic when it comes to a graph."</b> Every time: (1) read the <b>y-axis</b>, (2) read the <b>x-axis</b>, (3) read the <b>shape of the curve</b>. v vs. [S] and hyperbolic → a Michaelis-Menten enzyme. v vs. [S] and sigmoid → an allosteric enzyme. 1/v vs. 1/[S] and a straight line → a double-reciprocal plot. Only then ask what moved. She also said you <b>do not need to draw</b> these graphs — you need to <b>recognize</b> them.</p>
+</div>
+
+<h3>2.3 K<sub>m</sub>, and the other kinetic parameters</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize — Michaelis constant (K<sub>m</sub>)</span>
+  <ul>
+    <li><b>Definition: the substrate concentration at which the initial reaction velocity equals ½ V<sub>max</sub>.</b> It is a <b>concentration</b>, with units of concentration — not a velocity, not a ratio, not a time.</li>
+    <li>Characteristic of a <b>particular enzyme with a particular substrate</b>; it is a <b>constant for that enzyme</b>.</li>
+    <li>A measure of the <b>affinity</b> of the enzyme for that substrate (inversely — see above).</li>
+    <li><b>Reflects the natural substrate</b> of an enzyme: the physiologic substrate is generally the one with the lowest K<sub>m</sub>.</li>
+    <li><b>K<sub>m</sub> does NOT vary with enzyme concentration.</b> Add or remove enzyme and K<sub>m</sub> is unchanged — affinity is a property of one molecule, not of how many you have.</li>
+  </ul>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — V<sub>max</sub>, k<sub>cat</sub>, and activity units</span>
+  <ul>
+    <li><b>V<sub>max</sub> depends on the amount of enzyme, [E<sub>t</sub>]</b> — and, unlike K<sub>m</sub>, on nothing about affinity.</li>
+    <li><b>k<sub>cat</sub> = the turnover number</b> = moles of product formed <b>per second per mole of catalytic center</b>. Typically 10<sup>2</sup>–10<sup>4</sup> s<sup>−1</sup>.</li>
+    <li><b>Unit of enzyme activity</b> — e.g., µmol (or mmol) of product per minute.</li>
+    <li><b>Specific activity = units / mg protein.</b> Because it normalizes activity to total protein, it is a measure of the <b>purity</b> of an enzyme preparation — her phrasing: <em>"specific activity shows the purity of the enzyme, because enzymes are protein in nature."</em></li>
+  </ul>
+</div>
+
+<div class="concept">
+  <span class="lbl">The relationship that ties k<sub>cat</sub> and V<sub>max</sub> together</span>
+  <p><b>V<sub>max</sub> = k<sub>cat</sub> × [E<sub>t</sub>].</b> At saturation every enzyme molecule is cycling as fast as it possibly can, which is k<sub>cat</sub>; total output is that rate times the number of workers. This single equation is the reason V<sub>max</sub> is the parameter that reports <b>enzyme quantity</b>: k<sub>cat</sub> is fixed by the protein's chemistry, so the only way to move V<sub>max</sub> is to change how many enzyme molecules are present. Keep that in hand — in Objective 4 it explains, in one step, why noncompetitive inhibition, suicide inhibition, and repression all lower V<sub>max</sub> and why induction raises it.</p>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision — three refinements the lecture left loose</span>
+  <ul>
+    <li><b>K<sub>m</sub> is not literally a dissociation constant.</b> K<sub>m</sub> = (k<sub>2</sub>+k<sub>3</sub>)/k<sub>1</sub>, whereas true binding affinity is K<sub>d</sub> = k<sub>2</sub>/k<sub>1</sub>. They coincide only when catalysis is slow relative to release (k<sub>3</sub> ≪ k<sub>2</sub>). "K<sub>m</sub> measures affinity" is the exam's answer and is directionally right; the caveat is why careful sources say K<sub>m</sub> <em>reflects</em> affinity.</li>
+    <li><b>V<sub>max</sub> is approached, not reached.</b> The slide says "this increase in rate occurs until V<sub>max</sub> is reached." Mathematically v = V<sub>max</sub>[S]/(K<sub>m</sub>+[S]) equals V<sub>max</sub> only at infinite [S]. In practice at [S] = 100×K<sub>m</sub> you are at 99%, which is why "zero order" is a fair description.</li>
+    <li><b>k<sub>cat</sub>/K<sub>m</sub> is catalytic efficiency</b> — not asked on these slides, but distinct from k<sub>cat</sub> alone (turnover number). If a question contrasts "turnover number" with "catalytic efficiency," they are not synonyms.</li>
+  </ul>
+</div>
+
+<h2><span class="onum">Objective 3 ·</span> Factors that affect enzyme activity</h2>
+
+<div class="rule-strip">The five factors: substrate concentration · enzyme concentration · temperature · pH · activators/inhibitors</div>
+
+<h3>3.1 Substrate concentration — first order, zero order, mixed order</h3>
+
+<div class="concept">
+  <span class="lbl">The idea — read the hyperbola as two different worlds joined by a bend</span>
+  <p>The shape of the curve is not decorative; it is two distinct kinetic regimes.</p>
+  <p><b>Far left ([S] ≪ K<sub>m</sub>):</b> substrate is scarce and most enzyme molecules are sitting empty. The limiting event is an enzyme <em>finding</em> a substrate molecule, so doubling [S] doubles how often that happens and doubles the velocity. Velocity is <b>proportional to [S]</b> — <b>first order</b>.</p>
+  <p><b>Far right ([S] ≫ K<sub>m</sub>):</b> every active site is already occupied; there is a queue. The limiting event is now the enzyme's own catalytic cycle, which has a fixed speed. Adding more substrate lengthens the queue but changes nothing about throughput. Velocity is <b>independent of [S]</b> — <b>zero order</b>, and it equals V<sub>max</sub>.</p>
+  <p><b>The bend in between</b> is the <b>mixed-order</b> region, and <b>K<sub>m</sub> sits inside it</b> — which is exactly why K<sub>m</sub> is the useful descriptor of an enzyme: it marks where the enzyme transitions from responsive to saturated.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — the same idea in the equation (her alternate route to the same conclusion)</span>
+  <p>She deliberately gave both the graphical and the algebraic derivation, "so that you know what makes you learn best."</p>
+  <ul>
+    <li><b>When [S] ≫ K<sub>m</sub>:</b> K<sub>m</sub> becomes negligible in the denominator, so v<sub>o</sub> = V<sub>max</sub>[S]/[S] → <b>v<sub>o</sub> = V<sub>max</sub></b>. Zero order.</li>
+    <li><b>When [S] ≪ K<sub>m</sub>:</b> [S] becomes negligible in the denominator, so <b>v<sub>o</sub> = (V<sub>max</sub>/K<sub>m</sub>) · [S]</b> — velocity proportional to [S]. First order.</li>
+  </ul>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — she paired these with the transporters and said "keep them together"</span>
+  <table class="compact" style="margin-top:1.6mm">
+  <thead><tr><th style="width:30%"></th><th style="width:35%">[S] ≪ K<sub>m</sub></th><th style="width:35%">[S] ≫ K<sub>m</sub></th></tr></thead>
+  <tbody>
+  <tr><td><b>Velocity</b></td><td>Proportional to [S]</td><td>Independent of [S]; v = V<sub>max</sub></td></tr>
+  <tr><td><b>Order</b></td><td class="hi"><b>First order</b> ("proportional")</td><td class="hi"><b>Zero order</b> ("constant")</td></tr>
+  <tr><td><b>Paired transporter</b></td><td class="hi"><b>GLUT2</b> — liver and pancreas</td><td class="hi"><b>GLUT1 and GLUT3</b> — brain and RBC</td></tr>
+  </tbody>
+  </table>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why that transporter pairing makes sense</span>
+  <p><b>GLUT2</b> is a low-affinity, high-capacity transporter in liver and pancreas. Its job is to move glucose <em>in proportion to</em> how much is in the blood, so the liver stores when there is a surplus and the β-cell can <em>sense</em> the glucose level — a sensor must not be saturated at normal concentrations or it reports the same number at every glucose. Proportional response = first order.</p>
+  <p><b>GLUT1 and GLUT3</b> serve brain and RBC, tissues that cannot be without glucose for a moment. Their transporters are saturated at normal blood glucose, so uptake is <b>constant</b> and continues undiminished even when blood glucose falls. Constant supply = zero order. This is a design decision, not a coincidence, and the same logic returns in the next section with the enzymes behind those transporters.</p>
+</div>
+
+<h3>3.2 Enzyme concentration, temperature, and pH</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize — the three remaining factors and their curve shapes</span>
+  <ul>
+    <li><b>Enzyme concentration — a straight line.</b> When substrate is unlimited, reaction velocity is <b>directly proportional to [E]</b>. Her speaker note gives the application: this is <b>why you can quantify an enzyme in plasma, serum, or tissue by measuring its activity</b> — activity is a valid proxy for amount only because the relationship is linear.</li>
+    <li><b>Temperature — a bell curve.</b> Velocity rises with temperature to a peak, then falls with further increase (<b>denaturation</b>). <b>Optimum for most human enzymes: 35–40 °C.</b> Exception: <b>thermostable DNA polymerases</b> (e.g. <em>Taq</em>, used in PCR).</li>
+    <li><b>pH — a bell curve.</b> pH changes the <b>ionic charge of amino acid side chains</b>, which alters catalytic function; extremes denature the enzyme. Most human enzymes are optimal near <b>physiologic pH ~7.4</b>.</li>
+  </ul>
+  <table class="compact" style="margin-top:1.6mm">
+  <thead><tr><th style="width:50%">Enzyme with a non-neutral pH optimum</th><th style="width:50%">Optimum pH</th></tr></thead>
+  <tbody>
+  <tr><td><b>Pepsin</b> (stomach)</td><td class="hi"><b>1–2</b></td></tr>
+  <tr><td>Acid phosphatase</td><td>4–5</td></tr>
+  <tr><td><b>Trypsin</b> (pancreatic)</td><td><b>5–7</b></td></tr>
+  <tr><td>Alkaline phosphatase</td><td><b>9–10</b></td></tr>
+  </tbody>
+  </table>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why the temperature and pH curves are bells rather than plateaus</span>
+  <p>Two opposing effects overlap. Raising temperature increases the fraction of molecules with enough energy to clear the activation barrier, so velocity climbs. But the enzyme is a folded protein held together by weak non-covalent interactions, and the same thermal energy eventually shakes it apart. The peak is where the second effect overtakes the first. pH works the same way in charge terms: catalysis needs specific side chains in specific protonation states, so there is one pH where the maximum number of them are correct, and moving away in <em>either</em> direction removes some and eventually denatures the fold outright. <b>An optimum always implies two competing processes.</b></p>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision — the trypsin number is unusual</span>
+  <p>The slide lists trypsin's optimum as <b>5–7</b>. Most sources put trypsin's optimum at <b>pH 7.5–8.5</b>, matching the alkaline environment of the duodenum where bicarbonate neutralizes gastric acid — and Dr. Bagh herself described trypsin verbally as "a pancreatic enzyme which has an optimum alkaline pH," contradicting her own slide. The concept she is testing (acidic pepsin vs. alkaline trypsin) is the point. <b>Learn the contrast; if a question asks for a number, the slide's numbers are the exam's source.</b></p>
+</div>
+
+<h3>3.3 Hexokinase vs. glucokinase — the worked example she said "will come back again and again"</h3>
+
+<figure class="narrow">
+  <img src="Lecture_02_figures/fig5_hexokinase_glucokinase.png" alt="Enzyme activity vs glucose concentration for hexokinase and glucokinase with fasting blood glucose band">
+  <figcaption><b>Two enzymes, one reaction, opposite designs.</b> The orange band is fasting blood glucose (~5 mM). Hexokinase is already saturated there; glucokinase is barely started, and its K<sub>m</sub> (~10 mM) sits <em>above</em> the fasting range. <span class="tag">Slide 29 · Marks' Fig. 8.13</span></figcaption>
+</figure>
+
+<div class="concept">
+  <span class="lbl">The idea — kinetics chosen to match the job</span>
+  <p>Both enzymes do the identical chemistry: <span class="chem">glucose + ATP → glucose-6-phosphate + ADP</span>, the first step of glucose utilization, and the step that traps glucose inside the cell (G6P is charged and cannot cross the membrane back out). They differ in <em>when</em> they do it, and that difference is entirely K<sub>m</sub> and V<sub>max</sub>.</p>
+  <p><b>Brain and RBC must never be without glucose.</b> Their enzyme, <b>hexokinase</b>, therefore has a <b>low K<sub>m</sub> = high affinity</b>: it is saturated at, and even well below, normal blood glucose, so uptake continues at full speed during fasting. Its <b>low V<sub>max</sub></b> is a feature, not a limitation — these tissues should take what they need, not hoard. (Hexokinase is also inhibited by its own product, G6P, which enforces that.)</p>
+  <p><b>The liver is a buffer and the pancreas is a sensor</b> — neither should act at fasting glucose. Their enzyme, <b>glucokinase</b>, has a <b>high K<sub>m</sub> = low affinity</b>, sitting deliberately <em>above</em> the circulating concentration, so it is nearly idle between meals and switches on only when portal glucose is high after a meal. Its <b>high V<sub>max</sub></b> then lets the liver clear a large load quickly. In the pancreatic β-cell the same property makes glucokinase the <b>"glucose sensor" that sets the threshold for insulin secretion</b> — a sensor is only useful if it is unsaturated across the physiologic range.</p>
+</div>
+
+<table class="compact">
+<caption>Slide 29, with the speaker-note detail folded in</caption>
+<thead><tr><th style="width:22%"></th><th style="width:39%">Hexokinase</th><th style="width:39%">Glucokinase</th></tr></thead>
+<tbody>
+<tr><td><b>K<sub>m</sub></b></td><td class="hi"><b>Low</b> (~0.05 mM) → <b>high affinity</b></td><td class="hi"><b>High</b> (~10 mM) → <b>low affinity</b></td></tr>
+<tr><td><b>V<sub>max</sub></b></td><td class="hi"><b>Low</b></td><td class="hi"><b>High</b></td></tr>
+<tr><td><b>Tissue</b></td><td>Most tissues — <b>brain and RBC</b></td><td><b>Liver</b> &amp; <b>islet cells of pancreas</b></td></tr>
+<tr><td><b>Paired GLUT</b></td><td><b>GLUT1 and GLUT3</b> — zero order</td><td><b>GLUT2</b> — first order</td></tr>
+<tr><td><b>Her label</b></td><td>The enzyme of <b>high affinity</b></td><td>The enzyme of <b>high efficiency</b></td></tr>
+<tr><td><b>Purpose</b></td><td>Guarantee glucose use even when blood glucose is low</td><td>Trap glucose after meals; set the insulin-secretion threshold</td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+  <span class="lbl">Discriminate — do not cross the pairs</span>
+  <p>She warned repeatedly: <em>"keep them together, don't mix and mess them up."</em> The two stacks are <b>Brain/RBC → GLUT1&amp;3 → zero order → hexokinase → low K<sub>m</sub> → high affinity → low V<sub>max</sub></b> and <b>Liver/pancreas → GLUT2 → first order → glucokinase → high K<sub>m</sub> → low affinity → high V<sub>max</sub></b>. Note the deliberate cross-over that makes this confusing: the tissue with the <em>zero-order transporter</em> has the <em>low-K<sub>m</sub></em> enzyme. Both facts say the same thing — <b>brain and RBC are built to take glucose unconditionally</b>.</p>
+</div>
+
+<div class="qstem">
+  <span class="qh">In-class Question 2 (slide 32)</span>
+  <p>Hexokinase in human red blood cells has a K<sub>m</sub> of 0.1 mM for glucose. Normal plasma glucose is 5 mM. At this glucose concentration, which statement about hexokinase is correct?</p>
+  <ol type="A"><li>It is operating at 50% of V<sub>max</sub></li><li>It is 50% saturated with glucose</li><li>Raising plasma glucose to 10 mM will double the enzyme velocity</li><li>It is operating at 100% of V<sub>max</sub></li><li>Lowering plasma glucose to 3 mM will lower the enzyme velocity</li></ol>
+  <p><span class="ans">Answer: D.</span> Her point was that <b>no calculation is required</b>: K<sub>m</sub> = 0.1, [S] = 5, so <b>[S] ≫ K<sub>m</sub></b> → zero order → the enzyme is at V<sub>max</sub>. <b>Why the others fail:</b> <b>A</b> and <b>B</b> both describe [S] = K<sub>m</sub> = 0.1 mM, fifty-fold below the actual concentration (and note A and B are restatements of each other, so neither can be the single answer). <b>C</b> — in the zero-order region, raising [S] changes nothing. <b>E</b> — 3 mM is still thirty-fold above K<sub>m</sub>, still saturating.</p>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision</span>
+  <p>Strictly, v = 5/(0.1+5) = <b>98%</b> of V<sub>max</sub>, not 100%. "Operating at 100% of V<sub>max</sub>" is the intended answer and the only defensible choice offered, but if a question ever asks for the exact fraction, use the equation rather than the approximation.</p>
+</div>
+
+<h2><span class="onum">Objective 4 ·</span> Competitive, noncompetitive, and suicide inhibition</h2>
+
+<div class="concept">
+  <span class="lbl">The organizing idea — read this before the details and the table becomes unnecessary</span>
+  <p>There are only <b>two ways to slow an enzyme</b>, and each moves exactly one parameter.</p>
+  <p><b>(1) Block the door.</b> Put a molecule that looks like the substrate into the active site. It is a fair fight decided by numbers, so at any given [S] a fraction of the enzyme is tied up and you need <em>more</em> substrate to reach half-maximal velocity: <b>K<sub>m</sub> rises</b>. But it is a fight you can win by flooding the field — pour on enough substrate and the inhibitor is displaced entirely, so the ceiling is untouched: <b>V<sub>max</sub> unchanged</b>. This is <b>competitive</b>.</p>
+  <p><b>(2) Remove workers from the payroll.</b> Bind somewhere else and disable the enzyme whether or not substrate is present. Extra substrate is irrelevant — a disabled enzyme is disabled. Functionally you now have <b>fewer enzyme molecules</b>, and since V<sub>max</sub> = k<sub>cat</sub>[E<sub>t</sub>], the ceiling drops: <b>V<sub>max</sub> falls</b>. But the enzyme molecules that remain are perfectly normal and bind substrate exactly as well as before: <b>K<sub>m</sub> unchanged</b>. This is <b>noncompetitive</b> — and it is also, for the identical reason, what <b>suicide (irreversible) inhibition</b> and <b>repression</b> look like.</p>
+  <p>So the real question on any inhibition item is not "which of four rows do I recall" but <b>"can the substrate fight back?"</b> Yes → competitive, K<sub>m</sub>↑. No → the enzyme pool shrank, V<sub>max</sub>↓.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — the reversible / irreversible split is defined by bond type</span>
+  <ul>
+    <li><b>Reversible inhibition — NON-covalent</b> attachment of the inhibitor, either at the active site or elsewhere. Dilution dissociates it and activity recovers. Two types taught: <b>competitive</b> and <b>noncompetitive</b>.</li>
+    <li><b>Irreversible ("suicide") inhibition — COVALENT</b> attachment of the inhibitor at the active site.</li>
+    <li>An inhibitor is defined as a compound that <b>decreases the velocity of the catalyzed reaction by binding to the ENZYME</b> — not to the substrate and not to the product.</li>
+  </ul>
+</div>
+
+<div class="trap">
+  <span class="lbl">Trap — she called this "very very important" and got it backwards once herself</span>
+  <p><b>Irreversible = covalent. Reversible = non-covalent.</b> In the transcript she says at one point <em>"if there is a reversible binding the binding has to be covalent"</em> — a slip of the tongue; she states the correct version four other times in the same passage. Covalent bonds are strong and permanent, which is exactly why that binding is irreversible. If a stem tells you an inhibitor binds covalently, you already know: <b>irreversible → V<sub>max</sub> down, K<sub>m</sub> unchanged.</b></p>
+</div>
+
+<h3>4.1 Competitive inhibition</h3>
+
+<figure>
+  <img src="Lecture_02_figures/fig3_competitive_kinetics.png" alt="Competitive inhibition: Michaelis-Menten and Lineweaver-Burk plots">
+  <figcaption><b>Competitive inhibition.</b> <b>A</b> — the hyperbola shifts <b>right</b> (apparent K<sub>m</sub> increased) but climbs to the <b>same</b> V<sub>max</sub>. <b>B</b> — the double-reciprocal lines <b>meet on the y-axis</b> at 1/V<sub>max</sub>. <span class="tag">Slide 37 · Lippincott Fig. 5.12</span></figcaption>
+</figure>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>Structural similarity between substrate and inhibitor</b> — the inhibitor is a <b>structural analog</b> of the substrate. This is the defining feature.</li>
+    <li>Inhibitor binds the <b>same site as the substrate — the active site</b>; the two <b>compete</b> for it.</li>
+    <li><b>K<sub>m</sub> increases</b> — affinity of the enzyme for substrate decreases in the presence of inhibitor; inhibition <b>can be overcome by increasing [S]</b>.</li>
+    <li><b>V<sub>max</sub> unchanged</b> — the number of enzyme molecules available to bind substrate is unchanged.</li>
+    <li>Possible complexes: <b>E–S</b> and <b>E–I</b>. <b>There is no ESI complex in competitive inhibition</b> — the two cannot occupy the site at once.</li>
+    <li>On the double-reciprocal plot: <b>shared y-intercept</b>; as [I] rises the line <b>rotates upward and its x-intercept moves right</b> toward zero. <b>The inhibitor line is always above the control line.</b></li>
+  </ul>
+</div>
+
+<div class="clin">
+  <span class="lbl">Clinical — competitive inhibitors as drugs</span>
+  <ul>
+    <li><b>Statins</b> (lovastatin, simvastatin, atorvastatin, pravastatin) are structural analogs of HMG-CoA and competitively inhibit <b>HMG-CoA reductase</b>, the <b>rate-limiting enzyme of cholesterol biosynthesis</b>. Inhibiting hepatic cholesterol synthesis lowers plasma cholesterol. She used this as the cleanest illustration of "structural similarity is the basis of competitive inhibition."</li>
+    <li><b>Methotrexate (MTX)</b> is a folate analog and a competitive inhibitor of <b>dihydrofolate reductase (DHFR)</b>, the enzyme that produces <b>tetrahydrofolate (THF)</b>. THF is required for thymidylate and purine synthesis, hence for <b>cell division</b> — so MTX is an <b>anticancer (chemotherapy)</b> drug and a <b>disease-modifying drug in rheumatoid arthritis</b>.</li>
+  </ul>
+</div>
+
+<h3>4.2 Noncompetitive inhibition</h3>
+
+<figure>
+  <img src="Lecture_02_figures/fig4_noncompetitive_kinetics.png" alt="Noncompetitive inhibition: Michaelis-Menten and Lineweaver-Burk plots">
+  <figcaption><b>Noncompetitive inhibition.</b> <b>A</b> — the hyperbola flattens to a <b>lower</b> V<sub>max</sub> while K<sub>m</sub> stays where it was. <b>B</b> — the double-reciprocal lines <b>meet on the x-axis</b> at −1/K<sub>m</sub>. <span class="tag">Slide 41 · Lippincott Fig. 5.14</span></figcaption>
+</figure>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li><b>No structural analogy</b> between substrate and inhibitor.</li>
+    <li>Inhibitor binds at a site <b>other than the substrate binding site</b> and prevents catalytic activity.</li>
+    <li>It can bind <b>either the free enzyme (E) or the enzyme–substrate complex (ES)</b> — this is why substrate is no defense.</li>
+    <li><b>The ESI complex forms but cannot produce product.</b> The presence of an ESI complex is the structural giveaway that distinguishes this from competitive inhibition.</li>
+    <li><b>V<sub>max</sub> decreases</b> — the number of enzyme molecules available to bind substrate decreases.</li>
+    <li><b>K<sub>m</sub> unchanged</b> — inhibition <b>cannot be overcome by increasing [S]</b>.</li>
+    <li>On the double-reciprocal plot: <b>shared x-intercept</b>; the line <b>moves up</b> (y-intercept 1/V<sub>max</sub> gets larger), and again <b>the inhibitor line is above the control line</b>.</li>
+  </ul>
+</div>
+
+<div class="trap">
+  <span class="lbl">Her fastest discriminator — she gave it three times, and it is genuinely the quickest route</span>
+  <p><b>On the hyperbolic curve, look for what CHANGED. On the Lineweaver-Burk plot, look for what is UNCHANGED</b> — i.e., which intercept the two lines share.</p>
+  <ul style="margin-top:1.4mm">
+    <li>Lines share the <b>y-intercept</b> → V<sub>max</sub> is unchanged → <b>competitive</b>.</li>
+    <li>Lines share the <b>x-intercept</b> → K<sub>m</sub> is unchanged → <b>noncompetitive</b> (or irreversible).</li>
+  </ul>
+  <p style="margin-top:1.4mm">And in both cases the inhibited line sits <b>above</b> the control line, because inhibition lowers v and 1/v is therefore larger. A "below the control line" answer choice is describing an <em>activator</em>.</p>
+</div>
+
+<div class="clin">
+  <span class="lbl">Clinical</span>
+  <p><b>Physostigmine</b> is given on the slide as a <b>noncompetitive inhibitor of acetylcholinesterase</b>, the enzyme that terminates cholinergic neurotransmission by hydrolyzing acetylcholine. She flagged acetylcholinesterase as an enzyme you will meet again in pharmacology. <em>(See the reconciliation table — the real pharmacology of physostigmine is not noncompetitive.)</em></p>
+</div>
+
+<h3>4.3 Irreversible / suicide inhibition</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li>Inhibitor binds the enzyme <b>covalently at the active site</b> and <b>decreases the concentration of active enzyme [E<sub>t</sub>]</b>.</li>
+    <li><b>Lowers V<sub>max</sub> · No change in K<sub>m</sub> · Kinetics identical to noncompetitive inhibition.</b></li>
+    <li>Increasing [S] will <b>not</b> allow substrate to outcompete the inhibitor.</li>
+  </ul>
+</div>
+
+<div class="clin">
+  <span class="lbl">Clinical — irreversible inhibitors</span>
+  <ul>
+    <li><b>Aspirin</b> — analgesic and anti-inflammatory. <b>Covalently</b> acetylates <b>cyclooxygenase (COX-1 and COX-2)</b>, inhibiting <b>prostaglandin synthesis</b>.</li>
+    <li><b>Disulfiram (Antabuse)</b> — irreversibly binds <b>acetaldehyde dehydrogenase (AcDH)</b>. Ethanol → (alcohol dehydrogenase) → <b>acetaldehyde</b> → (AcDH) → acetate; block the second step and <b>acetaldehyde accumulates</b>, producing the flushing, nausea and sick feeling that conditions patients with chronic alcohol use to avoid alcohol.</li>
+    <li><b>Poisons:</b> <b>cyanide</b> (deferred — returns with the electron transport chain), <b>nerve gas</b>, <b>organophosphates</b>.</li>
+  </ul>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision — "irreversible" and "suicide" are not exactly synonyms</span>
+  <p>The slide uses them interchangeably and the exam will follow the slide. Strictly, a <b>suicide (mechanism-based) inhibitor</b> is a narrower category: an unreactive compound that the enzyme's own catalytic machinery <b>converts into a reactive species</b>, which then covalently kills the enzyme that made it — the enzyme commits suicide by doing its job. All suicide inhibitors are irreversible; not all irreversible inhibitors are suicide inhibitors (lead binding cysteine thiols, for instance, is simply covalent chemistry).</p>
+</div>
+
+<h3>4.4 The comparison, and the master diagram</h3>
+
+<table>
+<caption>Slide 43 — the comparison she wants you to be able to reproduce cold</caption>
+<thead><tr><th style="width:34%">Parameter</th><th style="width:22%">Competitive</th><th style="width:22%">Noncompetitive</th><th style="width:22%">Irreversible / suicide</th></tr></thead>
+<tbody>
+<tr><td><b>Binding at</b></td><td class="hi"><b>Active site</b></td><td class="hi"><b>Other site</b></td><td>Active site</td></tr>
+<tr><td><b>Bond</b></td><td>Non-covalent</td><td>Non-covalent</td><td class="hi"><b>Covalent</b></td></tr>
+<tr><td><b>Structural analog of substrate?</b></td><td class="hi"><b>Yes</b></td><td class="hi"><b>No</b></td><td>—</td></tr>
+<tr><td><b>V<sub>max</sub></b></td><td class="hi"><b>Unchanged</b></td><td class="hi"><b>Decreased</b></td><td class="hi"><b>Decreased</b></td></tr>
+<tr><td><b>K<sub>m</sub></b></td><td class="hi"><b>Increased</b></td><td class="hi"><b>Unchanged</b></td><td class="hi"><b>Unchanged</b></td></tr>
+<tr><td><b>Can excess substrate overcome it?</b></td><td class="hi"><b>Yes</b></td><td class="hi"><b>No</b></td><td class="hi"><b>No</b></td></tr>
+<tr><td><b>ESI complex?</b></td><td>No</td><td>Yes</td><td>No (enzyme is dead)</td></tr>
+<tr><td><b>Shared Lineweaver-Burk intercept</b></td><td><b>y</b> (1/V<sub>max</sub>)</td><td><b>x</b> (−1/K<sub>m</sub>)</td><td><b>x</b> (−1/K<sub>m</sub>)</td></tr>
+<tr><td><b>Examples</b></td><td>Statins, methotrexate</td><td>Physostigmine</td><td>Aspirin, disulfiram, cyanide, organophosphates</td></tr>
+</tbody>
+</table>
+
+<figure class="side">
+  <img src="Lecture_02_figures/fig2_curve_shift_map.png" alt="Michaelis-Menten curve with arrows labeling induction, repression/noncompetitive inhibition, competitive inhibition, and activation">
+  <figcaption><b>Every process in this lecture, as a direction of movement.</b> Up = induction · down = repression or noncompetitive inhibition · right = competitive inhibition · left = activation. <span class="tag">Slide 44</span></figcaption>
+</figure>
+
+<div class="concept">
+  <span class="lbl">How to use that diagram — it collapses two objectives into one picture</span>
+  <p>Vertical movement is a <b>V<sub>max</sub></b> change, so it is always a change in the <b>number of working enzyme molecules</b>. <b>Up = induction</b> (more enzyme synthesized). <b>Down = repression</b> (less enzyme synthesized) <b>or noncompetitive/irreversible inhibition</b> (existing enzyme disabled) — she pointed out explicitly that <b>repression and noncompetitive inhibition are kinetically indistinguishable</b> on this axis, and that is a legitimate exam trap.</p>
+  <p>Horizontal movement is a <b>K<sub>m</sub></b> change, so it is always a change in <b>affinity</b>. <b>Right = K<sub>m</sub> increased = lower affinity = competitive inhibition.</b> <b>Left = K<sub>m</sub> decreased = higher affinity = activation.</b> Her one-line version: <em>"if the curve moves right, K<sub>m</sub> increases, low affinity, that's inhibition; if the curve moves left, K<sub>m</sub> decreases, high affinity, that's activation."</em></p>
+</div>
+
+<div class="qstem">
+  <span class="qh">In-class Question 3 (slide 48)</span>
+  <p>A noncompetitive inhibitor of an enzyme:</p>
+  <ol type="A"><li>Increases K<sub>m</sub> with no change in V<sub>max</sub></li><li>Decreases K<sub>m</sub> and decreases V<sub>max</sub></li><li>Decreases V<sub>max</sub></li><li>Increases V<sub>max</sub></li><li>Increases K<sub>m</sub> and increases V<sub>max</sub></li></ol>
+  <p><span class="ans">Answer: C — Decreases V<sub>max</sub></span> (with K<sub>m</sub> unchanged). <b>Why the others fail:</b> <b>A</b> is the definition of <b>competitive</b> inhibition — the single most common wrong answer, because it is a true statement about the wrong thing. <b>B</b> describes <b>uncompetitive</b> inhibition, which was not taught in this lecture but is a real category (see below). <b>D</b> and <b>E</b> are impossible: <b>no inhibitor raises V<sub>max</sub></b>, since inhibition means less product per unit time.</p>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision — uncompetitive inhibition was not taught, but you should recognize the name</span>
+  <p>Slide 34 lists only competitive and noncompetitive under "reversible." A third reversible type exists: <b>uncompetitive</b> inhibition, in which the inhibitor binds <b>only the ES complex</b> (never free enzyme). Because it drags ES out of the equilibrium, it <b>decreases both V<sub>max</sub> and K<sub>m</sub></b> — leaving V<sub>max</sub>/K<sub>m</sub> constant, so its Lineweaver-Burk lines are <b>parallel</b> to the control. That is the origin of distractor B above. <b>You are not responsible for it in this lecture</b>, but "decreases both" and "parallel lines" are the fingerprints if it ever appears.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Review of Objective 4 (her slide 47, verbatim content)</span>
+  <ul>
+    <li>Inhibitors of Michaelis-Menten enzymes are classified into <b>reversible (competitive, noncompetitive)</b> and <b>irreversible (suicide)</b> types</li>
+    <li><b>Competitive inhibitors increase K<sub>m</sub> without affecting V<sub>max</sub></b></li>
+    <li><b>Noncompetitive inhibitors lower V<sub>max</sub> without affecting K<sub>m</sub></b></li>
+    <li><b>The kinetics of suicide (irreversible) inhibitors resemble those of noncompetitive inhibitors</b></li>
+  </ul>
+</div>
+
+<h2><span class="onum">Objective 5 ·</span> Allosteric modulation of enzyme activity</h2>
+
+<h3>5.1 Where allosteric regulation sits among the regulatory mechanisms</h3>
+
+<div class="concept">
+  <span class="lbl">The idea</span>
+  <p>A cell can control an enzyme's output on two very different timescales, and the mechanisms sort cleanly by which one they use. <b>Changing how many enzyme molecules exist</b> requires transcription, translation, or proteolysis — that takes <b>hours to days</b>, so it is the long-term lever. <b>Changing how well the existing molecules work</b> requires only a small molecule to bind or a phosphate to be added — that takes <b>seconds to minutes</b>, so it is the short-term lever. Allosteric regulation is the fastest of the fast: no covalent chemistry at all, just a molecule binding and letting go.</p>
+</div>
+
+<table class="compact">
+<caption>Slide 50 — enzyme regulation, both timescales</caption>
+<thead><tr><th style="width:26%">Long-term (hours–days): changes [E]</th><th style="width:74%">Short-term (seconds–minutes): changes activity per enzyme</th></tr></thead>
+<tbody>
+<tr><td>
+  <b>Induction</b> — [E] ↑<br>
+  <b>Repression</b> — [E] ↓<br>
+  <b>Degradation</b> by the <b>ubiquitin/proteasome</b> pathway and the <b>lysosomal</b> pathway
+</td><td>
+  Effect of <b>substrate concentration</b><br>
+  <b>Product inhibition</b><br>
+  <b>Activation of pre-existing pools of inactive pro-enzymes</b> (zymogens) to produce active enzymes<br>
+  <b>Reversible covalent modification</b> (e.g. phosphorylation/dephosphorylation)<br>
+  <b>Allosteric regulation</b><br>
+  <b>Compartmentalization</b>
+</td></tr>
+</tbody>
+</table>
+
+<h3>5.2 Allosteric enzymes</h3>
+
+<div class="concept">
+  <span class="lbl">The idea — why the curve is sigmoid, and why that means "no K<sub>m</sub>"</span>
+  <p>An allosteric enzyme has <b>several subunits</b>, each with an active site, and the subunits are physically coupled: a conformational change in one is transmitted through the protein to the others. That coupling is <b>cooperativity</b>, and it is what bends the curve into an S.</p>
+  <p>At low [S] the whole oligomer sits in a low-affinity conformation and responds sluggishly — the shallow foot of the S. Once a few sites fill, the conformational change propagates and flips the remaining subunits into a high-affinity state, so the next substrate molecules bind far more readily and velocity climbs steeply — the middle of the S. Then saturation flattens it. The functional payoff is that an allosteric enzyme behaves like a <b>switch</b> rather than a dial: a small change in substrate or effector concentration across the steep region produces a large change in flux, which is exactly the behavior you want at a control point.</p>
+  <p>This also explains the claim that allosteric enzymes "do not have a K<sub>m</sub>." K<sub>m</sub> is defined inside the Michaelis-Menten framework, which assumes <b>independent, non-interacting active sites</b>. Cooperative sites violate that assumption, so the derivation does not apply and the constant it produces does not exist. The <em>concentration</em> giving half-maximal velocity obviously still exists — it is just called <b>K<sub>0.5</sub></b> (or S<sub>0.5</sub>) instead, and you can see it labeled on the figure below.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Memorize — features of allosteric enzymes</span>
+  <ul>
+    <li><b>Multimeric</b> — made of several subunits (usually; almost always in practice).</li>
+    <li><b>Frequently catalyze the committed step</b>, early in a pathway. In lecture she described this as the <b>branch point</b>, and the slide diagram shows an allosteric enzyme placed at exactly such a branch.</li>
+    <li><b>Do NOT follow Michaelis-Menten kinetics.</b></li>
+    <li><b>Do NOT have a K<sub>m</sub>.</b></li>
+    <li>Plot of v vs. [S] is <b>SIGMOID</b> — contrast with the <b>hyperbolic</b> curve of a Michaelis-Menten (non-allosteric) enzyme.</li>
+    <li>Deferred by her to a later lecture: <b>hemoglobin</b> as the model allosteric <em>protein</em> showing the same cooperativity.</li>
+  </ul>
+</div>
+
+<div class="concept">
+  <span class="lbl">Why the committed step is the right place to regulate</span>
+  <p>The committed step is the <b>first irreversible step unique to a pathway</b> — the last point at which a metabolite can still be diverted somewhere useful. Regulating after it means the cell has already paid for intermediates it cannot repurpose. Regulating before it means throttling a shared precursor and starving other pathways. So the committed step is the only place where the control is both effective and free of collateral damage. At a genuine branch point the same argument holds: control the entry to each branch and you allocate flux without waste.</p>
+</div>
+
+<h3>5.3 Allosteric effectors</h3>
+
+<div class="detail">
+  <span class="lbl">Memorize</span>
+  <ul>
+    <li>Allosteric enzymes bind <b>small, physiologically important molecules</b> called <b>allosteric effectors (modulators)</b>.</li>
+    <li>Effectors bind <b>non-covalently</b>, at a site <b>different from the catalytic site</b>.</li>
+    <li>Binding causes <b>conformational changes transmitted through the bulk of the protein</b> to the catalytically active site(s).</li>
+    <li>Effectors may be <b>inhibitors (negative)</b> or <b>activators (positive)</b>.</li>
+    <li>Modulators alter, up or down, either:
+      <ul>
+        <li>the <b>catalytic activity</b> — <b>V-type</b> (V<sub>max</sub> changes, K<sub>0.5</sub> constant), or</li>
+        <li>the <b>affinity for substrate</b> — <b>K-type</b> (K<sub>0.5</sub> changes, V<sub>max</sub> constant).</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<figure class="narrow">
+  <img src="Lecture_02_figures/fig6_allosteric_v_and_k_type.png" alt="Allosteric modulation: panel A V-type effectors change Vmax, panel B K-type effectors change K0.5">
+  <figcaption><b>Two ways to modulate an allosteric enzyme.</b> <b>A</b> — V-type: the curves reach <b>different V<sub>max</sub></b> values but share one K<sub>0.5</sub>. <b>B</b> — K-type: same V<sub>max</sub>, <b>three different K<sub>0.5</sub></b> values. Note the axis label: <b>K<sub>0.5</sub>, not K<sub>m</sub></b>. <span class="tag">Slide 53 · Lippincott Fig. 5.16</span></figcaption>
+</figure>
+
+<div class="trap">
+  <span class="lbl">Discriminate — allosteric effector vs. noncompetitive inhibitor</span>
+  <p>Both bind away from the active site and both are non-covalent, so stems can be written to look alike. The separations: an <b>allosteric enzyme</b> is <b>multimeric</b>, gives a <b>sigmoid</b> curve, and has <b>no K<sub>m</sub></b>; a negative allosteric effector can lower V<sub>max</sub> <em>or</em> raise K<sub>0.5</sub> <em>or</em> both, and there are <b>positive</b> effectors that <b>increase</b> activity. A <b>noncompetitive inhibitor</b> acts on a <b>Michaelis-Menten</b> enzyme with a <b>hyperbolic</b> curve, lowers V<sub>max</sub> only, and has <b>no positive counterpart</b>. If the curve in the stem is sigmoid, you are in Objective 5, not Objective 4.</p>
+</div>
+
+<div class="clin">
+  <span class="lbl">Clinical / integrative — glycogen metabolism (slide 54), reasoned rather than memorized</span>
+  <p>Her method here was to ask <b>what the pathway is for</b> and let the effectors follow. Deferred to the glycogen lecture, but the logic is the exam-relevant part.</p>
+  <ul>
+    <li><b>Glycogen phosphorylase</b> (glycogen breakdown) — <b>negative:</b> ATP, glucose, glucose-6-P. <b>Positive:</b> Ca<sup>2+</sup> and AMP.</li>
+    <li><b>Glycogen synthase</b> (glycogen synthesis) — <b>positive:</b> glucose-6-P.</li>
+  </ul>
+  <p><b>Why:</b> the purpose of glycogen degradation <b>in muscle</b> is to make ATP. High <b>AMP</b> is the signal that ATP is being consumed, so AMP activates breakdown; <b>ATP</b> itself and <b>glucose-6-P</b> signal that supply is adequate, so they shut it off. <b>Ca<sup>2+</sup></b> is the contraction signal — muscle that is contracting needs fuel now. For synthesis, <b>glucose-6-P is the starting material</b>, so abundant starting material is a positive signal to build. Notice the same molecule, glucose-6-P, is <b>negative for breakdown and positive for synthesis</b> — one signal, two opposite and mutually consistent effects.</p>
+</div>
+
+<div class="note">
+  <span class="lbl">Precision — the slide's effector list mixes two tissues</span>
+  <p>The slide's figure has two panels, <b>A = liver</b> and <b>B = muscle</b>, but the bullet list beside it merges them. In the figure, <b>Ca<sup>2+</sup> and AMP activate phosphorylase in the MUSCLE panel</b>, not the liver panel; the liver panel shows <b>glucose</b> as a negative effector, which is a hepatic-specific control tied to the liver's job of exporting glucose rather than burning it. Dr. Bagh's spoken version consistently placed AMP-driven glycogen breakdown <b>in muscle</b>, which matches the figure.</p>
+</div>
+
+<div class="detail">
+  <span class="lbl">Review of Objective 5 (her slide 55, verbatim content)</span>
+  <p>Allosteric enzymes: usually <b>multisubunit</b>; catalyze <b>committed steps</b> in metabolic pathways; <b>do not follow Michaelis-Menten kinetics</b>; <b>do not have K<sub>m</sub></b>. Allosteric modulators <b>non-covalently</b> bind to a site <b>other than the active site</b> and affect the <b>conformation</b> of the enzyme.</p>
+</div>
+
+<h2>Where the lecture was imprecise — reconciled</h2>
+
+<p>Slides are usually the source of truth for how a question is <em>written</em>; the transcript is usually the more careful biochemistry. Where they diverge, both versions are given here.</p>
+
+<table class="compact flow">
+<thead><tr><th style="width:24%">What was said / shown</th><th style="width:44%">What is precisely true</th><th style="width:32%">Does it matter for the exam?</th></tr></thead>
+<tbody>
+<tr><td><b>"K<sub>m</sub> is a measure of the affinity of the enzyme for that substrate"</b> (slide 20)</td><td>K<sub>m</sub> = (k<sub>2</sub>+k<sub>3</sub>)/k<sub>1</sub>; true binding affinity is K<sub>d</sub> = k<sub>2</sub>/k<sub>1</sub>. They are equal only when k<sub>3</sub> ≪ k<sub>2</sub>. K<sub>m</sub> also varies <b>inversely</b> with affinity, which the slide bullet does not state on the same line as the definition.</td><td class="hi"><b>Yes, for the inverse direction.</b> "Low K<sub>m</sub> = high affinity" is heavily tested. The K<sub>d</sub> caveat is not.</td></tr>
+
+<tr><td><b>"This increase in rate occurs until V<sub>max</sub> is reached"</b> (slide 25)</td><td>V<sub>max</sub> is approached <b>asymptotically</b> and reached only at infinite [S]. The hyperbola never touches the plateau.</td><td>Minor. "Zero order" is still the correct description of the plateau region.</td></tr>
+
+<tr><td><b>"Allosteric enzymes do not have K<sub>m</sub>"</b> (slides 51, 55)</td><td>Correct as stated — K<sub>m</sub> is a Michaelis-Menten quantity and the derivation does not apply to cooperative sites. But a half-saturating concentration still exists and is called <b>K<sub>0.5</sub> / S<sub>0.5</sub></b> — it is printed on her own slide 53.</td><td class="hi"><b>Yes.</b> Answer "no K<sub>m</sub>" if asked directly; recognize K<sub>0.5</sub> if it appears on a graph.</td></tr>
+
+<tr><td><b>Transcript: "if there is a reversible binding the binding has to be covalent"</b></td><td>Reversed. <b>Irreversible = covalent; reversible = non-covalent.</b> She states it correctly four other times in the same passage — a verbal slip, not a belief.</td><td class="hi"><b>Yes — high yield.</b> She called covalent-binding-equals-irreversible "very very important."</td></tr>
+
+<tr><td><b>Transcript: "hexokinase, enzyme of high efficiency, is required in brain and RBC"</b></td><td>Slip. <b>Hexokinase is the enzyme of high AFFINITY</b> (low K<sub>m</sub>, low V<sub>max</sub>). Glucokinase is the enzyme of high efficiency (high V<sub>max</sub>). She says the correct pairing several times immediately before and after.</td><td class="hi"><b>Yes.</b> This pair is a standing exam favorite.</td></tr>
+
+<tr><td><b>Transcript, on competitive inhibition: "when you increase substrate concentration, which parameter increases? K<sub>m</sub>"</b></td><td>Garbled compression. K<sub>m</sub> increases <b>because the inhibitor is competing for the active site</b>, not because you added substrate. Adding substrate is how you <em>overcome</em> the inhibition. Two separate facts got fused into one sentence.</td><td>Conceptually yes; the endpoint she wants (competitive → K<sub>m</sub>↑, reversible by excess substrate) is correct.</td></tr>
+
+<tr><td><b>Physostigmine as a "noncompetitive inhibitor" of acetylcholinesterase</b> (slide 42)</td><td>Pharmacologically incorrect. Physostigmine is a <b>carbamate</b> that binds the <b>active site</b> and carbamylates the catalytic serine — it is an active-site-directed, <b>pseudo-irreversible</b> inhibitor, not a noncompetitive one. Lippincott's own noncompetitive example is <b>oxypurinol on xanthine oxidase</b>.</td><td class="hi"><b>Answer the slide</b> if physostigmine is named. Do not carry the classification into pharmacology.</td></tr>
+
+<tr><td><b>Slide 10 table: AST → "myocardial infarction"</b></td><td>Legacy entry. AST is non-specific (heart, liver, muscle, kidney, RBC) and has been entirely replaced by <b>troponin</b> for MI. Today AST and ALT are read as the <b>hepatic</b> pair, as Dr. Bagh taught them verbally.</td><td class="hi"><b>Answer the slide</b> only if the question is clearly built from that table; otherwise troponin is the MI answer.</td></tr>
+
+<tr><td><b>Trypsin optimum pH "5–7"</b> (slide 31)</td><td>Most sources give <b>7.5–8.5</b>, consistent with the alkaline duodenum — and with her own spoken description of trypsin as having "an optimum alkaline pH."</td><td>The <b>contrast</b> (acidic pepsin vs. alkaline trypsin) is what is tested. Use the slide's number only if a numeric answer is demanded.</td></tr>
+
+<tr><td><b>Transcript: allosteric enzymes "catalyze the branch point"</b> vs. <b>slide: "committed step"</b></td><td>Both describe real regulatory positions; <b>committed step</b> is the standard term and the one on the slide and in Lippincott. Her slide diagram happens to show an allosteric enzyme at a branch, so the two are consistent there.</td><td>Use <b>"committed step"</b> as the answer.</td></tr>
+
+<tr><td><b>Question 2's answer, "operating at 100% of V<sub>max</sub>"</b> (slide 32)</td><td>At [S] = 5 mM with K<sub>m</sub> = 0.1 mM, v = 98% of V<sub>max</sub>. "100%" is the intended and only defensible option offered.</td><td>No — pick D. Use the equation only if a stem asks for the numeric fraction.</td></tr>
+
+<tr><td><b>Slide 34 lists only competitive and noncompetitive as reversible types</b></td><td>Incomplete. <b>Uncompetitive</b> (binds ES only; ↓V<sub>max</sub> and ↓K<sub>m</sub>; parallel Lineweaver-Burk lines) and <b>mixed</b> inhibition also exist.</td><td>Not taught, so not required — but "decreases both" appeared as a distractor in her own Question 3.</td></tr>
+
+<tr><td><b>Slide 17: "the Michaelis-Menten model ignores the reverse reaction"</b></td><td>More precisely, it ignores <b>E + P → ES</b>. This is justified by measuring <b>initial</b> velocities, when [P] ≈ 0. The E + S ⇄ ES step is explicitly reversible in the model.</td><td>Low. Know <em>why</em> initial velocity is used: no product yet, so no product inhibition.</td></tr>
+</tbody>
+</table>
+
+<div class="pagebreak"></div>
+<h2>Rapid review — two-column recall sheet</h2>
+<p style="font-size:8.4pt;color:#555;margin-bottom:2mm">Keyword-level recall only; the explanations live in the body above. <b>Bold</b> = always/never rule or high-yield discrimination point.</p>
+
+<div class="two-col cheat">
+
+<h3>Definitions</h3>
+<ul>
+<li>Enzyme = biocatalyst, unchanged by reaction</li>
+<li>Enzymes are <b>protein</b> — except <b>ribozymes (RNA)</b></li>
+<li>Holoenzyme = apoenzyme + non-protein part; <b>apoenzyme alone is inactive</b></li>
+<li>Cofactor = inorganic (metal) → metalloenzyme</li>
+<li>Coenzyme = organic; co-substrate (<b>leaves altered</b>: NAD<sup>+</sup>, CoA) vs prosthetic group (<b>stays, returns to original state</b>: FAD, biotin)</li>
+<li>NAD<sup>+</sup> ← B3 niacin · FAD ← B2 riboflavin</li>
+<li>Carbonic anhydrase — Zn<sup>2+</sup> · Lysyl oxidase — Cu<sup>2+</sup></li>
+<li>Induced fit; active site = binding + catalytic residues</li>
+</ul>
+
+<h3>Energetics</h3>
+<ul>
+<li>Enzymes <b>lower E<sub>a</sub></b> (free energy of activation) by stabilizing the transition state T*</li>
+<li><b>Enzymes NEVER change ΔG, ΔG°′, or K<sub>eq</sub></b></li>
+<li>They change <b>rate to equilibrium, never position of equilibrium</b>; forward and reverse accelerated equally</li>
+</ul>
+
+<h3>Six classes (know the order 1–6)</h3>
+<ul>
+<li>1 Oxidoreductase — redox (LDH)</li>
+<li>2 Transferase — group transfer (<b>all kinases</b>; hexokinase)</li>
+<li>3 Hydrolase — cleavage <b>using water</b> (urease)</li>
+<li>4 Lyase — cleavage <b>without water</b> (pyruvate decarboxylase)</li>
+<li>5 Isomerase — rearrangement (methylmalonyl-CoA mutase)</li>
+<li>6 Ligase — <b>joins two molecules, costs ATP</b> (pyruvate carboxylase)</li>
+<li><b>ATP present ≠ ligase</b>: kinase transfers the phosphoryl group itself → transferase</li>
+</ul>
+
+<h3>Clinical enzymology</h3>
+<ul>
+<li>Serum enzymes come from <b>normal cell turnover</b>; a rise = tissue damage</li>
+<li>ALT — <b>most liver-specific</b>; ALT + bilirubin ↑ = hepatocellular jaundice (mushroom poisoning)</li>
+<li>Amylase, lipase — pancreatitis · Ceruloplasmin — Wilson</li>
+<li>Acid phosphatase — prostate · Alk phos — bone, obstructive liver</li>
+<li>Isoenzymes: same reaction, different sequence → <b>separable by electrophoresis</b>; negatively charged → migrate to <b>anode (+)</b></li>
+<li>CK: <b>CK-1 BB brain · CK-2 MB heart · CK-3 MM skeletal</b></li>
+<li>LDH: <b>LDH-1 HHHH heart · LDH-2 HHHM normal · LDH-5 MMMM liver</b></li>
+<li><b>Normal LDH-2 &gt; LDH-1; MI flips to LDH-1 &gt; LDH-2</b></li>
+<li><b>Troponin T/I have superseded CK-MB and LDH for MI</b> — more sensitive and specific</li>
+<li>Hemolysis falsely raises LDH</li>
+</ul>
+
+<h3>Michaelis-Menten</h3>
+<ul>
+<li>E + S ⇄ ES → E + P; <b>v = k<sub>3</sub>[ES]</b></li>
+<li>v<sub>o</sub> = V<sub>max</sub>[S] / (K<sub>m</sub> + [S])</li>
+<li><b>K<sub>m</sub> = (k<sub>2</sub> + k<sub>3</sub>) / k<sub>1</sub></b></li>
+<li><b>K<sub>m</sub> = [S] at ½ V<sub>max</sub></b> — a concentration</li>
+<li><b>LOW K<sub>m</sub> = HIGH affinity · HIGH K<sub>m</sub> = LOW affinity</b></li>
+<li><b>K<sub>m</sub> NEVER varies with [E]</b>; V<sub>max</sub> always does</li>
+<li><b>V<sub>max</sub> = k<sub>cat</sub> × [E<sub>t</sub>]</b> — depends only on enzyme amount</li>
+<li>k<sub>cat</sub> = turnover number = mol product/s per mol catalytic centre</li>
+<li>Specific activity = units/mg protein = <b>purity</b></li>
+<li>Initial velocity used → <b>no product inhibition</b></li>
+</ul>
+
+<h3>Lineweaver-Burk</h3>
+<ul>
+<li>1/v = (K<sub>m</sub>/V<sub>max</sub>)(1/[S]) + 1/V<sub>max</sub></li>
+<li><b>x-int = −1/K<sub>m</sub> · y-int = 1/V<sub>max</sub> · slope = K<sub>m</sub>/V<sub>max</sub></b></li>
+<li>Straight line; but reciprocals <b>magnify experimental error</b></li>
+<li><b>Inhibitor line is ALWAYS above the control line</b></li>
+</ul>
+
+<h3>Order of reaction</h3>
+<ul>
+<li><b>[S] ≪ K<sub>m</sub> → first order</b>, v ∝ [S] → <b>GLUT2, liver + pancreas</b></li>
+<li><b>[S] ≫ K<sub>m</sub> → zero order</b>, v = V<sub>max</sub> → <b>GLUT1 &amp; 3, brain + RBC</b></li>
+<li>Region around K<sub>m</sub> = mixed order</li>
+</ul>
+
+<h3>Other factors</h3>
+<ul>
+<li>[E]: <b>straight line</b>, v ∝ [E] — basis of measuring enzymes in serum</li>
+<li>Temperature: <b>bell curve</b>; optimum <b>35–40 °C</b>; exception <b>thermostable DNA polymerase</b></li>
+<li>pH: <b>bell curve</b>; alters <b>charge on side chains</b>; most optimal ~7.4</li>
+<li>Pepsin 1–2 · acid phosphatase 4–5 · trypsin 5–7 (slide) · alk phos 9–10</li>
+</ul>
+
+<h3>Hexokinase vs glucokinase</h3>
+<ul>
+<li><b>HK: low K<sub>m</sub>, low V<sub>max</sub></b> — brain, RBC, most tissues; GLUT1/3; "high affinity"</li>
+<li><b>GK: high K<sub>m</sub> (~10 mM), high V<sub>max</sub></b> — liver + pancreatic islets; GLUT2; "high efficiency"</li>
+<li>GK is the β-cell <b>glucose sensor</b> setting the insulin threshold</li>
+<li>Both: glucose + ATP → G6P (traps glucose in the cell)</li>
+</ul>
+
+<h3>Inhibition — the two questions</h3>
+<ul>
+<li><b>Can excess substrate overcome it? Yes → competitive. No → V<sub>max</sub> falls.</b></li>
+<li><b>Reversible = non-covalent · Irreversible = COVALENT</b></li>
+<li>Inhibitor binds the <b>enzyme</b>, never substrate or product</li>
+</ul>
+
+<h3>Competitive</h3>
+<ul>
+<li><b>Structural analog</b> of substrate; binds the <b>active site</b></li>
+<li><b>K<sub>m</sub> ↑ · V<sub>max</sub> unchanged</b></li>
+<li><b>NO ESI complex</b></li>
+<li>L-B: <b>shared y-intercept</b>; curve shifts <b>right</b></li>
+<li><b>Statins</b> → HMG-CoA reductase (rate-limiting, cholesterol synthesis)</li>
+<li><b>Methotrexate</b> → DHFR → ↓THF; chemo + rheumatoid arthritis</li>
+</ul>
+
+<h3>Noncompetitive</h3>
+<ul>
+<li><b>No structural analogy</b>; binds a site <b>other than</b> the active site</li>
+<li>Binds <b>free E and ES</b>; <b>ESI complex forms but makes no product</b></li>
+<li><b>V<sub>max</sub> ↓ · K<sub>m</sub> unchanged</b></li>
+<li>L-B: <b>shared x-intercept</b>; curve shifts <b>down</b></li>
+<li>Physostigmine → acetylcholinesterase <em>(per slide)</em></li>
+</ul>
+
+<h3>Irreversible / suicide</h3>
+<ul>
+<li><b>Covalent</b>, at the active site; ↓ [E<sub>t</sub>]</li>
+<li><b>Kinetics identical to noncompetitive: V<sub>max</sub> ↓, K<sub>m</sub> unchanged</b></li>
+<li><b>Aspirin</b> → COX-1/COX-2 → ↓ prostaglandins</li>
+<li><b>Disulfiram</b> → acetaldehyde dehydrogenase → acetaldehyde accumulates</li>
+<li>Poisons: cyanide, nerve gas, organophosphates</li>
+</ul>
+
+<h3>Reading the curves</h3>
+<ul>
+<li><b>Hyperbola → look for what CHANGED. Lineweaver-Burk → look for what is UNCHANGED.</b></li>
+<li><b>Up = induction · Down = repression OR noncompetitive/irreversible</b></li>
+<li><b>Right = competitive inhibition (K<sub>m</sub>↑) · Left = activation (K<sub>m</sub>↓)</b></li>
+<li><b>Repression and noncompetitive inhibition look identical kinetically</b></li>
+<li>Procedure: y-axis → x-axis → shape → what moved</li>
+</ul>
+
+<h3>Allosteric enzymes</h3>
+<ul>
+<li><b>Multimeric · committed step · SIGMOID curve · NO K<sub>m</sub></b> (use <b>K<sub>0.5</sub></b>)</li>
+<li>Sigmoid because of <b>cooperativity</b> between subunits</li>
+<li>Hyperbolic = M-M/non-allosteric; sigmoid = allosteric</li>
+<li>Effectors: <b>non-covalent</b>, bind a site <b>≠ catalytic site</b>, cause <b>conformational change</b>; may be <b>+ or −</b></li>
+<li><b>V-type</b> alters V<sub>max</sub> · <b>K-type</b> alters affinity (K<sub>0.5</sub>)</li>
+<li>Hemoglobin = allosteric protein, same cooperativity (later lecture)</li>
+</ul>
+
+<h3>Enzyme regulation</h3>
+<ul>
+<li><b>Long term (hours–days, changes [E]):</b> induction, repression, degradation via <b>ubiquitin/proteasome</b> and <b>lysosomal</b> pathways</li>
+<li><b>Short term (seconds–minutes):</b> [S], product inhibition, zymogen activation, reversible covalent modification, allosteric regulation, compartmentalization</li>
+<li>Glycogen phosphorylase: <b>− ATP, glucose, G6P; + Ca<sup>2+</sup>, AMP</b> (muscle)</li>
+<li>Glycogen synthase: <b>+ G6P</b></li>
+</ul>
+
+</div>
+
+<h2>Self-test — 15 questions</h2>
+
+<ol class="qlist">
+<li>An enzyme lowers the activation energy of a reaction. What happens to K<sub>eq</sub>?<br><span class="ans">Nothing — enzymes accelerate forward and reverse equally and never change ΔG, ΔG°′, or K<sub>eq</sub>.</span></li>
+
+<li>NAD<sup>+</sup> vs. FAD: which is a co-substrate and which a prosthetic group, and what is the criterion?<br><span class="ans">NAD<sup>+</sup> = co-substrate (dissociates in an altered state); FAD = prosthetic group (permanently bound, returns to its original state on the enzyme).</span></li>
+
+<li>Write K<sub>m</sub> in terms of rate constants, and use it to explain why high K<sub>m</sub> means low affinity.<br><span class="ans">K<sub>m</sub> = (k<sub>2</sub>+k<sub>3</sub>)/k<sub>1</sub> — ES breakdown over ES formation. A high ratio means the enzyme loses substrate faster than it captures it, so more substrate is needed to half-saturate it.</span></li>
+
+<li>Hexokinase catalyzes glucose + ATP → G6P + ADP. Which EC class, and why is it not a ligase?<br><span class="ans">Transferase (class 2). A ligase joins two molecules using ATP as an energy source; a kinase transfers the phosphoryl group of ATP itself.</span></li>
+
+<li>Which two parameters does an inhibitor never change simultaneously in the direction "K<sub>m</sub> up, V<sub>max</sub> up"?<br><span class="ans">That combination is impossible — no inhibitor raises V<sub>max</sub>. It is a throwaway distractor.</span></li>
+
+<li>Two Lineweaver-Burk lines intersect on the y-axis. What kind of inhibition, and which parameter changed?<br><span class="ans">Competitive — shared y-intercept means V<sub>max</sub> is unchanged; K<sub>m</sub> increased.</span></li>
+
+<li>Two Lineweaver-Burk lines intersect on the x-axis. What kind of inhibition?<br><span class="ans">Noncompetitive (or irreversible/suicide) — shared x-intercept means K<sub>m</sub> is unchanged; V<sub>max</sub> decreased.</span></li>
+
+<li>Why is suicide inhibition kinetically identical to noncompetitive inhibition?<br><span class="ans">Both remove enzyme molecules from the working pool. Since V<sub>max</sub> = k<sub>cat</sub>[E<sub>t</sub>], V<sub>max</sub> falls; the surviving enzyme is normal, so K<sub>m</sub> is unchanged.</span></li>
+
+<li>A patient's serum shows LDH-1 &gt; LDH-2. What does this indicate, and what marker would actually be ordered today?<br><span class="ans">Myocardial infarction (the normal pattern is LDH-2 &gt; LDH-1). Today: cardiac troponin T or I.</span></li>
+
+<li>Blood glucose is 5 mM. Hexokinase K<sub>m</sub> = 0.1 mM; glucokinase K<sub>m</sub> ≈ 10 mM. Which enzyme is saturated, and what does that accomplish?<br><span class="ans">Hexokinase — [S] ≫ K<sub>m</sub>, zero order. It guarantees brain and RBC take up glucose at full rate even when blood glucose falls. Glucokinase is largely idle until glucose rises after a meal.</span></li>
+
+<li>Name the transporter pairing for first-order and zero-order kinetics.<br><span class="ans">First order ([S] ≪ K<sub>m</sub>): GLUT2, liver and pancreas. Zero order ([S] ≫ K<sub>m</sub>): GLUT1 and GLUT3, brain and RBC.</span></li>
+
+<li>An enzyme's v vs. [S] curve is sigmoid. What can you immediately say about it?<br><span class="ans">It is allosteric: multimeric, cooperative, does not follow Michaelis-Menten kinetics, has no K<sub>m</sub> (use K<sub>0.5</sub>), and probably catalyzes a committed step.</span></li>
+
+<li>Distinguish a V-type from a K-type allosteric modulator.<br><span class="ans">V-type changes V<sub>max</sub> (catalytic activity) at constant K<sub>0.5</sub>; K-type changes K<sub>0.5</sub> (substrate affinity) at constant V<sub>max</sub>.</span></li>
+
+<li>Two processes shift the hyperbola downward. Name both and explain why they cannot be told apart from the curve alone.<br><span class="ans">Repression (less enzyme synthesized) and noncompetitive/irreversible inhibition (existing enzyme disabled). Both reduce the number of functioning enzyme molecules, so both lower V<sub>max</sub> with K<sub>m</sub> unchanged.</span></li>
+
+<li>Which is more liver-specific, ALT or AST — and what does a simultaneous rise in bilirubin add?<br><span class="ans">ALT. A rise in both ALT and bilirubin indicates hepatocellular jaundice — the cells are being destroyed and are also failing to handle bilirubin.</span></li>
+</ol>
+
+</body>
+</html>

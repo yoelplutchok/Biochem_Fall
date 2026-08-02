@@ -1,0 +1,16 @@
+.DS_Store
+**/.DS_Store
+.claude/
+
+# Slide decks (large; sources stay on disk locally)
+*.pptx
+*.ppt
+
+# Build debris from slide extraction / rendering
+**/_extract/
+**/pages/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

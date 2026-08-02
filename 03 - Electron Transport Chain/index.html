@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 03 — Electron Transport Chain</title>
+<style>
+
+:root {
+  --navy: #1f3a5f;
+  --crimson: #9b2c2c;
+  --must: #b3282d;
+  --clin: #2f7d4f;
+  --ground: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #171a1f;
+  --muted: #5a6573;
+  --line: #c8d3e0;
+  --rail: #eef1f5;
+  --vs-bg: #e8eef5;
+  --must-bg: #fdeeed;
+  --must-border: #e0b3b1;
+  --clin-bg: #eef7f0;
+  --table-stripe: #f6f8fa;
+  --focus: #2f6fb5;
+  --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --rail-w: 15.5rem;
+  --col: 73ch;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #8fb3dd;
+    --crimson: #e07a7a;
+    --must: #ff8f8b;
+    --clin: #63c78d;
+    --ground: #0e1319;
+    --surface: #151b23;
+    --ink: #e2e7ee;
+    --muted: #9aa5b5;
+    --line: #2a3442;
+    --rail: #121820;
+    --vs-bg: #1a2430;
+    --must-bg: #2a1818;
+    --must-border: #5a3030;
+    --clin-bg: #15241c;
+    --table-stripe: #1a222c;
+    --focus: #6aa8e8;
+  }
+}
+:root[data-theme="dark"] {
+  --navy: #8fb3dd;
+  --crimson: #e07a7a;
+  --must: #ff8f8b;
+  --clin: #63c78d;
+  --ground: #0e1319;
+  --surface: #151b23;
+  --ink: #e2e7ee;
+  --muted: #9aa5b5;
+  --line: #2a3442;
+  --rail: #121820;
+  --vs-bg: #1a2430;
+  --must-bg: #2a1818;
+  --must-border: #5a3030;
+  --clin-bg: #15241c;
+  --table-stripe: #1a222c;
+  --focus: #6aa8e8;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: 1rem; }
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--ground);
+}
+a { color: var(--navy); }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr);
+  gap: 0;
+  min-height: 100vh;
+}
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--rail);
+  border-right: 1px solid var(--line);
+  padding: 1rem 0.85rem 2rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+}
+.rail .brand {
+  font-weight: 700;
+  color: var(--crimson);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  margin-bottom: 0.35rem;
+}
+.rail h2 {
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+  background: none;
+  padding: 0;
+  border: 0;
+}
+.rail nav a {
+  display: block;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.35rem;
+  margin-bottom: 0.15rem;
+  line-height: 1.35;
+}
+.rail nav a:hover { background: var(--surface); color: var(--ink); }
+.rail nav a.active {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--crimson);
+}
+.rail .stars { color: var(--must); letter-spacing: 0.05em; font-size: 0.72rem; }
+.rail .tools {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.45rem;
+}
+.rail button {
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 0.4rem;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+}
+.rail button:hover { border-color: var(--navy); }
+.main {
+  max-width: calc(var(--col) + 4rem);
+  padding: 1.5rem 2rem 4rem;
+  background: var(--surface);
+  min-width: 0;
+}
+.hdr { border-bottom: 2.5px solid var(--crimson); padding-bottom: 0.85rem; margin-bottom: 1rem; }
+.hdr .kicker {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.hdr h1 {
+  font-family: var(--sans);
+  font-size: 1.85rem;
+  line-height: 1.15;
+  margin: 0 0 0.4rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.hdr .sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.legend {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  margin-bottom: 1.4rem;
+  background: var(--ground);
+}
+.legend b { color: var(--navy); }
+h2 {
+  font-family: var(--sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  background: #1f3a5f;
+  margin: 2rem 0 1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.35rem;
+  scroll-margin-top: 0.75rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) h2 {
+    color: #0e1319;
+    background: #8fb3dd;
+  }
+}
+:root[data-theme="dark"] h2 {
+  color: #0e1319;
+  background: #8fb3dd;
+}
+h2 .onum { opacity: 0.65; font-weight: 400; }
+h3 {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 1.5rem 0 0.55rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--line);
+}
+h4 {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 1.1rem 0 0.4rem;
+}
+p { margin: 0 0 0.75rem; }
+ul, ol { margin: 0 0 0.9rem; padding-left: 1.25rem; }
+li { margin-bottom: 0.35rem; }
+b, strong { font-weight: 700; color: var(--ink); }
+.scrollx { overflow-x: auto; max-width: 100%; margin: 0.6rem 0 1rem; -webkit-overflow-scrolling: touch; }
+.map {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  padding: 0.9rem 1rem;
+  margin: 0.7rem 0 1rem;
+  white-space: pre-wrap;
+}
+.map .stage { font-weight: 700; color: var(--navy); }
+.map .cat { color: var(--must); font-weight: 700; }
+.map .ana { color: var(--focus); font-weight: 700; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+}
+th {
+  background: #1f3a5f;
+  color: #fff;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid #1f3a5f;
+}
+:root[data-theme="dark"] th { background: #2a4a72; border-color: #2a4a72; }
+td {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+tbody tr:nth-child(even) td { background: var(--table-stripe); }
+caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  padding-bottom: 0.35rem;
+}
+.must {
+  background: var(--must-bg);
+  border: 1px solid var(--must-border);
+  border-left: 3.5px solid var(--must);
+  border-radius: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  margin: 0.7rem 0;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.must .tag {
+  color: var(--must);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.must .tag::before { content: "★ "; }
+.must b { color: var(--must); }
+tr.must td { background: var(--must-bg) !important; }
+tr.must td:first-child { border-left: 3px solid var(--must); }
+.ms { color: var(--must); font-weight: 700; }
+.vs {
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  margin: 0.85rem 0 1rem;
+  overflow: hidden;
+}
+.vs.must {
+  border-color: var(--must-border);
+}
+.vs .vshead {
+  background: var(--vs-bg);
+  color: var(--navy);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.vs.must .vshead {
+  background: var(--must-bg);
+  color: var(--must);
+  border-bottom-color: var(--must-border);
+}
+.vs table { margin: 0; }
+.vs table td {
+  border: 0;
+  border-right: 1px solid var(--line);
+  width: 50%;
+  padding: 0.55rem 0.75rem;
+}
+.vs table td:last-child { border-right: 0; }
+.vs table tbody tr:nth-child(even) td { background: transparent; }
+.vs table tr + tr td { border-top: 1px solid var(--line); }
+.vs .h {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.vs.must .h { color: var(--must); }
+u, .disc {
+  text-decoration: underline;
+  text-decoration-color: var(--must);
+  text-underline-offset: 2px;
+  font-weight: 700;
+  color: var(--must);
+}
+.clin {
+  background: var(--clin-bg);
+  border-left: 3.5px solid var(--clin);
+  border-radius: 0.35rem;
+  padding: 0.65rem 0.9rem;
+  margin: 0.85rem 0;
+}
+.clin .lbl {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clin);
+  margin-bottom: 0.35rem;
+}
+.clin p:last-child { margin-bottom: 0; }
+figure {
+  margin: 0.9rem 0 1.1rem;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+figcaption {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.55rem;
+  text-align: left;
+  line-height: 1.4;
+}
+figcaption b { color: var(--navy); }
+ol.qlist { counter-reset: q; list-style: none; padding-left: 0; }
+ol.qlist > li {
+  counter-increment: q;
+  margin-bottom: 0.85rem;
+  padding: 0.65rem 0.75rem 0.65rem 2.6rem;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  background: var(--ground);
+  break-inside: avoid;
+}
+ol.qlist > li::before {
+  content: counter(q);
+  position: absolute;
+  left: 0.55rem;
+  top: 0.7rem;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #fff;
+  background: #1f3a5f;
+  width: 1.45rem;
+  height: 1.45rem;
+  line-height: 1.45rem;
+  text-align: center;
+  border-radius: 50%;
+}
+.q { font-family: var(--serif); }
+.ans-wrap { margin-top: 0.45rem; }
+.ans-wrap[hidden] { display: none !important; }
+.ans { color: var(--clin); font-weight: 600; font-family: var(--sans); font-size: 0.9rem; }
+.toggle-ans {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.35rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--navy);
+  border-radius: 0.3rem;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+}
+.cheat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  font-family: var(--sans);
+  font-size: 0.84rem;
+}
+.cheat section { break-inside: avoid; }
+.cheat h3 {
+  font-size: 0.92rem;
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+}
+.cheat ul { padding-left: 1.1rem; margin-bottom: 0; }
+.cheat li { margin-bottom: 0.25rem; }
+.intro-line {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+@media (max-width: 60rem) {
+  .layout { grid-template-columns: 1fr; }
+  .rail {
+    position: relative;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .cheat { grid-template-columns: 1fr; }
+  .main { padding: 1rem 1rem 3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+@media print {
+  .rail, .toggle-ans, .rail .tools, #theme-btn, #reveal-btn { display: none !important; }
+  .layout { display: block; }
+  .main { max-width: none; padding: 0; }
+  .ans-wrap { display: block !important; }
+  .ans-wrap[hidden] { display: block !important; }
+  figure, .must, .vs, .clin, table, ol.qlist > li { break-inside: avoid; }
+  h2 { break-after: avoid; color: #fff !important; background: #1f3a5f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="rail" id="rail">
+<div class="brand">Biochem · Fall 2026</div>
+<h2>Lecture 03</h2>
+<nav id="toc">
+<a href="#orient">Orientation</a>
+<a href="#obj1">Obj 1 · Redox <span class="stars" data-sec="obj1"></span></a>
+<a href="#obj2">Obj 2 · Carriers <span class="stars" data-sec="obj2"></span></a>
+<a href="#obj3">Obj 3 · ETC &amp; ROS <span class="stars" data-sec="obj3"></span></a>
+<a href="#obj4">Obj 4 · ATP <span class="stars" data-sec="obj4"></span></a>
+<a href="#obj5">Obj 5 · Inhibitors <span class="stars" data-sec="obj5"></span></a>
+<a href="#selftest">Self-test</a>
+<a href="#rapid">Rapid review</a>
+</nav>
+<div class="tools">
+<button aria-pressed="false" id="reveal-btn" type="button">Reveal all answers</button>
+<button id="theme-btn" type="button">Toggle theme</button>
+</div>
+</aside>
+<main class="main" id="main">
+<div class="hdr">
+<div class="kicker">Medical Biochemistry &amp; Genetics I  ·  Fall 2026  ·  Week 1, Session 2</div>
+<h1>Lecture 03 — Electron Transport Chain</h1>
+<div class="sub">Session Thu 8/6, 8:30–10 AM  ·  Required reading: Lippincott Ch. 6, <em>Bioenergetics and Oxidative Phosphorylation</em>  ·  Assessed on Foundation Exam #1, Mon 8/17, 11 AM–1 PM</div>
+</div>
+<div class="legend">
+<b>★ MUST KNOW</b> = highest-yield; the mark sits on the fact itself — a red-tinted table row, a red VS box, a ★ in a figure caption, or a standalone red band.  <b>Bold</b> = a term, number or name that could be a fill-in-the-blank answer.<br/>
+<b>VS boxes</b> = pairs that are routinely confused; the <u>underlined red word</u> is the single feature that tells them apart.
+</div>
+<h2 id="orient"><span class="onum">Orientation  / </span> The whole lecture on one page</h2>
+<div class="scrollx">
+<div class="map"><b>MATRIX</b>  (TCA) ──▶  <span class="stage">NADH</span> / <span class="stage">FADH<sub>2</sub></span>
+      │                         │
+      ▼                         ▼
+ <span class="ana">Complex I</span> <span class="ana">Complex II</span>
+  (pumps H<sup>+</sup> out)           (no pump)
+      │                         │
+      └──────────┬──────────────┘
+                 ▼
+          <span class="cat">Coenzyme Q</span>  (lipid-soluble, in membrane)
+                 │
+                 ▼
+          <span class="ana">Complex III</span>  (pumps H<sup>+</sup> out)
+                 │
+                 ▼
+          <span class="cat">Cytochrome c</span>  (water-soluble, intermembrane space)
+                 │
+                 ▼
+          <span class="ana">Complex IV</span>  (pumps H<sup>+</sup> out) ──▶ ½O<sub>2</sub> → H<sub>2</sub>O
+
+ H<sup>+</sup> in <b>intermembrane space</b> ──▶ back in via <span class="ana">Complex V (ATP synthase)</span> ──▶ <b>ATP</b>
+</div>
+</div>
+<p>Catabolism fills the matrix with reduced coenzymes. Their electrons walk the inner-membrane chain to oxygen while Complexes I, III and IV push protons out and Complex V returns them to make ATP. Inhibitors break electron flow or the return path; uncouplers short-circuit the gradient so energy leaves as heat. Learn the normal circuit first — every poison in Objective 5 lesions one arrow on this map — then drill the oxygen-consumption discriminator until inhibitor versus uncoupler is automatic at exam speed.</p>
+<h2 id="obj1"><span class="onum">Objective 1  / </span> Reducing equivalents, E<sub>0</sub>′, ΔE<sub>0</sub>′, and ΔG<sub>0</sub>′</h2>
+<h3>Biological oxidation</h3>
+<p>Oxidation is gain of O<sub>2</sub> or loss of H<sub>2</sub>. In the body the useful form is loss of hydrogen as <b>2H<sup>+</sup> + 2e<sup>−</sup></b> — a <b>reducing equivalent</b> is a proton plus an electron. Nothing is oxidized in isolation: one intermediate loses reducing equivalents while another gains them. The enzymes are <b>oxidoreductases</b>, subclass <b>dehydrogenases</b>. Biological oxidation is <b>exergonic</b>; the free energy (Gibbs) is trapped <b>stepwise</b> as ATP rather than released in one burst.</p>
+<p>Macronutrients (carbohydrate, lipid, protein) are oxidized; coenzymes are reduced. Micronutrients supply those coenzymes — <b>NAD<sup>+</sup>/NADP<sup>+</sup></b> from <b>vitamin B<sub>3</sub> (niacin)</b> and <b>FAD</b> from <b>vitamin B<sub>2</sub> (riboflavin)</b> — same cofactor map as Lecture 01; do not re-learn the vitamin table here. <b>NADH is an indirect reflection of ATP status</b>; <b>NADPH is not</b> (it feeds anabolism as a hydrogen source, with acetyl-CoA as the carbon source and insulin as the major anabolic hormone — exceptions come later). NAD<sup>+</sup> accepts reducing equivalents more often than FAD, so more NADH than FADH<sub>2</sub> accumulates in the matrix.</p>
+<p>Reduced coenzymes enter the ETC to regenerate NAD<sup>+</sup>/FAD and pass their reducing equivalents to O<sub>2</sub>, forming water. Without that regeneration, upstream dehydrogenases stop for want of an oxidized acceptor. Mitochondria, the ETC, and oxygen are all required to make ATP this way — coupling oxidation to phosphorylation is <b>oxidative phosphorylation</b>.</p>
+<p>Example half-reactions: ethanol is the reductant (gets oxidized) and acetaldehyde the oxidant (gets reduced); <b>NADH–NAD<sup>+</sup></b> and <b>acetaldehyde–ethanol</b> are redox pairs. Electrons move from donor to acceptor only when the acceptor’s redox potential is higher.</p>
+<h3>Redox potential</h3>
+<div class="vs must">
+<div class="vshead">★  E<sub>0</sub>′ vs ΔE<sub>0</sub>′</div>
+<table>
+<tr>
+<td><span class="h">E<sub>0</sub>′</span>Standard redox potential of <u>one</u> redox pair — its affinity for electrons at <b>1 M</b> oxidant and reductant, <b>pH 7</b>. Low E<sub>0</sub>′ = low affinity; high E<sub>0</sub>′ = high affinity.</td>
+<td><span class="h">ΔE<sub>0</sub>′</span>The <u>difference</u> between two pairs: <b>ΔE<sub>0</sub>′ = E<sub>0</sub>′(acceptor) − E<sub>0</sub>′(donor)</b>. The acceptor’s potential is always higher; spontaneous transfer gives a <b>positive</b> ΔE<sub>0</sub>′.</td>
+</tr>
+</table>
+</div>
+<div class="must"><span class="tag">Must know</span>Electrons flow from the <b>most negative</b> E<sub>0</sub>′ toward the <b>most positive</b>. <b>Oxygen</b> is the terminal acceptor at <b>+0.82 V</b>. ETC components are lined up in order of increasing redox potential across about <b>1.1 V</b>.</div>
+<div class="scrollx">
+<table>
+<caption>Redox ladder — electrons travel top → bottom</caption>
+<thead><tr><th>Redox pair</th><th>E<sub>0</sub>′ (V)</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td>NAD<sup>+</sup> / NADH</td><td><b>−0.32</b></td><td>entry at Complex I</td></tr>
+<tr><td>FMN / FMNH<sub>2</sub></td><td>−0.30</td><td>inside Complex I</td></tr>
+<tr><td>FAD / FADH<sub>2</sub></td><td><b>−0.22</b></td><td>entry at Complex II</td></tr>
+<tr><td>Cytochrome b</td><td>+0.07</td><td>Complex III</td></tr>
+<tr><td>Coenzyme Q</td><td>+0.10</td><td>mobile carrier</td></tr>
+<tr><td>Cytochrome c<sub>1</sub></td><td>+0.23</td><td>Complex III</td></tr>
+<tr><td>Cytochrome c</td><td>+0.25</td><td>mobile carrier</td></tr>
+<tr><td>Cytochrome a</td><td>+0.29</td><td>Complex IV</td></tr>
+<tr><td>½ O<sub>2</sub> / H<sub>2</sub>O</td><td><b>+0.82</b></td><td>terminal acceptor</td></tr>
+</tbody>
+</table>
+</div>
+<p>FAD/FADH<sub>2</sub> sits 0.10 V above NAD<sup>+</sup>/NADH, so FADH<sub>2</sub> starts lower on the staircase and pays for a smaller drop — the reason its ATP yield is lower. Cytochrome b at +0.07 V sits slightly below CoQ at +0.10 V in the table yet participates inside Complex III’s Q-cycle branch; the examinable claim is the overall negative-to-positive climb ending at O<sub>2</sub>.</p>
+<h3>From voltage to free energy</h3>
+<div class="must"><span class="tag">Must know</span><b>ΔG<sub>0</sub>′ = −n F ΔE<sub>0</sub>′</b>, where <b>n</b> = electrons transferred and <b>F</b> = Faraday constant = <b>23.06 kcal/V</b>. A <b>positive</b> ΔE<sub>0</sub>′ yields a <b>negative</b> ΔG<sub>0</sub>′ (spontaneous). The larger the positive ΔE, the more negative the ΔG — the bigger the energy drop at that step.</div>
+<p>The two conventions run opposite ways: a positive voltage gap means the transfer wants to happen, but thermodynamics marks spontaneity with a negative ΔG. The minus sign is the translation, not a trick. Electron-transfer reactions are therefore a free-energy source and can be wired in series — like an electrical circuit — in order of increasing redox potential.</p>
+<p>The thermodynamics primer from the same session supplies the neighboring relations: <b>ΔG = ΔH − TΔS</b> (free energy = enthalpy minus the temperature-weighted entropy term), <b>ΔG°′ = −RT ln K<sub>eq</sub></b> (or −RT log K<sub>eq</sub> as written on the interactive slide), and ATP hydrolysis <b>ΔG°′ = −7.3 kcal/mol</b>. <b>ΔG</b> is the actual free-energy change and can be moved by concentrations; <b>ΔG°′</b> is the standard value at 1 M reactants and products, pH 7, 25 °C, 1 atm — a constant of the reaction. Negative ΔG = <b>exergonic</b> (spontaneous); zero = equilibrium; positive = <b>endergonic</b> (needs input). Do not confuse those words with exothermic/endothermic (heat). Unfavorable steps proceed when coupled to favorable ones so the sum of ΔG°′ values is negative — ATP’s phosphoanhydride hydrolysis is the usual coupler (also GTP, UTP, CTP in other pathways).</p>
+<h2 id="obj2"><span class="onum">Objective 2  / </span> Carriers of reducing equivalents and the energy yield from NADH</h2>
+<h3>Mitochondrial geography</h3>
+<p>The mitochondrion is the major energy-generating compartment of most eukaryotic cells. It has a <b>permeable outer membrane</b>, a <b>semipermeable inner membrane</b> folded into <b>cristae</b> (surface area for many copies of the chain), a soluble <b>matrix</b>, and an <b>intermembrane space</b>. Reducing equivalents are generated in the <b>matrix</b> by the TCA cycle — the common final oxidation pathway for carbohydrate, lipid and protein. Electron transport and ATP synthesis sit in the <b>inner membrane</b>, which is <b>impermeable to H<sup>+</sup></b>. That impermeability is what makes a pumped proton stay outside until it returns through ATP synthase; uncouplers destroy exactly this property.</p>
+<p>Mitochondria carry their own DNA and ribosomes. <b>mtDNA is maternally inherited</b> and in humans encodes <b>13 proteins of the ETC</b> (of roughly ninety polypeptides needed for oxidative phosphorylation; the rest are nuclear). Matrix NADH and FADH<sub>2</sub> have a short walk to the chain on the same organelle’s inner membrane.</p>
+<div class="clin">
+<span class="lbl">Clinical — maternal inheritance</span>
+<p>An affected mother transmits an mtDNA ETC mutation to all children; an affected father transmits it to none. High-ATP tissues — nerve and muscle — fail first.</p>
+</div>
+<h3>Shuttles for cytosolic NADH</h3>
+<p>Cytosolic NADH (glycolysis is the prototype) cannot cross the inner membrane. The cell does not move the NADH molecule; it moves the reducing equivalents through a shuttle and reloads them onto an acceptor on the matrix side.</p>
+<div class="vs must">
+<div class="vshead">★  Malate–aspartate vs glycerol phosphate shuttle</div>
+<table>
+<tr>
+<td><span class="h">Malate–aspartate</span>Cytosolic oxaloacetate is reduced to malate, malate enters the matrix, and matrix malate dehydrogenase regenerates <u>NADH</u> → enters at Complex I → <b>3 ATP</b> per cytosolic NADH.</td>
+<td><span class="h">Glycerol phosphate</span>Cytosolic NADH reduces DHAP to glycerol 3-phosphate; the mitochondrial FAD-dependent dehydrogenase feeds <u>FADH<sub>2</sub></u>-level electrons to CoQ, bypassing Complex I → <b>2 ATP</b> per cytosolic NADH.</td>
+</tr>
+</table>
+</div>
+<p>Which shuttle a tissue uses changes the ATP tally from cytosolic NADH and therefore the net yield from glucose — carry that difference into Objective 4’s arithmetic. Heart and liver rely heavily on malate–aspartate; skeletal muscle and brain use more of the glycerol-phosphate route. The inner membrane’s impermeability to NADH is the same property that preserves the proton gradient — one design constraint, two consequences.</p>
+<p>NAD<sup>+</sup> is the preferred acceptor of reducing equivalents relative to FAD, so matrix NADH outnumbers FADH<sub>2</sub> after a turn of the TCA cycle. Both still feed the same downstream chain once they reach CoQ, but they do not enter at the same complex.</p>
+<h3>Worked energy yield from NADH</h3>
+<p>Method: look at the overall equation, identify who accepts the reducing equivalents, subtract potentials, then apply ΔG<sub>0</sub>′ = −nFΔE<sub>0</sub>′.</p>
+<p>Overall: <b>NADH + H<sup>+</sup> + ½O<sub>2</sub> → NAD<sup>+</sup> + H<sub>2</sub>O</b></p>
+<ul>
+<li>Donor pair: NAD<sup>+</sup>/NADH, E<sub>0</sub>′ = <b>−0.32 V</b></li>
+<li>Acceptor pair: ½O<sub>2</sub>/H<sub>2</sub>O, E<sub>0</sub>′ = <b>+0.82 V</b></li>
+<li>ΔE<sub>0</sub>′ = +0.82 − (−0.32) = <b>+1.14 V</b></li>
+<li>ΔG<sub>0</sub>′ = −(2)(23.06)(1.14) = <b>−52.6 kcal/mol</b> (n = <b>2</b> electrons — the common slip is using n = 1)</li>
+<li>ATP hydrolysis = <b>−7.3 kcal/mol</b> → 52.6 / 7.3 ≈ <b>7 ATP if 100% efficient</b></li>
+<li>Actual course yield = <b>3 ATP</b> (~22 kcal captured ≈ <b>40% efficiency</b>); the balance is heat</li>
+</ul>
+<p>Read stems carefully: “thermodynamic maximum” or “if 100% efficient” means <b>7</b>; “how many ATP does one NADH give” in this course means <b>3</b>. Both numbers appear together because the gap — energy lost as heat — is the point.</p>
+<h2 id="obj3"><span class="onum">Objective 3  / </span> Sequence of ETC components and ROS production</h2>
+<h3>Architecture</h3>
+<p>The ETC sits in the <b>inner mitochondrial membrane</b>: <b>five fixed complexes</b> (I–IV plus <b>Complex V = ATP synthase = F<sub>0</sub>F<sub>1</sub></b>) and <b>two mobile carriers</b>. Components are ordered by increasing redox potential from negative toward positive across about <b>1.1 V</b>. Electron flow is <b>unidirectional</b> — there is no reverse run of the chain under physiologic conditions.</p>
+<figure>
+<img alt="Electron transport chain overview with Complexes I–IV, entry points, and three ATP coupling sites" height="590" loading="lazy" src="figures/01-etc-overview.webp" width="1200"/>
+<figcaption><b>How to read the overview.</b> Trace NADH-linked substrates into Complex I and FADH<sub>2</sub>/succinate into Complex II; both meet at Q. Red “ATP” labels mark coupling sites visually — the numeric P:O ratios live only in Objective 4.</figcaption>
+</figure>
+<div class="scrollx">
+<table>
+<caption>ETC components — one job each</caption>
+<thead><tr><th>Component</th><th>Names / groups</th><th>Accepts from</th><th>Passes to</th><th>Pumps H<sup>+</sup>?</th><th>Inhibitors</th></tr></thead>
+<tbody>
+<tr class="must"><td><span class="ms">★</span> <b>I</b></td><td><b>NADH dehydrogenase</b> / NADH:Q oxidoreductase; <b>FMN</b> + <b>7 Fe–S</b>; &gt;25 chains (largest)</td><td>NADH</td><td>CoQ</td><td><b>Yes</b></td><td><b>Rotenone</b>, amobarbital (barbiturates), piericidin A</td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>II</b></td><td><b>Succinate dehydrogenase</b> / FADH<sub>2</sub>:Q oxidoreductase; <b>FAD</b> + <b>2 Fe–S</b>; 4 chains</td><td>FADH<sub>2</sub> (succinate → fumarate)</td><td>CoQ</td><td><b>No</b> — not a coupling site</td><td><b>Malonate</b> (competitive vs succinate), carboxin, TTFA</td></tr>
+<tr><td><b>III</b></td><td><b>CoQH<sub>2</sub>:Cyt c oxidoreductase</b> (bc<sub>1</sub>); Cyt b (b562, b566), Cyt c<sub>1</sub>, 1 Fe–S; 6 chains</td><td>CoQH<sub>2</sub></td><td>Cyt c</td><td><b>Yes</b></td><td><b>Antimycin A</b>, dimercaprol (BAL)</td></tr>
+<tr><td><b>IV</b></td><td><b>Cytochrome c oxidase</b>; Cyt a + a<sub>3</sub>, each with <b>Cu</b>; 13 chains</td><td>Cyt c</td><td>½O<sub>2</sub> → H<sub>2</sub>O</td><td><b>Yes</b></td><td><b>CN<sup>−</sup>, azide, H<sub>2</sub>S, CO</b></td></tr>
+<tr><td><b>CoQ</b></td><td>Ubiquinone; only <b>lipid-soluble</b> isoprenoid; cholesterol-synthesis intermediate</td><td>I and II</td><td>III</td><td>—</td><td>—</td></tr>
+<tr><td><b>Cyt c</b></td><td><b>Water-soluble</b> heme protein in intermembrane space</td><td>III</td><td>Cu of IV</td><td>—</td><td>—</td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>V</b></td><td><b>ATP synthase</b> (F<sub>0</sub>F<sub>1</sub>)</td><td>H<sup>+</sup> influx</td><td>ADP + P<sub>i</sub> → ATP</td><td><b>No</b> — uses the gradient downhill</td><td><b>Oligomycin</b> (blocks H<sup>+</sup> through F<sub>0</sub>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="vs">
+<div class="vshead">Complex I vs II entry  ·  Coenzyme Q vs cytochrome c</div>
+<table>
+<tr>
+<td><span class="h">Complex I</span>Flavin is <u>FMN</u>; takes NADH; <b>pumps</b>.</td>
+<td><span class="h">Complex II</span>Flavin is <u>FAD</u>; takes FADH<sub>2</sub>/succinate; <b>does not pump</b>.</td>
+</tr>
+<tr>
+<td><span class="h">Coenzyme Q</span><u>Lipid-soluble</u>; mobile in the membrane; convergence of I and II.</td>
+<td><span class="h">Cytochrome c</span><u>Water-soluble</u>; mobile in the intermembrane space; feeds Complex IV.</td>
+</tr>
+</table>
+</div>
+<p>Complex III carries cytochrome <b>bc<sub>1</sub></b>; Complex IV carries <b>aa<sub>3</sub></b>. <b>Only Complex IV requires copper</b> — copper deficiency impairs it (same metal requirement as lysyl oxidase from the enzymes lecture). Cytochromes are <b>heme proteins</b> (types a, b, c). Inside Complex I, NADH reduces FMN to FMNH<sub>2</sub>, then electrons move through Fe–S centers to ubiquinone; Complex II likewise moves succinate-derived electrons through FAD and Fe–S to CoQ while converting succinate to fumarate (it is also a TCA enzyme). Know each complex’s one job first; internal gymnastics are not required beyond that path.</p>
+<p>Other FAD-linked entries visible on the overview diagram also feed CoQ without Complex I: glycerol 3-phosphate dehydrogenase, and ETF-linked pathways from acyl-CoA (β-oxidation), sarcosine and dimethylglycine. NAD-linked matrix substrates include pyruvate, α-ketoglutarate, isocitrate, malate, glutamate and others listed on the overview.</p>
+<p>Block a complex and apply the redox rule: the carrier it should reduce stays oxidized; donors upstream stay reduced. Inhibit Complex I → CoQ is not reduced from NADH. Inhibit Complex III → CoQH<sub>2</sub> cannot be oxidized. Inhibit Complex IV → O<sub>2</sub> is not reduced to water.</p>
+<p>Coenzyme Q is also an intermediate of cholesterol synthesis — a useful cross-link when a stem mentions isoprenoids. Cytochrome c’s water solubility puts it in the intermembrane space, not buried in lipid, which is why it can shuttle between III and IV along the membrane surface.</p>
+
+<h3>ROS production in the ETC</h3>
+<p>Normal metabolism leaks a fraction of electrons to O<sub>2</sub> before the controlled four-electron reduction at Complex IV, forming reactive oxygen species: <b>superoxide (O<sub>2</sub><sup>•−</sup>)</b>, <b>hydrogen peroxide (H<sub>2</sub>O<sub>2</sub>)</b>, and <b>hydroxyl radical (OH<sup>•</sup>)</b>. In the chain, superoxide leaks from <b>FMN in Complex I</b> and from <b>ubiquinone in Complex III</b>. Outside amplifiers include radiation, inflammation, high pO<sub>2</sub>, smog (O<sub>3</sub>, NO<sub>2</sub>), chemicals and drugs, reperfusion injury and aging. Unchecked ROS injure cells; defence is enzymatic.</p>
+<div class="scrollx">
+<table>
+<caption>Defence enzymes against ROS</caption>
+<thead><tr><th>Enzyme</th><th>Reaction / role</th></tr></thead>
+<tbody>
+<tr><td><b>Superoxide dismutase (SOD)</b></td><td>Converts superoxide to peroxide: 2 O<sub>2</sub><sup>•−</sup> + 2H<sup>+</sup> → H<sub>2</sub>O<sub>2</sub> + O<sub>2</sub></td></tr>
+<tr><td><b>Catalase</b></td><td>Splits peroxide: 2 H<sub>2</sub>O<sub>2</sub> → 2 H<sub>2</sub>O + O<sub>2</sub></td></tr>
+<tr><td><b>Glutathione peroxidase</b></td><td>Reduces peroxide using glutathione: H<sub>2</sub>O<sub>2</sub> + 2 GSH → 2 H<sub>2</sub>O + GSSG</td></tr>
+</tbody>
+</table>
+</div>
+<p>Further links to NADPH-dependent detox and the hexose monophosphate shunt are developed in that later lecture; the examinable ETC facts here are the leak sites, the three ROS species, and the three defence enzymes. SOD handles the radical one-electron product; catalase and glutathione peroxidase clear the peroxide that SOD creates — learn them as a relay, not as three unrelated names.</p>
+<h2 id="obj4"><span class="onum">Objective 4  / </span> ATP synthesis and energy yield of the ETC</h2>
+<h3>Oxidative vs substrate-level phosphorylation</h3>
+<p><b>Oxidative phosphorylation</b> is ATP made <b>with</b> the ETC — it needs mitochondria and oxygen. Coupling oxidation to phosphorylation is the definition: electron flow drives the proton gradient, and the gradient drives ATP synthesis. <b>Substrate-level phosphorylation</b> makes ATP <b>without</b> the ETC when a single reaction’s free-energy drop is large enough to phosphorylate ADP directly (e.g. glycolysis); those examples are taught with the pathway lectures.</p>
+<div class="vs must">
+<div class="vshead">★  Oxidation vs phosphorylation — tightly coupled</div>
+<table>
+<tr>
+<td><span class="h">Oxidation (ETC)</span>Electron flow to O<sub>2</sub>; Complexes I, III, IV <u>pump</u> H<sup>+</sup> out.</td>
+<td><span class="h">Phosphorylation (Complex V)</span>H<sup>+</sup> return through F<sub>0</sub> drives ATP synthesis — Complex V is <u>not</u> a pump.</td>
+</tr>
+<tr>
+<td colspan="2"><b>Tightly coupled:</b> inhibit either process and <b>both stop</b>. The gradient cannot discharge without ADP + P<sub>i</sub>; without discharge, pumps stall and O<sub>2</sub> consumption falls.</td>
+</tr>
+</table>
+</div>
+<figure>
+<img alt="Chemiosmotic diagram: proton circuit across the inner membrane through ATP synthase" height="576" loading="lazy" src="figures/02-chemiosmotic.webp" width="1200"/>
+<figcaption><b>Read the proton circuit as a loop.</b> Follow H<sup>+</sup> out through the respiratory complexes into the intermembrane space, then back in through F<sub>0</sub> of ATP synthase. The left-side leak path is what uncouplers open. Oligomycin sits on F<sub>0</sub> and blocks return without opening a leak.</figcaption>
+</figure>
+<h3>Chemiosmotic mechanism</h3>
+<p>Matrix metabolism raises NADH and FADH<sub>2</sub>. As electrons move, Complexes <b>I, III and IV</b> push H<sup>+</sup> into the intermembrane space through lipid–protein complexes. The inner membrane’s impermeability creates two gradients: <b>ΔpH</b> (more acidic / higher [H<sup>+</sup>] outside) and <b>ΔΨ</b> (<b>matrix negative</b> relative to the intermembrane space). Protons cannot diffuse back through the bilayer; they re-enter only through <b>F<sub>0</sub></b> of ATP synthase. Rotation of the F<sub>0</sub> ring (c-subunits) changes conformation in the matrix-facing <b>F<sub>1</sub></b> β-subunits so <b>ADP + P<sub>i</sub> → ATP</b>. Isolated ATP synthase can run backward as an ATPase — hence the alternate name <b>F<sub>1</sub>/F<sub>0</sub>-ATPase</b>.</p>
+<p>F<sub>0</sub> is the membrane channel; F<sub>1</sub> is the matrix sphere that makes ATP when F<sub>0</sub> rotates. Complex II is absent from the proton-circuit diagram for a reason: it contributes electrons to CoQ but never pumps, so it is not a coupling site.</p>
+<h3>P:O ratios and ATP arithmetic</h3>
+<p><b>P:O ratio</b> = moles of ATP made per atom of oxygen reduced (per ½ O<sub>2</sub> consumed).</p>
+<div class="must"><span class="tag">Must know</span><b>P:O for NADH = 3:1</b> (passes Complexes I, III, IV — three coupling sites). <b>P:O for FADH<sub>2</sub> = 2:1</b> because entry at Complex II <b>bypasses Complex I</b>. (Some modern texts quote ≈2.5 and ≈1.5 from measured proton stoichiometry; this course and Lippincott 6th ed. use <b>3 and 2</b>.)</div>
+<p>NAD-linked substrates (pyruvate, α-ketoglutarate, isocitrate, malate) → <b>3 ATP</b> per pair of electrons to ½ O<sub>2</sub>. FAD-linked (succinate) → <b>2 ATP</b>. Work a glucose total by counting substrate-level ATP plus each NADH and FADH<sub>2</sub>, then adjust cytosolic NADH for the shuttle: malate–aspartate keeps those pairs at 3; glycerol phosphate truncates them to 2. The shuttle choice is therefore visible in the final integer.</p>
+<p>Example fragment: oxidation of one matrix NADH through the full chain traverses three coupling sites (I+III+IV) → 3 ATP; one succinate-derived FADH<sub>2</sub> traverses two (III+IV) → 2 ATP. If a stem gives “8 NADH and 4 FADH<sub>2</sub>,” the ETC contribution is (8×3)+(4×2) = 32 ATP before adding substrate-level counts or subtracting shuttle discounts.</p>
+<h3>Respiratory control</h3>
+<p>Once the electrochemical gradient exists, further transport of reducing equivalents is inhibited unless the gradient is discharged by ATP synthesis, which needs <b>ADP and P<sub>i</sub></b>. The rate of oxidative phosphorylation is proportional to <b>[ADP][P<sub>i</sub>] / [ATP]</b>. High ATP/ADP in the matrix slows the chain — you already have enough ATP; ADP is the “go” signal. This single ratio controls both ATP synthesis and O<sub>2</sub> consumption. Stems sometimes invert the ratio; read which form is written.</p>
+<h2 id="obj5"><span class="onum">Objective 5  / </span> Uncouplers vs inhibitors</h2>
+<p>Three agent classes — ETC complex inhibitors, ATP synthase (and translocase) inhibitors, and uncouplers. For each, know mechanism, examples, and the triad: ETC function · O<sub>2</sub> consumption · ATP synthesis. ETC inhibitors and ATP-synthase inhibitors give the same arrows because oxidation and phosphorylation are tightly coupled; uncouplers reverse the O<sub>2</sub> arrow and add heat.</p>
+<div class="scrollx">
+<table>
+<caption>Inhibitor / uncoupler comparison — the highest-yield grid</caption>
+<thead><tr><th>Class</th><th>ETC function</th><th>O<sub>2</sub> consumption</th><th>ATP synthesis</th><th>Proton gradient</th><th>Examples</th></tr></thead>
+<tbody>
+<tr class="must"><td><span class="ms">★</span> <b>ETC inhibitors</b><br/>(block e<sup>−</sup> flow through I–IV)</td><td>↓</td><td>↓</td><td>↓</td><td>Collapses (no pumping)</td><td>Rotenone, antimycin A, CO, CN<sup>−</sup>, azide, H<sub>2</sub>S, malonate, amobarbital</td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>ATP synthase inhibitors</b><br/>(block H<sup>+</sup> through F<sub>0</sub>)</td><td>↓</td><td>↓</td><td>↓</td><td>Rises (cannot discharge)</td><td><b>Oligomycin</b>; <b>atractyloside</b> (blocks ADP/ATP translocase — same net arrows)</td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>Uncouplers</b><br/>(↑ inner-membrane H<sup>+</sup> permeability)</td><td>↑</td><td>↑</td><td>↓</td><td>Dissipated as <b>heat</b></td><td><b>2,4-DNP</b>, 2,4-DNC, pentachlorophenol, CCCP; <b>high-dose aspirin</b>; <b>thermogenin (UCP1)</b></td></tr>
+</tbody>
+</table>
+</div>
+<div class="vs must">
+<div class="vshead">★  Inhibitor vs uncoupler — why O<sub>2</sub> moves opposite ways</div>
+<table>
+<tr>
+<td><span class="h">Inhibitors</span>Block e<sup>−</sup> flow or H<sup>+</sup> return. Coupling stays intact, so back-pressure or a broken chain <u>stops</u> respiration.</td>
+<td><span class="h">Uncouplers</span>Open an H<sup>+</sup> leak. No gradient means no back-pressure, so the chain <u>accelerates</u> and energy leaves as heat (hyperthermia).</td>
+</tr>
+</table>
+</div>
+<figure>
+<img alt="ETC diagram with CO, cyanide, azide and H2S marked at Complex IV" height="611" loading="lazy" src="figures/09-etc-inhibitors-marked.webp" width="1200"/>
+<figcaption><b>Complex IV is the shared clinical target.</b> Find the Fe<sup>2+</sup> vs Fe<sup>3+</sup> labels on cytochrome a+a<sub>3</sub>: CO binds the ferrous form; CN<sup>−</sup>, azide and H<sub>2</sub>S bind the ferric form. CoQ = UQ = ubiquinone sits between II/I and III.</figcaption>
+</figure>
+<h3>Site-specific ETC inhibitors</h3>
+<p>Upstream of a block stays reduced; downstream stays oxidized. <b>Rotenone</b> (insecticide/fish poison; also the active idea behind some piscicides) is mainly a stomach irritant in humans — vomiting rather than fatal systemic poisoning. <b>Amobarbital</b> and other barbiturates hit Complex I; <b>piericidin A</b> is an antibiotic at the same site. <b>Malonate</b> is a classic <b>competitive</b> inhibitor of succinate dehydrogenase (Complex II); carboxin is a systemic agricultural fungicide/seed treatment at II; TTFA is another II blocker. <b>Antimycin A</b> and <b>dimercaprol (BAL)</b> hit Complex III — BAL was developed as an arsenic antidote and is also used for certain metal poisonings.</p>
+<div class="vs must">
+<div class="vshead">★  CO vs cyanide poisoning</div>
+<table>
+<tr>
+<td><span class="h">Carbon monoxide</span>Binds <u>Fe<sup>2+</sup></u> of Cyt a<sub>3</sub> (<b>non-covalent</b>). Also binds Hb (~<b>220×</b> affinity of O<sub>2</sub>): remaining hemes hold O<sub>2</sub> tightly, curve shifts <b>left</b>, sigmoid → hyperbola — tissues cannot unload O<sub>2</sub>. Sources: closed furnaces, auto exhaust, suicide, propane lanterns in sealed tents. Treatment: <b>100% O<sub>2</sub></b> or <b>hyperbaric O<sub>2</sub></b>.</td>
+<td><span class="h">Cyanide</span>Binds <u>Fe<sup>3+</sup></u> of Cyt a<sub>3</sub> (course answer: <b>covalent</b> — too tight for O<sub>2</sub> to compete; chemically a tight coordinate bond). Sources: <b>sodium nitroprusside</b> (IV antihypertensive for malignant hypertension; monitor cyanide), improperly processed <b>cassava</b>/cyanogenic foods, bitter almonds, fruit pits (cherry, apple, apricot). Death from tissue asphyxia (esp. CNS); skin may appear pink/cherry-red. Treatment: <b>amyl nitrite</b> → <b>methemoglobin (Fe<sup>3+</sup>)</b> sequesters CN<sup>−</sup>; then <b>sodium thiosulfate</b> → thiocyanate excreted. <b>Hydroxocobalamin</b> binds cyanide to cyanocobalamin (urinary excretion). Act within minutes.</td>
+</tr>
+</table>
+</div>
+<figure>
+<img alt="Side-by-side comparison of CO and cyanide: targets, sources, treatments" height="611" loading="lazy" src="figures/08-co-vs-cn.webp" width="1200"/>
+<figcaption><b>Match the iron state to the antidote logic.</b> CO’s non-covalent Fe<sup>2+</sup> block is competed off with oxygen. Cyanide’s Fe<sup>3+</sup> block is diverted to metHb Fe<sup>3+</sup> created by amyl nitrite — you cannot pull CN<sup>−</sup> off Complex IV with O<sub>2</sub>.</figcaption>
+</figure>
+<figure>
+<img alt="Amyl nitrite converts hemoglobin to methemoglobin which sequesters cyanide" height="576" loading="lazy" src="figures/06-cyanide-antidote.webp" width="1200"/>
+<figcaption><b>Follow Fe<sup>3+</sup> only.</b> Amyl nitrite oxidizes Hb(Fe<sup>2+</sup>) → metHb(Fe<sup>3+</sup>); cyanide prefers that circulating Fe<sup>3+</sup> over Complex IV. Thiosulfate finishes clearance. Methemoglobin cannot carry O<sub>2</sub> — the antidote is a deliberate trade.</figcaption>
+</figure>
+<p>Fifty-percent CO poisoning is worse than fifty-percent anemia because anemia leaves remaining Hb able to unload O<sub>2</sub> normally — the left-shift/R-state trap is unique to CO.</p>
+<div class="clin">
+<span class="lbl">Clinical — Richard’s story (CO)</span>
+<p>Forklift operator (propane), headache, dyspnea, grand mal seizure; HR 120, RR 30; <b>pulse oximetry 99%</b> despite tissue hypoxia — standard pulse oximetry cannot distinguish carboxyhemoglobin from oxyhemoglobin. CO binds Hb and Complex IV → anaerobic metabolism → <b>lactic acidosis</b>. Cherry-red appearance may be present.</p>
+</div>
+<h3>ATP synthase side and uncouplers</h3>
+<p><b>Oligomycin</b> (antibiotic) closes the F<sub>0</sub> proton channel: no ATP, and because of tight coupling, O<sub>2</sub> consumption falls — the exam phrase is “prevents ATP manufacture with decreased oxygen consumption.” <b>Atractyloside</b> (plant glycoside from <em>Atractylis</em> and related plants) blocks the adenine nucleotide translocase (ADP/ATP exchange across the inner membrane); ADP never reaches F<sub>1</sub>, so the gradient cannot discharge and the arrows match oligomycin.</p>
+<p>Uncouplers make the inner membrane permeable to H<sup>+</sup>, short-circuiting the proton circuit and dissociating oxidation from phosphorylation. Without a gradient there is no back-pressure; ETC races; oxidation energy is not trapped as ATP and leaves as heat → <b>hyperthermia</b>. <b>2,4-DNP</b> binds protons and diffuses across the inner membrane; used historically as a diet drug, it caused people to die of hyperthermia. Related agents: <b>2,4-dinitrocresol (DNC)</b>, <b>pentachlorophenol</b>, <b>CCCP</b> (chlorocarbonyl cyanide phenylhydrazone). High-dose <b>aspirin/salicylates</b> uncouple — fever in overdose is the clinical clue. Whether uncouplers could be anti-obesity drugs is limited by that uncontrollable heat.</p>
+<figure>
+<img alt="Brown adipose tissue thermogenin as a proton leak pathway producing heat" height="576" loading="lazy" src="figures/07-thermogenin.webp" width="1200"/>
+<figcaption><b>Physiological uncoupling.</b> Look for the protein spanning the inner membrane as a proton short-circuit that never passes through ATP synthase — heat is the product, not a side effect.</figcaption>
+</figure>
+<div class="must"><span class="tag">Must know</span><b>Thermogenin (UCP1)</b> in <b>brown adipose tissue</b> is the natural uncoupler: a proton conductance path that dissipates the gradient as heat (<b>nonshivering thermogenesis</b>).</div>
+<h2 id="selftest"><span class="onum">Self-test  / </span> Recall drill</h2>
+<p class="intro-line">Answers are hidden. Use <b>Show answer</b> per item, or <b>Reveal all</b> in the rail. Drill the arithmetic and the inhibitor/uncoupler grid hardest.</p>
+<ol class="qlist">
+<li>
+<div class="q">Define a reducing equivalent, and restate biological oxidation using that term.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans1" data-ans="ans1">Show answer</button>
+<div class="ans-wrap" id="ans1" hidden><span class="ans">A reducing equivalent is a proton plus an electron. Biological oxidation is loss of hydrogen as 2H⁺ + 2e⁻ — that is, loss of reducing equivalents — rather than merely “gain of oxygen.” The enzymes are oxidoreductases (dehydrogenases). The process is exergonic; free energy is trapped stepwise as ATP while the oxidized coenzymes are regenerated at the ETC for another round of catabolism.</span></div>
+</li>
+<li>
+<div class="q">In which direction do electrons move along a redox series? How is ΔE₀′ defined?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans2" data-ans="ans2">Show answer</button>
+<div class="ans-wrap" id="ans2" hidden><span class="ans">Electrons move toward the more positive standard redox potential — from lower to higher electron affinity. ΔE₀′ = E₀′(acceptor) − E₀′(donor). The acceptor’s potential is always higher than the donor’s, so a spontaneous transfer has a positive ΔE₀′. That positive gap is what ΔG₀′ = −nFΔE₀′ converts into a negative free-energy change.</span></div>
+</li>
+<li>
+<div class="q">Why does ΔG₀′ = −nFΔE₀′ carry a minus sign? What are n and F in this course?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans3" data-ans="ans3">Show answer</button>
+<div class="ans-wrap" id="ans3" hidden><span class="ans">Voltage and free-energy conventions run opposite ways: a positive ΔE₀′ means the electrons want to move (spontaneous), but spontaneity in thermodynamics is a negative ΔG. The minus sign is the translation between those conventions. n is the number of electrons transferred (2 for NADH → ½O₂). F is the Faraday constant, 23.06 kcal/V per mole of electrons.</span></div>
+</li>
+<li>
+<div class="q">For NADH + H⁺ + ½O₂ → NAD⁺ + H₂O, calculate ΔE₀′ and ΔG₀′. Ceiling ATP vs course yield?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans4" data-ans="ans4">Show answer</button>
+<div class="ans-wrap" id="ans4" hidden><span class="ans">Donor E₀′ = −0.32 V; acceptor (½O₂/H₂O) = +0.82 V; ΔE₀′ = +1.14 V. ΔG₀′ = −(2)(23.06)(1.14) = −52.6 kcal/mol. Divided by ATP’s −7.3 kcal/mol that is enough for about 7 ATP at 100% efficiency; this course’s actual yield is 3 ATP (~40%, the rest heat). “Maximum if fully efficient” and “ATP made” are different answers on the same calculation — read the stem’s wording before picking 7 or 3.</span></div>
+</li>
+<li>
+<div class="q">State ATP hydrolysis ΔG₀′ and how ΔG, ΔH, ΔS and ΔG°′/Keq fit the primer.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans5" data-ans="ans5">Show answer</button>
+<div class="ans-wrap" id="ans5" hidden><span class="ans">ATP + H₂O → ADP + Pᵢ has ΔG°′ = −7.3 kcal/mol. ΔG = ΔH − TΔS relates free energy to enthalpy and entropy. ΔG is concentration-dependent; ΔG°′ is the standard constant at 1 M, pH 7, 25 °C and equals −RT ln Keq. Negative ΔG is exergonic (not the same word as exothermic). Unfavorable steps run when coupled so the summed ΔG°′ is negative.</span></div>
+</li>
+<li>
+<div class="q">Where are reducing equivalents generated and spent? What does mtDNA encode, and how is it inherited?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans6" data-ans="ans6">Show answer</button>
+<div class="ans-wrap" id="ans6" hidden><span class="ans">Generated in the matrix by the TCA cycle; spent in the inner membrane by the ETC and ATP synthase. Human mtDNA is maternally inherited and encodes 13 ETC proteins (remaining subunits are nuclear). Pedigree pattern: affected mother → all children; affected father → none. High-ATP tissues (nerve and muscle) declare the oxidative-phosphorylation defect first clinically.</span></div>
+</li>
+<li>
+<div class="q">Name the two shuttles for cytosolic NADH, their matrix products, and ATP yields.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans7" data-ans="ans7">Show answer</button>
+<div class="ans-wrap" id="ans7" hidden><span class="ans">Malate–aspartate: reducing equivalents reappear as NADH in the matrix, enter at Complex I, and yield 3 ATP per cytosolic NADH. Glycerol phosphate: mitochondrial FAD-dependent oxidation feeds CoQ at an FADH₂-like level, bypasses Complex I, and yields 2 ATP. The impermeable inner membrane forces this detour; the same impermeability preserves the proton gradient.</span></div>
+</li>
+<li>
+<div class="q">List each complex’s one job — what it accepts and what it passes reducing equivalents to.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans8" data-ans="ans8">Show answer</button>
+<div class="ans-wrap" id="ans8" hidden><span class="ans">I: NADH → CoQ. II: FADH₂ (succinate) → CoQ. III: CoQH₂ → cytochrome c. IV: cytochrome c → ½O₂ → H₂O. V (ATP synthase): H⁺ influx through F₀ drives ADP + Pᵢ → ATP at F₁. Memorize the hand-off first; every inhibitor question is “what fails to get reduced?”</span></div>
+</li>
+<li>
+<div class="q">Which complex is not a coupling site? Explain with the redox ladder and P:O.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans9" data-ans="ans9">Show answer</button>
+<div class="ans-wrap" id="ans9" hidden><span class="ans">Complex II. It pumps no protons. FADH₂ sits at −0.22 V versus NADH at −0.32 V, so the drop to CoQ is shallower and does not pay for pumping; entry also bypasses Complex I entirely. Electrons still go III→IV, so P:O = 2 rather than 3. “Not a coupling site” and “no H⁺ pumped” are one fact.</span></div>
+</li>
+<li>
+<div class="q">Name the two mobile carriers and the physical property that places each one.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans10" data-ans="ans10">Show answer</button>
+<div class="ans-wrap" id="ans10" hidden><span class="ans">Coenzyme Q (ubiquinone) is the only lipid-soluble carrier — an isoprenoid mobile in the membrane and an intermediate of cholesterol synthesis; it accepts from both Complexes I and II. Cytochrome c is water-soluble in the intermembrane space and donates electrons to the copper centers of Complex IV. Cytochromes generally are heme proteins.</span></div>
+</li>
+<li>
+<div class="q">Which prosthetic groups separate I from II and III from IV? Copper deficiency hits which complex?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans11" data-ans="ans11">Show answer</button>
+<div class="ans-wrap" id="ans11" hidden><span class="ans">Complex I uses FMN; Complex II uses FAD. Complex III is the bc₁ complex; Complex IV carries cytochromes a and a₃. Only Complex IV requires copper, so copper deficiency impairs terminal O₂ reduction to water. The enzymes lecture’s lysyl oxidase shares that copper requirement — useful pairing on exams.</span></div>
+</li>
+<li>
+<div class="q">Where does superoxide leak in normal ETC function? Name three ROS and three defence enzymes.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans12" data-ans="ans12">Show answer</button>
+<div class="ans-wrap" id="ans12" hidden><span class="ans">Superoxide leaks from FMN in Complex I and from ubiquinone in Complex III even during normal metabolism. The ROS set is superoxide (O₂•−), hydrogen peroxide (H₂O₂), and hydroxyl radical (OH•). Defence is a relay: superoxide dismutase converts superoxide to H₂O₂; catalase and glutathione peroxidase then clear H₂O₂. Amplifiers include radiation, inflammation, high pO₂, smog, drugs, reperfusion injury and aging; further NADPH-linked detox waits for the HMP lecture.</span></div>
+</li>
+<li>
+<div class="q">State the chemiosmotic mechanism in one sentence. Define ΔpH and ΔΨ.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans13" data-ans="ans13">Show answer</button>
+<div class="ans-wrap" id="ans13" hidden><span class="ans">Complexes I, III and IV pump H⁺ into the intermembrane space; protons return through F₀ of ATP synthase and the resulting rotation drives ATP synthesis at F₁. ΔpH means the intermembrane space is more acidic than the matrix. ΔΨ means the matrix is electrically negative relative to the outside. Both together make the proton-motive force.</span></div>
+</li>
+<li>
+<div class="q">Is Complex V a proton pump? Contrast oligomycin with atractyloside.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans14" data-ans="ans14">Show answer</button>
+<div class="ans-wrap" id="ans14" hidden><span class="ans">No — Complex V runs the gradient downhill. Oligomycin binds F₀ and blocks H⁺ re-entry, so ATP stops and, by tight coupling, O₂ consumption falls. Atractyloside blocks the ADP/ATP translocase; matrix ADP never reaches F₁, the gradient cannot discharge, and the triad arrows match oligomycin even though the binding site differs.</span></div>
+</li>
+<li>
+<div class="q">Define P:O and give NADH/FADH₂ values. Mention the modern alternative once.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans15" data-ans="ans15">Show answer</button>
+<div class="ans-wrap" id="ans15" hidden><span class="ans">P:O is moles of ATP formed per atom of oxygen reduced (per ½O₂). This course and Lippincott 6th ed.: NADH 3:1 (sites I+III+IV), FADH₂ 2:1 (III+IV only, Complex I bypassed). Measured proton stoichiometry sometimes yields ≈2.5 and ≈1.5 — know that those exist, but answer 3 and 2 here.</span></div>
+</li>
+<li>
+<div class="q">Write the respiratory-control relationship. What does high ATP/ADP do to the chain?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans16" data-ans="ans16">Show answer</button>
+<div class="ans-wrap" id="ans16" hidden><span class="ans">Rate of oxidative phosphorylation ∝ [ADP][Pᵢ]/[ATP]. Once the gradient exists, further electron transport waits on discharge through ATP synthase, which needs ADP and Pᵢ. High matrix ATP/ADP means the cell is energy-replete, so the chain and O₂ use slow. ADP is the go signal. Watch for stems that invert the written ratio.</span></div>
+</li>
+<li>
+<div class="q">Fill ETC / O₂ / ATP for rotenone, oligomycin, and 2,4-DNP. What is the discriminator?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans17" data-ans="ans17">Show answer</button>
+<div class="ans-wrap" id="ans17" hidden><span class="ans">Rotenone (ETC inhibitor): ↓ / ↓ / ↓. Oligomycin (ATP synthase inhibitor): ↓ / ↓ / ↓. 2,4-DNP (uncoupler): ↑ / ↑ / ↓ with heat. The discriminator is oxygen consumption: only uncouplers increase it; both inhibitor classes decrease it because oxidation and phosphorylation stay coupled.</span></div>
+</li>
+<li>
+<div class="q">Why does oligomycin lower O₂ consumption if Complexes I–IV are chemically intact?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans18" data-ans="ans18">Show answer</button>
+<div class="ans-wrap" id="ans18" hidden><span class="ans">With F₀ blocked, protons cannot return, so ΔpH and ΔΨ climb until back-pressure stalls the pumps. Electron flow stops with the pumps, so O₂ is no longer reduced. That is respiratory control expressed as pathology — and why Interactive Question 3’s keyed answer is “prevents the influx of protons through Complex V,” not a direct Complex III or cytochrome oxidase block.</span></div>
+</li>
+<li>
+<div class="q">Rotenone vs antimycin A: sites and immediate redox consequences for CoQ.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans19" data-ans="ans19">Show answer</button>
+<div class="ans-wrap" id="ans19" hidden><span class="ans">Rotenone blocks Complex I: NADH cannot reduce CoQ through I (Complex II can still reduce CoQ if FADH₂/succinate is available). Antimycin A blocks Complex III: CoQH₂ cannot pass electrons to cytochrome c, so CoQ stays reduced and carriers downstream stay oxidized. Rule: upstream of a block reduced; downstream oxidized.</span></div>
+</li>
+<li>
+<div class="q">Closed tent, burning propane lantern — agent, Fe state on Complex IV, bond, treatment.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans20" data-ans="ans20">Show answer</button>
+<div class="ans-wrap" id="ans20" hidden><span class="ans">Carbon monoxide. It binds Fe²⁺ of cytochrome a₃ (non-covalent) and also Hb with ~220× the affinity of O₂, locking remaining hemes so they cannot unload O₂ (left-shifted curve). Treat with 100% oxygen or hyperbaric oxygen, which outcompetes CO. Interactive Question 1’s keyed answer is carbon monoxide, not nitrite or thiosulfate.</span></div>
+</li>
+<li>
+<div class="q">Cyanide treated with amyl nitrite — which species sequesters CN⁻, and what finishes clearance?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans21" data-ans="ans21">Show answer</button>
+<div class="ans-wrap" id="ans21" hidden><span class="ans">Methemoglobin (Fe³⁺). Nitrite oxidizes some Hb Fe²⁺ to Fe³⁺; cyanide prefers that circulating Fe³⁺ over Complex IV’s Fe³⁺, forming cyanmethemoglobin. Sodium thiosulfate then converts cyanide to thiocyanate for excretion. Hydroxocobalamin is an alternate binder. Act within minutes; metHb itself cannot carry O₂ — a deliberate oxygen-carrying capacity trade-off made at the bedside under time pressure. Interactive Question 2’s keyed answer is methemoglobin (not oxy-, deoxy-, carbamino-, or glycated hemoglobin).</span></div>
+</li>
+<li>
+<div class="q">Two clinical cyanide sources from this lecture; iron oxidation state at Complex IV.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans22" data-ans="ans22">Show answer</button>
+<div class="ans-wrap" id="ans22" hidden><span class="ans">Sodium nitroprusside (IV antihypertensive for malignant hypertension; releases CN⁻ as a byproduct — monitor levels) and improperly processed cassava or other cyanogenic foods (bitter almonds, cherry/apricot/apple pits). Cyanide binds Fe³⁺ of cytochrome a₃. Course language calls the bond covalent — too tight for O₂ competition.</span></div>
+</li>
+<li>
+<div class="q">Why is 50% CO saturation more lethal than 50% loss of Hb in anemia?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans23" data-ans="ans23">Show answer</button>
+<div class="ans-wrap" id="ans23" hidden><span class="ans">Anemic blood’s remaining hemoglobin still loads and unloads O₂ normally. CO bound to one heme shifts the tetramer toward the R state, moves the O₂ curve left, and flattens the sigmoid toward a hyperbola so the other hemes will not release O₂ to tissues — plus CO also blocks Complex IV.</span></div>
+</li>
+<li>
+<div class="q">Forklift operator, seizure, pulse ox 99%, lactic acidosis — diagnosis and why the oximeter lies.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans24" data-ans="ans24">Show answer</button>
+<div class="ans-wrap" id="ans24" hidden><span class="ans">Carbon monoxide poisoning from a propane-powered forklift. CO binds Hb and Complex IV, forcing anaerobic metabolism and lactic acidosis; CNS irritability progresses to seizure. Standard pulse oximetry cannot distinguish carboxyhemoglobin from oxyhemoglobin, so SpO₂ may read ~99% despite tissue hypoxia and rising lactate (Richard’s clinical vignette).</span></div>
+</li>
+<li>
+<div class="q">List major uncouplers (synthetic, clinical, natural). Shared mechanism and consequence.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans25" data-ans="ans25">Show answer</button>
+<div class="ans-wrap" id="ans25" hidden><span class="ans">Synthetic: 2,4-DNP, 2,4-DNC, pentachlorophenol, CCCP. Clinical: high-dose aspirin/salicylates (fever in overdose). Natural: thermogenin/UCP1 in brown adipose tissue. All increase inner-membrane H⁺ permeability, collapse the usable gradient, raise ETC rate and O₂ use, abolish ATP synthesis from that gradient, and dump energy as heat (hyperthermia).</span></div>
+</li>
+<li>
+<div class="q">Where is thermogenin found? What process does it enable, and why newborns need it?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans26" data-ans="ans26">Show answer</button>
+<div class="ans-wrap" id="ans26" hidden><span class="ans">In brown adipose tissue as UCP1, a protein spanning the inner mitochondrial membrane that returns protons without ATP synthase. That regulated leak is nonshivering thermogenesis — nearly all of brown fat’s respiratory energy can become heat. Newborns cannot shiver effectively, so this regulated pathway protects core temperature and vital organs without the uncontrollable dose-dependent chaos of pharmacologic 2,4-DNP hyperthermia deaths.</span></div>
+</li>
+<li>
+<div class="q">Complex I fully blocked: P:O for succinate oxidation? Why unchanged?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans27" data-ans="ans27">Show answer</button>
+<div class="ans-wrap" id="ans27" hidden><span class="ans">Still 2. Succinate donates to Complex II → CoQ → III → IV and never required Complex I. Blocking I removes NADH’s first coupling site but does not remove any site succinate uses. Contrast NADH oxidation, which would lose the Complex I contribution and fall from 3 toward 2 if it could enter at all.</span></div>
+</li>
+<li>
+<div class="q">Compute ΔG₀′ for a two-electron transfer with ΔE₀′ = +0.50 V. Interpret the sign.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans28" data-ans="ans28">Show answer</button>
+<div class="ans-wrap" id="ans28" hidden><span class="ans">ΔG₀′ = −nFΔE₀′ = −(2)(23.06)(0.50) = −23.06 kcal/mol. The negative sign means the transfer is thermodynamically favorable (spontaneous) under standard conditions. A negative ΔE₀′ would have flipped the sign and required coupling to a driving reaction.</span></div>
+</li>
+<li>
+<div class="q">Dimercaprol (BAL) and azide: targets? Which iron state does azide share with cyanide?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans29" data-ans="ans29">Show answer</button>
+<div class="ans-wrap" id="ans29" hidden><span class="ans">Dimercaprol/BAL inhibits Complex III (grouped with antimycin A). Azide inhibits Complex IV, binding the Fe³⁺ state of cytochrome a₃ — the same ferric target as cyanide and H₂S. CO is the odd one at Complex IV because it prefers Fe²⁺.</span></div>
+</li>
+<li>
+<div class="q">Malonate: complex, relationship to succinate, and effect on proton pumping at that step.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans30" data-ans="ans30">Show answer</button>
+<div class="ans-wrap" id="ans30" hidden><span class="ans">Malonate inhibits Complex II (succinate dehydrogenase) competitively with succinate. Complex II does not pump protons anyway, so the local effect is failure to reduce CoQ from the succinate/FADH₂ entry; NADH-linked flux through I can still proceed if not otherwise blocked.</span></div>
+</li>
+<li>
+<div class="q">Agent raises temperature and O₂ use while ATP falls — class? Contrast oligomycin’s O₂ arrow.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans31" data-ans="ans31">Show answer</button>
+<div class="ans-wrap" id="ans31" hidden><span class="ans">Uncoupler: H⁺ leak abolishes the gradient, removes back-pressure, and lets the chain race while phosphorylation stops; heat is obligatory. Oligomycin decreases O₂ consumption because the undischarged gradient stalls the pumps. Opposite O₂ arrows separate the classes when ATP is down in both.</span></div>
+</li>
+<li>
+<div class="q">Copper deficiency: which complex fails, and which water-forming reaction stops?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans32" data-ans="ans32">Show answer</button>
+<div class="ans-wrap" id="ans32" hidden><span class="ans">Complex IV (cytochrome c oxidase), the only copper-requiring complex. Electrons cannot pass from cytochrome c through a/a₃-Cu to molecular oxygen, so ½O₂ is not reduced to H₂O and the terminal step of respiration fails.</span></div>
+</li>
+<li>
+<div class="q">ETF-linked acyl-CoA oxidation enters where? What P:O should you assign?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans33" data-ans="ans33">Show answer</button>
+<div class="ans-wrap" id="ans33" hidden><span class="ans">Electron-transferring flavoprotein paths from acyl-CoA (β-oxidation) — and related amines such as sarcosine — feed electrons into CoQ, bypassing Complex I. Assign the FADH₂-like P:O of 2 ATP per pair of electrons to ½O₂.</span></div>
+</li>
+<li>
+<div class="q">“Respiration inhibitors always decrease oxygen uptake” — scope and exception.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans34" data-ans="ans34">Show answer</button>
+<div class="ans-wrap" id="ans34" hidden><span class="ans">True when scoped to inhibitors of the ETC or of ATP synthase: tight coupling means both stop together. It is false for uncouplers, which increase oxygen uptake while ATP falls. Never apply that “always decreases oxygen uptake” sentence outside the inhibitor classes — uncouplers are the structured exception that raises O₂ use.</span></div>
+</li>
+<li>
+<div class="q">Hydroxocobalamin in cyanide poisoning — product formed and advantage vs metHb strategy.</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans35" data-ans="ans35">Show answer</button>
+<div class="ans-wrap" id="ans35" hidden><span class="ans">Hydroxocobalamin binds cyanide to form cyanocobalamin, excreted in urine, often with thiosulfate support. Unlike the nitrite/methemoglobin strategy, which sequesters CN⁻ only in the vascular space and sacrifices some O₂-carrying capacity, hydroxocobalamin can act in blood and inside cells.</span></div>
+</li>
+<li>
+<div class="q">Why must cassava be processed before eating? What clinical syndrome follows chronic exposure?</div>
+<button type="button" class="toggle-ans" aria-expanded="false" aria-controls="ans36" data-ans="ans36">Show answer</button>
+<div class="ans-wrap" id="ans36" hidden><span class="ans">Cassava contains cyanogenic glycosides that liberate cyanide if not reduced by drying, soaking, rinsing or baking. Acute ingestion causes classical cyanide poisoning; chronic dietary exposure raises blood cyanide and can cause weakness and permanent neurologic injury including paralysis in regions where cassava is a staple.</span></div>
+</li>
+</ol>
+<h2 id="rapid"><span class="onum">Rapid review  / </span> Two-column keyword sheet</h2>
+<p class="intro-line"><b>Bold = highest-yield. If you review one page, review this one.</b></p>
+<div class="cheat">
+
+<section>
+<h3>Redox basics</h3>
+<ul>
+<li><b>Reducing equivalent = H⁺ + e⁻ (as 2H⁺ + 2e⁻)</b></li>
+<li>Oxidation = gain O₂ <b>or</b> loss H₂; biological = <b>loss of reducing equivalents</b></li>
+<li>Exergonic; energy trapped <b>stepwise</b> as ATP</li>
+<li>Enzymes: <b>oxidoreductases / dehydrogenases</b></li>
+<li>NAD⁺/NADP⁺ ← <b>B₃ niacin</b> · FAD ← <b>B₂ riboflavin</b></li>
+<li><b>NADH reflects ATP status; NADPH does not</b> (anabolism / H source)</li>
+<li>Acetyl-CoA = C source; insulin = major anabolic hormone</li>
+<li>More NADH than FADH₂; ETC regenerates NAD⁺/FAD for reuse</li>
+<li>Needs mitochondria + ETC + O₂ for oxphos ATP</li>
+</ul>
+</section>
+
+<section>
+<h3>Potential &amp; free energy</h3>
+<ul>
+<li><b>E₀′</b> = affinity for e⁻ (1 M each, <b>pH 7</b>)</li>
+<li>Low E₀′ = low affinity; high = high affinity</li>
+<li><b>ΔE₀′ = acceptor − donor</b>; acceptor always higher</li>
+<li><b>Electrons → more positive E₀′</b></li>
+<li><b>ΔG₀′ = −nFΔE₀′</b>; F = <b>23.06 kcal/V</b>; n = electrons</li>
+<li><b>+ΔE ⇒ −ΔG</b> (spontaneous)</li>
+<li>Chain ~1.1 V; <b>O₂ terminal acceptor +0.82 V</b></li>
+<li>NADH −0.32 · FMN −0.30 · FADH₂ −0.22 · cyt b +0.07 · CoQ +0.10 · c₁ +0.23 · c +0.25 · a +0.29</li>
+<li>NADH→O₂: ΔE <b>+1.14 V</b>, ΔG <b>−52.6 kcal/mol</b></li>
+<li>100% efficient ≈ <b>7 ATP</b>; actual course yield <b>3</b> (~40%)</li>
+<li>Primer: ΔG=ΔH−TΔS; ΔG°′=−RT ln Keq; ATP hydrolysis <b>−7.3 kcal/mol</b></li>
+<li>Exergonic ≠ exothermic; couple reactions so ΣΔG°′ &lt; 0</li>
+</ul>
+</section>
+
+<section>
+<h3>Mitochondrion &amp; shuttles</h3>
+<ul>
+<li>Outer membrane permeable; inner semipermeable, <b>cristae</b></li>
+<li><b>Inner membrane impermeable to H⁺</b> — gradient depends on it</li>
+<li>Matrix = TCA = reducing-equivalent factory</li>
+<li>Inner membrane = ETC + ATP synthase</li>
+<li>Intermembrane space = H⁺ reservoir (+, acidic)</li>
+<li><b>mtDNA maternal; 13 ETC proteins</b> (rest nuclear)</li>
+<li>Nerve/muscle fail first in oxphos defects</li>
+<li><b>Malate–aspartate → matrix NADH → 3 ATP</b></li>
+<li><b>Glycerol-P → FAD/CoQ → 2 ATP</b></li>
+<li>Same impermeability blocks NADH entry and traps protons</li>
+</ul>
+</section>
+
+<section>
+<h3>Complex-by-complex + inhibitors</h3>
+<ul>
+<li><b>I</b> NADH dehydrogenase / NADH:Q oxidoreductase; FMN+7 Fe–S; &gt;25 chains; pumps — <b>rotenone</b>, amobarbital/barbiturates, piericidin A</li>
+<li><b>II</b> SDH / FADH₂:Q oxidoreductase; FAD+2 Fe–S; 4 chains; <b>no pump / not coupling site</b> — malonate (competitive), carboxin, TTFA</li>
+<li><b>III</b> CoQH₂:Cyt c oxidoreductase (bc₁); cyt b562/b566, c₁, 1 Fe–S — <b>antimycin A</b>, dimercaprol/BAL</li>
+<li><b>IV</b> Cyt c oxidase; aa₃ + Cu each; 13 chains — <b>CN⁻, azide, H₂S, CO</b></li>
+<li><b>V</b> ATP synthase F₀F₁; <b>not a pump</b> — <b>oligomycin</b> blocks H⁺ through F₀</li>
+<li>Translocase — <b>atractyloside</b> (same arrows as oligomycin)</li>
+<li><b>CoQ</b> lipid-soluble isoprenoid; cholesterol-synthesis intermediate; accepts from I and II</li>
+<li><b>Cyt c</b> water-soluble; IMS; donates to Cu of IV</li>
+<li>Cytochromes = heme proteins (a,b,c)</li>
+<li>I vs II: FMN vs FAD · III vs IV: bc₁ vs aa₃ · only IV needs Cu</li>
+<li>Upstream of block <b>reduced</b>; downstream <b>oxidized</b></li>
+<li>Also → CoQ: glycerol-P, ETF/acyl-CoA, sarcosine paths</li>
+</ul>
+</section>
+
+<section>
+<h3>ATP, coupling, P:O</h3>
+<ul>
+<li><b>Oxidative phosphorylation</b> = ATP with ETC (needs mitochondria + O₂)</li>
+<li>Substrate-level = ATP without ETC (glycolysis later)</li>
+<li>Chemiosmotic: I/III/IV pump H⁺ out → return via F₀ → F₁ makes ATP</li>
+<li><b>ΔpH</b> acid outside; <b>ΔΨ</b> matrix negative</li>
+<li><b>P:O = ATP per O atom reduced</b></li>
+<li><b>NADH 3:1 · FADH₂ 2:1</b> (bypass I); modern ≈2.5/1.5 parenthetical only</li>
+<li>NAD-linked: pyruvate, α-KG, isocitrate, malate → 3</li>
+<li>FAD-linked: succinate → 2</li>
+<li>Respiratory control ∝ <b>[ADP][Pᵢ]/[ATP]</b>; ADP = go signal</li>
+<li><b>Tightly coupled:</b> inhibit either → both stop</li>
+<li>Glucose totals: count NADH/FADH₂ then apply shuttle discount</li>
+</ul>
+</section>
+
+<section>
+<h3>Inhibitor / uncoupler grid</h3>
+<ul>
+<li><b>ETC inhibitors: ETC↓ O₂↓ ATP↓</b> (no pumping; gradient falls)</li>
+<li><b>ATP synthase inhibitors: ETC↓ O₂↓ ATP↓</b> (cannot discharge; gradient rises)</li>
+<li><b>Uncouplers: ETC↑ O₂↑ ATP↓ + HEAT</b> (H⁺ leak; gradient dissipated)</li>
+<li><b>Only uncouplers increase O₂ consumption</b> — the discriminator</li>
+<li>Mechanism ETC inhib: block e⁻ through I–IV</li>
+<li>Mechanism synthase inhib: block H⁺ through F₀ (or ADP delivery)</li>
+<li>Mechanism uncoupler: ↑ inner-membrane H⁺ permeability; abolish usable proton circuit</li>
+<li>2,4-DNP, 2,4-DNC, pentachlorophenol, CCCP</li>
+<li><b>High-dose aspirin/salicylate = uncoupler → fever</b></li>
+<li><b>Thermogenin/UCP1 in brown adipose tissue</b> = natural uncoupler</li>
+<li>Nonshivering thermogenesis; critical in <b>newborn</b></li>
+<li>2,4-DNP diet-drug history: death by hyperthermia</li>
+</ul>
+</section>
+
+<section>
+<h3>CO vs CN⁻</h3>
+<ul>
+<li>Both inhibit <b>Complex IV / cytochrome a₃</b></li>
+<li><b>CO → Fe²⁺, non-covalent</b> → treat <b>100% O₂ / hyperbaric O₂</b></li>
+<li><b>CN⁻ → Fe³⁺</b> (course: covalent) → <b>amyl nitrite → metHb(Fe³⁺)</b> sequesters → <b>thiosulfate → thiocyanate</b></li>
+<li>Also hydroxocobalamin → cyanocobalamin (urine)</li>
+<li>CO–Hb affinity ~<b>220×</b> O₂; left shift; sigmoid→hyperbola; cannot unload</li>
+<li>50% CO worse than 50% anemia (R-state trap)</li>
+<li><b>Pulse oximetry falsely normal</b> (cannot see HbCO)</li>
+<li>CO sources: furnaces, auto exhaust, suicide, propane lantern/forklift</li>
+<li>CN sources: nitroprusside, cassava/cyanogenic foods, bitter almonds, fruit pits</li>
+<li>Cherry-red / flushed appearance; CN death = tissue asphyxia (CNS)</li>
+<li>Richard vignette: seizure + lactic acidosis + pulse ox 99%</li>
+</ul>
+</section>
+
+<section>
+<h3>ROS</h3>
+<ul>
+<li>Superoxide made in <b>normal</b> ETC function</li>
+<li>Leak sites: <b>FMN (Complex I)</b> and <b>ubiquinone (Complex III)</b></li>
+<li>Species: <b>O₂•−, H₂O₂, OH•</b></li>
+<li>Defence: <b>SOD</b> (2O₂•− → H₂O₂+O₂); <b>catalase</b> (2H₂O₂ → 2H₂O+O₂); <b>GPx</b> (H₂O₂+2GSH)</li>
+<li>Amplifiers: radiation, inflammation, high pO₂, smog, drugs, reperfusion, aging</li>
+<li>More NADPH-linked detox with HMP shunt lecture</li>
+<li>Injured cell is the pathologic endpoint when defence is overwhelmed</li>
+<li>Four-electron reduction at Complex IV is the safe path; one-electron leaks make ROS</li>
+</ul>
+</section>
+
+<section>
+<h3>Numbers to compute cold</h3>
+<ul>
+<li>F = <b>23.06 kcal/V</b> · ATP = <b>−7.3 kcal/mol</b></li>
+<li>NADH→O₂: ΔE <b>+1.14 V</b> · ΔG <b>−52.6 kcal/mol</b></li>
+<li>Max ATP from that ΔG ≈ <b>7</b>; actual <b>3</b></li>
+<li>P:O <b>3</b> (NADH) / <b>2</b> (FADH₂)</li>
+<li>8 NADH + 4 FADH₂ → (8×3)+(4×2) = <b>32</b> ATP from ETC alone</li>
+<li>CO–Hb affinity ~<b>220×</b> O₂</li>
+<li>ETC voltage span ~<b>1.1 V</b>; O₂ = <b>+0.82 V</b></li>
+<li>Complex I: FMN + <b>7 Fe–S</b>; II: FAD + <b>2 Fe–S</b>; III: <b>1 Fe–S</b></li>
+<li>Polypeptide counts: I &gt;25 (largest); II 4; III 6; IV 13</li>
+<li>Unidirectional electron flow — no physiologic reverse run</li>
+<li>Dimercaprol = BAL; historically arsenic antidote, also Complex III poison</li>
+<li>Atractyloside: plant glycoside blocking adenine nucleotide translocase</li>
+<li>Rotenone: insecticide/fish poison; human stomach irritant → vomiting, rarely a systemic fatality</li>
+</ul>
+</section>
+
+</div>
+<script>
+(function () {
+  const root = document.documentElement;
+  const revealBtn = document.getElementById('reveal-btn');
+  const themeBtn = document.getElementById('theme-btn');
+  const toc = document.getElementById('toc');
+
+  // Theme: explicit toggle wins over OS
+  const stored = localStorage.getItem('l03-theme');
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+
+  themeBtn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : (root.dataset.theme === 'light' ? 'dark' : (matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark'));
+    root.dataset.theme = next;
+    localStorage.setItem('l03-theme', next);
+  });
+
+  // Per-question answers
+  document.querySelectorAll('.toggle-ans').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-ans');
+      const panel = document.getElementById(id);
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      btn.textContent = open ? 'Show answer' : 'Hide answer';
+      if (open) panel.setAttribute('hidden', '');
+      else panel.removeAttribute('hidden');
+    });
+  });
+
+  function setAll(open) {
+    document.querySelectorAll('.toggle-ans').forEach(btn => {
+      const panel = document.getElementById(btn.getAttribute('data-ans'));
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Hide answer' : 'Show answer';
+      if (open) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
+    });
+    revealBtn.setAttribute('aria-pressed', open ? 'true' : 'false');
+    revealBtn.textContent = open ? 'Hide all answers' : 'Reveal all answers';
+  }
+
+  revealBtn.addEventListener('click', () => {
+    const open = revealBtn.getAttribute('aria-pressed') !== 'true';
+    setAll(open);
+  });
+
+  // Instant rail jumps (no smooth scroll)
+  toc.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    e.preventDefault();
+    const el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) {
+      el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      history.replaceState(null, '', a.getAttribute('href'));
+    }
+  });
+
+  // MUST KNOW counts per objective
+  function countMust(startId) {
+    const start = document.getElementById(startId);
+    if (!start) return 0;
+    const marks = new Set();
+    let el = start.nextElementSibling;
+    while (el && el.tagName !== 'H2') {
+      el.querySelectorAll('div.must:not(.vs), .vs.must, tr.must, figcaption .ms').forEach(n => marks.add(n));
+      if (el.matches && el.matches('div.must:not(.vs), .vs.must')) marks.add(el);
+      el = el.nextElementSibling;
+    }
+    return marks.size;
+  }
+  document.querySelectorAll('.stars[data-sec]').forEach(span => {
+    const n = countMust(span.dataset.sec);
+    span.textContent = n ? '★'.repeat(Math.min(n, 8)) : '';
+    span.title = n + ' MUST KNOW marks';
+  });
+
+  // Scroll-spy
+  const links = [...toc.querySelectorAll('a[href^="#"]')];
+  const targets = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+  function spy() {
+    const y = window.scrollY + 80;
+    let current = targets[0];
+    for (const t of targets) {
+      if (t.offsetTop <= y) current = t;
+    }
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+})();
+</script>
+</main>
+</div>
+</body>
+</html>
