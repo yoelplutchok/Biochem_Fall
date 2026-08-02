@@ -1,0 +1,1283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 04 — Signal Transduction</title>
+<style>
+
+:root {
+  --navy: #1f3a5f;
+  --crimson: #9b2c2c;
+  --must: #b3282d;
+  --clin: #2f7d4f;
+  --ground: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #171a1f;
+  --muted: #5a6573;
+  --line: #c8d3e0;
+  --rail: #eef1f5;
+  --vs-bg: #e8eef5;
+  --must-bg: #fdeeed;
+  --must-border: #e0b3b1;
+  --clin-bg: #eef7f0;
+  --table-stripe: #f6f8fa;
+  --focus: #2f6fb5;
+  --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --rail-w: 15.5rem;
+  --col: 73ch;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #8fb3dd;
+    --crimson: #e07a7a;
+    --must: #ff8f8b;
+    --clin: #63c78d;
+    --ground: #0e1319;
+    --surface: #151b23;
+    --ink: #e2e7ee;
+    --muted: #9aa5b5;
+    --line: #2a3442;
+    --rail: #121820;
+    --vs-bg: #1a2430;
+    --must-bg: #2a1818;
+    --must-border: #5a3030;
+    --clin-bg: #15241c;
+    --table-stripe: #1a222c;
+    --focus: #6aa8e8;
+  }
+}
+:root[data-theme="dark"] {
+  --navy: #8fb3dd;
+  --crimson: #e07a7a;
+  --must: #ff8f8b;
+  --clin: #63c78d;
+  --ground: #0e1319;
+  --surface: #151b23;
+  --ink: #e2e7ee;
+  --muted: #9aa5b5;
+  --line: #2a3442;
+  --rail: #121820;
+  --vs-bg: #1a2430;
+  --must-bg: #2a1818;
+  --must-border: #5a3030;
+  --clin-bg: #15241c;
+  --table-stripe: #1a222c;
+  --focus: #6aa8e8;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  scroll-padding-top: 1rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--ground);
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+}
+a { color: var(--navy); }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr);
+  gap: 0;
+  min-height: 100vh;
+}
+.rail-box {
+  margin: 0;
+  background: var(--rail);
+  border-right: 1px solid var(--line);
+}
+.rail-box > summary.toc-sum { display: none; list-style: none; }
+.rail-box > summary.toc-sum::-webkit-details-marker { display: none; }
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1rem 0.85rem 2rem;
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  font-family: var(--sans);
+  font-size: 0.78rem;
+}
+.rail .brand {
+  font-weight: 700;
+  color: var(--crimson);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  margin-bottom: 0.35rem;
+}
+.rail h2 {
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+  background: none;
+  padding: 0;
+  border: 0;
+}
+.rail nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.35rem;
+  margin-bottom: 0.15rem;
+  line-height: 1.35;
+}
+.rail nav a:hover { background: var(--surface); color: var(--ink); }
+.rail nav a.active {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--crimson);
+}
+.rail .stars { color: var(--must); letter-spacing: 0.05em; font-size: 0.72rem; margin-left: 0.25rem; }
+.rail .tools {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.45rem;
+}
+.rail button {
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 0.4rem;
+  padding: 0.55rem 0.6rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+.rail button:hover { border-color: var(--navy); }
+.main {
+  max-width: calc(var(--col) + 4rem);
+  padding: 1.5rem 2rem 4rem;
+  padding-bottom: max(4rem, env(safe-area-inset-bottom));
+  background: var(--surface);
+  min-width: 0;
+}
+.hdr { border-bottom: 2.5px solid var(--crimson); padding-bottom: 0.85rem; margin-bottom: 1rem; }
+.hdr .kicker {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.hdr h1 {
+  font-family: var(--sans);
+  font-size: 1.85rem;
+  line-height: 1.15;
+  margin: 0 0 0.4rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.hdr .sub { font-size: 0.95rem; color: var(--muted); }
+.legend {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  margin-bottom: 1.4rem;
+  background: var(--ground);
+}
+.legend b { color: var(--navy); }
+h2 {
+  font-family: var(--sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  background: #1f3a5f;
+  margin: 2rem 0 1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.35rem;
+  scroll-margin-top: 0.75rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) h2 { color: #0e1319; background: #8fb3dd; }
+}
+:root[data-theme="dark"] h2 { color: #0e1319; background: #8fb3dd; }
+h2 .onum { opacity: 0.65; font-weight: 400; }
+h3 {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 1.5rem 0 0.55rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--line);
+}
+h4 {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 1.1rem 0 0.4rem;
+}
+p { margin: 0 0 0.75rem; }
+ul, ol { margin: 0 0 0.9rem; padding-left: 1.25rem; }
+li { margin-bottom: 0.35rem; }
+b, strong { font-weight: 700; color: var(--ink); }
+.scrollx { overflow-x: auto; max-width: 100%; margin: 0.6rem 0 1rem; -webkit-overflow-scrolling: touch; }
+.map {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  padding: 0.9rem 1rem;
+  margin: 0.7rem 0 1rem;
+  white-space: pre-wrap;
+}
+.map .stage { font-weight: 700; color: var(--navy); }
+.map .cat { color: var(--must); font-weight: 700; }
+.map .ana { color: var(--focus); font-weight: 700; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+}
+th {
+  background: #1f3a5f;
+  color: #fff;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid #1f3a5f;
+}
+:root[data-theme="dark"] th { background: #2a4a72; border-color: #2a4a72; }
+td {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+tbody tr:nth-child(even) td { background: var(--table-stripe); }
+caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  padding-bottom: 0.35rem;
+}
+.must {
+  background: var(--must-bg);
+  border: 1px solid var(--must-border);
+  border-left: 3.5px solid var(--must);
+  border-radius: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  margin: 0.7rem 0;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.must .tag {
+  color: var(--must);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.must .tag::before { content: "★ "; }
+.must b { color: var(--must); }
+tr.must td { background: var(--must-bg) !important; }
+tr.must td:first-child { border-left: 3px solid var(--must); }
+.ms { color: var(--must); font-weight: 700; }
+.vs {
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  margin: 0.85rem 0 1rem;
+  overflow: hidden;
+}
+.vs.must { border-color: var(--must-border); }
+.vs .vshead {
+  background: var(--vs-bg);
+  color: var(--navy);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.vs.must .vshead {
+  background: var(--must-bg);
+  color: var(--must);
+  border-bottom-color: var(--must-border);
+}
+.vs table { margin: 0; }
+.vs table td {
+  border: 0;
+  border-right: 1px solid var(--line);
+  width: 50%;
+  padding: 0.55rem 0.75rem;
+}
+.vs table td:last-child { border-right: 0; }
+.vs table tbody tr:nth-child(even) td { background: transparent; }
+.vs table tr + tr td { border-top: 1px solid var(--line); }
+.vs .h {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.vs.must .h { color: var(--must); }
+u, .disc {
+  text-decoration: underline;
+  text-decoration-color: var(--must);
+  text-underline-offset: 2px;
+  font-weight: 700;
+  color: var(--must);
+}
+.clin {
+  background: var(--clin-bg);
+  border-left: 3.5px solid var(--clin);
+  border-radius: 0.35rem;
+  padding: 0.65rem 0.9rem;
+  margin: 0.85rem 0;
+}
+.clin .lbl {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clin);
+  margin-bottom: 0.35rem;
+}
+.clin p:last-child { margin-bottom: 0; }
+figure {
+  margin: 0.9rem 0 1.1rem;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+figcaption {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.55rem;
+  text-align: left;
+  line-height: 1.4;
+}
+figcaption b { color: var(--navy); }
+ol.qlist { counter-reset: q; list-style: none; padding-left: 0; }
+ol.qlist > li {
+  counter-increment: q;
+  margin-bottom: 0.85rem;
+  padding: 0.65rem 0.75rem 0.65rem 2.6rem;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  background: var(--ground);
+  break-inside: avoid;
+}
+ol.qlist > li::before {
+  content: counter(q);
+  position: absolute;
+  left: 0.55rem;
+  top: 0.7rem;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #fff;
+  background: #1f3a5f;
+  width: 1.45rem;
+  height: 1.45rem;
+  line-height: 1.45rem;
+  text-align: center;
+  border-radius: 50%;
+}
+.q { font-family: var(--serif); }
+.ans-wrap { margin-top: 0.45rem; }
+.ans-wrap[hidden] { display: none !important; }
+.ans { color: var(--clin); font-weight: 600; font-family: var(--sans); font-size: 0.9rem; }
+.toggle-ans {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.35rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--navy);
+  border-radius: 0.3rem;
+  padding: 0.45rem 0.75rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+.cheat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  font-family: var(--sans);
+  font-size: 0.84rem;
+}
+.cheat section { break-inside: avoid; }
+.cheat h3 { font-size: 0.92rem; margin-top: 0; margin-bottom: 0.4rem; }
+.cheat ul { padding-left: 1.1rem; margin-bottom: 0; }
+.cheat li { margin-bottom: 0.25rem; }
+.intro-line {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.stools { margin: 0.5rem 0 1rem; }
+@media (max-width: 60rem) {
+  .layout { grid-template-columns: 1fr; }
+  .rail-box {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .rail-box > summary.toc-sum {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    padding-top: max(0.65rem, env(safe-area-inset-top));
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--ink);
+    cursor: pointer;
+    background: var(--rail);
+  }
+  .rail-box > summary.toc-sum::after {
+    content: "▾";
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .rail-box[open] > summary.toc-sum::after { content: "▴"; }
+  .rail {
+    position: relative;
+    height: auto;
+    max-height: min(70vh, 28rem);
+    border-top: 1px solid var(--line);
+  }
+  .cheat { grid-template-columns: 1fr; }
+  .main {
+    padding: 1rem max(1rem, env(safe-area-inset-right)) 3rem max(1rem, env(safe-area-inset-left));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+@media print {
+  .rail-box, .toggle-ans, .rail .tools, #theme-btn, #reveal-btn, .toc-sum { display: none !important; }
+  .layout { display: block; }
+  .main { max-width: none; padding: 0; }
+  .ans-wrap { display: block !important; }
+  .ans-wrap[hidden] { display: block !important; }
+  figure, .must, .vs, .clin, table, ol.qlist > li { break-inside: avoid; }
+  h2 { break-after: avoid; color: #fff !important; background: #1f3a5f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<details class="rail-box" id="rail-box" open>
+<summary class="toc-sum">Contents</summary>
+<aside class="rail" id="rail">
+<div class="brand">Biochem · Fall 2026</div>
+<h2>Lecture 04</h2>
+<nav id="toc">
+<a href="#orient">Orientation</a>
+<a href="#obj1">Obj 1 · Signals &amp; receptors <span class="stars" data-sec="obj1"></span></a>
+<a href="#obj2">Obj 2 · GPCRs <span class="stars" data-sec="obj2"></span></a>
+<a href="#obj3">Obj 3 · Epi &amp; glucagon <span class="stars" data-sec="obj3"></span></a>
+<a href="#obj4">Obj 4 · RTK / Ras / MAPK <span class="stars" data-sec="obj4"></span></a>
+<a href="#obj5">Obj 5 · Insulin <span class="stars" data-sec="obj5"></span></a>
+<a href="#selftest">Self-test</a>
+<a href="#rapid">Rapid review</a>
+</nav>
+<div class="tools">
+<button aria-pressed="false" id="reveal-btn" type="button">Reveal all answers</button>
+<button id="theme-btn" type="button">Toggle theme</button>
+</div>
+</aside>
+</details>
+<main class="main" id="main">
+<div class="hdr">
+<div class="kicker">Medical Biochemistry &amp; Genetics I &nbsp;·&nbsp; Fall 2026 &nbsp;·&nbsp; Week 1, Session 2</div>
+<h1>Lecture 04 — Signal Transduction</h1>
+<div class="sub">Session Thu 8/6, 8:30–10 AM &nbsp;·&nbsp; Required reading: Lippincott Ch. 8 (second messengers) &nbsp;·&nbsp; Assessed on Foundation Exam #1, Mon 8/17, 11 AM–1 PM</div>
+</div>
+<div class="legend">
+<b>★ MUST KNOW</b> = highest-yield; the mark sits on the fact itself — a red-tinted table row, a red VS box, a ★ in a figure caption, or a standalone red band. &nbsp;<b>Bold</b> = a term, number or name that could be a fill-in-the-blank answer.<br/>
+<b>VS boxes</b> = pairs that are routinely confused; the <u>underlined red word</u> is the single feature that tells them apart.
+</div>
+<h2 id="orient">Orientation</h2>
+<div class="scrollx"><div class="map">Signaling molecule
+    │
+    ├─► <span class="cat">GPCR branch</span> — Heptahelical receptor · Trimeric G (αβγ) · Effector · Second messenger · Kinase
+    │
+    ├─► <span class="cat">RTK branch</span> — Dimerize · Tyr autophosphorylation · SH2 adapters · Ras–MAPK / PI3K–PKB
+    │
+    └─► <span class="ana">Cortisol</span> — Intracellular receptor · Nucleus</div></div>
+<p>A cell responds only if it carries the matching receptor. Hydrophilic ligands use membrane receptors and intracellular relays; lipophilic ligands reach cytosolic or nuclear receptors. Every arm needs a termination step — GTP hydrolysis, phosphodiesterase, or phosphatase — and when that timer breaks, disease follows. Fed/fasting hormone logic is Lecture 01; the full adenylyl cyclase cascade is Objective 2.</p>
+<h2 id="obj1"><span class="onum">Objective 1  /  </span> Steps, signals, and receptors</h2>
+<div class="must"><div class="tag">MUST KNOW</div>Cell signaling: <b>(1)</b> synthesis and release of the signaling molecule · <b>(2)</b> transport to the target · <b>(3)</b> receptor detection and signal transduction · <b>(4)</b> change in metabolism, function, or gene expression · <b>(5)</b> <b>termination</b>. Signaling that cannot be switched off underlies most pathology in this unit.</div>
+<h3>System origins</h3>
+<p>The <b>nervous system</b> releases <b>neurotransmitters</b>; the <b>endocrine system</b> releases <b>hormones</b>; the <b>immune system</b> releases <b>cytokines</b> (lymphokines from lymphocytes, monokines from monocytes/macrophages, interleukins from and acting on leukocytes). <b>Growth factors</b> drive proliferation and differentiation. <b>Eicosanoids</b> — prostanoids (prostaglandins, thromboxanes) and leukotrienes — and <b>retinoids</b> are additional signaling classes covered later in metabolism. A <b>signal</b> (ligand) may be a <b>neurotransmitter</b>, <b>hormone</b>, <b>cytokine</b>, <b>growth factor</b>, <b>eicosanoid</b> (prostanoids, leukotrienes), <b>retinoid</b>, or <b>nitric oxide</b>. Only cells bearing the matching <b>receptor</b> respond; receptors are proteins. Signaling range is summarized below.</p>
+<div class="scrollx">
+<table>
+<caption>Signaling range</caption>
+<thead><tr><th>Mode</th><th>Target distance</th><th>Example context</th></tr></thead>
+<tbody>
+<tr><td><b>Autocrine</b></td><td>Same cell</td><td>Signaling cell = target cell</td></tr>
+<tr><td><b>Paracrine</b></td><td>Adjacent</td><td>Local diffusion to neighbors</td></tr>
+<tr><td><b>Endocrine</b></td><td>Distant</td><td>Circulating hormone to remote tissue</td></tr>
+</tbody>
+</table>
+</div>
+<div class="vs">
+<div class="vshead">Hydrophilic vs lipophilic signaling molecule</div>
+<table>
+<tr>
+<td><span class="h">Hydrophilic</span>Peptide and protein hormones (e.g. <b>insulin</b>). Bind <u>plasma-membrane</u> receptors; no transport protein in blood; <b>shorter half-life</b>.</td>
+<td><span class="h">Lipophilic</span><b>Steroid–thyroid superfamily</b> (steroids, thyroid hormone, <b>vitamin D</b>, <b>retinoic acid</b>). Cross the bilayer; use <u>intracellular</u> receptors (cytosolic or nuclear); require <b>transport proteins</b>; <b>longer half-life</b>.</td>
+</tr>
+</table>
+</div>
+<p>Once bound, intracellular receptors <b>induce or repress</b> target genes — the long-term regulatory arm.</p>
+<h3>Plasma-membrane receptor classes</h3>
+<div class="scrollx">
+<table>
+<caption>Receptor architecture — one row per class</caption>
+<thead><tr><th>Class</th><th>Structure</th><th>Example ligand</th><th>Downstream</th></tr></thead>
+<tbody>
+<tr><td><b>Ion-channel receptor</b></td><td>Ligand-gated pore</td><td>Neurotransmitters (e.g. ACh at nicotinic synapse)</td><td>Ion flux across membrane</td></tr>
+<tr><td><b>GPCR</b> (heptahelical)</td><td>Seven transmembrane helices + trimeric G protein</td><td>Epinephrine, glucagon</td><td>Second messengers via effectors (Obj 2)</td></tr>
+<tr><td><b>Intrinsic Tyr kinase (RTK)</b></td><td>Single TM span; kinase in cytosolic tail</td><td>Growth factors, insulin</td><td>SH2 adapters → Ras–MAPK or PI3K (Obj 4–5)</td></tr>
+<tr><td><b>Associated Tyr kinase</b></td><td>Receptor-associated JAK</td><td>Cytokines</td><td>JAK–STAT (rapid nuclear response)</td></tr>
+<tr><td><b>Ser/Thr kinase receptor</b></td><td>Intrinsic Ser/Thr kinase</td><td>TGF-β</td><td>Smad transcription factors</td></tr>
+</tbody>
+</table>
+</div>
+<p>Once a hydrophilic ligand binds, the receptor may phosphorylate Tyr/Ser/Thr residues, recruit <b>SH2-domain</b> adapters (<b>Grb2, STAT, Smad, PI3 kinase, phosphatase</b> — keep separate from second messengers), or activate a heterotrimeric G protein. Hydrophilic messengers never enter the nucleus themselves; nuclear effects require intermediate transcription factors such as CREB (Objective 3) or STAT dimers (Objective 4).</p>
+<p>Receptor class predicts speed and chemistry. Ion-channel receptors change membrane potential in milliseconds. GPCRs generate diffusible second messengers over seconds. RTK and JAK–STAT pathways reach the nucleus through adapter cascades; JAK–STAT is the shorter route. Ser/Thr kinase receptors for TGF-β feed Smad transcription factors during development and osteogenesis.</p>
+<p><b>Nitric oxide</b> is a special case — a diffusible gas that acts without a membrane receptor protein (Objective 2). Intracellular receptors sit in the <b>cytosol</b> or the <b>nucleus</b>; both routes end in transcriptional change rather than a membrane second-messenger cascade. The steroid–thyroid superfamily includes classical steroids, thyroid hormone, vitamin D, and retinoic acid.</p>
+<h2 id="obj2"><span class="onum">Objective 2  /  </span> GPCRs, G proteins, effectors, and second messengers</h2>
+<div class="must"><div class="tag">MUST KNOW</div><b>GPCRs are heptahelical</b> (seven transmembrane domains) and couple to <b>trimeric</b> G proteins (α, β, γ). The <b>α subunit</b> carries the signal to the effector.</div>
+<p>Ligand binding catalyzes exchange of <b>GDP for GTP</b> on Gα. Gα–GTP dissociates from the βγ dimer and activates a membrane-bound <b>effector</b>. G proteins bind GTP or GDP and carry intrinsic <b>GTPase</b> activity: hydrolysis of GTP back to GDP returns Gα to its inactive state. One hormone molecule activates many G proteins, each generating many second-messenger molecules, each activating many kinases — <b>amplification</b> is why cascades exist.</p>
+<figure>
+<img alt="GDP/GTP exchange cycle on Gα: ligand-bound GPCR promotes GTP loading; Gα–GTP activates effector; intrinsic GTPase hydrolyzes GTP to shut the signal off" height="485" loading="lazy" src="figures/01-g-protein-switch.webp" width="1200"/>
+<figcaption><span class="ms">★</span> <b>Follow the α subunit.</b> Resting Gα holds <b>GDP</b>; activated receptor promotes <b>GTP</b> exchange. Gα–GTP activates the effector until Gα's own <b>GTPase</b> hydrolyzes GTP — that hydrolysis is the <b>self-timer</b>. Every toxin and Ras mutation in this lecture breaks this timer.</figcaption>
+</figure>
+<figure>
+<img alt="GPCR to Gs to adenylyl cyclase generating cAMP as second messenger" height="576" loading="lazy" src="figures/02-gpcr-camp.webp" width="1200"/>
+<figcaption><b>Read left to right.</b> Ligand → heptahelical receptor → trimeric G → membrane effector. The branch shown is the adenylyl cyclase arm; the phosphoinositide arm uses a different Gα subtype and effector (phosphatidylinositol figure below).</figcaption>
+</figure>
+<p>In the resting state, Gα binds <b>GDP</b> and the Gβγ complex anchors the heterotrimer at the inner leaflet. Activated GPCR acts as a guanine-nucleotide exchange factor (GEF), promoting release of GDP and binding of GTP. Gα–GTP has lower affinity for both the receptor and Gβγ, so it dissociates and diffuses to its effector. Effectors are <b>membrane-bound or membrane-associated enzymes</b> — not freely soluble kinases. The βγ dimer can also signal independently in some pathways, but the exam focuses on Gα. When Gα hydrolyzes GTP → GDP + P<sub>i</sub>, it re-associates with Gβγ and the cycle resets. Cholera toxin, pertussis toxin, and oncogenic Ras mutations all interrupt this hydrolysis step.</p>
+<p>The authoritative pairing of ligand, receptor, G protein, effector, and second messenger lives in the table — not repeated in prose.</p>
+<div class="scrollx">
+<table>
+<caption>Ligand → receptor → G protein → effector → second messenger</caption>
+<thead><tr><th>Ligand</th><th>Receptor</th><th>G protein</th><th>Effector</th><th>Second messenger</th></tr></thead>
+<tbody>
+<tr class="must"><td><span class="ms">★</span> <b>Epinephrine</b></td><td><b>β-adrenergic</b></td><td><b>Gs</b> (+)</td><td><b>Adenylyl cyclase</b></td><td><b>↑ cAMP</b></td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>Epinephrine</b></td><td><b>α2-adrenergic</b></td><td><b>Gi</b> (−)</td><td><b>Adenylyl cyclase</b></td><td><b>↓ cAMP</b></td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>Epinephrine</b></td><td><b>α1-adrenergic</b></td><td><b>Gq</b> (+)</td><td><b>Phospholipase Cβ</b></td><td><b>IP₃ + DAG</b></td></tr>
+<tr><td><b>Glucagon</b></td><td><b>Glucagon receptor</b></td><td><b>Gs</b> (+)</td><td><b>Adenylyl cyclase</b></td><td><b>↑ cAMP</b></td></tr>
+</tbody>
+</table>
+</div>
+<p><b>Glucagon receptors are absent in skeletal muscle</b> (present in liver and adipose). <b>Insulin</b> activates <b>phospholipase Cγ</b> (not β) — a separate arm covered in Objective 5.</p>
+<div class="vs must">
+<div class="vshead">★  Gs vs Gi</div>
+<table>
+<tr>
+<td><span class="h">Gsα</span><u>Stimulates</u> adenylyl cyclase → ↑ cAMP.</td>
+<td><span class="h">Giα</span><u>Inhibits</u> adenylyl cyclase → ↓ cAMP.</td>
+</tr>
+</table>
+</div>
+<h3>Adenylyl cyclase and phosphoinositide arms</h3>
+<p>The adenylyl cyclase arm and the phosphoinositide arm are mutually exclusive outputs of different Gα subtypes — a single receptor couples to one G protein, and that G protein selects one effector. cAMP from the cyclase arm feeds PKA; the phosphoinositide arm splits into parallel Ca²⁺ and PKC signals from one PLC cleavage event.</p>
+<p><b>Gqα</b> activates <b>phospholipase Cβ</b>, cleaving membrane <b>PIP₂</b> into <b>IP₃</b> and <b>DAG</b>. The five major intracellular second messengers are <b>cAMP</b>, <b>cGMP</b>, <b>IP₃</b>, <b>DAG</b>, and <b>Ca²⁺</b>.</p>
+<figure>
+<img alt="Inactive PKA as R2C2 tetramer; cAMP binding to regulatory subunits releases active catalytic subunits" height="754" loading="lazy" src="figures/03-pka-activation.webp" width="1200"/>
+<figcaption><b>Inactive PKA = two regulatory (R) + two catalytic (C) subunits.</b> cAMP binds the <b>regulatory</b> subunits, causing conformational change and release of active <b>catalytic</b> subunits that phosphorylate serine/threonine targets.</figcaption>
+</figure>
+<figure>
+<img alt="Gq activates PLCβ cleaving PIP2 into IP3 and DAG; IP3 opens ER calcium channel; DAG activates PKC at membrane" height="1006" loading="lazy" src="figures/04-phosphatidylinositol.webp" width="1200"/>
+<figcaption><b>Two branches from one cleavage.</b> Follow IP₃ to the ER calcium channel (cytosolic [Ca²⁺] can rise from ~0.1 µM to &gt;1 µM). Follow DAG to the inner leaflet, where it activates PKC alongside phosphatidylserine.</figcaption>
+</figure>
+<div class="vs">
+<div class="vshead">IP₃ vs DAG</div>
+<table>
+<tr>
+<td><span class="h">IP₃</span>Water-soluble; diffuses to the <u>ER</u> and opens an IP₃-gated Ca²⁺ channel, raising cytosolic calcium. Ca²⁺–<b>calmodulin</b> activates CaM kinases.</td>
+<td><span class="h">DAG</span><b>Membrane-bound</b> diacylglycerol; activates <u>PKC</u> (with phosphatidylserine; some PKC isoforms also need Ca²⁺). PKC phosphorylates downstream proteins.</td>
+</tr>
+</table>
+</div>
+<div class="vs">
+<div class="vshead">Protein kinase A vs protein kinase C</div>
+<table>
+<tr>
+<td><span class="h">PKA</span>Activated by <u>cAMP</u> (Gs/Gi pathways). Phosphorylates serine/threonine targets in cytosol and nucleus.</td>
+<td><span class="h">PKC</span>Activated by <u>DAG</u> (± Ca²⁺) at the membrane (Gq/α1 pathway). Distinct substrate set from PKA.</td>
+</tr>
+</table>
+</div>
+<p><b>Nitric oxide (NO)</b> is a diffusible gas — no membrane receptor. Parasympathetic <b>acetylcholine</b> on endothelium activates <b>eNOS</b>, which synthesizes NO from <b>arginine</b> using <b>O₂</b> and <b>NADPH</b> (half-life <b>2–30 s</b>). NO activates <b>soluble guanylyl cyclase</b> → <b>cGMP</b> → <b>protein kinase G (PKG)</b>, phosphorylating smooth-muscle proteins and promoting vasodilation (<b>EDRF</b>). <b>Nitroglycerin</b> and <b>isosorbide mononitrate</b> release NO (venodilation; angina relief). <b>Sildenafil</b>, <b>vardenafil</b>, and <b>tadalafil</b> inhibit <b>PDE5</b>, blocking cGMP degradation — used for erectile dysfunction. PDE5 is cGMP-specific and enriched in corpus cavernosum and retina. For NO to relax vascular smooth muscle, cGMP must remain elevated; PDE5 inhibition prolongs the cGMP signal that PKG transduces into phosphorylation of contractile proteins and activation of phosphatases that inhibit actin–myosin interaction.</p>
+<p>Bacterial toxins covalently modify Gα by transferring ADP-ribose from <b>NAD⁺</b>. The disease table records which residue, which activity state, and which disease. The causal point that exams probe: freezing Gs <b>on</b> and freezing Gi <b>off</b> both raise cAMP. In cholera, elevated enterocyte cAMP phosphorylates the apical CFTR channel, driving secretion of <b>Na⁺, Cl⁻, H₂O, and HCO₃⁻</b> — a medical emergency requiring electrolyte repletion.</p>
+<div class="vs must">
+<div class="vshead">★  Cholera toxin vs pertussis toxin</div>
+<table>
+<tr>
+<td><span class="h">Cholera</span>Hits Gsα → frozen <u>ON</u>.</td>
+<td><span class="h">Pertussis</span>Hits Giα → frozen <u>OFF</u>.</td>
+</tr>
+</table>
+</div>
+<div class="scrollx">
+<table>
+<caption>Broken timers — toxins and mutations</caption>
+<thead><tr><th>Agent / mutation</th><th>Target</th><th>Activity state</th><th>2nd messenger / signal</th><th>Disease</th></tr></thead>
+<tbody>
+<tr class="must"><td><span class="ms">★</span> <b>Cholera toxin</b></td><td>Gsα (Arg ADP-ribosylation from NAD⁺)</td><td>Frozen <b>ON</b> (GTP)</td><td>↑ cAMP</td><td>Rice-water stool</td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>Pertussis toxin</b></td><td>Giα (cysteine ADP-ribosylation)</td><td>Frozen <b>OFF</b> (GDP)</td><td>↑ cAMP</td><td>Whooping cough</td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>Ras mutation</b></td><td>Monomeric Ras</td><td>Locked GTP-bound</td><td>Persistent MAPK</td><td>Cancer</td></tr>
+<tr class="must"><td><span class="ms">★</span> <b>Neurofibromin loss</b> (NF1)</td><td>Ras GAP lost</td><td>Ras stays GTP-bound</td><td>Persistent MAPK</td><td>Neurofibromatosis</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="obj3"><span class="onum">Objective 3  /  </span> Epinephrine and glucagon via GPCR</h2>
+<h3>Triggers and tissues</h3>
+<p><b>Glucagon</b> is released from pancreatic <b>α cells</b> during <b>hypoglycemia</b> and raises hepatic glucose output to restore blood glucose. On waking after an overnight fast, glucagon — not insulin — should dominate hepatic glucose production; cortisol also peaks around 5 AM to support gluconeogenic gene expression. <b>Epinephrine</b> is released from the <b>adrenal medulla</b> during acute stress (fight, flight, fright) and binds <b>α1</b>, <b>α2</b>, and <b>β</b> adrenergic receptors — three receptors, three G proteins (see table in Objective 2). <b>Norepinephrine</b> and some <b>prostaglandins</b> share these G-protein couplings.</p>
+<p><b>Adenylyl cyclase</b> synthesizes cAMP from ATP when stimulated by Gs; <b>cAMP phosphodiesterase (PDE)</b> hydrolyzes cAMP to 5′-AMP and terminates the signal. The two enzymes are physiologic opposites. <b>Insulin</b> lowers intracellular cAMP by <b>activating PDE</b> — the same net effect as epinephrine through α2/Gi, but by a different mechanism. Epinephrine β/Gs raises cAMP; epinephrine α2/Gi and insulin both lower it.</p>
+<p>Both glucagon and epinephrine (β) converge on Gs → adenylyl cyclase → cAMP → PKA → serine/threonine phosphorylation of rate-limiting enzymes. Pathways that glucagon and epinephrine support are therefore active in the <b>phosphorylated</b> state — the mirror image of insulin action (Objective 5). Glucagon's tissue restriction to liver and adipose (not muscle) matches its role in hepatic glucose output during fasting. Muscle glycogenolysis is epinephrine-driven, not glucagon-driven, for that reason.</p>
+<div class="scrollx">
+<table>
+<caption>β-adrenergic receptor subtypes — tissue-specific effects</caption>
+<thead><tr><th>Subtype</th><th>Tissue</th><th>G protein</th><th>Physiologic effect</th><th>Drug example</th></tr></thead>
+<tbody>
+<tr><td><b>β1</b></td><td>Heart</td><td>Gs</td><td>↑ cardiac contractility</td><td>β1 agonist (inotropic support); <b>β-blockers</b> (anti-hypertensive)</td></tr>
+<tr><td><b>β2</b></td><td>Lung, intestine smooth muscle</td><td>Gs</td><td>Smooth-muscle <b>relaxation</b></td><td><b>Albuterol</b> (β2 agonist bronchodilator)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="scrollx">
+<table>
+<caption>Clinical drugs mapped to receptors</caption>
+<thead><tr><th>Drug</th><th>Receptor / target</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td><b>Albuterol</b></td><td>β2 agonist (+)</td><td>Bronchodilation (smooth-muscle relaxation)</td></tr>
+<tr><td><b>Ipratropium (Atrovent)</b></td><td>M3 muscarinic antagonist (−); Gq pathway</td><td>Reduces bronchoconstriction</td></tr>
+<tr><td><b>Prednisone</b></td><td>Glucocorticoid (intracellular)</td><td>Anti-inflammatory; inhibits prostaglandin synthesis</td></tr>
+<tr><td>LTB4 / PGD2</td><td>Various GPCR targets</td><td>Inflammatory mediators in asthma</td></tr>
+</tbody>
+</table>
+</div>
+<p>Same Gs chemistry, opposite clinical goals: β2 agonism opens airways; β1 blockade slows the heart. Tissue expression of the receptor subtype — not a different G protein — determines the physiologic readout. That is why a β2-selective agonist can bronchodilate without the full cardiac stimulation of nonselective epinephrine.</p>
+<p><b>Albuterol</b> is a short-acting β2 agonist: it occupies the same Gs-coupled receptor epinephrine would use in bronchial smooth muscle and produces relaxation (bronchodilation). <b>Ipratropium</b> blocks M3 muscarinic receptors that normally drive Gq-mediated bronchoconstriction — useful when β2 agonism alone fails. Systemic glucocorticoids (methylprednisolone, prednisone) act through intracellular receptors to shut down inflammatory eicosanoid synthesis (including LTB4 and PGD2 pathways).</p>
+<h3>Opposing cAMP control</h3>
+<p>Three mechanisms lower cAMP: epinephrine α2/Gi inhibits adenylyl cyclase; insulin activates PDE; receptor desensitization reduces ongoing Gs drive. On the synthetic side, activated adenylyl cyclase converts <b>ATP → cAMP + PPᵢ</b>; the cyclic 3′,5′-phosphodiester is what PKA's regulatory subunits recognize, and PDE cleavage to 5′-AMP destroys that recognition. Glucagon and epinephrine (β) push the synthetic arm; insulin and epinephrine (α2) push the degradative or inhibitory arm.</p>
+<div class="clin">
+<span class="lbl">Clinical — Luis's story</span>
+<p><b>Luis C.</b>, 26-year-old male with childhood asthma, well controlled until 9 months ago (2 ER visits; ran out of albuterol and budesonide–formoterol; nonsmoker, secondhand smoke and new dog exposure). Presents restless, in moderate respiratory distress with nasal flaring and accessory-muscle use; diffuse bilateral expiratory wheeze; <b>O₂ sat 88%</b> on room air → <b>acute asthma exacerbation</b>. Treated with O₂, nebulized <b>albuterol</b> (β2 agonist → bronchodilation), IV <b>methylprednisolone</b> (glucocorticoid anti-inflammatory), then added <b>ipratropium</b> to the third albuterol dose when initial therapy failed — condition improved over 3 hours (RR 46→18; HR 92→78; BP 150/90→120/70).</p>
+<p>Vital signs tracked response to stacked receptor pharmacology: oxygen support, repeated β2 agonism, systemic glucocorticoid, then muscarinic blockade when the first GPCR arm was insufficient. Ran-out controller medication plus smoke and allergen exposure precipitated the exacerbation — classic loss of outpatient control.</p>
+</div>
+<p><b>Norepinephrine</b> uses the same α1/Gq and α2/Gi pathways as epinephrine; some <b>prostaglandins</b> couple through Gi.</p>
+<p>Hydrophilic hormones cannot enter the nucleus directly. cAMP-activated <b>PKA</b> phosphorylates <b>CREB</b> (cAMP response element–binding protein), which binds <b>cAMP response elements (CRE)</b> in target promoters and changes transcription. CREB is the workaround for a genomic response without membrane crossing. Glucocorticoids (prednisone, methylprednisolone) bypass this cascade via intracellular receptors and repress inflammatory genes — complementary to GPCR bronchodilators in Luis's treatment.</p>
+<h2 id="obj4"><span class="onum">Objective 4  /  </span> RTK signaling via Ras and MAP kinase</h2>
+<p><b>Receptor tyrosine kinases (RTKs)</b> span the membrane once; the ligand-binding site faces the extracellular space and the kinase domain faces the cytosol. Growth-factor RTKs are <b>monomers</b> until ligand binding induces <b>dimerization</b> and <b>autophosphorylation on tyrosine</b>. Phosphotyrosines recruit <b>adapter proteins with SH2 domains</b> (e.g. <b>Grb2</b>), which link to <b>SOS</b> → activates <b>Ras</b> (a <b>monomeric G protein</b>) → <b>Raf</b> → <b>MAP kinase</b> cascade for growth and proliferation. The external binding domain and internal kinase domain are connected by a single transmembrane helix — the architecture shared by all RTKs including insulin (Objective 5), though insulin's pre-dimerized structure differs. Ligand examples include PDGF, EGF, TGF-α, and the FGF family — each triggers the same dimerize → autophosphorylate → SH2-dock sequence.</p>
+<div class="vs">
+<div class="vshead">Trimeric G protein vs monomeric G protein (Ras)</div>
+<table>
+<tr>
+<td><span class="h">Trimeric (GPCR)</span>αβγ heterotrimer; <u>α subunit</u> carries the signal; couples heptahelical receptors to adenylyl cyclase or PLCβ.</td>
+<td><span class="h">Monomeric (Ras)</span>Single protein; active only with <u>GTP</u>; downstream of RTKs via Grb2–SOS; Raf–MAPK effector arm.</td>
+</tr>
+</table>
+</div>
+<figure>
+<img alt="Growth factor induces RTK dimerization and Tyr autophosphorylation; SH2 adapters recruit Grb2-SOS-Ras-Raf-MAPK" height="422" loading="lazy" src="figures/05-rtk-ras-mapk.webp" width="1200"/>
+<figcaption><b>Start at the dimer.</b> Ligand cross-links two monomeric RTKs → Tyr autophosphorylation → SH2 docking → Grb2–SOS exchanges GDP for GTP on Ras → Raf phosphorylation cascade. Ras is the GTP switch; MAPK is the terminal kinase.</figcaption>
+</figure>
+<div class="vs">
+<div class="vshead">GPCR vs receptor tyrosine kinase</div>
+<table>
+<tr>
+<td><span class="h">GPCR</span><u>Heptahelical</u> seven-TM receptor; trimeric G protein; second messengers (cAMP, IP₃/DAG).</td>
+<td><span class="h">RTK</span><u>Single-pass</u> receptor with intrinsic Tyr kinase; dimerizes on ligand; SH2 adapters; Ras–MAPK or PI3K arms.</td>
+</tr>
+</table>
+</div>
+<h3>Clinical genetics of the Ras timer</h3>
+<p>Broken GTP hydrolysis on monomeric Ras — whether by mutation of Ras itself or loss of its GAP — is the same timer failure that locks Gsα on in cholera; the disease table lists the outcomes. Growth-factor RTKs in clinical vignettes include <b>PDGF</b>, <b>EGF</b>, <b>TGF-α</b>, and <b>FGF</b>.</p>
+<p>Adapter proteins are intracellular docking proteins — not kinases themselves — that bind phosphotyrosines through <b>SH2 domains</b> and recruit the next signaling module. The Grb2–SOS complex functions as the GEF for Ras, paralleling the GPCR's role in loading GTP onto Gα. Once Ras–GTP is formed, the kinase cascade proceeds <b>Raf → MEK → ERK (MAP kinase)</b>, amplifying one occupied growth-factor receptor into a wave of nuclear phosphorylations that drive proliferation.</p>
+<p>After Grb2 docks a phosphotyrosine, SOS (the Ras GEF) must still exchange GDP for GTP before Raf can be recruited. That nucleotide-exchange step is the RTK pathway's on-switch — the same chemical logic as Gα loading on a GPCR, executed by a monomeric G protein instead of a heterotrimer.</p>
+<p>Phosphotyrosine docking is combinatorial: the same phosphorylated RTK can recruit Grb2 for Ras–MAPK, PI3 kinase for lipid second messengers, or a phosphatase that turns the receptor off. Which adapter wins depends on expression and affinity — that is why one growth-factor receptor can drive both proliferation and metabolic branches in different cells. RTKs are turned off by <b>protein tyrosine phosphatases</b> that strip the phosphotyrosine docking sites — without that off-switch, growth signaling persists as in oncogenic Ras.</p>
+<p><b>FGF receptors (FGFR1–4)</b> are RTKs for the FGF family (≥19 members; skeletal and nervous development; mesodermal induction in embryos). <b>Achondroplasia</b> — the most common autosomal-dominant short-limb dwarfism — arises from a <b>transmembrane FGFR3</b> substitution that locks the receptor in ligand-independent activation (limbs shorter than trunk, <b>macrocephaly</b>). <b>Craniosynostosis</b> syndromes involve mutations in <b>FGFR1, FGFR2, or FGFR3</b>. Inactivating FGFR3 in mice expands long-bone growth — the opposite phenotype — showing that RTK activity state, not just ligand presence, sets skeletal outcome.</p>
+<p>The <b>JAK–STAT</b> pathway is shorter than RTK–Ras–MAPK: cytokine binding dimerizes receptors, activates associated <b>Janus kinases (JAKs)</b>, which phosphorylate <b>STAT</b> proteins; STAT dimers enter the nucleus and bind promoters. Fewer steps mean faster responses. Cytokines include lymphokines, monokines, and interleukins that coordinate humoral and cellular immunity.</p>
+
+<p>TGF-β receptors phosphorylate serine/threonine and signal through <b>Smad</b> proteins that enter the nucleus to regulate osteogenesis and developmental gene programs — a third kinase-receptor class distinct from RTKs and GPCRs.</p>
+<h2 id="obj5"><span class="onum">Objective 5  /  </span> Insulin signaling</h2>
+<p>The <b>insulin receptor</b> contains an extracellular ligand-binding domain (α subunits) and an intracellular tyrosine kinase domain (β subunits). It is an RTK that is already a <b>disulfide-linked (α₂β₂) dimer</b> before ligand binds — unlike growth-factor RTKs that dimerize only after ligand contact. Insulin binding autophosphorylates tyrosines and recruits <b>IRS</b> (insulin receptor substrate) and other SH2-domain partners.</p>
+<div class="must"><div class="tag">MUST KNOW</div><b>Insulin → IRS → PI3K → PDK1 → PKB (Akt) → GLUT4</b> vesicle translocation to the plasma membrane in <b>skeletal muscle and adipose tissue</b>, increasing glucose uptake. PKB is also called <b>protein kinase B</b>.</div>
+<figure>
+<img alt="Insulin receptor phosphorylates IRS; PI3K docked via SH2; PDK1 activates PKB; GLUT4 vesicles fuse with membrane" height="594" loading="lazy" src="figures/06-insulin-pi3k-pkb.webp" width="1200"/>
+<figcaption><b>Follow the metabolic arm.</b> PI3K regulatory subunit docks phosphotyrosines on IRS (PH domains recognize PIP₃). PDK1 phosphorylates PKB; active PKB drives GLUT4 vesicle fusion — the step tested when stems ask which kinase PI3K activates.</figcaption>
+</figure>
+<div class="vs must">
+<div class="vshead">★  MAP kinase arm vs PI3K arm (insulin)</div>
+<table>
+<tr>
+<td><span class="h">MAPK arm</span><u>Growth</u> / mitogenic (Grb2–SOS–Ras–Raf–MAPK; macrosomia of diabetic pregnancy).</td>
+<td><span class="h">PI3K arm</span><u>Metabolic</u> glucose uptake (PI3K–PDK1–PKB → GLUT4).</td>
+</tr>
+</table>
+</div>
+<p>After IRS tyrosine phosphorylation, the p85 regulatory subunit of PI3K docks via its SH2 domain; PI3K phosphorylates PIP₂ to PIP₃, which recruits proteins bearing <b>pleckstrin homology (PH) domains</b> — including PDK1 and PKB. PDK1 phosphorylates PKB/Akt, which triggers fusion of intracellular <b>GLUT4</b>-containing vesicles with the plasma membrane. <b>SHC</b> is an alternate IRS-family docking protein that can feed the MAPK arm. Insulin also activates <b>phospholipase Cγ</b> (not PLCβ, which epinephrine α1/Gq uses) — do not confuse <b>IP₃</b> (second messenger from PLC) with <b>PI3K</b> (SH2-domain lipid kinase). <b>Protein tyrosine phosphatases</b> dephosphorylate RTKs and terminate insulin signaling. Insulin is anabolic to lipid and protein; for carbohydrate it promotes utilization via GLUT4.</p>
+<h3>IRS and dual insulin arms</h3>
+<p>Insulin receptor substrates (<b>IRS-1</b>, <b>SHC</b>) are phosphorylated on tyrosines after insulin binds the pre-formed α₂β₂ receptor. Multiple SH2-domain proteins compete for these phosphotyrosines, routing the signal to either the metabolic PI3K arm or the mitogenic MAPK arm. The PI3K arm is the primary glucose-transport pathway: PI3K generates PIP₃, recruiting PDK1 and PKB via PH domains; active PKB triggers exocytosis of GLUT4 storage vesicles. The MAPK arm (Grb2–SOS–Ras–Raf) explains growth-promoting effects — including fetal macrosomia when maternal hyperinsulinemia drives excessive MAPK signaling during pregnancy.</p>
+<div class="scrollx">
+<table>
+<caption>Stimulus → hormone → signaling mechanism</caption>
+<thead><tr><th>Stimulus</th><th>Hormone</th><th>Mechanism</th></tr></thead>
+<tbody>
+<tr><td><b>Hypoglycemia</b></td><td><b>Glucagon</b></td><td>Membrane receptor → Gs → adenylyl cyclase → cAMP → PKA → phosphorylation</td></tr>
+<tr><td><b>Hyperglycemia / fed state</b></td><td><b>Insulin</b></td><td>RTK → phosphatase (dephosphorylation) + PI3K/PKB/GLUT4 + MAPK arm</td></tr>
+<tr><td><b>Acute stress</b></td><td><b>Epinephrine</b></td><td>Membrane receptors → Gs, Gi, or Gq pathways (see Objective 2 table)</td></tr>
+<tr><td><b>Chronic stress</b></td><td><b>Cortisol</b></td><td><b>Intracellular receptor</b> → modulates <b>gene expression</b> (no second messenger)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Beyond GLUT4, insulin's anabolic program includes promoting lipid and protein synthesis — but for carbohydrate metabolism the critical output is increased glucose uptake and oxidation in fed-state tissues. The phosphatase recruited by insulin dephosphorylates the same enzymes that glucagon and epinephrine (β) phosphorylate via PKA, creating a binary switch: phosphorylated = glucagon/epinephrine-favored state; dephosphorylated = insulin-favored state. This phosphorylation logic connects directly to covalent modification taught in Lecture 01. Know which hormone favors which modification state before tackling metabolic pathway regulation in later lectures. Insulin terminates its own RTK signal through protein tyrosine phosphatases when circulating levels fall.</p>
+<div class="must"><div class="tag">MUST KNOW</div><b>Cortisol</b> is the exception among the hormones above: lipophilic, crosses the membrane, binds an <b>intracellular receptor</b>, and alters transcription — not a membrane receptor and second-messenger cascade.</div>
+<p>Pathways supported by <b>glucagon and epinephrine (β)</b> favor <b>phosphorylated</b> active enzymes; pathways supported by <b>insulin</b> favor <b>dephosphorylated</b> active enzymes (via phosphatase). On waking (fasted), glucagon — not insulin — should dominate glucose production. Insulin is the well-fed hormone: released after meals when blood glucose is high, it promotes glucose uptake and utilization in muscle and adipose while supporting anabolic storage of lipid and protein. Acute exercise can recruit GLUT4 through an insulin-independent, contraction-mediated pathway — but that mechanism is outside the insulin signaling cascade tested here.</p>
+<h2 id="selftest"><span class="onum">Self-test  /  </span> Recall drill</h2>
+<p class="intro-line">Answers are hidden. Use <b>Show answer</b> per item, or <b>Reveal all</b> in the rail.</p>
+<ol class="qlist">
+<li>
+<div class="q">List the five steps of cell signaling, including termination.</div>
+<button aria-controls="a1" aria-expanded="false" class="toggle-ans" data-ans="a1" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a1"><span class="ans">Synthesis/release of signaling molecule → transport to target → receptor detection and transduction → change in metabolism/function/gene expression → termination. Unterminated signaling drives cholera, pertussis, and oncogenic Ras. Disease in this unit is unterminated signaling. Termination failures explain toxin and oncogene pathology in later objectives.</span></div>
+</li>
+<li>
+<div class="q">Define autocrine, paracrine, and endocrine signaling.</div>
+<button aria-controls="a2" aria-expanded="false" class="toggle-ans" data-ans="a2" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a2"><span class="ans">Autocrine: secreting cell is the target. Paracrine: local action on neighboring cells. Endocrine: hormone travels in circulation to distant targets. Distance defines the mode — hormones are the classic endocrine signals. Only endocrine signals require blood-borne transport proteins when lipophilic.</span></div>
+</li>
+<li>
+<div class="q">Pseudohypoparathyroidism involves a Gsα mutation. What receptor type does parathyroid hormone use?</div>
+<button aria-controls="a3" aria-expanded="false" class="toggle-ans" data-ans="a3" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a3"><span class="ans">Heptahelical (GPCR) receptor. PTH is a peptide hormone; the defective Gsα proves a trimeric-G pathway. Distractors: intracellular transcription factor (steroids), cytoplasmic guanylyl cyclase (NO/cGMP), clathrin-pit endocytosis, and tyrosine kinase receptor — all wrong receptor classes for PTH. Gsα defects prove the receptor must couple a trimeric G protein.</span></div>
+</li>
+<li>
+<div class="q">Name four classes of plasma-membrane receptors and one ligand example for each.</div>
+<button aria-controls="a4" aria-expanded="false" class="toggle-ans" data-ans="a4" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a4"><span class="ans">GPCR/heptahelical (epinephrine, glucagon); intrinsic Tyr kinase RTK (growth factors); associated Tyr kinase/JAK-STAT (cytokines); Ser/Thr kinase (TGF-β). Ion-channel receptors are a fifth class. Ion-channel receptors are a fifth examinable class (ligand-gated pores). The four kinase-linked categories map to different ligand families and speeds — JAK–STAT is the fastest nuclear route among them.</span></div>
+</li>
+<li>
+<div class="q">Hydrophilic vs lipophilic hormones: receptor location, transport protein, and half-life?</div>
+<button aria-controls="a5" aria-expanded="false" class="toggle-ans" data-ans="a5" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a5"><span class="ans">Hydrophilic (peptide hormones): plasma-membrane receptor, no transport protein, shorter half-life. Lipophilic (steroid–thyroid superfamily): intracellular receptor, requires transport protein, longer half-life. The transport-protein requirement is why steroid levels persist in circulation while peptide hormones are cleared quickly. Vitamin D and retinoic acid belong to the lipophilic intracellular-receptor family despite not being classic steroids. Transport proteins buffer lipophilic hormones and prolong their circulating half-life.</span></div>
+</li>
+<li>
+<div class="q">What second messengers are produced through GPCR signaling? List all five major ones.</div>
+<button aria-controls="a6" aria-expanded="false" class="toggle-ans" data-ans="a6" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a6"><span class="ans">cAMP, cGMP, IP₃, DAG, and Ca²⁺. cAMP/cGMP are cyclic nucleotides; IP₃ and DAG come from PIP₂ cleavage by PLC; Ca²⁺ is released from the ER by IP₃ (cytosolic [Ca²⁺] can rise from ~0.1 µM to &gt;1 µM). Both arise from one PLC cut of PIP₂; they then diverge.</span></div>
+</li>
+<li>
+<div class="q">Describe the GDP/GTP cycle on Gα. What is the timer?</div>
+<button aria-controls="a7" aria-expanded="false" class="toggle-ans" data-ans="a7" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a7"><span class="ans">Ligand-bound GPCR promotes GDP→GTP exchange on Gα; Gα–GTP activates effector; intrinsic GTPase hydrolyzes GTP → GDP + Pi, inactivating Gα and allowing reassembly with βγ. The GTPase reaction is the self-timer. Ras uses the same GTP/GDP logic as a monomeric protein downstream of RTKs — Q5 tests whether you pick GTP (not ATP or cAMP) as the activating nucleotide.</span></div>
+</li>
+<li>
+<div class="q">Gs, Gi, and Gq each activate which effector?</div>
+<button aria-controls="a8" aria-expanded="false" class="toggle-ans" data-ans="a8" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a8"><span class="ans">Gs and Gi both act on adenylyl cyclase (stimulate vs inhibit). Gq activates phospholipase Cβ. Only Gs and Gi modulate adenylyl cyclase (oppositely). Gq is a separate branch to PLCβ — confounding Gq with Gi is a common exam trap. Memorize effector pairing: Gs and Gi both touch adenylyl cyclase; only Gq touches PLCβ. Stems that say 'inhibitory G protein and adenylyl cyclase' → Gi; 'phosphoinositide pathway' → Gq. Confusing Gq with Gi is a classic trap — only Gq opens the phosphoinositide arm.</span></div>
+</li>
+<li>
+<div class="q">Epinephrine binds three adrenergic receptors. For each, name the G protein and second-messenger change.</div>
+<button aria-controls="a9" aria-expanded="false" class="toggle-ans" data-ans="a9" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a9"><span class="ans">β → Gs → ↑cAMP. α2 → Gi → ↓cAMP. α1 → Gq → IP₃ + DAG. One ligand, three receptors, three G proteins — do not assume every epinephrine effect raises cAMP. Both arise from one PLC cut of PIP₂; they then diverge.</span></div>
+</li>
+<li>
+<div class="q">Glucagon receptor signaling: G protein, effector, second messenger. Where are receptors absent?</div>
+<button aria-controls="a10" aria-expanded="false" class="toggle-ans" data-ans="a10" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a10"><span class="ans">Gs → adenylyl cyclase → ↑cAMP. Glucagon receptors are present in liver and adipose but absent in skeletal muscle. Muscle lacks glucagon receptors because muscle glycogen is regulated by epinephrine and insulin, not glucagon. Liver is the primary glucagon target for glucose output. Muscle glycogen is therefore epinephrine-regulated, not glucagon-regulated.</span></div>
+</li>
+<li>
+<div class="q">Inactive PKA structure? How does cAMP activate it?</div>
+<button aria-controls="a11" aria-expanded="false" class="toggle-ans" data-ans="a11" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a11"><span class="ans">Inactive PKA is R₂C₂ — two regulatory + two catalytic subunits. cAMP binds the regulatory subunits, triggering a conformational change that releases the catalytic subunits to phosphorylate Ser/Thr targets (including CREB). Anchor the answer to the matching row of the ligand–receptor–G-protein table when unsure.</span></div>
+</li>
+<li>
+<div class="q">IP₃ vs DAG: location and primary action?</div>
+<button aria-controls="a12" aria-expanded="false" class="toggle-ans" data-ans="a12" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a12"><span class="ans">IP₃ is water-soluble, releases Ca²⁺ from ER via IP₃-gated channel. DAG is membrane-bound, activates PKC (± Ca²⁺). Do not credit DAG with importing extracellular Ca²⁺ — IP₃ releases ER stores; DAG activates PKC at the membrane. Some PKC isoforms need both DAG and Ca²⁺.</span></div>
+</li>
+<li>
+<div class="q">Cholera toxin mechanism and clinical result?</div>
+<button aria-controls="a13" aria-expanded="false" class="toggle-ans" data-ans="a13" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a13"><span class="ans">ADP-ribosylates Gsα (Arg) at GTPase site from NAD⁺ → Gsα locked GTP-bound → persistent adenylyl cyclase → ↑cAMP → phosphorylated CFTR → ↑Cl⁻, H₂O, HCO₃⁻ loss → rice-water stool. ADP-ribose is transferred from NAD⁺. The pathology is defective adenylyl cyclase regulation, not direct channel block. Electrolyte replacement is critical. Electrolyte repletion is mandatory because stool losses include Na⁺, Cl⁻, and HCO₃⁻.</span></div>
+</li>
+<li>
+<div class="q">Pertussis toxin mechanism. Why does it raise cAMP despite hitting Gi?</div>
+<button aria-controls="a14" aria-expanded="false" class="toggle-ans" data-ans="a14" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a14"><span class="ans">ADP-ribosylates Giα (Cys) → Gi frozen GDP-bound (inactive) → Gi cannot inhibit adenylyl cyclase → net ↑cAMP → whooping cough. Freezing the brake removes the brake. The counterintuitive point: hitting the inhibitory G protein raises cAMP because the inhibitory brake is removed. Both toxins fail to respond to normal hormonal off-signals. The counterintuitive rise in cAMP is the highest-yield discrimination in the toxin pair.</span></div>
+</li>
+<li>
+<div class="q">Both cholera and pertussis toxins increase cAMP. State the opposite routes.</div>
+<button aria-controls="a15" aria-expanded="false" class="toggle-ans" data-ans="a15" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a15"><span class="ans">Cholera freezes Gs ON (stimulates AC). Pertussis freezes Gi OFF (cannot inhibit AC). Both converge on more cAMP. Memorize as a pair: opposite Gα targets, same cAMP endpoint, different diseases. Draw the causal chain, not just the outcome. ADP-ribose is donated by NAD⁺; hydrolysis at the GTPase site is blocked.</span></div>
+</li>
+<li>
+<div class="q">Adenylyl cyclase vs cAMP phosphodiesterase — opposing roles?</div>
+<button aria-controls="a16" aria-expanded="false" class="toggle-ans" data-ans="a16" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a16"><span class="ans">Adenylyl cyclase: ATP → cAMP + PPᵢ when Gs-stimulated. PDE: cAMP → 5′-AMP (terminates). Glucagon/epinephrine (β) raise cAMP via AC; insulin lowers cAMP via PDE; epinephrine (α2)/Gi lowers cAMP by inhibiting AC. Net ↓cAMP matches α2/Gi, but the enzyme target differs.</span></div>
+</li>
+<li>
+<div class="q">How does insulin lower intracellular cAMP? How does epinephrine α2 achieve the same net effect?</div>
+<button aria-controls="a17" aria-expanded="false" class="toggle-ans" data-ans="a17" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a17"><span class="ans">Insulin activates PDE (degrades cAMP). Epinephrine α2 uses Gi to inhibit adenylyl cyclase. Different mechanisms, same ↓cAMP outcome. Insulin and epinephrine α2 are functional allies in lowering cAMP even though insulin is anabolic and epinephrine (β) is catabolic — context determines which arm dominates.</span></div>
+</li>
+<li>
+<div class="q">β1 vs β2 adrenergic effects and one drug for each arm?</div>
+<button aria-controls="a18" aria-expanded="false" class="toggle-ans" data-ans="a18" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a18"><span class="ans">β1 (heart): ↑contractility; β-blockers are anti-hypertensive. β2 (lung/GI smooth muscle): relaxation; albuterol is a β2 agonist bronchodilator. Same Gs coupling, different tissues, opposite clinical goals: you want β2 agonism in asthma (bronchodilation) but β1 blockade in hypertension (↓heart rate/contractility). Stack β2 agonism, glucocorticoid anti-inflammation, then M3 blockade if needed. β1 antagonists treat hypertension; β2 agonists treat bronchospasm — same Gs, different tissue.</span></div>
+</li>
+<li>
+<div class="q">Luis's asthma exacerbation: diagnosis, key vitals, and drugs used?</div>
+<button aria-controls="a19" aria-expanded="false" class="toggle-ans" data-ans="a19" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a19"><span class="ans">Acute asthma exacerbation; O₂ sat 88% on room air, diffuse wheeze, accessory-muscle use. Albuterol (β2 agonist), methylprednisolone (glucocorticoid), ipratropium (M3 antagonist) added when albuterol alone failed. Progressive course after stopping controller (budesonide–formoterol), environmental triggers (smoke, dog). Ipratropium blocks M3 muscarinic Gq bronchoconstriction; steroids inhibit inflammatory prostaglandins/leukotrienes.</span></div>
+</li>
+<li>
+<div class="q">How do hydrophilic hormones alter nuclear gene expression without entering the nucleus?</div>
+<button aria-controls="a20" aria-expanded="false" class="toggle-ans" data-ans="a20" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a20"><span class="ans">cAMP → PKA phosphorylates CREB → CREB modulates transcription at cAMP response elements. CREB is the workaround for hydrophilic hormones that cannot enter the nucleus — PKA phosphorylates CREB, which binds cAMP response elements (CRE) in promoters. Anchor the answer to the matching row of the ligand–receptor–G-protein table when unsure. CREB is how hydrophilic hormones rewrite gene expression without entering the nucleus.</span></div>
+</li>
+<li>
+<div class="q">Growth factor binds RTK. What happens to the receptor? What docks to phosphotyrosines?</div>
+<button aria-controls="a21" aria-expanded="false" class="toggle-ans" data-ans="a21" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a21"><span class="ans">Monomeric RTK dimerizes on ligand binding; autophosphorylates Tyr residues. Adapter proteins with SH2 domains (e.g. Grb2) dock phosphotyrosines. Dimerization = activation. Phosphotyrosines are docking sites, not second messengers. Grb2 is the adapter that links RTK to the Ras–MAPK module. Anchor the answer to the matching row of the ligand–receptor–G-protein table when unsure.</span></div>
+</li>
+<li>
+<div class="q">Interaction of growth factors with receptors: protein X becomes active when it binds which molecule? (Interactive Q5)</div>
+<button aria-controls="a22" aria-expanded="false" class="toggle-ans" data-ans="a22" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a22"><span class="ans">GTP. Protein X is Ras — a monomeric G protein. Distractors ATP, cAMP, Ca²⁺, and IP₃ fail because Ras is not an ATP-kinase and is not activated by GPCR second messengers; only GTP loads the active conformation. ATP would activate a kinase, not a G protein.</span></div>
+</li>
+<li>
+<div class="q">Outline Grb2–SOS–Ras–Raf–MAPK after RTK activation.</div>
+<button aria-controls="a23" aria-expanded="false" class="toggle-ans" data-ans="a23" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a23"><span class="ans">SH2-domain Grb2 binds phosphotyrosine → recruits SOS → SOS exchanges GDP for GTP on Ras → active Ras–GTP activates Raf → MAP kinase cascade. SOS is the Ras-GEF; Raf is the MAPKKK. The cascade amplifies a single growth-factor binding event into thousands of phosphorylated nuclear targets.</span></div>
+</li>
+<li>
+<div class="q">Ras mutation vs neurofibromin (NF1) loss — parallel to which toxins?</div>
+<button aria-controls="a24" aria-expanded="false" class="toggle-ans" data-ans="a24" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a24"><span class="ans">Both lock Ras in the GTP-active state (like cholera locks Gs ON). Ras mutation impairs intrinsic GTPase; neurofibromin is a Ras GAP — its loss prevents Ras inactivation. Outcomes: cancer vs neurofibromatosis. Neurofibromin is a GAP (GTPase-activating protein) — loss of GAP function parallels cholera's block of GTPase activity. Both leave the switch stuck ON. Both lesions leave Ras GTP-bound; the clinical tissue distribution differs.</span></div>
+</li>
+<li>
+<div class="q">Achondroplasia: gene, mutation effect, phenotype?</div>
+<button aria-controls="a25" aria-expanded="false" class="toggle-ans" data-ans="a25" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a25"><span class="ans">FGFR3 transmembrane substitution → ligand-independent activation → disproportionate short limbs (limbs shorter than trunk) and macrocephaly. Most common autosomal-dominant short-limb dwarfism. Almost all cases share the same FGFR3 TM substitution — ligand-independent activation locks the receptor ON without growth factor. Craniosynostosis involves premature suture fusion (FGFR1–3).</span></div>
+</li>
+<li>
+<div class="q">Insulin receptor vs growth-factor RTK: dimerization difference?</div>
+<button aria-controls="a26" aria-expanded="false" class="toggle-ans" data-ans="a26" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a26"><span class="ans">Insulin receptor is pre-formed α₂β₂ dimer. Growth-factor RTKs are monomers that dimerize only after ligand binding. Pre-dimerized (α₂β₂) vs ligand-induced dimerization is the structural distinction tested when comparing insulin to EGF/FGF receptors. Anchor the answer to the matching row of the ligand–receptor–G-protein table when unsure.</span></div>
+</li>
+<li>
+<div class="q">Insulin in skeletal muscle: PI3K activates which kinase for GLUT4 translocation? (Interactive Q6)</div>
+<button aria-controls="a27" aria-expanded="false" class="toggle-ans" data-ans="a27" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a27"><span class="ans">Protein kinase B (Akt / PKB). PI3K generates PIP₃; PDK1 then activates PKB, which drives GLUT4 vesicle translocation in skeletal muscle and adipose. Distractors (CaM kinase, PKA, PKC, PKG) belong to other second-messenger arms. PI3K is the lipid kinase upstream; PKB is the Ser/Thr kinase that moves GLUT4.</span></div>
+</li>
+<li>
+<div class="q">Insulin signaling arms: MAPK vs PI3K — distinct outcomes?</div>
+<button aria-controls="a28" aria-expanded="false" class="toggle-ans" data-ans="a28" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a28"><span class="ans">PI3K–PDK1–PKB: metabolic — GLUT4 translocation, glucose uptake in muscle/adipose. Grb2–SOS–Ras–MAPK: growth/mitogenic (large infant of diabetic mother). Metabolic (PI3K) vs mitogenic (MAPK) arms diverge at IRS. Hyperinsulinemia in pregnancy drives fetal growth via the MAPK arm — large infant of diabetic mother.</span></div>
+</li>
+<li>
+<div class="q">PLCβ vs PLCγ — which hormones use which?</div>
+<button aria-controls="a29" aria-expanded="false" class="toggle-ans" data-ans="a29" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a29"><span class="ans">PLCβ: epinephrine α1 via Gq. PLCγ: insulin via RTK (not G protein). Same IP₃/DAG products, different activation route. β is G-protein-linked (Gq); γ is RTK-linked (insulin). Same lipid products (IP₃/DAG), different upstream activators — do not confuse the isoforms. Both arise from one PLC cut of PIP₂; they then diverge.</span></div>
+</li>
+<li>
+<div class="q">IP₃ vs PI3K — why are these confusable?</div>
+<button aria-controls="a30" aria-expanded="false" class="toggle-ans" data-ans="a30" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a30"><span class="ans">IP₃ is a soluble second messenger from PLC cleavage of PIP₂. PI3K is an SH2-domain lipid kinase docked to IRS in insulin signaling. Different molecules, different pathways. One letter difference, completely different molecules: IP₃ = soluble Ca²⁺-mobilizing messenger; PI3K = lipid kinase making PIP₃ for PKB activation.</span></div>
+</li>
+<li>
+<div class="q">Stimulus–hormone pairs: hypoglycemia, hyperglycemia, acute stress, chronic stress?</div>
+<button aria-controls="a31" aria-expanded="false" class="toggle-ans" data-ans="a31" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a31"><span class="ans">Hypoglycemia → glucagon. Hyperglycemia/fed → insulin. Acute stress → epinephrine. Chronic stress → cortisol (intracellular receptor, gene expression). Morning fast → glucagon (and cortisol at ~5 AM) dominate; post-meal → insulin. Acute stress → epinephrine within seconds; chronic stress → cortisol alters gene transcription over hours.</span></div>
+</li>
+<li>
+<div class="q">How are RTK signals terminated? How does insulin's net phosphorylation state differ from glucagon's?</div>
+<button aria-controls="a32" aria-expanded="false" class="toggle-ans" data-ans="a32" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a32"><span class="ans">Protein tyrosine phosphatases dephosphorylate RTKs. Glucagon/epinephrine (β) pathways phosphorylate key enzymes (PKA); insulin activates phosphatases → dephosphorylated active enzymes. Tyrosine phosphatases are the off-switch for RTK signaling, analogous to GTPase for G proteins and PDE for cAMP. Insulin favors dephosphorylated active enzymes; glucagon/epinephrine (β) favor phosphorylated active enzymes.</span></div>
+</li>
+<li>
+<div class="q">NO signaling pathway from synthesis to vasodilation. Two clinical drugs?</div>
+<button aria-controls="a33" aria-expanded="false" class="toggle-ans" data-ans="a33" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a33"><span class="ans">Arginine + NOS (eNOS) + O₂ + NADPH → NO → soluble guanylyl cyclase → cGMP → PKG → smooth-muscle relaxation (EDRF). Nitroglycerin releases NO (angina). Sildenafil inhibits PDE5 (↑cGMP, erectile dysfunction). PKG phosphorylates smooth-muscle proteins and promotes vasodilation (EDRF). PDE5 normally degrades cGMP; sildenafil blocks PDE5 so NO-driven cGMP persists. Nitroglycerin is a NO donor for angina. Cortisol is the chronic-stress exception among the four stimulus–hormone pairs.</span></div>
+</li>
+<li>
+<div class="q">Cortisol signaling mechanism — how does it differ from epinephrine?</div>
+<button aria-controls="a34" aria-expanded="false" class="toggle-ans" data-ans="a34" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a34"><span class="ans">Cortisol is lipophilic; crosses membrane; binds intracellular receptor; modulates gene expression. No GPCR, G protein, or second messenger. Chronic stress hormone; no membrane step, no G protein, no second messenger. Binds intracellular receptor → hormone–receptor complex modulates transcription (induction/repression). No membrane second messenger — gene induction/repression only.</span></div>
+</li>
+<li>
+<div class="q">JAK-STAT vs RTK pathway — which ligand class and speed?</div>
+<button aria-controls="a35" aria-expanded="false" class="toggle-ans" data-ans="a35" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a35"><span class="ans">Cytokines use associated JAK kinases → phosphorylate STAT → STAT dimers enter nucleus. Shorter/simpler than RTK–Ras–MAPK; faster cellular response. Cytokines (lymphokines, monokines, interleukins) secreted from leukocytes; JAK phosphorylates STAT → STAT dimers bind DNA promoters. Simpler and faster than RTK–Ras–MAPK.</span></div>
+</li>
+<li>
+<div class="q">TGF-β receptor type and downstream proteins?</div>
+<button aria-controls="a36" aria-expanded="false" class="toggle-ans" data-ans="a36" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a36"><span class="ans">Serine/threonine kinase receptor; signals through Smad proteins; involved in osteogenesis and development. Phosphorylates serine/threonine (not tyrosine) on Smad proteins; Smads translocate to nucleus. Involved in osteogenesis and embryonic development. Anchor the answer to the matching row of the ligand–receptor–G-protein table when unsure. IP₃ is a second messenger; PI3K is an SH2-domain lipid kinase — never interchange them.</span></div>
+</li>
+<li>
+<div class="q">What SH2-domain proteins were named in this unit? Keep them separate from second messengers.</div>
+<button aria-controls="a37" aria-expanded="false" class="toggle-ans" data-ans="a37" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a37"><span class="ans">Grb2, STAT, Smad, PI3 kinase, phosphatase — adapters docked to phosphotyrosines, not second messengers. Exam trap: PI3K is an SH2-domain docking protein (insulin), not a second messenger. Second messengers are small diffusible molecules (cAMP, IP₃, etc.). Both arise from one PLC cut of PIP₂; they then diverge.</span></div>
+</li>
+
+<li>
+<div class="q">What does amplification mean in the Gs–adenylyl cyclase cascade?</div>
+<button aria-controls="a38" aria-expanded="false" class="toggle-ans" data-ans="a38" type="button">Show answer</button>
+<div class="ans-wrap" hidden="" id="a38"><span class="ans">One occupied receptor activates many Gα subunits; each drives adenylyl cyclase to make many cAMP molecules; each cAMP-activated PKA phosphorylates many protein targets — one hormone molecule yields thousands of phosphorylated proteins. Cascades exist because of this multiplicative gain. Anchor the answer to the matching row of the ligand–receptor–G-protein table when unsure. Without amplification, nanomolar hormone concentrations could not drive whole-organ responses.</span></div>
+</li>
+</ol>
+<h2 id="rapid"><span class="onum">Rapid review  /  </span> Two-column keyword sheet</h2>
+<p class="intro-line"><b>Bold = highest-yield. If you review one page, review this one.</b></p>
+<div class="cheat">
+<section>
+<h3>Signaling basics</h3>
+<ul>
+<li><b>5 steps: release → transport → receptor/transduction → cellular response → termination</b></li>
+<li>Signals: neurotransmitter, hormone, cytokine, growth factor, eicosanoid, retinoid, NO</li>
+<li>Only cells with the receptor respond</li>
+<li><b>Autocrine / paracrine / endocrine</b></li>
+<li>Hydrophilic → membrane receptor, no transport protein, short t½</li>
+<li>Lipophilic (steroid–thyroid, vit D, retinoic acid) → intracellular receptor, transport protein, long t½</li>
+<li>Receptor classes: ion channel · GPCR · intrinsic TK · associated TK (JAK) · Ser/Thr (TGF-β)</li>
+<li>SH2 adapters: Grb2, STAT, Smad, PI3K, phosphatase</li>
+</ul>
+</section>
+<section>
+<h3>GPCR core table</h3>
+<ul>
+<li><b>Epi β → Gs → AC → ↑cAMP</b></li>
+<li><b>Epi α2 → Gi → AC → ↓cAMP</b></li>
+<li><b>Epi α1 → Gq → PLCβ → IP₃ + DAG</b></li>
+<li><b>Glucagon → glucagon R → Gs → AC → ↑cAMP</b></li>
+<li>Glucagon R absent in muscle; present liver/adipose</li>
+<li>Insulin → PLCγ (not in table above)</li>
+</ul>
+</section>
+<section>
+<h3>G protein cycle</h3>
+<ul>
+<li><b>Heptahelical GPCR + trimeric G (αβγ)</b></li>
+<li>α active with <b>GTP</b>; inactive with <b>GDP</b></li>
+<li><b>GTPase = self-timer</b></li>
+<li>Amplification: 1 hormone → many G proteins → many cAMP → many PKA</li>
+<li>Second messengers: <b>cAMP · cGMP · IP₃ · DAG · Ca²⁺</b></li>
+</ul>
+</section>
+<section>
+<h3>PKA, PI, NO</h3>
+<ul>
+<li><b>PKA inactive = R₂C₂; cAMP binds R → releases C</b></li>
+<li>IP₃ → ER Ca²⁺ release; DAG → membrane PKC</li>
+<li>Ca²⁺–calmodulin → CaM kinases</li>
+<li>NO (EDRF) → soluble GC → cGMP → PKG → vasodilation</li>
+<li>Nitroglycerin → NO; sildenafil = <b>PDE5 inhibitor</b> → ↑cGMP</li>
+</ul>
+</section>
+<section>
+<h3>Toxins &amp; timer diseases</h3>
+<ul>
+<li><b>Cholera: Gsα Arg → locked ON → ↑cAMP → rice-water stool</b></li>
+<li><b>Pertussis: Giα Cys → locked OFF → ↑cAMP → whooping cough</b></li>
+<li><b>Both toxins ↑cAMP by opposite Gα routes</b></li>
+<li>Ras mutation → locked GTP → cancer</li>
+<li>Neurofibromin (NF1) loss → Ras stays on → neurofibromatosis</li>
+<li>FGFR3 TM mutation → achondroplasia; FGFR1–3 → craniosynostosis</li>
+</ul>
+</section>
+<section>
+<h3>Epinephrine &amp; glucagon</h3>
+<ul>
+<li>Glucagon: α cells, hypoglycemia, liver glucose output</li>
+<li>Epinephrine: adrenal medulla, acute stress, α1/α2/β</li>
+<li><b>AC makes cAMP; PDE degrades cAMP</b></li>
+<li>Insulin activates PDE → ↓cAMP</li>
+<li>β1 heart contractility · β2 lung/GI relaxation</li>
+<li>Albuterol β2+ · ipratropium M3− · prednisone anti-inflammatory</li>
+<li>CREB phosphorylated by PKA for nuclear effects</li>
+</ul>
+</section>
+<section>
+<h3>RTK &amp; Ras–MAPK</h3>
+<ul>
+<li>GF RTK: monomer → dimer → Tyr autophosphorylation</li>
+<li>SH2 adapters → Grb2–SOS–Ras(GTP)–Raf–MAPK</li>
+<li>Ras = monomeric G protein; active with GTP</li>
+<li>JAK–STAT: cytokines, faster response</li>
+<li>TGF-β: Ser/Thr receptor → Smad</li>
+</ul>
+</section>
+<section>
+<h3>PKA vs PKC vs PKB vs PKG</h3>
+<ul>
+<li><b>PKA</b> — cAMP-dependent; glucagon/epi (β); phosphorylates CREB and metabolic enzymes</li>
+<li><b>PKC</b> — DAG at membrane (+ Ca²⁺ for some isoforms); epi (α1)/Gq pathway</li>
+<li><b>PKB/Akt</b> — downstream of insulin PI3K; drives GLUT4 vesicle fusion</li>
+<li><b>PKG</b> — cGMP-dependent; NO-mediated vasodilation in smooth muscle</li>
+<li>Do not interchange these four kinases — stems name the second messenger that activates each</li>
+</ul>
+</section>
+<section>
+<h3>Termination mechanisms</h3>
+<ul>
+<li><b>GTPase</b> on Gα — converts GTP → GDP, ends GPCR signal</li>
+<li><b>PDE</b> — degrades cAMP (and PDE5 degrades cGMP)</li>
+<li><b>Gi</b> — inhibits adenylyl cyclase (epi α2)</li>
+<li><b>Insulin → PDE activation</b> — lowers cAMP without Gi</li>
+<li><b>Protein tyrosine phosphatase</b> — dephosphorylates RTKs</li>
+<li><b>Insulin → phosphatase</b> — dephosphorylates metabolic enzymes</li>
+<li>Broken termination → cholera, pertussis, Ras cancer, neurofibromatosis</li>
+</ul>
+</section>
+<section>
+<h3>Clinical drugs &amp; Luis vignette</h3>
+<ul>
+<li><b>Albuterol</b> — short-acting β2 agonist; bronchodilation by smooth-muscle relaxation</li>
+<li><b>Ipratropium (Atrovent)</b> — M3 muscarinic antagonist; blocks Gq bronchoconstriction</li>
+<li><b>Methylprednisolone / prednisone</b> — glucocorticoid; anti-inflammatory; inhibits PG synthesis</li>
+<li><b>Luis C.</b> — 26 y/o, acute asthma exacerbation, O₂ sat 88%, wheeze; albuterol + steroid + ipratropium</li>
+<li>β-blockers — β1 antagonists, anti-hypertensive (↓heart contractility)</li>
+<li>LTB4 and PGD2 — inflammatory eicosanoid mediators in asthma</li>
+</ul>
+</section>
+<section>
+<h3>NO / cGMP / cardiovascular &amp; ED drugs</h3>
+<ul>
+<li>Parasympathetic ACh → endothelial <b>eNOS</b> → NO from <b>arginine</b> (O₂, NADPH)</li>
+<li>NO half-life <b>2–30 seconds</b>; diffuses locally (no receptor protein)</li>
+<li>NO → <b>soluble guanylyl cyclase</b> → <b>cGMP</b> → <b>PKG</b> → smooth-muscle relaxation (EDRF)</li>
+<li>PKG phosphorylates proteins; activates phosphatase → inhibits actin–myosin → vasodilation</li>
+<li><b>Nitroglycerin</b> / <b>isosorbide mononitrate</b> — NO donors; venodilation; angina relief</li>
+<li><b>Sildenafil</b> (Viagra) / vardenafil / tadalafil — <b>PDE5 inhibitors</b>; block cGMP degradation; erectile dysfunction</li>
+</ul>
+</section>
+<section>
+<h3>FGFR &amp; skeletal dysplasias</h3>
+<ul>
+<li><b>FGFR1–4</b> — RTKs for FGF family (≥19 ligands); intrinsic Tyr kinase</li>
+<li>FGFs: mesodermal differentiation, skeletal/nervous development</li>
+<li><b>Achondroplasia</b> — FGFR3 TM substitution → ligand-independent activation</li>
+<li>Phenotype: disproportionate short limbs, macrocephaly; most common autosomal-dominant dwarfism</li>
+<li><b>Craniosynostosis</b> — FGFR1/2/3 mutations; premature skull suture fusion</li>
+<li>FGFR3 inactivation in mice → expanded long-bone growth (opposite phenotype)</li>
+</ul>
+</section>
+<section>
+<h3>Phosphorylation logic by hormone</h3>
+<ul>
+<li><b>Glucagon / epi (β)</b> → ↑cAMP → PKA → <b>phosphorylated</b> = active enzymes</li>
+<li><b>Insulin</b> → phosphatase → <b>dephosphorylated</b> = active enzymes</li>
+<li>Fasted morning → glucagon on, insulin off → gluconeogenesis enzymes phosphorylated/active</li>
+<li>Post-meal → insulin on → glycolysis/glycogen enzymes dephosphorylated/active</li>
+<li>Acute stress → epinephrine (multiple receptor arms simultaneously possible)</li>
+<li>Chronic stress → cortisol → gene induction/repression (hours, not seconds)</li>
+</ul>
+</section>
+<section>
+<h3>PLC isoforms &amp; high-yield confusables</h3>
+<ul>
+<li><b>PLCβ</b> — activated by Gq (epinephrine α1); G-protein-coupled</li>
+<li><b>PLCγ</b> — activated by insulin RTK; not G-protein-coupled</li>
+<li>Both cleave PIP₂ → IP₃ + DAG</li>
+<li><b>IP₃</b> — soluble second messenger; ER Ca²⁺ release</li>
+<li><b>PI3K</b> — SH2 lipid kinase; insulin → PIP₃ → PKB (NOT a second messenger)</li>
+<li><b>Ras</b> — monomeric G protein; GTP = active (Q5 answer)</li>
+<li><b>Gs/Gi/Gq</b> — trimeric G proteins; α subunit carries signal</li>
+</ul>
+</section>
+<section>
+<h3>JAK-STAT &amp; TGF-β (brief)</h3>
+<ul>
+<li><b>Cytokines</b> — lymphokines, monokines, interleukins; immune signaling</li>
+<li>Associated JAK kinase → phosphorylates STAT → STAT dimer → nucleus → transcription</li>
+<li>Faster/shorter pathway than RTK–Ras–MAPK</li>
+<li><b>TGF-β</b> — Ser/Thr kinase receptor → Smad proteins → osteogenesis/development</li>
+</ul>
+</section>
+<section>
+<h3>Receptor class quick-match</h3>
+<ul>
+<li>Epinephrine, glucagon → <b>GPCR</b> (heptahelical)</li>
+<li>Growth factors → <b>RTK</b> (monomer → dimer)</li>
+<li>Insulin → <b>RTK</b> (pre-dimerized α₂β₂)</li>
+<li>Cytokines → <b>JAK–STAT</b> (associated kinase)</li>
+<li>TGF-β → <b>Ser/Thr kinase</b> → Smad</li>
+<li>Steroids, thyroid, cortisol, vit D → <b>intracellular</b> receptor</li>
+<li>PTH (pseudohypoparathyroidism) → <b>heptahelical GPCR</b> with defective Gsα</li>
+<li>Pseudohypoparathyroidism = target-organ resistance to PTH despite normal PTH levels</li>
+</ul>
+</section>
+<section>
+<h3>Insulin &amp; hormones</h3>
+<ul>
+<li>Insulin R: pre-dimerized <b>α₂β₂</b> RTK</li>
+<li><b>IRS → PI3K → PDK1 → PKB → GLUT4</b> (muscle/adipose)</li>
+<li>MAPK arm: Grb2–SOS–Ras (growth)</li>
+<li>PLCγ (insulin) vs PLCβ (epi α1)</li>
+<li><b>IP₃ ≠ PI3K</b></li>
+<li>Hypoglycemia→glucagon · hyperglycemia→insulin · acute stress→epi · chronic→cortisol</li>
+<li>Cortisol: intracellular receptor → gene expression</li>
+<li>Glucagon/epi phosphorylate; insulin dephosphorylates (phosphatase)</li>
+<li>Tyrosine phosphatases terminate RTK signals</li>
+</ul>
+</section>
+</div>
+<script>
+(function () {
+  const root = document.documentElement;
+  const revealBtn = document.getElementById('reveal-btn');
+  const themeBtn = document.getElementById('theme-btn');
+  const toc = document.getElementById('toc');
+  const railBox = document.getElementById('rail-box');
+
+  const stored = localStorage.getItem('l04-theme');
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+
+  themeBtn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : (root.dataset.theme === 'light' ? 'dark' : (matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark'));
+    root.dataset.theme = next;
+    localStorage.setItem('l04-theme', next);
+  });
+
+  document.querySelectorAll('.toggle-ans').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-ans');
+      const panel = document.getElementById(id);
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      btn.textContent = open ? 'Show answer' : 'Hide answer';
+      if (open) panel.setAttribute('hidden', '');
+      else panel.removeAttribute('hidden');
+    });
+  });
+
+  function setAll(open) {
+    document.querySelectorAll('.toggle-ans').forEach(btn => {
+      const panel = document.getElementById(btn.getAttribute('data-ans'));
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Hide answer' : 'Show answer';
+      if (open) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
+    });
+    revealBtn.setAttribute('aria-pressed', open ? 'true' : 'false');
+    revealBtn.textContent = open ? 'Hide all answers' : 'Reveal all answers';
+  }
+
+  revealBtn.addEventListener('click', () => {
+    const open = revealBtn.getAttribute('aria-pressed') !== 'true';
+    setAll(open);
+  });
+
+  function syncRailOpen() {
+    if (matchMedia('(min-width: 60.01rem)').matches) railBox.open = true;
+  }
+  syncRailOpen();
+  matchMedia('(min-width: 60.01rem)').addEventListener('change', syncRailOpen);
+
+  toc.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    e.preventDefault();
+    const el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) {
+      el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      history.replaceState(null, '', a.getAttribute('href'));
+    }
+    if (matchMedia('(max-width: 60rem)').matches) railBox.open = false;
+  });
+
+  function countMust(startId) {
+    const start = document.getElementById(startId);
+    if (!start) return 0;
+    const marks = new Set();
+    let el = start.nextElementSibling;
+    while (el && el.tagName !== 'H2') {
+      el.querySelectorAll('div.must:not(.vs), .vs.must, tr.must, figcaption .ms').forEach(n => marks.add(n));
+      if (el.matches && el.matches('div.must:not(.vs), .vs.must')) marks.add(el);
+      el = el.nextElementSibling;
+    }
+    return marks.size;
+  }
+  document.querySelectorAll('.stars[data-sec]').forEach(span => {
+    const n = countMust(span.dataset.sec);
+    span.textContent = n ? '★'.repeat(Math.min(n, 8)) : '';
+    span.title = n + ' MUST KNOW marks';
+  });
+
+  const links = [...toc.querySelectorAll('a[href^="#"]')];
+  const targets = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+  function spy() {
+    const y = window.scrollY + 80;
+    let current = targets[0];
+    for (const t of targets) {
+      if (t.offsetTop <= y) current = t;
+    }
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+})();
+</script>
+</main>
+</div>
+</body>
+</html>
