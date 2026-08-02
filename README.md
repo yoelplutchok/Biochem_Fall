@@ -22,9 +22,9 @@ Course-order numbering is confirmed by the interactive-session deck, whose title
 
 - **`_Interactive Sessions`** — the two "Pre discussion Week 1" decks. These contain **exam-style practice questions tagged to numbered learning objectives**, plus clinical vignettes. Highest-value exam proxy in the repo.
   - *Overview and enzyme PE IS* → **slides 2–12 cover lecture 01** (Questions 1–2); **slides 13–23 cover lecture 02** (Questions 3–5)
-  - *ETC Signal Tr Carb Dig* → slides 2–16 cover Primer 1 + lecture 03; slides 17+ cover lectures 04–05
+  - *ETC Signal Tr Carb Dig* (57 slides) → **2–16** Primer 1 + lecture 03 (Questions 1–3, all tagged to ETC objective 5); **17–36** lecture 04 (Questions 4–6); **37–57** Primer 2 + lecture 05 (Questions 7–9)
 - **`_Course Documents`** — syllabus
-- **`_Prompts`** — reusable prompts for generating the study guides, plus `html_to_md.py` (the HTML→markdown converter for v2-style guides). `PROMPT_FOR_LECTURE_03_WEB.md` is the first **web-only** brief: one self-contained `index.html` per lecture served from GitHub Pages, with word-count budgets in place of page counts and no PDF or markdown pipeline.
+- **`_Prompts`** — reusable prompts for generating the study guides, plus `html_to_md.py` (the HTML→markdown converter for v2-style guides). `PROMPT_FOR_LECTURE_03_WEB.md` and `PROMPT_FOR_LECTURE_04_WEB.md` are **web-only** briefs: one self-contained `index.html` per lecture served from GitHub Pages, with word-count budgets in place of page counts and no PDF or markdown pipeline.
 
 ## Study guides built so far
 
@@ -34,19 +34,18 @@ Course-order numbering is confirmed by the interactive-session deck, whose title
 | `01 - Overview of Metabolic Pathways` | v1 — superseded, kept for comparison | 22 | PDF + MD + HTML/CSS source |
 | `02 - Enzymes and Enzyme Kinetics` | **v2 — current** | 18 | PDF + MD + HTML/CSS source + figures |
 | `02 - Enzymes and Enzyme Kinetics` | v1 — superseded, kept for comparison | 24 | PDF + MD + HTML/CSS source |
+| `02 - Enzymes and Enzyme Kinetics` | **web v2 — current** | — | `index.html` + `figures/` (GitHub Pages) |
 | `03 - Electron Transport Chain` | **web v2 — current** | — | `index.html` + `figures/` (GitHub Pages) |
 | `03 - Electron Transport Chain` | v1 — superseded print HTML | — | HTML/CSS + PDF + MD |
 
 Each guide's `.html`, `.css` and `Lecture_NN_figures/` must stay in the same folder — the HTML references them with relative paths. The PDF is self-contained.
 
-**Web editions.** Lectures 01 and 02 are also published as responsive web pages — same content, but with the self-test answers hidden behind a per-question reveal, a contents rail that tracks your position, and dark mode. They read properly on a phone. Both are private until shared from the page's own share menu.
+**Web editions.** Lectures 02 and 03 are published as responsive web pages on GitHub Pages — self-test answers hidden behind a per-question reveal, a contents rail that tracks your position and shows each objective's ★ count, and dark mode. They read properly on a phone. Each is one self-contained `index.html` plus a `figures/` folder of WebP images downscaled to 1200px.
 
-| Lecture | Web edition |
-|---|---|
-| 01 — Overview of Metabolic Pathways | https://claude.ai/code/artifact/501dda1a-7e89-4d97-91ed-ec9203b83654 |
-| 02 — Enzymes and Enzyme Kinetics | https://claude.ai/code/artifact/e43ebdad-9fe5-4e09-b2d7-1d5b188d29aa |
+Lecture 01 also has a web edition, still hosted as a Claude artifact rather than on Pages:
+https://claude.ai/code/artifact/501dda1a-7e89-4d97-91ed-ec9203b83654
 
-These are built from the same print HTML by a transform script, so the PDF and the web page never drift apart. Figures are downscaled to 1200px and re-encoded as WebP, then inlined, which keeps each page self-contained and under ~1.2 MB.
+The Lecture 02 web edition is a **rewrite, not a port** of its print guide: the orientation section was rebuilt around why an enzyme can only lower activation energy and why that reduces the lecture to two numbers, and roughly a dozen passages gained the reasoning behind a fact that the print version only asserted. It is the reference for what a web edition should read like.
 
 **v2 is the house style.** It reads as a self-contained textbook chapter rather than a report about a lecture: no meta-references to the slides, the deck or the instructor; each fact stated exactly once; source errors corrected silently; emphasis carried by a three-tier visual system instead of repetition. Its CSS (`Lecture 01 - STUDY GUIDE v2 (html source).css`) is the one to reuse and extend — it adds `.must` (★ MUST KNOW bands), `.vs` (confusable-pair boxes), `.legend`, `.map`, `figure.side`/`figure.tall`, and `table.long` to the v1 sheet. The Lecture 02 sheet extends it again with `tr.must`, `.vs.must` and `.ms`, so a MUST KNOW mark can sit on the fact's own home — a table row, a VS box or a figure caption — instead of being repeated in a band beneath it. `_Prompts/html_to_md.py` converts any guide built on that CSS to clean GitHub-flavoured markdown.
 
@@ -57,8 +56,9 @@ These are built from the same print HTML by a transform script, so the PDF and t
 
 ## GitHub Pages
 
-Site root is this folder. Front door: repo Pages URL → `index.html`. Lecture 03 web guide:
+Site root is this folder. Front door: repo Pages URL → `index.html`. Lecture web guides:
 
+`…/02%20-%20Enzymes%20and%20Enzyme%20Kinetics/`
 `…/03%20-%20Electron%20Transport%20Chain/`
 
 Slide decks (`.pptx`/`.ppt`), `_extract/`, and `pages/` are gitignored to keep the repo light; they remain on disk locally.
@@ -66,4 +66,4 @@ Slide decks (`.pptx`/`.ppt`), `_extract/`, and `pages/` are gitignored to keep t
 ## Known gaps
 
 1. **No transcript for Carbohydrate Digestion** (Binstock). All other six lectures have one. The `carbohydrate.md` file that was on the Desktop is the **Carbohydrate *Structure* primer** (Kamath), not digestion — it has been filed under `Primer 2`.
-2. **Lecture 03** now has a web guide at `03 - Electron Transport Chain/index.html` (v2 voice, figures, self-test). Lectures **04–05** and both **primers** have no guide yet. Lectures **01–02** still need Pages ports of their Claude artifact web editions.
+2. Lectures **02** and **03** have web guides on Pages. Lectures **04–05** and both **primers** have no guide yet. Lecture **01** still needs a Pages port of its Claude artifact web edition.
