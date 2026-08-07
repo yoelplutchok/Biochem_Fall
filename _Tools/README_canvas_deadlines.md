@@ -3,6 +3,38 @@
 Keeps a live view of every Canvas due date and warns you before things land.
 Set up 2026-08-07.
 
+## The page
+
+**https://yoelplutchok.github.io/Biochem_Fall/deadlines.html**
+
+Rebuilt from Canvas three times a day by a GitHub Action, so it is current
+whether or not this laptop is open. Also linked from the site's front page.
+Bookmark it on your phone — add to Home Screen and it behaves like an app.
+
+Everything on it is fetched from Canvas at build time. It never reads
+`_Planning/ALL_CANVAS_DEADLINES.md` or any other saved copy; those are frozen
+snapshots and will disagree with reality as instructors move dates.
+
+`.github/workflows/deadlines.yml` — 7 AM, 1 PM and 7 PM Eastern, plus a
+**Run workflow** button on the Actions tab for an instant refresh. Three runs a
+day because GitHub delays or occasionally skips scheduled jobs under load.
+
+```bash
+gh workflow run deadlines.yml          # refresh now
+gh run list --workflow=deadlines.yml   # did it work
+```
+
+The Canvas credential lives in **GitHub repo secrets**, never in the repo:
+`CANVAS_FEED` is set, `CANVAS_TOKEN` is not (see *Accuracy* below). Actions
+masks both in logs. To rotate: `gh secret set CANVAS_FEED < canvas_feed.conf`.
+
+Two things to know. **This repo is public, so the page is public** — anyone with
+the link can read your schedule and what is past due. It carries a `noindex` tag
+so search engines skip it, but that is obscurity, not privacy. And GitHub
+disables scheduled workflows in repositories that sit untouched for 60 days; you
+commit coursework often enough that this should not bite, but if the page ever
+goes stale, check that first.
+
 ## Running it by hand
 
 ```bash
@@ -63,8 +95,19 @@ Both go away with a token:
 2. Paste the token *by itself* into `_Tools/canvas_token.conf` and the
    Application Support `_Tools/` copy. Gitignored in both places.
 3. `chmod 600` both files.
+4. Give the hosted page the same token — it is a separate credential store:
 
-The script prefers the token automatically and prints `source: api`.
+   ```bash
+   gh secret set CANVAS_TOKEN < _Tools/canvas_token.conf
+   gh workflow run deadlines.yml          # rebuild immediately
+   ```
+
+The script prefers the token automatically and prints `source: api`. The page
+switches from "calendar feed" to "API" in its header line, times appear, and
+submitted work stops showing up as past due.
+
+Treat the token like a password: it can do anything your Canvas account can. If
+it leaks, delete it from Canvas → Account → Settings and issue a new one.
 
 ## Reminders
 
