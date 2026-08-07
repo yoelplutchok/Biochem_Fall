@@ -1,0 +1,54 @@
+name: Refresh deadlines page
+
+# Runs on GitHub's machines, not the laptop -- the page stays current with the
+# Mac closed, which is the whole point. Scheduled runs can be delayed by a few
+# minutes under load, so three a day guarantees the "at least daily" promise
+# even if one is skipped.
+on:
+  schedule:
+    - cron: "0 11 * * *"   # ~7 AM Eastern
+    - cron: "0 17 * * *"   # ~1 PM Eastern
+    - cron: "0 23 * * *"   # ~7 PM Eastern
+  workflow_dispatch:        # "Run workflow" button, for an instant refresh
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deadlines
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # CANVAS_TOKEN is preferred: exact due times and submitted work filtered
+      # out. Falls back to CANVAS_FEED (the iCal URL), which has neither.
+      - name: Build the page from live Canvas data
+        env:
+          CANVAS_TOKEN: ${{ secrets.CANVAS_TOKEN }}
+          CANVAS_FEED: ${{ secrets.CANVAS_FEED }}
+        run: |
+          python3 _Tools/canvas_deadlines.py \
+            --quiet --no-md --days 14 \
+            --html deadlines.html \
+            --state .github/deadlines-state.json
+
+      - name: Commit only if something actually changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deadlines.html .github/deadlines-state.json
+          if git diff --staged --quiet; then
+            echo "No change since the last run."
+            exit 0
+          fi
+          git commit -m "Refresh deadlines page"
+          git pull --rebase --autostash origin main
+          git push

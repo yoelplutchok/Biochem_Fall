@@ -1,0 +1,112 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="refresh" content="1800">
+<title>What's due</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#14181f; --dim:#5c6673; --line:#e2e6ec;
+  --red:#c0392b; --redbg:#fdecea; --amber:#9a6206; --amberbg:#fdf3e0;
+  --accent:#1f5fa8;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#12151a; --card:#1a1f27; --ink:#e8ecf2; --dim:#98a3b3; --line:#2a323d;
+    --red:#ff8073; --redbg:#3a1e1c; --amber:#ffc266; --amberbg:#3a2f18;
+    --accent:#79b0f0;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;padding:1rem;background:var(--bg);color:var(--ink);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:46rem;margin:0 auto}
+h1{font-size:1.6rem;margin:.2rem 0 .1rem}
+h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);
+  margin:2rem 0 .6rem;font-weight:600}
+.meta{color:var(--dim);font-size:.83rem;margin:0 0 .4rem}
+.item{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);
+  border-radius:9px;padding:.7rem .85rem;margin-bottom:.5rem}
+.item.overdue{border-left-color:var(--red);background:var(--redbg)}
+.item.soon{border-left-color:var(--amber);background:var(--amberbg)}
+.rel{font-weight:700;font-size:1.02rem}
+.item.overdue .rel{color:var(--red)}
+.item.soon .rel{color:var(--amber)}
+.abs{color:var(--dim);font-size:.83rem;margin-left:.5rem}
+.what{margin-top:.2rem}
+.course{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.05em;
+  padding:.14rem .42rem;border-radius:4px;background:var(--line);color:var(--dim);
+  vertical-align:1px;margin-right:.35rem}
+.what a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.what a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.pts{color:var(--dim);font-size:.8rem;margin-left:.3rem;white-space:nowrap}
+.chg{background:var(--card);border:1px solid var(--line);border-radius:9px;
+  padding:.6rem .85rem;margin-bottom:.5rem;font-size:.92rem}
+.chg b{color:var(--accent)}
+.empty{color:var(--dim);font-style:italic;padding:.6rem 0}
+.note{color:var(--dim);font-size:.8rem;border-top:1px solid var(--line);
+  margin-top:2.2rem;padding-top:.8rem}
+.note code{font-size:.94em;background:var(--line);padding:.1em .35em;border-radius:3px}
+</style>
+<div class="wrap">
+<h1>What's due</h1>
+<p class="meta">Pulled straight from Canvas (calendar feed) · updated <span id="built" data-at="2026-08-07T12:37:22.783677-04:00">just now</span> · Fri Aug 7, 12:37 PM ET</p>
+<h2>Past due (5)</h2>
+<article class="item overdue"><div><span class="rel" data-due="2026-07-30T12:00:00-04:00">…</span><span class="abs">Thu Jul 30</span></div><div class="what"><span class="course">PHYS DIAG</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168926&amp;month=07&amp;year=2026#assignment_1447645">Medicine &amp; Horsemanship - SIGN UP &amp; Completed Registration &amp; Release form via docusign DUE by NOON 7/30/2026</a></div></article>
+<article class="item overdue"><div><span class="rel" data-due="2026-08-05T00:00:00-04:00">…</span><span class="abs">Wed Aug 5</span></div><div class="what"><span class="course">PHYS DIAG</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168926&amp;month=08&amp;year=2026#assignment_1447623">Canvas Quiz Guidelines to Working with Standardized Patients - cannot participate in SDL without completing this</a></div></article>
+<article class="item overdue"><div><span class="rel" data-due="2026-08-05T00:00:00-04:00">…</span><span class="abs">Wed Aug 5</span></div><div class="what"><span class="course">OMM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168933&amp;month=08&amp;year=2026#assignment_1454892">Pre-lab 1 H&amp;P Quiz</a></div></article>
+<article class="item overdue"><div><span class="rel" data-due="2026-08-07T00:00:00-04:00">…</span><span class="abs">Fri Aug 7</span></div><div class="what"><span class="course">PHYS DIAG</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168926&amp;month=08&amp;year=2026#assignment_1447635">Canvas quiz Bloodborne Pathogen/Cleaning and Disinfecting Required Quiz</a></div></article>
+<article class="item overdue"><div><span class="rel" data-due="2026-08-07T00:00:00-04:00">…</span><span class="abs">Fri Aug 7</span></div><div class="what"><span class="course">PHYS DIAG</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168926&amp;month=08&amp;year=2026#assignment_1447631">Canvas quiz Introduction to Physical Diagnosis I</a></div></article>
+<h2>Next 14 days</h2>
+<article class="item soon"><div><span class="rel" data-due="2026-08-09T00:00:00-04:00">…</span><span class="abs">Sun Aug 9</span></div><div class="what"><span class="course">PHYSIO</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168930&amp;month=08&amp;year=2026#assignment_1470611">Week 1 Quiz 1 - Physio I Body Fluids, Fluid Membranes, and Active transport</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-12T00:00:00-04:00">…</span><span class="abs">Wed Aug 12</span></div><div class="what"><span class="course">PHYS DIAG</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168926&amp;month=08&amp;year=2026#assignment_1469721">SOAP Note Submission</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-16T00:00:00-04:00">…</span><span class="abs">Sun Aug 16</span></div><div class="what"><span class="course">PHYSIO</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168930&amp;month=08&amp;year=2026#assignment_1470615">Week 2 Quiz 2 - Physio I Osmosis, and Action potentials</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-17T00:00:00-04:00">…</span><span class="abs">Mon Aug 17</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=08&amp;year=2026#assignment_1466438">New Week 1 Enzyme and ETC Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-17T00:00:00-04:00">…</span><span class="abs">Mon Aug 17</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=08&amp;year=2026#assignment_1466474">Week 1 Overview Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-17T00:00:00-04:00">…</span><span class="abs">Mon Aug 17</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=08&amp;year=2026#assignment_1466475">Week 1 Signal Transduction and Carb dig Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-18T13:00:00-04:00">…</span><span class="abs">Tue Aug 18</span></div><div class="what"><span class="course">ANATOMY</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168934&amp;month=08&amp;year=2026#assignment_1443268">Pre-lab Quiz</a></div></article>
+<h2>Rest of the semester (21)</h2>
+<article class="item "><div><span class="rel" data-due="2026-08-31T00:00:00-04:00">…</span><span class="abs">Mon Aug 31</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=08&amp;year=2026#assignment_1466442">Week  3 Gluconeogenesis and Glycogen Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-31T00:00:00-04:00">…</span><span class="abs">Mon Aug 31</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=08&amp;year=2026#assignment_1466486">Week 3 Glycolysis and TCA Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-08-31T00:00:00-04:00">…</span><span class="abs">Mon Aug 31</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=08&amp;year=2026#assignment_1466428">Week 4 Monosaccharides, HMP NADPH 1 Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-09-01T00:00:00-04:00">…</span><span class="abs">Tue Sep 1</span></div><div class="what"><span class="course">PHYS DIAG</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168926&amp;month=09&amp;year=2026#assignment_1447629">Canvas Quiz Musculoskeletal and Elbow Weekly Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-09-14T00:00:00-04:00">…</span><span class="abs">Mon Sep 14</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=09&amp;year=2026#assignment_1466480">Week 5 DNA comp Rep Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-09-14T00:00:00-04:00">…</span><span class="abs">Mon Sep 14</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=09&amp;year=2026#assignment_1466445">Week 5 DNA Repair Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-09-15T00:00:00-04:00">…</span><span class="abs">Tue Sep 15</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=09&amp;year=2026#assignment_1466426">Week 6 RNA types and synthesis Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-09-22T00:00:00-04:00">…</span><span class="abs">Tue Sep 22</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=09&amp;year=2026#assignment_1466459">Week 7 Genetic code Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-09-22T00:00:00-04:00">…</span><span class="abs">Tue Sep 22</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=09&amp;year=2026#assignment_1466440">Week 7 Protein Translation Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-10-06T00:00:00-04:00">…</span><span class="abs">Tue Oct 6</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=10&amp;year=2026#assignment_1466448">Week 4 NADPH 2 and Glycoprotein Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-10-19T00:00:00-04:00">…</span><span class="abs">Mon Oct 19</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=10&amp;year=2026#assignment_1466491">Week 10  Lipid digestion fatty and TAG and degradation Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-10-19T00:00:00-04:00">…</span><span class="abs">Mon Oct 19</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=10&amp;year=2026#assignment_1466479">Week 10 Overview and Acid base Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-11-01T00:00:00-04:00">…</span><span class="abs">Sun Nov 1</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=11&amp;year=2026#assignment_1466493">Globular and Fibrous proteins Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-11-02T00:00:00-05:00">…</span><span class="abs">Mon Nov 2</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=11&amp;year=2026#assignment_1466494">Week 12 Cholesterol and lipoprotein Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-11-02T00:00:00-05:00">…</span><span class="abs">Mon Nov 2</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=11&amp;year=2026#assignment_1466444">Week 13 Phospholipid and Eicosanoid Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-11-23T00:00:00-05:00">…</span><span class="abs">Mon Nov 23</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=11&amp;year=2026#assignment_1466437">Week 15  Macronutrients Self -Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-11-23T00:00:00-05:00">…</span><span class="abs">Mon Nov 23</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=11&amp;year=2026#assignment_1466463">Week 15 Vitamins and iron Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-12-13T00:00:00-05:00">…</span><span class="abs">Sun Dec 13</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=12&amp;year=2026#assignment_1466436">Week 10 Overview and Acid base Quiz (Not For credit)</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-12-13T00:00:00-05:00">…</span><span class="abs">Sun Dec 13</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=12&amp;year=2026#assignment_1466492">Week 17 Nitrogen balance and Urea Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-12-13T00:00:00-05:00">…</span><span class="abs">Sun Dec 13</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=12&amp;year=2026#assignment_1466488">Week 18 AA Inborn and Heme Self-Assessment Quiz</a></div></article>
+<article class="item "><div><span class="rel" data-due="2026-12-13T00:00:00-05:00">…</span><span class="abs">Sun Dec 13</span></div><div class="what"><span class="course">BIOCHEM</span><a href="https://touro.instructure.com/calendar?include_contexts=course_168928&amp;month=12&amp;year=2026#assignment_1466430">Week 18 Purine and pyrimidine Self-Assessment Quiz</a></div></article>
+<p class="note">
+Built from the Canvas <b>calendar feed</b>, which publishes most assignments as all-day entries — so dates are exact but <b>times are not shown</b> (Canvas due times are usually 11:59 PM), and work already turned in is <b>not</b> filtered out. Adding a Canvas API token fixes both. 
+Generated by <code>_Tools/canvas_deadlines.py</code> from live Canvas data — never from a saved copy. Canvas itself is the final word.</p>
+</div><script>
+// Recompute "in N days" in the browser so a page cached on a phone overnight
+// never shows a stale countdown from whenever the build last ran.
+for (const el of document.querySelectorAll('[data-due]')) {
+  const ms = new Date(el.dataset.due) - new Date();
+  const d = Math.round(ms / 86400000), h = Math.round(ms / 3600000);
+  el.textContent =
+    ms < 0   ? (d === 0 ? 'overdue today' : 'overdue by ' + Math.abs(d) + 'd') :
+    h <= 1   ? 'due within the hour' :
+    h < 24   ? 'in ' + h + ' hours' :
+    d === 1  ? 'tomorrow' : 'in ' + d + ' days';
+}
+const b = document.getElementById('built');
+if (b) {
+  const mins = Math.round((new Date() - new Date(b.dataset.at)) / 60000);
+  b.textContent = mins < 60 ? mins + ' min ago'
+    : mins < 1440 ? Math.round(mins / 60) + ' hr ago'
+    : Math.round(mins / 1440) + ' days ago';
+}
+</script>
