@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Transduction Pathways</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EAEDEB; --card:#FCFDFC; --ink:#111A16; --ink-2:#3E4B45; --ink-3:#77837D;
+  --rule:#CED7D1; --rule-2:#E2E7E4;
+  --gpcr:#7A2E5C; --enz:#0C6459; --intra:#8A5A0E;
+  --clin:#961F32;
+  --sans:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Literata",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:15px;line-height:1.6}
+.w{max-width:1720px;margin:0 auto;padding:0 40px}
+
+.hdr{padding-top:30px;padding-bottom:8px}
+.hdr h1{font-family:var(--sans);font-weight:700;font-size:clamp(24px,3vw,34px);
+  letter-spacing:-.02em;margin:0}
+
+/* ── view switch ── */
+.switch{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--rule);border-radius:3px;
+  overflow:hidden;width:max-content;margin:20px 0 6px}
+.switch button{font-family:var(--sans);font-size:13.5px;background:none;border:0;
+  padding:9px 18px;cursor:pointer;color:var(--ink-2);border-right:1px solid var(--rule)}
+.switch button:last-child{border-right:0}
+.switch button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.vhint{font-size:13.5px;color:var(--ink-3);margin:0 0 4px;max-width:78ch}
+
+.bar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  padding:12px 0 12px;border-bottom:1px solid var(--rule)}
+.key{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;
+  color:var(--ink-2);align-items:center}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.fam{width:15px;height:15px;border-radius:3px;display:inline-flex;align-items:center;
+  justify-content:center;color:#fff;font-family:var(--mono);font-size:9px;font-weight:500}
+.btns{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+  background:none;border:1px solid var(--rule);color:var(--ink-2);padding:6px 11px;
+  border-radius:2px;cursor:pointer}
+.btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+button:focus-visible,.cell:focus-visible{outline:2px solid var(--gpcr);outline-offset:2px}
+
+.view{display:none;padding-top:18px;padding-bottom:30px}
+.view.on{display:block}
+
+/* ── VIEW A · grid ── */
+.gwrap{overflow-x:auto;padding:8px 8px 4px 0}
+#grid{display:grid;grid-template-columns:148px repeat(8,minmax(0,1fr));gap:8px}
+@media(max-width:900px){#grid{grid-template-columns:120px repeat(8,132px);}}
+.sh{background:var(--paper);border:0;border-bottom:2px solid var(--rule);
+  padding:0 3px 6px;text-align:left;cursor:pointer;font-family:var(--sans);
+  color:var(--ink-2);position:sticky;top:0;z-index:3}
+.sh .n{font-family:var(--mono);font-size:9px;color:var(--ink-3);display:block}
+.sh .t{font-size:12px;font-weight:500;line-height:1.15;display:block;margin-top:1px}
+.sh.on{border-bottom-color:var(--ink);color:var(--ink)}
+.corner{position:sticky;top:0;background:var(--paper);z-index:3;
+  border-bottom:2px solid var(--rule)}
+.lane{background:none;border:0;border-left:4px solid var(--a);padding:8px 8px;
+  text-align:left;cursor:pointer;font-family:var(--sans);color:var(--ink);
+  align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.lane .t{display:block;font-size:12.5px;font-weight:500;line-height:1.15}
+.lane .s{display:block;font-family:var(--serif);font-size:10px;color:var(--ink-3);
+  line-height:1.25;margin-top:3px}
+.lane .f{display:block;font-family:var(--mono);font-size:8.5px;color:var(--a);margin-top:4px;
+  letter-spacing:.06em;text-transform:uppercase}
+.cell{background:var(--card);border:1px solid var(--rule-2);border-radius:4px;
+  padding:8px 8px;text-align:left;cursor:pointer;font-family:var(--sans);
+  color:var(--ink);align-self:stretch;position:relative;display:flex;flex-direction:column;
+  transition:border-color .12s,opacity .12s,box-shadow .12s;min-width:0}
+@media(prefers-reduced-motion:reduce){.cell,.drawer{transition:none}}
+.cell:hover{border-color:var(--a)}
+.cell .t{display:block;font-size:12px;font-weight:500;line-height:1.18;overflow-wrap:break-word}
+.cell .s{display:block;font-family:var(--serif);font-size:10px;color:var(--ink-3);
+  line-height:1.28;margin-top:3px;overflow-wrap:break-word}
+.cell.sel{border-color:var(--a);box-shadow:inset 0 0 0 2px var(--a)}
+.cell.dim{opacity:.25}
+.none{border:1px dashed var(--rule);border-radius:4px;display:flex;align-items:center;
+  justify-content:center;color:var(--ink-3);font-family:var(--mono);font-size:13px;
+  opacity:.45;align-self:stretch}
+.pin{position:absolute;top:-6px;right:-6px;width:15px;height:15px;border-radius:50%;
+  background:var(--clin);color:#fff;font-family:var(--mono);font-size:9px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* ── VIEW B · flow ── */
+.picker{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.frow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 16px}
+.rbar{display:none;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 18px;
+  padding:9px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.rbar.on{display:flex}
+.score{font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.score b{color:var(--ink);font-weight:500}
+.rnote{font-size:12.5px;color:var(--ink-3)}
+.node.mask{border-left-color:var(--ink-3);border-style:dashed;background:transparent}
+.node.mask .role{display:block;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.node.mask .q{display:block;font-family:var(--sans);font-size:19px;font-weight:500;
+  color:var(--ink-3);opacity:.5;line-height:1.25;margin-top:3px}
+.node.mask:hover{border-left-color:var(--a);border-style:solid}
+.node.shown{animation:pop .22s ease}
+@keyframes pop{from{opacity:.35}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.node.shown{animation:none}}
+.pk{font-family:var(--sans);font-size:12.5px;background:var(--card);
+  border:1px solid var(--rule);border-left:3px solid var(--a);color:var(--ink-2);
+  border-radius:3px;padding:6px 11px;cursor:pointer}
+.pk:hover{border-color:var(--a);color:var(--ink)}
+.pk[aria-pressed="true"]{background:var(--a);color:#fff;border-color:var(--a)}
+.flowhead{margin:0 0 4px;font-family:var(--sans);font-weight:500;font-size:20px}
+.flowsub{margin:0 0 26px;font-size:14px;color:var(--ink-2);max-width:74ch}
+#flow{position:relative;max-width:820px;margin:0 auto;padding-bottom:8px}
+#fedges{position:absolute;left:0;top:0;pointer-events:none;overflow:visible;z-index:0}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;row-gap:44px;
+  position:relative;z-index:1}
+.node{background:var(--card);border:1px solid var(--rule-2);border-radius:5px;
+  border-left:4px solid var(--a);padding:11px 13px;text-align:left;cursor:pointer;
+  font-family:var(--sans);color:var(--ink);position:relative;
+  transition:border-color .12s,box-shadow .12s}
+.node:hover{border-color:var(--a)}
+.node.sel{box-shadow:inset 0 0 0 2px var(--a)}
+.node .t{display:block;font-size:14px;font-weight:500;line-height:1.2;padding-right:20px}
+.node .s{display:block;font-family:var(--serif);font-size:11.5px;color:var(--ink-3);
+  line-height:1.35;margin-top:4px}
+.node .d{display:none;font-family:var(--serif);font-size:12.5px;color:var(--ink-2);
+  line-height:1.45;margin-top:8px;padding-top:8px;border-top:1px solid var(--rule-2)}
+.node.exp .d{display:block}
+.node .cv{position:absolute;right:11px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);font-size:13px;line-height:1;color:var(--ink-3);
+  opacity:0;transition:opacity .12s}
+.node:hover .cv{opacity:.55}
+.node.exp .cv{top:12px;transform:none}
+@media(prefers-reduced-motion:reduce){.node .cv{transition:none}}
+.node.mid{grid-column:1/3;max-width:430px;justify-self:center;width:100%}
+.node.l{grid-column:1} .node.r{grid-column:2}
+.node.brake{border-left-style:dashed;border-left-color:var(--ink-3)}
+.tagd{position:absolute;top:-8px;right:10px;background:var(--clin);color:#fff;
+  font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:2px;letter-spacing:.04em}
+
+/* ── clinical strip ── */
+.clin{padding-top:2px;padding-bottom:34px}
+.clin h2{font-family:var(--sans);font-weight:500;font-size:17px;margin:0 0 4px}
+.clin p{font-size:13.5px;color:var(--ink-2);margin:0 0 12px;max-width:80ch}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:var(--sans);font-size:12.5px;background:var(--card);
+  border:1px solid var(--clin);color:var(--clin);border-radius:3px;padding:6px 11px;cursor:pointer}
+.chip:hover{background:var(--clin);color:#fff}
+
+/* ── drawer ── */
+.drawer{position:fixed;left:0;right:0;bottom:0;background:var(--card);
+  border-top:3px solid var(--a,var(--ink));box-shadow:0 -6px 24px rgba(17,26,22,.14);
+  transform:translateY(100%);transition:transform .2s ease;z-index:30;
+  height:32vh;min-height:230px;display:flex;flex-direction:column}
+.drawer.up{transform:translateY(0)}
+.dhead{display:flex;align-items:baseline;gap:14px;padding:11px 40px 8px;
+  border-bottom:1px solid var(--rule-2);flex:none}
+.deyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--a);margin:0 0 3px}
+.drawer h3{font-family:var(--sans);font-weight:500;font-size:19px;line-height:1.15;margin:0}
+.dclose{background:none;border:1px solid var(--rule);color:var(--ink-2);
+  font-family:var(--mono);font-size:10.5px;padding:5px 10px;border-radius:2px;
+  cursor:pointer;margin-left:auto;align-self:center}
+.dbody{overflow-y:auto;padding:12px 40px 20px;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px 32px;align-items:start}
+.blk h4{font-family:var(--mono);font-weight:400;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 5px}
+.blk p{margin:0;font-size:13.5px;line-height:1.6}
+.blk.brk h4{color:var(--clin)}
+.blk.brk p{border-left:2px solid var(--clin);padding-left:10px}
+.xrs{display:flex;flex-wrap:wrap;gap:5px}
+.xr{font-family:var(--sans);font-size:11.5px;background:none;border:1px solid var(--rule);
+  border-radius:2px;padding:4px 8px;cursor:pointer;color:var(--ink-2)}
+.xr:hover{border-color:var(--ink-3);color:var(--ink)}
+@media(max-width:820px){.w{padding:0 22px}.drawer{height:44vh}
+  .switch{width:100%}
+  .switch button{flex:1 1 auto;padding:9px 12px;font-size:12.5px;
+    border-bottom:1px solid var(--rule)}
+  .fgrid{column-gap:18px;row-gap:34px}
+  .node{padding:9px 10px}
+  .node .t{font-size:13px}
+  .dhead,.dbody{padding-left:22px;padding-right:22px}}
+</style>
+</head>
+<body>
+
+<header class="hdr w">
+  <h1>Signal Transduction Pathways</h1>
+</header>
+
+<div class="w">
+  <div class="switch" role="tablist">
+    <button id="tabB" role="tab" aria-selected="true">Trace one pathway</button>
+    <button id="tabA" role="tab" aria-selected="false">Compare all pathways</button>
+    <button id="tabC" role="tab" aria-selected="false">Recall, test yourself</button>
+  </div>
+  <p class="vhint" id="vhint"></p>
+  <div class="bar">
+    <div class="key">
+      <span><i class="fam" style="background:var(--gpcr)">G</i> GPCR: G protein, second messenger</span>
+      <span><i class="fam" style="background:var(--enz)">E</i> Enzyme-linked: receptor is or binds a kinase</span>
+      <span><i class="fam" style="background:var(--intra)">I</i> Intracellular: ligand crosses the membrane</span>
+      <span><i class="fam" style="background:var(--clin)">!</i> a disease or drug acts here</span>
+    </div>
+    <div class="btns"><button class="btn" id="reset">Reset</button></div>
+  </div>
+</div>
+
+<section class="view on w" id="viewA"><div class="gwrap"><div id="grid"></div></div></section>
+
+<section class="view w" id="viewB">
+  <div class="picker" id="picker"></div>
+  <div class="frow">
+    <button class="btn" id="expall" aria-pressed="false">Show what each step does</button>
+    <span class="rnote">Or click any one box: it opens in place, and the full note appears below.</span>
+  </div>
+  <div class="rbar" id="rbar">
+    <span class="score"><b id="rdone">0</b> of <b id="rtotal">0</b> revealed</span>
+    <button class="btn" id="rhide">Hide all again</button>
+    <button class="btn" id="rshow">Reveal all</button>
+    <span class="rnote">Name each step before you click it. A second click opens the full explanation.</span>
+  </div>
+  <h2 class="flowhead" id="flowhead"></h2>
+  <p class="flowsub" id="flowsub"></p>
+  <div id="flow"><svg id="fedges"></svg><div class="fgrid" id="fgrid"></div></div>
+</section>
+
+<section class="clin w">
+  <h2>Where it breaks</h2>
+  <p>Every clinical correlate attacks one specific box. Click one to open it. Nine of the ten land on a <b>transducer</b> or an <b>off switch</b>, which is the single most useful pattern to carry.</p>
+  <div class="chips" id="chips"></div>
+</section>
+
+<div class="drawer" id="drawer" role="dialog" aria-live="polite">
+  <div class="dhead">
+    <div><p class="deyebrow" id="deyebrow"></p><h3 id="dtitle"></h3></div>
+    <button class="dclose" id="dclose">Close ✕</button>
+  </div>
+  <div class="dbody" id="dbody"></div>
+</div>
+
+<script>
+/* ═══ shared detail: every box in every view points here ═══ */
+const D={
+epi:{t:"Epinephrine",s:"adrenal medulla · acute stress",d:"Circulates and binds whichever adrenergic receptor a tissue happens to display.",r:"Ligand",f:"gpcr",w:"A catecholamine from the adrenal medulla, released in acute stress. Hydrophilic, so it cannot cross the membrane and must act at the cell surface.",
+ h:"It occupies three separate rows of the grid, and shares the top row with glucagon. Nothing about epinephrine decides what happens next. The receptor the target cell happens to express decides it. Ask 'what does epinephrine do' and the question is unanswerable until you are told the receptor.",x:["glucagon","bAdr","a1Adr","a2Adr"]},
+glucagon:{t:"Glucagon",s:"α cells · low blood glucose",d:"Tells liver and adipose to release stored fuel when blood glucose falls.",r:"Ligand",f:"gpcr",w:"A 29-residue peptide from the pancreatic α cells, released when blood glucose falls.",
+ h:"Chemically unrelated to epinephrine and from a different organ, yet from the G protein rightward it is identical. That convergence is the entire point of a shared transducer: many receptors, one machine.",x:["glucR","gs"]},
+bAdr:{t:"β-adrenergic receptor",s:"heptahelical · 7 TM spans",d:"Binds epinephrine, then acts as a GEF that loads GTP onto Gs.",r:"Receptor",f:"gpcr",w:"A heptahelical GPCR: one chain crossing the membrane seven times, ligand pocket outward, G protein docking site on the cytosolic loops. N-terminus outside, C-terminus inside.",
+ h:"The receptor is the decision point of the whole system. It is coupled to exactly one G protein class before any ligand arrives, and that fixed coupling is what turns one circulating hormone into a tissue-specific instruction.",
+ b:"β-blockers are antagonists here, a drug acting at the very top of the pathway, unlike almost every other drug on this page.",x:["gs","a1Adr","a2Adr"]},
+gsLig:{t:"Epinephrine · glucagon",s:"two unrelated signals, one route",d:"Two unrelated hormones, each binding a receptor that couples to Gs.",r:"Ligand",f:"gpcr",w:"Two chemically unrelated hormones from different organs. Epinephrine is a catecholamine from the adrenal medulla, released in acute stress. Glucagon is a 29-residue peptide from the pancreatic α cells, released when blood glucose falls.",
+ h:"They share this row because everything from the G protein rightward is identical for both. This is the funnel: MANY receptors converge on ONE G protein class. It is also why a single toxin acting on Gsα wrecks every one of them at once.",x:["epi","glucagon","gsRec"]},
+gsRec:{t:"β-adrenergic · glucagon R",s:"different receptors, same Gs",d:"Both turn ligand binding into GDP→GTP exchange on the same G protein.",r:"Receptor",f:"gpcr",w:"Two distinct heptahelical GPCRs. Each is one polypeptide crossing the membrane seven times, ligand pocket outward, G protein docking site on the cytosolic loops.",
+ h:"Each receptor couples to exactly ONE G protein class, fixed by its structure, but a G protein class serves MANY receptors. That asymmetry is the whole design, and it puts the decision at the receptor.",
+ b:"β-blockers antagonise the β receptor here. The glucagon receptor's tissue distribution is its own exam point: present in liver and adipose, ABSENT from skeletal muscle, so glucagon cannot mobilise muscle glycogen. Only epinephrine can.",x:["bAdr","glucR","gs"]},
+glucR:{t:"Glucagon receptor",s:"liver + adipose ONLY",d:"Passes the glucagon signal to Gs — in liver and adipose only.",r:"Receptor",f:"gpcr",w:"A GPCR coupled to Gs, present in liver and adipose tissue.",
+ h:"Its distribution is the exam point: ABSENT from skeletal muscle. Glucagon therefore cannot mobilise muscle glycogen. Only epinephrine can, through the β receptors muscle does express.",x:["bAdr"]},
+a2Adr:{t:"α2-adrenergic receptor",s:"couples to Gi",d:"Binds epinephrine but couples to Gi, so this receptor lowers cAMP.",r:"Receptor",f:"gpcr",w:"A GPCR whose structure commits it to Gi rather than Gs.",
+ h:"In a tissue carrying both β and α2, one epinephrine pulse pushes cAMP up and down at the same time. That is how the cell gets graded, tunable control instead of an on/off switch.",x:["bAdr","gi"]},
+a1Adr:{t:"α1-adrenergic receptor",s:"couples to Gq",d:"Binds epinephrine and couples to Gq, launching the IP₃/DAG arm.",r:"Receptor",f:"gpcr",w:"A GPCR committed to Gq.",
+ h:"The vasoconstrictor receptor. The entire pressor response to epinephrine begins here, while the β receptor two rows up is relaxing smooth muscle elsewhere in the same body.",x:["bAdr","gq"]},
+gs:{t:"Gs",s:"αβγ · GTP = active",d:"Trades GDP for GTP; the free α subunit then switches adenylyl cyclase ON.",r:"Transducer",f:"gpcr",w:"A heterotrimeric αβγ protein on the inner membrane face. The ligand-bound receptor acts as a GEF, opening the α subunit's nucleotide pocket so GDP leaves and GTP enters; Gsα-GTP then dissociates from βγ and moves to its effector.",
+ h:"Amplification and timing in one step. One receptor activates many G proteins, and each stays on only until its own intrinsic GTPase hydrolyses the GTP. Nothing pushes GTP in. The receptor only creates the vacancy, and cytosolic GTP loads by mass action.",
+ b:"Cholera toxin ADP-ribosylates Gsα on an ARGININE at the GTPase site, freezing it GTP-bound and permanently active.",x:["gi","ras","gtpase"]},
+gi:{t:"Gi",s:"inhibitory α subunit",d:"Its GTP-bound α subunit switches adenylyl cyclase OFF, so cAMP falls.",r:"Transducer",f:"gpcr",w:"A heterotrimeric G protein whose α subunit inhibits adenylyl cyclase. The signal also flows through the βγ subunits.",
+ h:"Gi is a brake applied at the effector, not a separate pathway. That distinction is what makes pertussis confusing until you see it: removing Gi does not silence anything, it releases the cyclase, so cAMP RISES.",
+ b:"Pertussis toxin ADP-ribosylates Giα on a CYSTEINE, freezing it GDP-bound and inactive.",x:["gs","ac"]},
+gq:{t:"Gq",s:"activates PLCβ",d:"Same activation cycle, but the α subunit turns on PLCβ instead of a cyclase.",r:"Transducer",f:"gpcr",w:"A heterotrimeric G protein (also written Gq/11) whose α subunit activates phospholipase C-beta.",
+ h:"The branch point where the pathway leaves the cyclase world. Same activation cycle, same GTPase brake, but a different effector and two messengers instead of one.",x:["gs","plc"]},
+ac:{t:"Adenylyl cyclase",s:"ATP → cAMP + PPᵢ",d:"Cyclises ATP into cAMP, flooding the cytosol with second messenger.",r:"Effector",f:"gpcr",w:"A membrane enzyme forming a cyclic phosphodiester bond between the 3′ and 5′ hydroxyls of one ribose: ATP → 3′,5′-cyclic AMP + PPᵢ.",
+ h:"An effector is defined by what it does: it produces a second messenger. This one enzyme takes three inputs at once: Gs pushing up, Gi pushing down, phosphodiesterase draining the product. cAMP level is the net of all three, never one alone.",x:["camp","gi","pde"]},
+acDown:{t:"Adenylyl cyclase ↓",s:"same enzyme, opposite sign",d:"The same cyclase, throttled by Giα, so less cAMP is made.",r:"Effector",f:"gpcr",w:"The identical enzyme, inhibited rather than stimulated.",
+ h:"Gs and Gi sharing one effector is the most useful structural fact in the GPCR section. It explains graded control, and it explains why two toxins with opposite lesions produce the same endpoint.",x:["ac"]},
+camp:{t:"cAMP",s:"3′,5′-cyclic AMP",d:"Diffuses through the cytosol and binds PKA’s regulatory subunits.",r:"2nd messenger",f:"gpcr",w:"A small, freely diffusible cyclic nucleotide. One activated cyclase floods the cytosol with it.",
+ h:"Second messengers buy amplification and reach. Look at the blank cells in this column on the enzyme-linked rows. Those pathways transmit by protein contact instead, buying precision at the cost of gain.",x:["pka","cgmp"]},
+pka:{t:"Protein kinase A",s:"R₂C₂ → C subunits freed",d:"Releases its catalytic subunits, which phosphorylate serine/threonine on targets.",r:"Kinase",f:"gpcr",w:"Inactive PKA is a tetramer of two regulatory and two catalytic subunits. cAMP binds the REGULATORY subunits; the conformational change releases the catalytic subunits in an active state.",
+ h:"Read the mechanism carefully: cAMP does not switch the kinase on, it removes an inhibitor. The catalytic subunit was always capable, it was simply being held. That indirect design is why the subunit structure gets asked about.",x:["pkaFast","creb"]},
+pkaFast:{t:"Fast arm: enzymes",s:"seconds · enzymes",d:"Phosphorylates enzymes that already exist — glycogenolysis and lipolysis, in seconds.",r:"Kinase",f:"gpcr",w:"Active catalytic subunits phosphorylate cytosolic enzymes directly: glycogen phosphorylase, hormone-sensitive lipase and others.",
+ h:"Seconds-scale. This is covalent modification of protein that already exists, the fastest of the three response tiers, and the reason a stress hormone can work in real time.",x:["creb"]},
+creb:{t:"Slow arm: CREB",s:"hours · CRE sequence",d:"Phosphorylated CREB recruits CBP at the CRE and switches on transcription.",r:"Kinase",f:"gpcr",w:"Catalytic subunits enter the nucleus and phosphorylate CREB (cAMP response element-binding protein), which binds the CRE sequence and recruits its coactivator CBP.",
+ h:"One cAMP burst produces both a seconds-scale metabolic change and an hours-scale transcriptional one. CREB and CBP are two different molecules. CBP is CREB-binding protein, the coactivator, not an alternative name.",x:["pkaFast"]},
+plc:{t:"Phospholipase Cβ",s:"cleaves PIP₂",d:"Makes one cut in PIP₂, releasing IP₃ and leaving DAG behind in the membrane.",r:"Effector",f:"gpcr",w:"Cleaves membrane PIP₂ (phosphatidylinositol 4,5-bisphosphate) into IP₃ and DAG.",
+ h:"One enzyme, one cut, two products that travel in opposite directions, decided purely by which fragment kept the electrical charge. Insulin also activates a phospholipase C, so this machinery is not exclusive to GPCRs.",x:["ip3","dag"]},
+ip3:{t:"IP₃",s:"charged · leaves membrane",d:"Diffuses to the ER and opens the IP₃-gated Ca²⁺ channel.",r:"2nd messenger",f:"gpcr",w:"Inositol 1,4,5-trisphosphate. Highly charged and water-soluble, so it leaves the membrane, diffuses to the ER and opens an IP₃-gated Ca²⁺ channel.",
+ h:"The 3 here is a COUNT of three phosphates. Contrast PI3K in the insulin row, where the 3 is a POSITION on the inositol ring. Same lipid family, different chemistry, different pathway.",x:["ca","pi3k","dag"]},
+dag:{t:"DAG",s:"lipid · stays in membrane",d:"Stays in the bilayer and waits there to activate PKC.",r:"2nd messenger",f:"gpcr",w:"Diacylglycerol, the lipid half of PIP₂. Never leaves the membrane.",
+ h:"The pathway forks here for a purely physical reason: the charged fragment can leave the bilayer and the lipid one cannot. It waits in the membrane for PKC to come to it.",x:["ip3","pkc"]},
+ca:{t:"Ca²⁺ from the ER",s:"0.1 → >1 µM",d:"Rises about tenfold, binds calmodulin, and supplies PKC’s second requirement.",r:"2nd messenger",f:"gpcr",w:"Cytosolic calcium rises from about 0.1 µM to over 1 µM, roughly tenfold, and binds calmodulin.",
+ h:"The only messenger here that is not synthesised. It is stored and released, which makes this branch close to instantaneous, and the cell resets by pumping it back rather than destroying it.",x:["camk","pkc"]},
+camk:{t:"CaM kinase",s:"via calmodulin",d:"Ca²⁺–calmodulin switches it on; it phosphorylates targets using ATP.",r:"Kinase",f:"gpcr",w:"Ca²⁺–calmodulin complexes activate protein kinases that phosphorylate targets in an ATP-dependent reaction.",
+ h:"Completes the pattern: every second messenger ends at a kinase: cAMP→PKA, cGMP→PKG, DAG→PKC, Ca²⁺→CaM kinase.",x:["pkc"]},
+pkc:{t:"Protein kinase C",s:"+ phosphatidylserine",d:"DAG plus phosphatidylserine activate it; it phosphorylates contractile and metabolic targets.",r:"Kinase",f:"gpcr",w:"Activated by DAG together with phosphatidylserine. Classical isoforms also require Ca²⁺.",
+ h:"This is where the fork rejoins. PKC needs the calcium that IP₃ went to fetch, so one cleavage event supplies both of PKC's requirements from opposite sides of the split.",x:["dag","ca"]},
+gtpase:{t:"Intrinsic GTPase",s:"self-timing switch",d:"Hydrolyses the α subunit’s own GTP, shutting the switch off on a timer.",r:"Off switch",f:"gpcr",w:"The α subunit hydrolyses its own bound GTP to GDP and re-associates with βγ. GAPs accelerate this.",
+ h:"A self-destruct timer built into the switch. This one box is where cholera, pertussis, Ras-driven cancer and NF1 all converge: four diseases, one broken brake.",
+ b:"Blocked by cholera toxin on Gs; abolished by mutation in Ras; deprived of its GAP in neurofibromatosis.",x:["pde","tyrPhos","ras"]},
+pde:{t:"Phosphodiesterase",s:"cAMP → 5′-AMP",d:"Opens the cyclic bond, so the messenger can no longer bind its kinase.",r:"Off switch",f:"gpcr",w:"Hydrolyses the cyclic phosphodiester bond: cAMP → 5′-AMP, cGMP → 5′-GMP. The opened molecule can no longer bind its kinase.",
+ h:"The second, independent brake on every cyclase pathway. Without it, cyclase activity would be irreversible, and because it is a single druggable enzyme, it is where the NO row's entire pharmacology lives.",x:["gtpase","pde5"]},
+gsRes:{t:"Heart contracts, lung relaxes",s:"opposite in two tissues",d:"PKA hits whichever targets that tissue carries — heart contracts, airway relaxes.",r:"Response",f:"gpcr",w:"β stimulation contracts cardiac muscle and relaxes bronchial and intestinal smooth muscle. Metabolically, glycogenolysis and lipolysis.",
+ h:"The sharpest lesson on the page: identical receptor, G protein and second messenger, opposite mechanical outcome. Divergence happens BELOW the messenger, in which target proteins PKA finds in that tissue.",
+ b:"Useful in both directions: epinephrine relieves bronchospasm in asthma and restores rhythm after cardiac arrest.",x:["pka"]},
+giRes:{t:"↓ transmitter release",s:"autoreceptor arm",d:"Less PKA activity at the nerve terminal, so less transmitter is released.",r:"Response",f:"gpcr",w:"Presynaptic α2 receptors reduce neurotransmitter release; α2 also contributes to smooth muscle contraction.",
+ h:"The autoreceptor arm, the nervous system using epinephrine to limit its own output. Inhibitory signalling here always works by subtraction, never by switching something new on.",x:["gsRes"]},
+vasocon:{t:"Vasoconstriction",s:"smooth muscle contracts",d:"Ca²⁺ drives smooth muscle to contract, raising resistance and blood pressure.",r:"Response",f:"gpcr",w:"Calcium-driven contraction of vascular smooth muscle, raising peripheral resistance and blood pressure.",
+ h:"Directly opposed to the NO pathway, which relaxes the same muscle through cGMP. Vascular tone is the running balance between these two.",x:["vasodil"]},
+
+gf:{t:"Growth factors",s:"EGF, PDGF, VEGF, FGF",d:"Bind and cross-link receptor tyrosine kinases, instructing the cell to divide.",r:"Ligand",f:"enz",w:"EGF, PDGF, VEGF and FGF: polypeptides acting at the cell surface.",
+ h:"These instruct cells to divide rather than to change metabolism. That different job is why the machinery downstream looks nothing like the GPCR rows.",x:["insulin"]},
+rtkRec:{t:"Receptor tyrosine kinase",s:"single TM span",d:"Binds ligand outside and phosphorylates tyrosines inside — receptor and kinase in one chain.",r:"Receptor",f:"enz",w:"A membrane protein crossing the bilayer ONCE, binding site outside, tyrosine kinase catalytic domain inside. The enzyme activity is part of the receptor's own structure.",
+ h:"Contrast the seven spans of a GPCR. One span cannot form a signalling pocket alone, which is exactly why this receptor must pair up. Dimerization substitutes for machinery a GPCR has built in.",
+ b:"In achondroplasia a single substitution in the TRANSMEMBRANE domain of FGFR3 forces the active conformation with no ligand at all, skipping dimerization entirely.",x:["dimerize","jakRec","insRec"]},
+dimerize:{t:"Dimerize, autophosphorylate",s:"tyrosines on the partner",d:"Two receptors pair and cross-phosphorylate, building docking sites on each tail.",r:"Receptor step",f:"enz",w:"Ligand brings two receptors together; each kinase phosphorylates tyrosines on its partner, creating an array of phosphotyrosines on the cytoplasmic tail.",
+ h:"The phosphotyrosines are not the signal. They are a landing strip. Everything downstream is recruitment onto them, which is why stripping them with a phosphatase shuts the whole thing down.",x:["sh2","tyrPhos"]},
+sh2:{t:"SH2 adaptors dock",s:"Grb2, p85, STAT",d:"SH2 proteins read those phosphotyrosines and assemble the complex; Grb2 brings SOS.",r:"Receptor step",f:"enz",w:"SH2 domains recognise phosphotyrosine specifically. Grb2, the p85 subunit of PI3K, STATs and phosphatases all dock here; Grb2 brings SOS.",
+ h:"Smad is often wrongly listed among these. It cannot be one, because SH2 binds phosphoTYROSINE, and the TGF-β pathway produces none. Smad uses MH2 domains and serine.",x:["ras","smadPhos","pi3k"]},
+ras:{t:"Ras",s:"monomeric G protein",d:"SOS loads Ras with GTP; Ras-GTP then binds and activates Raf.",r:"Transducer",f:"enz",w:"A small monomeric G protein anchored to the plasma membrane. SOS is its GEF. Same GTP-on, GDP-off logic and same intrinsic GTPase as the heterotrimeric G proteins.",
+ h:"The hinge of the whole subject. Ras proves the G protein switch is a general device rather than a GPCR peculiarity, which means the failure mode you learned from cholera reappears here as cancer.",
+ b:"Mutation at amino acid 12 (GGC Gly → GTC Val) abolishes the GTPase. Separately, loss of neurofibromin removes its GAP.",x:["gs","gtpase","tyrPhos"]},
+mapk:{t:"Raf → MEK → ERK",s:"three tiers, amplifying",d:"Each kinase phosphorylates the next, amplifying; ERK finally enters the nucleus.",r:"Kinase",f:"enz",w:"Three tiers of serine/threonine kinase, each phosphorylating the next. Active Ras binds and activates Raf; ERK finally enters the nucleus.",
+ h:"A cascade exists to amplify: one receptor yields many active ERK molecules. That gain is also why a single activating mutation anywhere in the chain has such large consequences.",x:["ras"]},
+prolif:{t:"Proliferation",s:"transcription, growth",d:"ERK rewrites gene expression to drive growth and cell division.",r:"Response",f:"enz",w:"ERK alters transcription of genes driving cell division and growth.",
+ h:"Compare the response column across the grid: GPCR rows change metabolism in seconds, this row changes what the cell IS over hours.",x:["gsRes"]},
+tyrPhos:{t:"Tyrosine phosphatase",s:"strips phosphotyrosine",d:"Strips the phosphates off tyrosine, deleting the docking sites the pathway runs on.",r:"Off switch",f:"enz",w:"Strips phosphate from phosphotyrosine, dismantling the docking sites adaptors need. Ras is separately switched off by its own GTPase plus the GAP neurofibromin.",
+ h:"The brake identifies the family: GPCRs use a GTPase and a phosphodiesterase, enzyme-linked receptors use a phosphatase. Phosphorylation is only a signal because it is reversible.",
+ b:"Neurofibromatosis type 1: NF1 encodes neurofibromin, the Ras GAP. Lose it and Ras is never helped to switch off.",x:["gtpase","ras"]},
+
+insulin:{t:"Insulin",s:"β cells · hyperglycemia",d:"Binds its own receptor to lower blood glucose and, separately, to signal growth.",r:"Ligand",f:"enz",w:"A two-chain peptide (A 21 residues, B 30) released by pancreatic β cells when blood glucose rises.",
+ h:"Both a metabolic hormone and a growth factor, which is why its pathway forks into two arms doing entirely unrelated jobs from one receptor.",x:["gf","glucagon"]},
+insRec:{t:"Insulin receptor",s:"α₂β₂ · ALREADY a dimer",d:"Ligand triggers a conformational change and autophosphorylation; the receptor then phosphorylates IRS-1.",r:"Receptor",f:"enz",w:"An α₂β₂ heterotetramer held together by disulfide bonds BEFORE any ligand arrives. Insulin binding causes a conformational change that activates the kinase.",
+ h:"The exception to the dimerization rule. Asked what happens when insulin binds, the answer is conformational change and autophosphorylation, NOT dimerization, because the receptor is already a dimer.",
+ b:"Impaired signalling from here through IRS-1 to Akt is insulin resistance, the metabolic arm failing while the growth arm is spared.",x:["rtkRec","irs"]},
+irs:{t:"IRS-1",s:"the docking scaffold",d:"Collects phosphotyrosines and hosts PI3K and Grb2 side by side on one scaffold.",r:"Receptor step",f:"enz",w:"Insulin receptor substrate 1, phosphorylated on tyrosine at multiple sites, forming a large scaffold. Grb2, PLCγ, PI3-kinase and GAP1 all dock on it.",
+ h:"This is where the pathway forks, and the fork is at the scaffold rather than at the receptor. IRS-1 carries enough phosphotyrosines to host PI3K and Grb2 at the same time, so one hormone runs two programmes in parallel.",x:["pi3k","insRas"]},
+pi3k:{t:"PI 3-kinase",s:"3 = a POSITION",d:"Phosphorylates position 3 of the inositol ring, turning PIP₂ into PIP₃.",r:"Effector",f:"enz",w:"Recruited to IRS-1 through the SH2 domain of its p85 regulatory subunit. Phosphorylates the 3 POSITION of the inositol ring, generating PIP₃ in the inner leaflet.",
+ h:"The 3 in PI3K is a position on the ring; the 3 in IP₃ is a count of phosphates. Different chemistry, different pathway, and a genuinely common error to make under exam pressure.",x:["ip3","pip3"]},
+pip3:{t:"PIP₃",s:"docks PH domains",d:"Pulls PH-domain proteins to the membrane so PDK1 and Akt meet.",r:"2nd messenger",f:"enz",w:"Phosphatidylinositol 3,4,5-trisphosphate. Binds pleckstrin homology (PH) domains, pulling PDK1 and Akt onto the membrane where they meet.",
+ h:"It occupies the messenger column but behaves unlike cAMP because it does not diffuse. Transmission here is by forced proximity rather than by flooding the cytosol.",x:["camp","akt"]},
+akt:{t:"PDK1 → Akt (PKB)",s:"serine/threonine kinase",d:"PDK1 phosphorylates Akt; Akt then phosphorylates the vesicle trafficking machinery.",r:"Kinase",f:"enz",w:"Both recruited via PH domains; PDK1 then phosphorylates Akt, also called protein kinase B, activating it.",
+ h:"Notice the residue switch: a TYROSINE kinase receptor ends up activating a SERINE/THREONINE kinase partway down. Specificity changes mid-pathway.",x:["glut4"]},
+glut4:{t:"GLUT4 to the membrane",s:"muscle + adipose",d:"Transporter-loaded vesicles fuse with the membrane, so glucose enters and blood glucose drops.",r:"Response",f:"enz",w:"Akt drives translocation of GLUT4 from intracellular vesicles to the plasma membrane in skeletal muscle and adipose tissue.",
+ h:"This is how insulin actually lowers blood glucose. The mechanism linking Akt to vesicle trafficking is still not fully known, a genuine gap rather than a simplification.",
+ b:"Exercise recruits a SEPARATE GLUT4 pool via Ca²⁺/PKC and AMPK, bypassing insulin signalling entirely. That is the mechanistic case for activity in type 2 diabetes.",x:["akt"]},
+insRas:{t:"Grb2 → SOS → Ras",s:"same as growth factors",d:"Adaptors on IRS-1 load Ras with GTP, feeding the same MAPK cascade.",r:"Transducer",f:"enz",w:"The same adaptor cascade the growth factor pathway uses, docking on IRS-1 instead of directly on the receptor.",
+ h:"This box is why insulin is a growth factor as well as a metabolic hormone. From here onward it is indistinguishable from the EGF/PDGF pathway.",x:["ras","sh2"]},
+insGrow:{t:"Growth, mitogenesis",s:"gene expression, hours",d:"Transcriptional output: growth and division, not glucose uptake.",r:"Response",f:"enz",w:"Transcriptional change producing cell growth and division.",
+ h:"Insulin resistance typically impairs the PI3K arm while leaving this one intact, which is part of why the metabolic and proliferative consequences of the disease come apart.",x:["glut4","prolif"]},
+
+cytokine:{t:"Cytokines",s:"GH, prolactin, EPO, IFN",d:"Bind and dimerize receptors that carry no kinase of their own.",r:"Ligand",f:"enz",w:"Growth factors secreted mainly by leukocytes. From lymphocytes = lymphokines; from monocytes and macrophages = monokines; interleukins target cells of hematopoietic origin.",
+ h:"The name understates the range: growth hormone, prolactin, erythropoietin and the interferons all run through this pathway, so it is far more than an immune system.",x:["gf"]},
+jakRec:{t:"Cytokine receptor",s:"NO intrinsic kinase",d:"Dimerizes and holds JAK in place; it contributes binding, not catalysis.",r:"Receptor",f:"enz",w:"Dimerizes on ligand binding, then recruits Janus kinase. The receptor itself has NO catalytic activity.",
+ h:"The defining split: receptors that ARE kinases versus receptors that BIND kinases. Everything else about this pathway follows from the kinase being a separate protein.",x:["rtkRec","serRec"]},
+jak:{t:"JAK",s:"Janus kinase, recruited",d:"Phosphorylates the receptor tail and itself, creating STAT docking sites.",r:"Transducer",f:"enz",w:"Janus kinase. Docks on the dimerized receptor and phosphorylates both the receptor and itself.",
+ h:"It fills the transducer slot the way Ras or Gs do, but it is a kinase, not a G protein. There is no nucleotide switch and no GTPase timer anywhere in this pathway.",x:["ras","gs"]},
+statPhos:{t:"STAT phosphorylated",s:"on tyrosine · SH2",d:"Docks through its SH2 domain, is phosphorylated on tyrosine, then lets go.",r:"Kinase",f:"enz",w:"STAT, signal transducer and activator of transcription, docks at the receptor via its SH2 domain and is phosphorylated on TYROSINE.",
+ h:"STAT is both the substrate and the transcription factor. There is no cascade between the kinase and the genome, which is the whole reason this pathway is fast.",x:["smadPhos","sh2"]},
+statNuc:{t:"STAT dimer → nucleus",s:"straight to the promoter",d:"Dimerizes, moves into the nucleus, and binds promoters directly.",r:"Response",f:"enz",w:"Phosphorylated STATs dissociate, dimerize, translocate and bind promoter sequences to begin transcription.",
+ h:"Count the boxes against the RTK row: much shorter and simpler, so the response is much more rapid. Fewer steps, less amplification, faster answer, a real trade-off rather than a simplification.",x:["smadNuc","mapk"]},
+
+tgf:{t:"TGF-β",s:"BMP, activin, inhibin",d:"A dimeric ligand that clamps the type II and type I receptors together.",r:"Ligand",f:"enz",w:"Transforming growth factor beta, made of two identical subunits, plus BMP, activin and inhibin.",
+ h:"BMP stands for bone morphogenetic protein, which is where this pathway's osteogenesis association comes from.",x:["cytokine"]},
+serRec:{t:"Ser/Thr kinase receptor",s:"type I + type II",d:"Type II phosphorylates type I; type I then phosphorylates Smads on serine.",r:"Receptor",f:"enz",w:"TGF-β binds the type II receptor, which phosphorylates the type I receptor. Both carry serine kinase domains.",
+ h:"Third variant of the enzyme-linked receptor: kinase intrinsic like an RTK, but phosphorylating serine and threonine. Two questions separate all three families: is the kinase part of the receptor, and which residue does it hit?",x:["rtkRec","jakRec"]},
+smadPhos:{t:"Smad phosphorylated",s:"on SERINE · MH2",d:"R-Smads are serine-phosphorylated at the receptor and released into the cytosol.",r:"Kinase",f:"enz",w:"The activated type I receptor phosphorylates receptor-regulated Smads on SERINE. Smads dock through MH2 domains.",
+ h:"Wrong domain, wrong residue, wrong receptor class. Those are the three reasons Smad does not belong on a list of SH2 proteins, however often it appears there.",x:["sh2","statPhos"]},
+smadNuc:{t:"Smad complex → nucleus",s:"+ Co-Smad (Smad 4)",d:"R-Smad plus Smad 4 enter the nucleus and switch target genes on or off.",r:"Response",f:"enz",w:"R-Smad complexes with Co-Smad (Smad 4), migrates to the nucleus, and activates or inhibits target genes. Involved with osteogenesis and development.",
+ h:"Structurally the twin of JAK-STAT: receptor straight to transcription factor, no second messenger, no cascade. The two differ in residue and docking domain, not in shape.",x:["statNuc"]},
+
+no:{t:"Nitric oxide",s:"gas · t½ 2–30 s",d:"Diffuses out of the endothelial cell straight into the smooth muscle next door.",r:"Ligand",f:"intra",w:"A gas made by nitric oxide synthase from ARGININE with molecular oxygen and NADPH, in endothelial cells stimulated by acetylcholine. The other product is citrulline. Historically EDRF.",
+ h:"The only ligand here that crosses membranes freely, and the only one with a half-life of 2–30 seconds. That combination forces strictly local, paracrine signalling. NO cannot act as a circulating hormone.",
+ b:"Nitroglycerin and isosorbide mononitrate donate NO directly, bypassing the endothelium, which is why they still relieve angina when endothelial NO production has failed.",x:["steroid"]},
+sgc:{t:"Soluble guanylyl cyclase",s:"cytosolic heme enzyme",d:"Binds NO at its heme and immediately begins making cGMP.",r:"Receptor",f:"intra",w:"A cytosolic heme enzyme that binds NO and converts GTP → cGMP.",
+ h:"Genuinely a cytosolic receptor, but do NOT file it with the steroid receptors. It is an enzyme producing a second messenger, not a transcription factor. Receptor and effector are the same molecule here, the only place that happens.",x:["cytoR","ac"]},
+cgmp:{t:"cGMP",s:"cyclic GMP",d:"Diffuses through the cytosol and activates protein kinase G.",r:"2nd messenger",f:"intra",w:"A diffusible cyclic nucleotide, the direct analogue of cAMP. Destroyed by phosphodiesterase type 5.",
+ h:"Everything you know about cAMP transfers: made by a cyclase, killed by a phosphodiesterase, activates a kinase named after it. The pharmacology of this pathway is entirely about the destruction step.",x:["camp","pde5"]},
+pkg:{t:"Protein kinase G",s:"cGMP-dependent",d:"Phosphorylates targets that lower cytosolic Ca²⁺ and relax smooth muscle.",r:"Kinase",f:"intra",w:"cGMP-dependent kinase; phosphorylates target proteins in vascular smooth muscle.",
+ h:"cAMP→PKA, cGMP→PKG, DAG→PKC, Ca²⁺→CaM kinase. Every second messenger ends at a kinase.",x:["pka"]},
+vasodil:{t:"Vasodilatation",s:"smooth muscle relaxes",d:"Vessels widen, flow rises and blood pressure falls.",r:"Response",f:"intra",w:"Smooth muscle around vessels relaxes, so the vessels expand, blood flow rises and blood pressure falls.",
+ h:"The direct counterweight to α1/Gq vasoconstriction. Vascular tone is the running balance between these two pathways.",x:["vasocon"]},
+pde5:{t:"PDE-5",s:"cGMP → 5′-GMP",d:"Destroys cGMP, ending relaxation — the single step sildenafil blocks.",r:"Off switch",f:"intra",w:"Phosphodiesterase type 5 hydrolyses cGMP to 5′-GMP. Concentrated in the corpus cavernosum and the retina.",
+ h:"The most heavily drugged step of any pathway here. Because inhibitors only SLOW destruction, they still require endogenous NO to work at all.",
+ b:"Sildenafil, vardenafil and tadalafil block it. Stacked with nitrates, which supply the NO, the two mechanisms compound and can cause catastrophic hypotension.",x:["pde","no"]},
+
+steroid:{t:"Lipophilic hormones",s:"cross the bilayer",d:"Diffuse straight through the bilayer and bind receptors inside the cell.",r:"Ligand",f:"intra",w:"Cortisol, aldosterone, T3, vitamin D, retinoic acid. They diffuse straight through the bilayer, require transport proteins in plasma, and have long half-lives.",
+ h:"One physical property explains the whole row. A molecule that dissolves in lipid needs no surface receptor, and being carrier-bound and protected from clearance, it can afford a slow response.",x:["no","epi"]},
+cytoR:{t:"Cytosolic receptor",s:"HSP90-bound until ligand",d:"Drops HSP90 when ligand binds, dimerizes, and carries the hormone to DNA.",r:"Receptor",f:"intra",w:"Held inactive in the cytoplasm by HSP90 until ligand arrives, then dimerizes and translocates to the nucleus. Cortisol, aldosterone, androgens, progesterone.",
+ h:"One superfamily with the nuclear receptors, the steroid-thyroid superfamily, differing mainly in where the receptor waits for its ligand.",x:["nucR","sgc"]},
+nucR:{t:"Nuclear receptor",s:"already on DNA",d:"Sits on its response element repressing, until ligand converts it to an activator.",r:"Receptor",f:"intra",w:"Already bound to its DNA response element before the ligand arrives, often actively repressing. T3, vitamin D, retinoic acid.",
+ h:"Because these are pre-loaded onto DNA, unliganded receptor is not neutral: it silences. That is why hormone resistance can be worse than simple deficiency.",x:["cytoR"]},
+transcription:{t:"Gene transcription",s:"hours, and durable",d:"Changes how much of a protein the cell makes, over hours.",r:"Response",f:"intra",w:"The receptor–hormone complex binds hormone response elements and changes how much protein the cell makes.",
+ h:"Compare the response column: GPCR pathways change enzyme ACTIVITY in seconds, this one changes enzyme AMOUNT over hours. Long half-life and transcriptional output are two faces of one design.",x:["gsRes"]},
+campDown:{t:"cAMP ↓",s:"less messenger",d:"Less messenger is available to bind PKA.",r:"2nd messenger",f:"gpcr",w:"Cyclase output falls, so the cytosolic cAMP pool shrinks.",
+ h:"Same messenger as the Gs row, moving the other way. Direction, not identity, is what differs, which is why Gi is best read as a brake on a shared effector rather than as its own pathway.",x:["camp","acDown"]},
+pkaDown:{t:"PKA activity falls",s:"fewer free C subunits",d:"More PKA stays locked as the inactive tetramer, so target phosphorylation falls.",r:"Kinase",f:"gpcr",w:"With less cAMP available, more PKA stays as the intact inactive tetramer.",
+ h:"Nothing new is switched on, an ongoing process is dialled down. Inhibitory signalling always works by subtraction.",x:["pka"]},
+ip3dag:{t:"IP₃ + DAG",s:"two products, two fates",d:"IP₃ leaves for the ER while DAG stays put in the membrane.",r:"2nd messenger",f:"gpcr",w:"One cleavage of PIP₂ yields inositol 1,4,5-trisphosphate and diacylglycerol. IP₃ is charged and water-soluble; DAG is a lipid.",
+ h:"The only cell on the grid holding two messengers. Their split is pure physical chemistry: the charged fragment can leave the membrane, the lipid one cannot, and they rejoin at PKC.",x:["ip3","dag","ca"]},
+camkPkc:{t:"CaM kinase + PKC",s:"the fork rejoins here",d:"Both kinases phosphorylate the targets that produce contraction.",r:"Kinase",f:"gpcr",w:"Ca²⁺–calmodulin activates CaM kinases; DAG with phosphatidylserine activates PKC, which for classical isoforms also needs Ca²⁺.",
+ h:"The branch that split at PIP₂ converges again, because PKC needs the calcium IP₃ went to fetch. One cleavage supplies both of PKC's requirements from opposite sides of the split.",x:["camk","pkc","ip3dag"]},
+gcAct:{t:"Guanylyl cyclase activity",s:"GTP → cGMP",d:"Converts GTP to cGMP for as long as NO stays bound.",r:"Effector",f:"intra",w:"The same soluble enzyme that bound NO now converts GTP to cyclic GMP, releasing pyrophosphate.",
+ h:"Receptor and effector are the same molecule here, the only pathway where those two stages collapse into one protein.",x:["sgc","ac"]},
+serThrPhos:{t:"Ser/Thr phosphatase",s:"dephosphorylates Smad",d:"Removes the serine phosphate, so the Smad complex falls apart.",r:"Off switch",f:"enz",
+ w:"A serine/threonine phosphatase removes the phosphate the type I receptor put onto the Smad, and the Smad complex disassembles. Inhibitory Smads and receptor degradation add further shut-off.",
+ h:"The brake has to match the kinase. A tyrosine phosphatase would be useless here because nothing in this pathway carries a phosphotyrosine, which is the same reason Smad cannot use an SH2 domain.",x:["tyrPhos","smadPhos"]},
+clearance:{t:"Hormone clearance",s:"no enzymatic brake",d:"The hormone is metabolised and the induced proteins turn over; the signal fades.",r:"Off switch",f:"intra",w:"The signal ends as the hormone is metabolised and cleared, and as the induced proteins turn over.",
+ h:"The only pathway with no enzymatic brake inside the cell. There is nothing to switch off quickly, which is exactly why steroid effects cannot be withdrawn quickly either.",x:["gtpase"]}
+};
+
+/* ═══ VIEW A · grid ═══ */
+const STAGES=[["01","Ligand"],["02","Receptor"],["03","Transducer"],["04","Effector"],
+              ["05","2nd messenger"],["06","Kinase"],["07","Response"],["08","Off switch"]];
+const LANES=[
+{n:"Gs",s:"two ligands, one machine",f:"gpcr",c:["gsLig","gsRec","gs","ac","camp","pka","gsRes","gtpase"]},
+{n:"Gi",s:"α2-adrenergic",f:"gpcr",c:["epi","a2Adr","gi","acDown","campDown","pkaDown","giRes","gtpase"]},
+{n:"Gq",s:"α1-adrenergic",f:"gpcr",c:["epi","a1Adr","gq","plc","ip3dag","camkPkc","vasocon","gtpase"]},
+{n:"RTK",s:"growth factors",f:"enz",c:["gf","rtkRec","ras",null,null,"mapk","prolif","tyrPhos"]},
+{n:"Insulin",s:"metabolic arm",f:"enz",c:["insulin","insRec","irs","pi3k","pip3","akt","glut4","tyrPhos"]},
+{n:"JAK-STAT",s:"cytokines",f:"enz",c:["cytokine","jakRec","jak",null,null,"statPhos","statNuc","tyrPhos"]},
+{n:"TGF-β",s:"Smad",f:"enz",c:["tgf","serRec",null,null,null,"smadPhos","smadNuc","serThrPhos"]},
+{n:"NO",s:"cGMP",f:"intra",c:["no","sgc",null,"gcAct","cgmp","pkg","vasodil","pde5"]},
+{n:"Steroid",s:"intracellular receptors",f:"intra",c:["steroid","cytoR",null,null,null,null,"transcription","clearance"]}];
+
+/* ═══ VIEW B · flows ═══ */
+const FLOWS=[
+{id:"gs",n:"Gs and cAMP",f:"gpcr",sub:"Linear until PKA, then it forks into a fast metabolic arm and a slow transcriptional one from a single burst of messenger.",
+ nodes:[["epi",0,0],["bAdr",1,0],["gs",2,0],["ac",3,0],["camp",4,0],["pka",5,0],["pkaFast",6,-1],["creb",6,1],["gtpase",7,0]],
+ edges:[["epi","bAdr"],["bAdr","gs"],["gs","ac"],["ac","camp"],["camp","pka"],["pka","pkaFast"],["pka","creb"],["pkaFast","gtpase"],["creb","gtpase"]]},
+{id:"gq",n:"Gq, IP₃ and DAG",f:"gpcr",sub:"The clearest genuine fork of any pathway here: one cleavage sends two products in opposite directions, and they rejoin at PKC because it needs the calcium IP₃ went to fetch.",
+ nodes:[["epi",0,0],["a1Adr",1,0],["gq",2,0],["plc",3,0],["ip3",4,-1],["dag",4,1],["ca",5,-1],["camk",6,-1],["pkc",6,1],["vasocon",7,0]],
+ edges:[["epi","a1Adr"],["a1Adr","gq"],["gq","plc"],["plc","ip3"],["plc","dag"],["ip3","ca"],["ca","camk"],["dag","pkc"],["ca","pkc"],["camk","vasocon"],["pkc","vasocon"]]},
+{id:"gi",n:"Gi, the brake",f:"gpcr",sub:"Short and entirely subtractive. Nothing new is switched on; an ongoing process is dialled down at the same effector Gs stimulates.",
+ nodes:[["epi",0,0],["a2Adr",1,0],["gi",2,0],["acDown",3,0],["giRes",4,0],["gtpase",5,0]],
+ edges:[["epi","a2Adr"],["a2Adr","gi"],["gi","acDown"],["acDown","giRes"],["giRes","gtpase"]]},
+{id:"rtk",n:"RTK, Ras and MAPK",f:"enz",sub:"Linear but long. Note how much happens inside the receptor before the transducer is even reached, the part a comparison grid has to hide.",
+ nodes:[["gf",0,0],["rtkRec",1,0],["dimerize",2,0],["sh2",3,0],["ras",4,0],["mapk",5,0],["prolif",6,0],["tyrPhos",7,0]],
+ edges:[["gf","rtkRec"],["rtkRec","dimerize"],["dimerize","sh2"],["sh2","ras"],["ras","mapk"],["mapk","prolif"],["prolif","tyrPhos"]]},
+{id:"ins",n:"Insulin, two arms",f:"enz",sub:"The fork is at IRS-1, not at the receptor. One scaffold carries enough phosphotyrosines to run a metabolic and a growth programme in parallel.",
+ nodes:[["insulin",0,0],["insRec",1,0],["irs",2,0],["pi3k",3,-1],["insRas",3,1],["pip3",4,-1],["mapk",4,1],["akt",5,-1],["insGrow",5,1],["glut4",6,-1],["tyrPhos",7,0]],
+ edges:[["insulin","insRec"],["insRec","irs"],["irs","pi3k"],["irs","insRas"],["pi3k","pip3"],["insRas","mapk"],["pip3","akt"],["mapk","insGrow"],["akt","glut4"],["glut4","tyrPhos"],["insGrow","tyrPhos"]]},
+{id:"jak",n:"JAK-STAT",f:"enz",sub:"Four boxes from ligand to genome. Compare against RTK above. That shortness is the whole reason cytokine responses are fast.",
+ nodes:[["cytokine",0,0],["jakRec",1,0],["jak",2,0],["statPhos",3,0],["statNuc",4,0]],
+ edges:[["cytokine","jakRec"],["jakRec","jak"],["jak","statPhos"],["statPhos","statNuc"]]},
+{id:"smad",n:"TGF-β and Smad",f:"enz",sub:"Structurally the twin of JAK-STAT. The differences are the residue phosphorylated and the docking domain, not the shape.",
+ nodes:[["tgf",0,0],["serRec",1,0],["smadPhos",2,0],["smadNuc",3,0]],
+ edges:[["tgf","serRec"],["serRec","smadPhos"],["smadPhos","smadNuc"]]},
+{id:"no",n:"NO and cGMP",f:"intra",sub:"Receptor and effector are the same molecule. Two drug classes act on this one line, and combining them is dangerous for a reason the diagram makes obvious.",
+ nodes:[["no",0,0],["sgc",1,0],["cgmp",2,0],["pkg",3,0],["vasodil",4,0],["pde5",5,0]],
+ edges:[["no","sgc"],["sgc","cgmp"],["cgmp","pkg"],["pkg","vasodil"],["vasodil","pde5"]]},
+{id:"intra",n:"Intracellular receptors",f:"intra",sub:"Forks at the receptor rather than downstream. The two branches differ only in where the receptor was waiting when the ligand arrived.",
+ nodes:[["steroid",0,0],["cytoR",1,-1],["nucR",1,1],["transcription",2,0],["clearance",3,0]],
+ edges:[["steroid","cytoR"],["steroid","nucR"],["cytoR","transcription"],["nucR","transcription"],["transcription","clearance"]]}];
+
+const CLIN=[["Cholera","gs"],["Whooping cough","gi"],["Cancer (Ras)","ras"],
+ ["Neurofibromatosis 1","tyrPhos"],["Achondroplasia","rtkRec"],["β-blockers","bAdr"],
+ ["Angina / nitrates","no"],["PDE5 inhibitors","pde5"],["Insulin resistance","insRec"],
+ ["Asthma / cardiac arrest","gsRes"]];
+
+const HINTS={A:"Read across a row to trace a pathway. Click a column heading to isolate that stage and compare all nine side by side. The blank cells mean the pathway genuinely has nothing there.",
+             B:"Pick a pathway.",
+             C:"Every step is hidden behind its role. Say the answer out loud, then click to check. Click a revealed box again for the full explanation."};
+
+const FC={gpcr:"--gpcr",enz:"--enz",intra:"--intra"};
+const FL={gpcr:"G",enz:"E",intra:"I"};
+const grid=document.getElementById("grid"), drawer=document.getElementById("drawer");
+let sel=null, focusCol=null, curFlow="gs", view="B", shown=new Set(),
+    open1=new Set(), openAll=false;
+
+/* build grid */
+grid.appendChild(Object.assign(document.createElement("div"),{className:"corner"}));
+STAGES.forEach(([n,t],i)=>{
+  const b=document.createElement("button"); b.className="sh"; b.dataset.col=i;
+  b.innerHTML=`<span class="n">${n}</span><span class="t">${t}</span>`; grid.appendChild(b);
+});
+LANES.forEach(L=>{
+  const lb=document.createElement("button"); lb.className="lane";
+  lb.style.setProperty("--a",`var(${FC[L.f]})`);
+  lb.innerHTML=`<span class="t">${L.n}</span><span class="s">${L.s}</span><span class="f">${FL[L.f]} · ${L.f==="gpcr"?"GPCR":L.f==="enz"?"enzyme-linked":"intracellular"}</span>`;
+  grid.appendChild(lb);
+  L.c.forEach((id,i)=>{
+    if(!id){const d=document.createElement("div");d.className="none";d.textContent="·";d.dataset.col=i;grid.appendChild(d);return}
+    const d=D[id], b=document.createElement("button");
+    b.className="cell"; b.dataset.id=id; b.dataset.col=i;
+    b.style.setProperty("--a",`var(${FC[L.f]})`);
+    b.innerHTML=`<span class="t">${d.t}</span>`+(d.s?`<span class="s">${d.s}</span>`:"")+(d.b?'<i class="pin">!</i>':"");
+    grid.appendChild(b);
+  });
+});
+
+/* build flow picker */
+const picker=document.getElementById("picker");
+FLOWS.forEach(F=>{
+  const b=document.createElement("button"); b.className="pk"; b.dataset.flow=F.id;
+  b.style.setProperty("--a",`var(${FC[F.f]})`); b.textContent=F.n; picker.appendChild(b);
+});
+
+function tally(F){
+  const ids=F.nodes.map(n=>n[0]);
+  document.getElementById("rtotal").textContent=ids.length;
+  document.getElementById("rdone").textContent=ids.filter(i=>shown.has(i)).length;
+}
+function drawFlow(id){
+  if(id!==curFlow){shown=new Set();open1=new Set()}
+  curFlow=id;
+  const F=FLOWS.find(f=>f.id===id);
+  document.querySelectorAll(".pk").forEach(p=>p.setAttribute("aria-pressed",String(p.dataset.flow===id)));
+  document.getElementById("flowhead").textContent=F.n;
+  document.getElementById("flowsub").textContent=F.sub;
+  const g=document.getElementById("fgrid"); g.innerHTML="";
+  const rec=(view==="C");
+  F.nodes.forEach(([nid,row,lane])=>{
+    const d=D[nid], b=document.createElement("button");
+    b.className="node "+(lane===0?"mid":lane<0?"l":"r");
+    if(!rec&&["gtpase","tyrPhos","serThrPhos","pde5","clearance"].includes(nid))b.classList.add("brake");
+    b.dataset.id=nid; b.dataset.node=nid;
+    b.style.gridRow=row+1;
+    b.style.setProperty("--a",`var(${FC[F.f]})`);
+    if(rec&&!shown.has(nid)){
+      b.classList.add("mask");
+      b.innerHTML=`<span class="role">${d.r||"Step"}</span><span class="q">?</span>`;
+    }else{
+      const exp=d.d&&(openAll||open1.has(nid));
+      b.innerHTML=`<span class="t">${d.t}</span>`+(d.s?`<span class="s">${d.s}</span>`:"")+
+        (d.d?`<span class="d">${d.d}</span><span class="cv">${exp?"−":"+"}</span>`:"")+
+        (d.b&&!rec?'<span class="tagd">clinical</span>':"");
+      if(exp)b.classList.add("exp");
+      if(rec)b.classList.add("shown");
+    }
+    g.appendChild(b);
+  });
+  if(rec)tally(F);
+  requestAnimationFrame(()=>edges(F));
+}
+function edges(F){
+  const svg=document.getElementById("fedges"), wrap=document.getElementById("flow");
+  const W=wrap.clientWidth, H=document.getElementById("fgrid").offsetHeight;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  const pos={};
+  wrap.querySelectorAll(".node").forEach(n=>{
+    pos[n.dataset.node]={x:n.offsetLeft+n.offsetWidth/2,t:n.offsetTop,b:n.offsetTop+n.offsetHeight};
+  });
+  let p=[`<defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>`];
+  const col=`var(${FC[F.f]})`;
+  F.edges.forEach(([a,b])=>{
+    const A=pos[a],B=pos[b]; if(!A||!B)return;
+    const mid=(A.b+B.t)/2;
+    const d=(A.x===B.x)?`M${A.x} ${A.b} V${B.t-7}`
+      :`M${A.x} ${A.b} V${mid} H${B.x} V${B.t-7}`;
+    p.push(`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.4" opacity=".5" marker-end="url(#fa)"/>`);
+  });
+  svg.innerHTML=p.join("");
+}
+
+/* drawer */
+function open(id){
+  const d=D[id]; if(!d)return; sel=id;
+  document.querySelectorAll(".cell,.node").forEach(e=>e.classList.toggle("sel",e.dataset.id===id));
+  drawer.style.setProperty("--a",`var(${FC[d.f]})`);
+  document.getElementById("deyebrow").textContent=
+    d.f==="gpcr"?"GPCR pathway":d.f==="enz"?"Enzyme-linked pathway":"Intracellular receptor";
+  document.getElementById("dtitle").textContent=d.t;
+  let h="";
+  if(d.w)h+=`<div class="blk"><h4>What it is</h4><p>${d.w}</p></div>`;
+  if(d.h)h+=`<div class="blk"><h4>How it fits into the system</h4><p>${d.h}</p></div>`;
+  if(d.b)h+=`<div class="blk brk"><h4>Where it breaks · drugs</h4><p>${d.b}</p></div>`;
+  const xs=(d.x||[]).filter(k=>D[k]);
+  if(xs.length)h+=`<div class="blk"><h4>Compare with</h4><div class="xrs">${
+    xs.map(k=>`<button class="xr" data-go="${k}">${D[k].t}</button>`).join("")}</div></div>`;
+  document.getElementById("dbody").innerHTML=h;
+  drawer.classList.add("up");
+}
+function close(){drawer.classList.remove("up");sel=null;
+  document.querySelectorAll(".cell,.node").forEach(e=>e.classList.remove("sel"))}
+function setFocus(c){
+  focusCol=(focusCol===c)?null:c;
+  document.querySelectorAll(".sh").forEach(h=>h.classList.toggle("on",h.dataset.col===focusCol));
+  document.querySelectorAll(".cell,.none").forEach(e=>
+    e.classList.toggle("dim",!!focusCol&&e.dataset.col!==focusCol));
+}
+function setView(v){
+  view=v;
+  ["A","B","C"].forEach(k=>document.getElementById("tab"+k).setAttribute("aria-selected",String(v===k)));
+  document.getElementById("viewA").classList.toggle("on",v==="A");
+  document.getElementById("viewB").classList.toggle("on",v==="B"||v==="C");
+  document.getElementById("rbar").classList.toggle("on",v==="C");
+  document.getElementById("vhint").textContent=HINTS[v];
+  if(v==="C"){shown=new Set();open1=new Set()}
+  if(v!=="A")drawFlow(curFlow);
+}
+
+document.addEventListener("click",e=>{
+  const sh=e.target.closest(".sh"); if(sh){setFocus(sh.dataset.col);return}
+  const pk=e.target.closest(".pk"); if(pk){drawFlow(pk.dataset.flow);return}
+  const node=e.target.closest(".node");
+  if(node&&view==="C"&&node.classList.contains("mask")){
+    shown.add(node.dataset.id); drawFlow(curFlow); return;
+  }
+  if(node){
+    const id=node.dataset.id;
+    if(!openAll){
+      if(open1.has(id))open1.delete(id); else open1.add(id);
+      drawFlow(curFlow);
+    }
+    open(id); return;
+  }
+  const cell=e.target.closest(".cell"); if(cell){open(cell.dataset.id);return}
+  const go=e.target.closest("[data-go]"); if(go)open(go.dataset.go);
+  const chip=e.target.closest(".chip"); if(chip)open(chip.dataset.go);
+});
+document.getElementById("tabA").onclick=()=>setView("A");
+document.getElementById("tabB").onclick=()=>setView("B");
+document.getElementById("tabC").onclick=()=>setView("C");
+const expall=document.getElementById("expall");
+expall.onclick=()=>{
+  openAll=!openAll; open1=new Set();
+  expall.setAttribute("aria-pressed",String(openAll));
+  expall.textContent=openAll?"Hide what each step does":"Show what each step does";
+  drawFlow(curFlow);
+};
+document.getElementById("rhide").onclick=()=>{shown=new Set();drawFlow(curFlow)};
+document.getElementById("rshow").onclick=()=>{
+  FLOWS.find(f=>f.id===curFlow).nodes.forEach(n=>shown.add(n[0]));drawFlow(curFlow)};
+document.getElementById("dclose").onclick=close;
+document.getElementById("reset").onclick=()=>{close();setFocus(null);shown=new Set();
+  open1=new Set();openAll=false;expall.setAttribute("aria-pressed","false");
+  expall.textContent="Show what each step does";
+  if(view!=="A")drawFlow(curFlow)};
+addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+addEventListener("resize",()=>{if(view==="B")drawFlow(curFlow)});
+
+const chips=document.getElementById("chips");
+CLIN.forEach(([n,id])=>{const b=document.createElement("button");
+  b.className="chip";b.dataset.go=id;b.textContent=n;chips.appendChild(b)});
+setView("B");
+</script>
+</body>
+</html>
