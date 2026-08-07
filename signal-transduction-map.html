@@ -219,13 +219,13 @@ button:focus-visible,.cell:focus-visible{outline:2px solid var(--gpcr);outline-o
   <div class="picker" id="picker"></div>
   <div class="frow">
     <button class="btn" id="expall" aria-pressed="false">Show what each step does</button>
-    <span class="rnote">Or click any one box: it opens in place, and the full note appears below.</span>
+    <span class="rnote">Or click one box once for what it does, twice for the full note below.</span>
   </div>
   <div class="rbar" id="rbar">
     <span class="score"><b id="rdone">0</b> of <b id="rtotal">0</b> revealed</span>
     <button class="btn" id="rhide">Hide all again</button>
     <button class="btn" id="rshow">Reveal all</button>
-    <span class="rnote">Name each step before you click it. A second click opens the full explanation.</span>
+    <span class="rnote">Name each step before you click it. Click again for what it does, once more for the full explanation.</span>
   </div>
   <h2 class="flowhead" id="flowhead"></h2>
   <p class="flowsub" id="flowsub"></p>
@@ -603,12 +603,15 @@ document.addEventListener("click",e=>{
     shown.add(node.dataset.id); drawFlow(curFlow); return;
   }
   if(node){
+    /* 1st click opens the line inside the box, 2nd opens the full note below,
+       3rd puts the box back the way it was. */
     const id=node.dataset.id;
-    if(!openAll){
-      if(open1.has(id))open1.delete(id); else open1.add(id);
-      drawFlow(curFlow);
-    }
-    open(id); return;
+    const inBox=openAll||open1.has(id);
+    const noteOnThis=sel===id&&drawer.classList.contains("up");
+    if(!inBox){open1.add(id);drawFlow(curFlow)}
+    else if(!noteOnThis)open(id);
+    else{close();if(!openAll){open1.delete(id);drawFlow(curFlow)}}
+    return;
   }
   const cell=e.target.closest(".cell"); if(cell){open(cell.dataset.id);return}
   const go=e.target.closest("[data-go]"); if(go)open(go.dataset.go);
