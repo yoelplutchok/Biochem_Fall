@@ -91,9 +91,20 @@ def parse_feed(text):
     events = []
     for block in unfold(text).split("BEGIN:VEVENT")[1:]:
         get = lambda key: (m.group(1) if (m := re.search(rf"^{key}[^:\r\n]*:(.*)$", block, re.M)) else "")
-        uid, summary, start = get("UID"), unescape(get("SUMMARY")), parse_dt(get("DTSTART"))
+        uid, summary = get("UID"), unescape(get("SUMMARY"))
+        # Canvas publishes assignment due dates as all-day VALUE=DATE entries.
+        # Reading those as 00:00 puts the deadline at the START of the day, so a
+        # quiz due tonight at 11:59 PM reads as "overdue by 1 day" all afternoon.
+        # Canvas's default due time is 11:59 PM, so snap all-day entries there.
+        # Genuinely timed events (the 1:00 PM anatomy quiz) carry a real DTSTART
+        # time and are left exactly as published.
+        dtstart_line = m.group(0) if (m := re.search(r"^DTSTART[^\r\n]*", block, re.M)) else ""
+        all_day = "VALUE=DATE" in dtstart_line
+        start = parse_dt(dtstart_line)
         if not uid or not start:
             continue
+        if all_day:
+            start = start.replace(hour=23, minute=59)
         # Canvas formats SUMMARY as "Assignment name [Course Name]".
         course = ""
         if (m := re.search(r"\[([^\]]+)\]\s*$", summary)):
@@ -106,6 +117,8 @@ def parse_feed(text):
                 "course": SHORT.get(course, course),
                 "due": start.astimezone(TZ).isoformat(),
                 "url": get("URL").strip(),
+                # 11:59 PM is inferred, not published -- don't print it as fact.
+                "exact_time": not all_day,
             }
         )
     events.sort(key=lambda e: e["due"])
@@ -234,6 +247,7 @@ h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--di
   padding:.6rem .85rem;margin-bottom:.5rem;font-size:.92rem}
 .chg b{color:var(--accent)}
 .empty{color:var(--dim);font-style:italic;padding:.6rem 0}
+.caveat{color:var(--dim);font-size:.84rem;margin:-.2rem 0 .7rem;line-height:1.45}
 .note{color:var(--dim);font-size:.8rem;border-top:1px solid var(--line);
   margin-top:2.2rem;padding-top:.8rem}
 .note code{font-size:.94em;background:var(--line);padding:.1em .35em;border-radius:3px}
@@ -263,7 +277,9 @@ if (b) {
 
 def card(e, now, kind=""):
     due = datetime.fromisoformat(e["due"])
-    exact = e.get("exact_time", False)
+    # 11:59 PM on feed-sourced items is Canvas's default, confirmed against the
+    # API. Showing it beats hiding the time; the page footnote flags the source.
+    exact = True
     pts = e.get("points")
     name = escape(e["name"])
     link = f'<a href="{escape(e["url"])}">{name}</a>' if e.get("url") else name
@@ -311,7 +327,17 @@ def render_html(now, source, days, overdue, upcoming, later, changes):
             )
 
     if overdue:
-        parts.append(f"<h2>Past due ({len(overdue)})</h2>")
+        if source == "api":
+            parts.append(f"<h2>Past due ({len(overdue)})</h2>")
+        else:
+            # The feed cannot say what has been submitted, so claiming these are
+            # missing would be a lie -- most of them are usually already done.
+            parts.append(f"<h2>Past their due date ({len(overdue)})</h2>")
+            parts.append(
+                '<p class="caveat">The calendar feed carries no submission status, so '
+                "work you already turned in still appears here. Check these against "
+                "Canvas rather than trusting the list.</p>"
+            )
         parts += [card(e, now, "overdue") for e in overdue]
 
     parts.append(f"<h2>Next {days} days</h2>")
@@ -330,11 +356,13 @@ def render_html(now, source, days, overdue, upcoming, later, changes):
     parts.append('<p class="note">')
     if source != "api":
         parts.append(
-            "Built from the Canvas <b>calendar feed</b>, which publishes most "
-            "assignments as all-day entries — so dates are exact but "
-            "<b>times are not shown</b> (Canvas due times are usually 11:59 PM), "
-            "and work already turned in is <b>not</b> filtered out. Adding a Canvas "
-            "API token fixes both. "
+            "Built from the Canvas <b>calendar feed</b>. The feed publishes most "
+            "assignments as all-day entries, so a <b>11:59 PM</b> due time is assumed "
+            "for those — that is Canvas's default and matches every item spot-checked "
+            "against the API, but it is inferred, not published. Items with a genuine "
+            "due time (a 1:00 PM lab quiz) show it as published. The feed also carries "
+            "<b>no submission status</b>, so work already turned in still shows as past "
+            "due. A Canvas API token removes both caveats. "
         )
     else:
         parts.append("Exact due times, and anything already submitted is filtered out. ")
@@ -358,6 +386,12 @@ def main():
         metavar="N",
         help="days before due to remind, fires once each (default: 3 1)",
     )
+    # Canvas courses carry prior years' assignments in the same course shell --
+    # Biochem alone holds four unsubmitted Fall 2025 quizzes. The feed happens to
+    # omit them; the API does not, so without a floor, adding a token would
+    # resurrect a year-old backlog as "past due".
+    ap.add_argument("--since", default="2026-07-01", metavar="YYYY-MM-DD",
+                    help="ignore anything due before this (default: 2026-07-01)")
     ap.add_argument("--html", metavar="PATH", help="also write a standalone web page here")
     ap.add_argument("--state", metavar="PATH", help=f"state file (default {STATE})")
     ap.add_argument("--no-md", action="store_true", help="skip the markdown report")
@@ -392,6 +426,13 @@ def main():
 
     if not events:
         sys.exit("No events returned -- the feed URL or token may have been reset in Canvas.")
+
+    floor = datetime.strptime(args.since, "%Y-%m-%d").replace(tzinfo=TZ)
+    dropped = len(events)
+    events = [e for e in events if datetime.fromisoformat(e["due"]) >= floor]
+    dropped -= len(events)
+    if dropped:
+        print(f"(ignored {dropped} item(s) due before {args.since} -- previous terms)")
 
     # State holds both the last snapshot and which lead-time reminders have already
     # fired, so running twice a day doesn't re-announce the same item every run.
@@ -442,8 +483,9 @@ def main():
         print("source: Canvas API (exact times, submitted items filtered out)\n")
     else:
         print(
-            "source: iCal feed -- times are DATE-ONLY (Canvas drops the 11:59 PM)\n"
-            "        and submitted work cannot be filtered. Add a token for accuracy;\n"
+            "source: iCal feed -- all-day entries are assumed due 11:59 PM (Canvas's\n"
+            "        default), and submitted work cannot be filtered, so items you have\n"
+            "        already turned in still appear as past due. Add a token to fix both;\n"
             "        see the header of this script.\n"
         )
 
