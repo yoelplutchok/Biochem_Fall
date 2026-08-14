@@ -458,6 +458,33 @@ ol.qlist > li::before {
   color: var(--muted);
   margin-bottom: 1rem;
 }
+.print-banner {
+  display: none;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  background: var(--clin-bg);
+  border: 1px solid var(--clin);
+  border-left: 3.5px solid var(--clin);
+  border-radius: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  margin-bottom: 1rem;
+}
+.rail a.tool-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 0.4rem;
+  padding: 0.45rem 0.6rem;
+}
+.rail a.tool-link:hover { border-color: var(--navy); }
+html.print-ready .print-banner { display: block; }
+html.print-ready .toggle-ans { display: none; }
+html.print-ready .ans-wrap[hidden] { display: block !important; }
 @media (max-width: 60rem) {
   .layout { grid-template-columns: 1fr; }
   .rail {
@@ -472,14 +499,59 @@ ol.qlist > li::before {
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
+@page {
+  size: letter;
+  margin: 0.55in 0.6in 0.7in;
+}
 @media print {
-  .rail, .toggle-ans, .rail .tools, #theme-btn, #reveal-btn { display: none !important; }
+  :root, :root[data-theme="dark"], :root[data-theme="light"] {
+    --navy: #1f3a5f;
+    --crimson: #9b2c2c;
+    --must: #b3282d;
+    --clin: #2f7d4f;
+    --ground: #ffffff;
+    --surface: #ffffff;
+    --ink: #171a1f;
+    --muted: #5a6573;
+    --line: #c8d3e0;
+    --rail: #ffffff;
+    --vs-bg: #e8eef5;
+    --must-bg: #fdeeed;
+    --must-border: #e0b3b1;
+    --clin-bg: #eef7f0;
+    --table-stripe: #f6f8fa;
+    --focus: #2f6fb5;
+  }
+  html, body {
+    background: #fff !important;
+    color: #171a1f !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+  .rail, .toggle-ans, .rail .tools, #theme-btn, #reveal-btn, #print-btn,
+  .print-banner, .tool-link { display: none !important; }
   .layout { display: block; }
-  .main { max-width: none; padding: 0; }
-  .ans-wrap { display: block !important; }
-  .ans-wrap[hidden] { display: block !important; }
-  figure, .must, .vs, .clin, table, ol.qlist > li { break-inside: avoid; }
-  h2 { break-after: avoid; color: #fff !important; background: #1f3a5f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .main { max-width: none; padding: 0; background: #fff !important; }
+  .ans-wrap, .ans-wrap[hidden] {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  figure, .must, .vs, .clin, table, ol.qlist > li, .cheat section { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+  h2 {
+    color: #fff !important;
+    background: #1f3a5f !important;
+  }
+  th { background: #1f3a5f !important; color: #fff !important; }
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  a { color: inherit; text-decoration: none; }
+  figure img { max-height: 4.2in; }
+  .hdr { border-bottom-color: #9b2c2c; }
 }
 
 </style>
@@ -491,6 +563,11 @@ figure.qfig img { max-height: none; }
        font-size: 0.76rem; line-height: 1.5; }
 @media (max-width: 45rem) { .map { font-size: 0.66rem; } }
 </style>
+<script>
+if (new URLSearchParams(location.search).has('print')) {
+  document.documentElement.classList.add('print-ready');
+}
+</script>
 </head>
 <body>
 <div class="layout">
@@ -509,10 +586,13 @@ figure.qfig img { max-height: none; }
 </nav>
 <div class="tools">
 <button aria-pressed="false" id="reveal-btn" type="button">Reveal all answers</button>
+<button id="print-btn" type="button">Print / Save as PDF</button>
+<a class="tool-link" href="print.pdf">Download PDF</a>
 <button id="theme-btn" type="button">Toggle theme</button>
 </div>
 </aside>
 <main class="main" id="main">
+<div class="print-banner">Print-ready edition — every self-test answer is shown. Use <b>File → Print → Save as PDF</b>, or the Print button in the sidebar. Light theme, no navigation chrome.</div>
 <div class="hdr">
 <div class="kicker">Medical Biochemistry &amp; Genetics I  ·  Fall 2026  ·  Week 1, Session 1</div>
 <h1>Lecture 02 — Enzymes and Enzyme Kinetics</h1>
@@ -1002,7 +1082,7 @@ figure.qfig img { max-height: none; }
 
 
 <h2 id="selftest"><span class="onum">Self-test  / </span> Recall drill</h2>
-<p class="intro-line">Answers are hidden. Use <b>Show answer</b> per item, or <b>Reveal all</b> in the rail. Drill the inhibition grid and the graph-reading items hardest — they are where the marks are.</p>
+<p class="intro-line">Answers are hidden on screen. Use <b>Show answer</b> per item, or <b>Reveal all</b> in the rail. Printing or saving as PDF shows every answer. Drill the inhibition grid and the graph-reading items hardest — they are where the marks are.</p>
 <ol class="qlist">
 <li>
 <div class="q">Define enzyme, substrate and product; name the one class of biological catalyst that is not protein; and say by what factor enzymes accelerate reactions and what two things besides speed they provide.</div>
@@ -1460,6 +1540,34 @@ figure.qfig img { max-height: none; }
     const open = revealBtn.getAttribute('aria-pressed') !== 'true';
     setAll(open);
   });
+
+  function eagerImages() {
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
+  }
+
+  const printBtn = document.getElementById('print-btn');
+  printBtn.addEventListener('click', () => {
+    setAll(true);
+    eagerImages();
+    window.print();
+  });
+
+  let restoreAnswers = null;
+  window.addEventListener('beforeprint', () => {
+    restoreAnswers = revealBtn.getAttribute('aria-pressed') === 'true';
+    setAll(true);
+    eagerImages();
+  });
+  window.addEventListener('afterprint', () => {
+    if (restoreAnswers === false && !root.classList.contains('print-ready')) setAll(false);
+    restoreAnswers = null;
+  });
+
+  if (root.classList.contains('print-ready')) {
+    root.dataset.theme = 'light';
+    setAll(true);
+    eagerImages();
+  }
 
   // Instant rail jumps (no smooth scroll)
   toc.addEventListener('click', (e) => {
