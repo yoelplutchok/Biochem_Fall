@@ -161,6 +161,14 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1515221",
+   "name": "Week 6 - Physio I Skeletal Physiology",
+   "course": "PHYSIO",
+   "due": "2026-09-13T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=09&year=2026#assignment_1515221",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1466480",
    "name": "Week 5 DNA comp Rep Self-Assessment Quiz",
    "course": "BIOCHEM",
