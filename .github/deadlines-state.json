@@ -57,14 +57,6 @@
    "exact_time": false
   },
   {
-   "uid": "event-assignment-1469721",
-   "name": "SOAP Note Submission",
-   "course": "PHYS DIAG",
-   "due": "2026-08-12T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=08&year=2026#assignment_1469721",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1470615",
    "name": "Week 2 Quiz 2 - Physio I Osmosis, and Action potentials",
    "course": "PHYSIO",
@@ -102,6 +94,14 @@
    "course": "ANATOMY",
    "due": "2026-08-18T13:00:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168934&month=08&year=2026#assignment_1443268",
+   "exact_time": true
+  },
+  {
+   "uid": "event-assignment-1469721",
+   "name": "SOAP Note Submission",
+   "course": "PHYS DIAG",
+   "due": "2026-08-19T11:32:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=08&year=2026#assignment_1469721",
    "exact_time": true
   },
   {
