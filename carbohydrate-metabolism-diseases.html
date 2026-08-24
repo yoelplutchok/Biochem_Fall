@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carbohydrate Metabolism — Disease by Disease</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+:root{
+  --paper:#F2F5F4; --surface:#FFFFFF; --sunk:#E8EEEC; --tint:#F7FAF9;
+  --ink:#0E1513; --ink2:#44514E; --ink3:#75827F;
+  --rule:#CDD7D4; --rule2:#E2E9E7;
+  --accent:#0A5E5C; --accent2:#0E7A73; --accent-soft:#DBEAE8;
+  --lesion:#9E3527; --lesion-bg:#F8E6E1;
+  --up:#875311; --up-bg:#F6EFDE;
+  --dn:#1D5B8F; --dn-bg:#E5EDF6;
+  --serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+html[data-theme="dark"]{
+  --paper:#0B1110; --surface:#131A19; --sunk:#18211F; --tint:#101817;
+  --ink:#E2EAE8; --ink2:#93A29F; --ink3:#6D7C79;
+  --rule:#293533; --rule2:#1C2625;
+  --accent:#54BFBA; --accent2:#6FD3CD; --accent-soft:#0F2E2C;
+  --lesion:#F0857A; --lesion-bg:#2C1714;
+  --up:#DEAC57; --up-bg:#291F10;
+  --dn:#77B4E4; --dn-bg:#12253A;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px 90px}
+
+/* ---------- masthead ---------- */
+header.mast{padding:64px 0 30px;border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:18px
+}
+h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.4vw,60px);
+  line-height:1.04;letter-spacing:-.022em;margin:0 0 16px
+}
+h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.standfirst{
+  font-size:17.5px;color:var(--ink2);max-width:62ch;margin:0;line-height:1.6
+}
+.mastmeta{
+  display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink3);letter-spacing:.04em
+}
+.mastmeta b{color:var(--ink2);font-weight:500}
+
+/* ---------- legend ---------- */
+.legend{
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:22px 26px;margin:30px 0 0
+}
+.legend h2{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink3);margin:0 0 14px;font-weight:500
+}
+.legend p{margin:0 0 12px;font-size:16px;color:var(--ink2);max-width:78ch}
+.legend p:last-child{margin-bottom:0}
+
+/* ---------- semantic marks ---------- */
+.lesion{color:var(--lesion);font-weight:600;font-family:var(--sans);font-size:.955em}
+.up{background:var(--up-bg);color:var(--up);font-weight:600;padding:.06em .28em;border-radius:2px}
+.dn{background:var(--dn-bg);color:var(--dn);font-weight:600;padding:.06em .28em;border-radius:2px}
+.tell{
+  background:var(--accent-soft);color:var(--accent);font-weight:600;
+  padding:.06em .3em;border-radius:2px;box-shadow:inset 0 -1px 0 var(--accent2)
+}
+.sm{font-variant:small-caps;letter-spacing:.03em;font-weight:600}
+
+/* ---------- nav ---------- */
+nav.toc{
+  position:sticky;top:0;z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--rule);margin-top:34px;
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:none
+}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a{
+  flex:none;padding:13px 16px;font-family:var(--sans);font-size:12.5px;font-weight:500;
+  color:var(--ink3);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent
+}
+nav.toc a:hover{color:var(--accent);border-bottom-color:var(--accent2)}
+nav.toc a .n{font-family:var(--mono);color:var(--rule);margin-right:7px;font-size:11px}
+
+/* ---------- sections ---------- */
+section.part{padding-top:56px}
+.parthead{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.parthead .roman{
+  font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.08em
+}
+.parthead h2{
+  font-family:var(--sans);font-weight:600;font-size:21px;letter-spacing:-.01em;margin:0;flex:1
+}
+.parthead .count{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+
+/* ---------- entry ---------- */
+article.dz{
+  display:grid;grid-template-columns:212px 1fr;gap:34px;
+  padding:32px 0;border-bottom:1px solid var(--rule2);
+  break-inside:avoid;page-break-inside:avoid
+}
+article.dz:last-child{border-bottom:none}
+.rail{border-left:2px solid var(--accent);padding-left:15px}
+.rail .num{
+  font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.08em;display:block;margin-bottom:9px
+}
+.rail .name{
+  font-family:var(--sans);font-weight:600;font-size:16.5px;line-height:1.25;
+  letter-spacing:-.01em;margin-bottom:12px
+}
+.rail .lbl{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink3);display:block;margin-bottom:3px
+}
+.rail .prot{
+  font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--lesion);
+  line-height:1.35;margin-bottom:12px
+}
+.rail .path{font-family:var(--sans);font-size:13px;color:var(--ink2);line-height:1.35}
+.body p{margin:0 0 15px;max-width:74ch}
+.body p:last-child{margin-bottom:0}
+p.against{
+  border-left:2px solid var(--rule);padding-left:16px;margin-top:18px;
+  font-size:16px;color:var(--ink2)
+}
+p.against .h{
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:5px;font-weight:500
+}
+p.against .lesion,p.against .tell,p.against .up,p.against .dn{font-size:.95em}
+
+/* ---------- footer ---------- */
+footer{
+  margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);
+  font-family:var(--mono);font-size:11.5px;color:var(--ink3);
+  display:flex;flex-wrap:wrap;gap:8px 26px
+}
+
+/* ---------- theme button ---------- */
+#theme{
+  position:fixed;right:16px;bottom:16px;z-index:40;
+  background:var(--surface);color:var(--ink2);border:1px solid var(--rule);
+  border-radius:3px;padding:8px 13px;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em
+}
+#theme:hover{color:var(--accent);border-color:var(--accent2)}
+#theme:focus-visible,nav.toc a:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+@media (max-width:820px){
+  body{font-size:16.5px}
+  .wrap{padding:0 18px 60px}
+  article.dz{grid-template-columns:1fr;gap:16px}
+  .rail{border-left:none;border-top:2px solid var(--accent);padding-left:0;padding-top:12px}
+  .rail .prot,.rail .path{display:inline-block;margin-right:14px}
+}
+@media print{
+  :root{--paper:#fff;--surface:#fff}
+  nav.toc,#theme{display:none}
+  body{font-size:10.5pt}
+  article.dz{padding:14pt 0}
+  section.part{padding-top:20pt}
+  header.mast{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">Companion to the Wall Chart · Lectures 9–15</div>
+  <h1>Every disease,<br><em>from the missing protein to the bedside</em></h1>
+  <p class="standfirst">Twenty-five diseases, one paragraph each, written as a single causal chain: which protein is gone, what backs up behind it, what runs out in front of it, and what that produces in a patient. Each closes by naming the diseases it is confused with and the one finding that separates them.</p>
+  <div class="mastmeta">
+    <span><b>25</b> diseases</span>
+    <span><b>8</b> sections</span>
+    <span><b>Order</b> follows the block's position in metabolizm</span>
+  </div>
+</header>
+
+<div class="legend">
+  <h2>How to read a paragraph</h2>
+  <p>Four marks carry meaning and nothing else is colored. <span class="lesion">Red sans-serif</span> is the protein that is missing or disabled — the lesion itself. <span class="up">Amber</span> is something that rises or accumulates behind the block. <span class="dn">Blue</span> is something that falls or is lost in front of it. <span class="tell">Teal</span> is the finding that identifies the disease — the one line that, on its own, tells you which of the look-alikes you are holding.</p>
+  <p>The rail on the left of each entry carries the protein and the pathway, so the enzymes can be read straight down the page without breaking into the prose. Everything else is prose, because a mechanism is a sentence, not a row.</p>
+</div>
+
+<nav class="toc">
+  <a href="#p1"><span class="n">I</span>Digestion</a>
+  <a href="#p2"><span class="n">II</span>Glycolysis</a>
+  <a href="#p3"><span class="n">III</span>Pyruvate → acetyl-CoA</a>
+  <a href="#p4"><span class="n">IV</span>Gluconeogenesis</a>
+  <a href="#p5"><span class="n">V</span>Glycogen</a>
+  <a href="#p6"><span class="n">VI</span>Ethanol &amp; methanol</a>
+  <a href="#p7"><span class="n">VII</span>The other sugars</a>
+  <a href="#p8"><span class="n">VIII</span>NADPH</a>
+</nav>
+
+<!-- ============ I ============ -->
+<section class="part" id="p1">
+  <div class="parthead"><span class="roman">I</span><h2>Digestion</h2><span class="count">1 disease</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">01</span>
+      <div class="name">Lactose intolerance</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">lactase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Brush-border digestion</div>
+    </div>
+    <div class="body">
+      <p>Lactase sits at the tip of the intestinal villus, the most exposed position any brush-border disaccharidase occupies, which is why it is the <span class="lesion">first activity lost</span> to mucosal injury and the last to come back. Without it lactose is never split into glucose and galactose, so an <span class="up">unabsorbable disaccharide stays in the lumen</span>, pulls water in osmotically, and is then fermented by colonic bacteria into hydrogen, methane and short-chain fatty acids. The gas and the water together produce <span class="tell">bloating, cramping, flatus and osmotic diarrhea an hour or two after milk</span>, and nothing systemic at all, because the sugar never crosses the epithelium. Confirm it with a hydrogen breath test, a low stool pH and a high stool osmotic gap, and by symptoms resolving on withdrawal. The primary form is a genetically programmed decline in lactase after weaning and is the majority state worldwide; the secondary form follows gastroenteritis, giardiasis or celiac disease and recovers with the mucosa; the congenital form is rare and presents at the first feed.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Cow's-milk protein allergy involves the same drink but is immune-mediated, so it does not scale with the sugar load and can occur on trivial exposure. Sucrase–isomaltase deficiency produces an identical picture triggered by sucrose and starch rather than milk. Glucose–galactose malabsorption, a defect in <span class="lesion">SGLT-1</span>, causes diarrhea after any glucose or galactose in any form. And classical galactosemia shares the disaccharide but breaks it normally — the damage there happens after absorption, which is exactly why lactose intolerance never causes liver or brain disease.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ II ============ -->
+<section class="part" id="p2">
+  <div class="parthead"><span class="roman">II</span><h2>Glycolysis</h2><span class="count">2 diseases</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">02</span>
+      <div class="name">Pyruvate kinase deficiency</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">pyruvate kinase (PKLR, R isoform)</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Glycolysis, final step</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Pyruvate kinase</span> catalyzes the last step of glycolysis, PEP to pyruvate, one of the two steps that actually make ATP. The red cell has no mitochondria, so glycolysis is its only source of ATP, and losing the final step means <span class="dn">ATP falls permanently</span>. The Na⁺/K⁺ ATPase fails, the cell loses potassium and water, becomes dehydrated and rigid, takes on an echinocytic shape, and is picked out and destroyed in the spleen — a chronic extravascular hemolysis that needs no trigger and never remits. Because the block is at the very end of the pathway, everything upstream dams, and the one that matters is 1,3-BPG, which spills sideways into the Rapoport–Luebering shunt and drives <span class="up">2,3-BPG up</span>. That right-shifts the oxygen dissociation curve, so hemoglobin unloads oxygen more readily and <span class="tell">the patient tolerates the anemia far better than the hemoglobin number predicts</span>. Pyruvate and lactate inside the red cell fall, but serum lactate is normal, because red cells contribute almost nothing to whole-body lactate; serum LDH is high, but from hemolysis, not from glycolysis. Blood glucose is normal — hepatic glucose output runs on glycogenolysis and gluconeogenesis, neither of which needs pyruvate kinase. Expect neonatal jaundice, chronic normocytic anemia with reticulocytosis, splenomegaly, pigment gallstones, a negative Coombs, and aplastic crisis with parvovirus B19.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>G6PD deficiency is <span class="tell">episodic and trigger-dependent</span> with Heinz bodies and bite cells; pyruvate kinase deficiency is continuous and trigger-independent with no inclusions. Sickle cell is a structural instability of hemoglobin, not an energy failure. Hexokinase deficiency looks nearly identical clinically but the block sits <em>upstream</em> of 1,3-BPG, so <span class="dn">2,3-BPG is low</span>, the curve left-shifts, and at the same hemoglobin the patient feels <em>worse</em> rather than better — the mirror image, and the cleanest illustration that where a block sits along a pathway decides how it feels. Skeletal muscle is untouched throughout, because muscle pyruvate kinase is transcribed from a different gene, <em>PKM</em>, which is why this disease is purely hematologic.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">03</span>
+      <div class="name">PFK-1 deficiency<br>(Tarui, GSD VII)</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">phosphofructokinase-1, M subunit</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Glycolysis, committed step</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">PFK-1</span> is the rate-limiting committed step, fructose 6-phosphate to fructose 1,6-bisphosphate, and it is a tetramer assembled from three different subunit genes — M, L and P. Mature skeletal muscle builds it from M alone, the red cell from M and L hybrids, the liver from L alone. So a mutation in the muscle subunit takes <span class="dn">muscle activity to zero</span> and leaves <span class="dn">red-cell activity around half</span>, and the two-tissue disease follows directly from that arithmetic. Muscle can now use neither circulating glucose nor its own glycogen anaerobically, so within the first minutes of hard exertion — exactly when glycolysis should be carrying the load — ATP fails and the patient gets cramps, myalgia, and with continued effort rhabdomyolysis and myoglobinuria. On ischemic forearm exercise testing there is <span class="tell">no rise in venous lactate</span>, with an exaggerated ammonia rise from the purine nucleotide cycle running in its place. The red cell, at half activity, gives a mild compensated hemolysis with reticulocytosis, hyperbilirubinemia and sometimes hyperuricemia. Because the block sits far upstream of 1,3-BPG, <span class="dn">2,3-BPG is low</span> and the curve left-shifts. Blood glucose is normal: the liver's L₄ enzyme is intact, and more fundamentally hepatic glucose output never needed PFK-1 in the first place.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>McArdle disease produces an almost identical muscle picture with the same flat lactate curve, and two things separate them. Give glucose: McArdle gets a <span class="tell">second wind</span> and improves, while Tarui gets <em>worse</em>, because a glucose load suppresses the free fatty acids and ketones that are the only fuel the muscle can still use. And check the blood count: Tarui has hemolysis, McArdle has none. Against pyruvate kinase deficiency, both are glycolytic enzymopathies but PK is red cell only while PFK-1 is <span class="tell">red cell plus muscle</span>, and their 2,3-BPG runs in opposite directions because the blocks lie on opposite sides of 1,3-BPG.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ III ============ -->
+<section class="part" id="p3">
+  <div class="parthead"><span class="roman">III</span><h2>Pyruvate → acetyl-CoA</h2><span class="count">2 diseases</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">04</span>
+      <div class="name">PDH complex deficiency</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">PDH E1α · PDHA1 · X-linked</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Pyruvate into the TCA cycle</div>
+    </div>
+    <div class="body">
+      <p>The <span class="lesion">pyruvate dehydrogenase complex</span> is the irreversible door out of glycolysis and into the TCA cycle, and the commonest defect is in the X-linked E1α subunit. Pyruvate cannot become acetyl-CoA, so it dams and takes the only two exits left to it: lactate dehydrogenase converts it to lactate, and ALT transaminates it to alanine. The result is <span class="up">congenital lactic acidosis with hyperalaninemia</span>. Because pyruvate rises alongside lactate — nothing downstream is consuming it — the lactate-to-pyruvate ratio does not climb, and <span class="tell">the ratio is not elevated</span> (your chart records this as a LOW ratio; the mechanistically exact statement is that cytosolic redox is untouched, so the ratio stays at or below its normal 10 to 20). Blood glucose is <span class="tell">NORMAL</span>, because gluconeogenesis is entirely intact. The brain is the tissue that fails, since it runs almost wholly on glucose oxidation, giving neonatal or infantile lactic acidosis with hypotonia, seizures, psychomotor delay, cerebral atrophy, agenesis of the corpus callosum and, in its classic form, Leigh syndrome. Neither oxygen nor IV dextrose helps, because the problem is neither delivery nor supply — dextrose simply feeds the block and drives the lactate higher. A ketogenic diet does help, because ketone bodies are metabolized straight to acetyl-CoA and enter past the closed door; thiamine and dichloroacetate are worth a trial.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Pyruvate carboxylase deficiency shares the lactic acidosis and the hyperalaninemia, and is the mirror image in every other dimension: <span class="tell">hypoglycemic rather than euglycemic</span>, ratio high rather than not-high, corrected by IV glucose rather than worsened by it, provoked by fasting rather than by carbohydrate. Arsenic poisoning and thiamine deficiency reproduce this picture from outside the genome. Respiratory chain defects and MELAS also give congenital lactic acidosis, but with a <span class="up">high ratio</span>, because their block sits downstream of pyruvate.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">05</span>
+      <div class="name">Arsenic poisoning</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">lipoic acid — PDH E2, α-KGDH, BCKDH</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Pyruvate into the TCA cycle</div>
+    </div>
+    <div class="body">
+      <p>Arsenic attacks in two chemically separate ways. Arsenite binds the two neighbouring sulfhydryl groups of <span class="lesion">lipoic acid</span> and locks them, which disables every enzyme that carries lipoate — PDH E2, α-ketoglutarate dehydrogenase and branched-chain ketoacid dehydrogenase. That closes the same door as PDH deficiency and then closes a second one a single turn into the TCA cycle, so <span class="up">pyruvate and lactate rise</span> while <span class="dn">oxidative ATP production collapses</span> in exactly the tissues that depend on it. Arsenate does something entirely different: it is a phosphate mimic, and GAPDH will accept it in place of inorganic phosphate to form 1-arseno-3-phosphoglycerate, which then hydrolyzes spontaneously — so the substrate-level phosphorylation that should have happened at phosphoglycerate kinase never occurs and <span class="dn">glycolysis's net yield drops from 2 ATP to zero</span> while the pathway keeps running. Acutely the patient has <span class="tell">a garlic odor on the breath</span> with vomiting, rice-water diarrhea, hypotension, QT prolongation and encephalopathy on top of the lactic acidosis. Chronically: stocking-glove peripheral neuropathy, hyperkeratosis and hyperpigmentation of palms and soles, <span class="tell">Mees' lines</span> across the nails, and later skin, lung and bladder cancers. Treat with a dithiol chelator — dimercaprol or succimer — which offers the arsenic a pair of thiols it binds more avidly than lipoate.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>PDH deficiency gives the same laboratory picture from inside the genome, but arsenic is acquired, disables three complexes rather than one, and arrives with skin, nail and gastrointestinal findings that no inherited enzymopathy produces. Thiamine deficiency also takes out the same three complexes, but by removing a cofactor rather than poisoning one, and it additionally hits transketolase — which is why the assay for it is a pentose phosphate pathway enzyme.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ IV ============ -->
+<section class="part" id="p4">
+  <div class="parthead"><span class="roman">IV</span><h2>Gluconeogenesis</h2><span class="count">2 diseases</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">06</span>
+      <div class="name">Pyruvate carboxylase deficiency</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">pyruvate carboxylase (biotin-dependent)</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Gluconeogenesis, first step</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Pyruvate carboxylase</span> is mitochondrial, biotin-dependent and switched on by acetyl-CoA, and it carboxylates pyruvate to oxaloacetate — simultaneously the first committed step of gluconeogenesis and the main anaplerotic refill of the TCA cycle. With no oxaloacetate, <span class="dn">gluconeogenesis cannot start</span>, so the infant becomes <span class="tell">hypoglycemic during fasting and corrects immediately on IV glucose</span>, since glucose supplied from outside is used perfectly normally. Pyruvate dams behind the closed door and exits as <span class="up">lactate and alanine</span>, producing lactic acidosis with hyperalaninemia. The loss of oxaloacetate has a second consequence that is the diagnostic one: it breaks the malate–aspartate shuttle, so cytosolic NADH can no longer be handed into the mitochondrion, accumulates, and drives lactate dehydrogenase hard — giving a <span class="tell">HIGH lactate-to-pyruvate ratio</span> alongside a <em>low</em> β-hydroxybutyrate-to-acetoacetate ratio, the fingerprint of NADH stranded on the wrong side of the inner membrane while the matrix stays relatively oxidized. Shortage of aspartate also starves the urea cycle, so ammonia rises. It presents in infancy with seizures, failure to thrive and developmental delay. Biotin deficiency, though rare, impairs the same enzyme and reproduces part of the picture.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>PDH deficiency is the mirror: same lactic acidosis and hyperalaninemia, but <span class="tell">euglycemic</span>, ratio not raised, worsened by carbohydrate and helped by ketones — where this disease is worsened by fasting and helped by glucose. Von Gierke also gives hypoglycemia with lactic acidosis, but adds hyperuricemia, hyperlipidemia and a massive liver, and has no hyperammonemia. Fructose 1,6-bisphosphatase deficiency blocks the same pathway three steps later and produces fasting hypoglycemia with lactic acidosis too, but only after glycogen is exhausted, so it needs a longer fast to appear.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">07</span>
+      <div class="name">Von Gierke, GSD Ia<br>(and Ib)</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">glucose 6-phosphatase · Ib: G6P translocase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Gluconeogenesis + glycogenolysis</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Glucose 6-phosphatase</span> sits in the ER membrane of liver, kidney and intestine and performs the final step that <em>both</em> glycogenolysis and gluconeogenesis must pass through to release free glucose into blood. Losing it therefore closes both routes at once, which is why this is the most severe hypoglycemia on the list: <span class="tell">it appears within a few hours of a feed, does not respond to glucagon, and is non-ketotic</span>. Meanwhile glucose 6-phosphate has nowhere to go and is forced down every side road available. Into glycolysis, giving pyruvate and then <span class="up">lactate</span> — a lactic acidosis which incidentally serves as an alternative brain fuel, which is why these children tolerate glucose levels that would obtund anyone else. Into the pentose phosphate pathway, giving ribose 5-phosphate and PRPP, driving purine synthesis and turnover to <span class="up">hyperuricemia</span>, compounded because the lactate competes with urate at the renal excretion transporter — hence gout. And into lipogenesis, giving <span class="up">hypertriglyceridemia</span>, eruptive xanthomas and a fatty liver. At the bedside: a doll-like rounded face, a protuberant abdomen from massive hepatomegaly with renomegaly and no splenomegaly, growth failure, and <span class="tell">glycogen of entirely normal structure</span>, merely abundant. Later come hepatic adenomas with a risk of carcinoma, and renal disease. Type Ib loses the translocase that carries G6P into the ER rather than the phosphatase itself, is clinically indistinguishable, and adds neutropenia with recurrent infection and inflammatory bowel disease. Manage with continuous overnight feeds or uncooked cornstarch, and restrict fructose and galactose, since they too must exit through this enzyme.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>The milder liver glycogenoses — Cori III and Hers VI — leave gluconeogenesis intact, so their hypoglycemia is mild and <span class="tell">KETOTIC with normal lactate and normal urate</span>. That single comparison, ketones and lactate, separates von Gierke from all of them at the bedside. Against pyruvate carboxylase and fructose 1,6-bisphosphatase deficiency: those block gluconeogenesis alone, so glycogenolysis still works and glucagon still raises glucose for as long as the stores last. And against Cori again on structure — von Gierke's glycogen is normal, Cori's has short outer chains.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ V ============ -->
+<section class="part" id="p5">
+  <div class="parthead"><span class="roman">V</span><h2>Glycogen synthesis and breakdown</h2><span class="count">6 diseases</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">08</span>
+      <div class="name">GSD 0</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">glycogen synthase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Glycogen synthesiz</div>
+    </div>
+    <div class="body">
+      <p>The one entry on this list that is not a storage disease at all — there is <span class="tell">too LITTLE glycogen, not too much</span>. <span class="lesion">Glycogen synthase</span> extends the α-1,4 chain, and without it the liver never builds a reservoir in the first place. That produces a characteristic swing across the day. After a meal, glucose arrives with nowhere to be stored, so it overflows into glycolysis and runs to lactate: <span class="up">postprandial hyperglycemia with lactic acidosis</span>. A few hours later there is no glycogen to draw on and gluconeogenesis has not yet taken over, so the child has <span class="dn">fasting hypoglycemia</span> — and because fatty acid oxidation is entirely intact, it is a <span class="tell">KETOTIC hypoglycemia</span>. The liver is normal in size. The muscle form, from the separate GYS1 gene, is a different and more dangerous disease: cardiac and skeletal muscle cannot store glycogen, giving exertional syncope, arrhythmia, cardiomyopathy and sudden death after exertion in a young person.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Every other glycogenosis presents with an enlarged liver or a loaded muscle; this one has an empty one, so <span class="tell">the absence of hepatomegaly</span> is its signature, along with the hyperglycemia-then-hypoglycemia swing across a single day. Against von Gierke, which is also hypoglycemic with lactic acidosis: there the lactate is high while <em>fasting</em> and the hypoglycemia is non-ketotic, whereas here the lactate is high after <em>eating</em> and the hypoglycemia is ketotic.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">09</span>
+      <div class="name">Andersen, GSD IV</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">branching enzyme</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Glycogen synthesiz</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Branching enzyme</span> lifts a block of roughly seven glucose residues off a growing chain and reattaches it as a new α-1,6 branch. Without it, the chain grows <span class="tell">long, straight and unbranched</span>, chemically resembling plant amylopectin. The problem this creates is not energy but solubility: highly branched glycogen is soluble because its many free ends stay hydrated, while a long unbranched glucan precipitates. The insoluble material accumulates inside hepatocytes and behaves like a foreign body, provoking inflammation and fibrosis, so the child develops hepatosplenomegaly, then <span class="up">cirrhosis</span>, portal hypertension and liver failure, with <span class="tell">death by around five years</span> unless transplanted. Blood glucose stays largely normal, because the modest glycogen that is present can still be mobilized and gluconeogenesis is untouched.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>This is the only glycogenosis whose lethal outcome is structural liver disease rather than hypoglycemia or exercise failure — so <span class="tell">cirrhosis in a GSD means Andersen</span>. Cori III is its exact opposite in shape: too many <em>short</em> outer chains from failing to remove branches, rather than none at all from failing to make them. The way to hold them apart is that Andersen cannot build a branch and Cori cannot cut one. Against von Gierke, where glycogen is structurally normal and merely excessive.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">10</span>
+      <div class="name">Cori (Forbes), GSD III</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">debranching enzyme</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Glycogenolysis</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Debranching enzyme</span> carries two activities on one polypeptide: a 4-α-glucanotransferase that shifts three residues across to a neighbouring chain, and an α-1,6-glucosidase that clips the exposed branch point off. Phosphorylase can strip a chain only to within four residues of a branch, so without debranching, glycogenolysis halts there and a limit dextrin with <span class="tell">SHORT outer chains</span> accumulates. Crucially, some glucose still comes out — everything distal to that fourth residue — and gluconeogenesis is completely intact, so the hypoglycemia is real but far milder than von Gierke, and it is <span class="tell">KETOTIC, with normal lactate and normal uric acid</span>. Clinically: hepatomegaly, growth retardation and raised transaminases through childhood, usually improving after puberty as the liver's relative demand falls. Type IIIa involves muscle as well, adding myopathy, cardiomyopathy and a raised CK. A high-protein diet works well here precisely because the gluconeogenic machinery is available to convert those amino acids into glucose.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Von Gierke shares the big liver and the hypoglycemia, but has lactic acidosis, hyperuricemia, hyperlipidemia and <em>no</em> ketones, and no dietary protein can rescue it because the exit door itself is gone. Hers VI is even milder and confined to the liver, with no myopathy and no raised CK. Andersen IV involves the same branch points but on the way in rather than the way out, and kills through cirrhosis instead of hypoglycemia.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">11</span>
+      <div class="name">McArdle, GSD V</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">myophosphorylase · PYGM</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Glycogenolysis, muscle</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Muscle glycogen phosphorylase</span> cleaves α-1,4 bonds by phosphorolysis, releasing glucose 1-phosphate already phosphorylated. Losing it means skeletal muscle cannot mobilize its own glycogen at all. In the first minutes of exercise, exactly when muscle should be running on that glycogen, <span class="dn">ATP fails</span> and the patient gets cramps, pain and stiffness; pushed further, rhabdomyolysis with myoglobinuria and a risk of acute kidney injury, with CK raised even at rest. The identifying finding is that ischemic forearm exercise produces <span class="tell">NO rise in blood lactate</span>, with an exaggerated ammonia rise as the purine nucleotide cycle runs in its place. Blood glucose and cognition are entirely normal, because liver phosphorylase is a separate gene. And after roughly ten minutes of continued mild activity the patient experiences a <span class="tell">SECOND WIND</span>, as fatty acid delivery and hepatic glucose output ramp up and take over the work that glycogen was supposed to do.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Tarui produces a nearly identical muscle syndrome with the same flat lactate curve, and the discriminator is a glucose load: it gives McArdle a second wind and makes Tarui worse, because in Tarui the muscle cannot use the glucose either and the insulin response strips away the fat and ketones it was actually surviving on. Tarui also has hemolytic anemia, which McArdle never does. Against Pompe: that is fixed weakness at rest with a huge heart, not cramps on exertion. Against Hers VI, the same enzyme's liver isoform: hepatomegaly and hypoglycemia with normal muscle — one gene each, separated by tissue alone.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">12</span>
+      <div class="name">Hers, GSD VI<br>(and GSD IX)</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">liver phosphorylase · PYGL</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Glycogenolysis, liver</div>
+    </div>
+    <div class="body">
+      <p>The hepatic counterpart of McArdle. <span class="lesion">Liver glycogen phosphorylase</span> cannot break down stored glycogen, so <span class="up">glycogen accumulates and the liver enlarges</span> — often strikingly — while gluconeogenesis stays fully available to defend blood glucose. The hypoglycemia is therefore <span class="tell">mild and KETOTIC, with normal lactate and normal urate</span>, and the typical presentation is a well-looking toddler with a protuberant abdomen, marked hepatomegaly and some growth delay, improving steadily with age. The deficiency is characteristically partial rather than complete; a complete loss would not be survivable. GSD IX, deficiency of phosphorylase kinase — the enzyme that activates phosphorylase — gives an indistinguishable picture, is the commonest cause in this group, and is most often X-linked.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Von Gierke has a liver just as large but is a severe disease: lactic acidosis, hyperuricemia, hyperlipidemia and non-ketotic hypoglycemia within hours of a feed. <span class="tell">Ketones present and lactate normal</span> is what puts you here instead. Cori III sits between them and adds myopathy with a raised CK in type IIIa. And McArdle is the identical enzymatic lesion in the other tissue, which is why it produces exercise cramps with a normal liver and normal glucose.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">13</span>
+      <div class="name">Pompe, GSD II</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">lysosomal acid α-1,4-glucosidase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Lysosomal glycogen turnover</div>
+    </div>
+    <div class="body">
+      <p>The odd one out, because the missing enzyme is not part of cytoplasmic glycogen metabolizm at all. <span class="lesion">Acid α-glucosidase</span>, or acid maltase, is a lysosomal hydrolase that digests the glycogen routinely swept into lysosomes by autophagy. Cytoplasmic glycogenolysis and gluconeogenesis are untouched, which is why <span class="tell">blood glucose is NORMAL and glycogen structure is NORMAL</span> — the glycogen is simply trapped in the wrong compartment. The lysosomes swell, distort the contractile apparatus and eventually rupture, and the cells that suffer are the ones turning over the most glycogen: cardiac muscle, skeletal muscle, smooth muscle and, in infancy, motor neurons. The infantile form gives <span class="tell">massive CARDIOMEGALY</span> with a hypertrophic cardiomyopathy, a floppy hypotonic baby, macroglossia, hepatomegaly, and death within about two years from cardiorespiratory failure if untreated. Later-onset forms present as a limb-girdle myopathy with disproportionately early diaphragmatic weakness. Enzyme replacement with alglucosidase alfa is the treatment.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Cardiomegaly alongside a normal blood glucose separates it from every other glycogenosis in one line — the mnemonic that Pompe trashes the pump is doing real work. It is also the only <em>lysosomal storage disease</em> in the group, which is why it behaves like Tay–Sachs or Gaucher rather than like von Gierke. Against McArdle and Tarui: those are exertional cramps in a muscle that is otherwise normal, whereas Pompe is fixed weakness in a muscle being physically destroyed.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ VI ============ -->
+<section class="part" id="p6">
+  <div class="parthead"><span class="roman">VI</span><h2>Ethanol and methanol</h2><span class="count">2 diseases</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">14</span>
+      <div class="name">Alcoholic hypoglycemia</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">none — a raised NADH:NAD⁺ ratio</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Ethanol oxidation</div>
+    </div>
+    <div class="body">
+      <p>No enzyme is missing here; the lesion is a <span class="lesion">redox flood</span>. Alcohol dehydrogenase converts ethanol to acetaldehyde and aldehyde dehydrogenase converts acetaldehyde to acetate, and each step reduces NAD⁺, so the cytosolic <span class="up">NADH:NAD⁺ ratio rises steeply</span>. Every reaction that needs NAD⁺ is then pushed backwards, and the consequence that matters is that all three gluconeogenic entry points are stripped simultaneously: pyruvate is driven to lactate, oxaloacetate is driven to malate, and glycerol 3-phosphate can no longer be oxidized back to DHAP. With <span class="dn">no pyruvate, no oxaloacetate and no glycerol</span>, gluconeogenesis stops — and in a drinker who has been fasting long enough to have spent his glycogen, blood glucose falls. The same excess NADH produces the other two findings: lactic acidosis, which also blocks renal urate excretion and precipitates gout, and diversion of DHAP into glycerol 3-phosphate for triglyceride assembly, giving a fatty liver. So the identifying picture is <span class="tell">hypoglycemia, lactic acidosis and hepatic steatosis together in a fasting drinker</span>. Two related bedside facts follow from the same chemistry: AST:ALT runs above 2:1 because alcohol depletes pyridoxal phosphate and ALT depends on it more heavily; and in alcoholic ketoacidosis the high NADH pushes acetoacetate to β-hydroxybutyrate, which the nitroprusside urine ketone test cannot detect, so <span class="tell">the ketone test reads falsely low in a deeply ketotic patient</span>.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Von Gierke and pyruvate carboxylase deficiency also give hypoglycemia with lactic acidosis, but those are congenital and absolute, whereas here every enzyme is intact and only the redox balance has moved — so it resolves as the ethanol clears. The requirement for fasting is the tell: a well-fed drinker with full glycogen stores does not become hypoglycemic, because glycogenolysis needs no NAD⁺.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">15</span>
+      <div class="name">Methanol poisoning</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">none — ADH and ALDH act on it</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Ethanol oxidation</div>
+    </div>
+    <div class="body">
+      <p>Methanol itself is comparatively inert; the toxicity lies wholly in what the body makes of it, using the same two enzymes that handle ethanol. <span class="lesion">Alcohol dehydrogenase</span> converts methanol to formaldehyde and <span class="lesion">aldehyde dehydrogenase</span> converts formaldehyde to <span class="up">FORMATE</span>, each step generating NADH along the way. Formate is the poison: it inhibits cytochrome c oxidase, producing a severe high-anion-gap metabolic acidosis on top of the lactate that the blocked respiratory chain generates, and it concentrates in the optic nerve. Hence the characteristic course — <span class="tell">a latent period of 12 to 24 hours while metabolite accumulates, then visual loss, headache, vomiting and a profound acidosis</span>. Treatment attacks the enzyme rather than the poison: fomepizole, or ethanol if fomepizole is unavailable, competes for alcohol dehydrogenase so that methanol is excreted unchanged, alongside bicarbonate for the acidosis, folate to accelerate formate clearance, and dialysis in severe cases.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Ethylene glycol travels through the identical enzyme and receives the identical treatment, but ends as oxalate, so it produces renal failure with calcium oxalate crystalluria rather than <span class="tell">blindness</span> — the target organ is what separates them. Against alcoholic hypoglycemia: both raise NADH through the same two enzymes, but there the injury is a downstream metabolic consequence of redox, while here it is a specific toxic product, which is precisely why blocking the enzyme is curative in one and irrelevant in the other.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ VII ============ -->
+<section class="part" id="p7">
+  <div class="parthead"><span class="roman">VII</span><h2>The sugars that are not glucose</h2><span class="count">5 diseases</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">16</span>
+      <div class="name">Essential fructosuria</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">fructokinase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Fructose entry</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Fructokinase</span> phosphorylates fructose to fructose 1-phosphate in liver, kidney and intestine, and phosphorylation is what traps a sugar inside a cell. Without it, fructose is simply never trapped: it stays in the blood, is filtered, and appears in the urine. Nothing accumulates in a form capable of doing harm, no inorganic phosphate is sequestered, and ATP is entirely untouched. The condition is <span class="tell">BENIGN</span> and is nearly always discovered by accident — <span class="tell">a positive urine test for reducing substances with a negative glucose-oxidase dipstick</span>, since the dipstick reads only glucose and fructose is a reducing sugar. No treatment, no restriction, no consequences.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Hereditary fructose intolerance is the very next enzyme in the same pathway and is life-threatening, and the entire difference is whether a <em>trapped phosphorylated intermediate</em> accumulates. The same relationship holds exactly one pathway over, between galactokinase deficiency and classical galactosemia. Learn the pair rather than the four diseases: blocking the kinase is harmless because nothing gets trapped, while blocking the step <em>after</em> the kinase is dangerous because the trapped ester poisons the cell.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">17</span>
+      <div class="name">Hereditary fructose intolerance</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">aldolase B</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Fructose entry</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Aldolase B</span> splits fructose 1-phosphate into DHAP and glyceraldehyde. The enzyme immediately upstream, fructokinase, is fast and entirely unregulated, so when aldolase B is missing, <span class="up">F1P is manufactured at speed and cannot be cleared</span>, and two things follow. First, every molecule made consumes an inorganic phosphate and locks it away, so <span class="dn">intracellular phosphate falls</span>, ATP cannot be regenerated, and the AMP that accumulates is degraded to uric acid — hence <span class="up">hyperuricemia</span>. Second, the phosphate depletion and low ATP inhibit both glycogen phosphorylase and gluconeogenesis, so the liver loses both of its routes to blood glucose and the child becomes <span class="tell">profoundly hypoglycemic within about thirty minutes of a fructose load, unresponsive to glucagon</span>. The presentation is therefore an infant who was entirely well on breast milk and begins <span class="tell">vomiting, hypoglycemia and jaundice at weaning, when fruit, juice or sucrose is first introduced</span>, with hepatomegaly, coagulopathy, proximal renal tubular dysfunction, lactic acidosis, and liver failure if exposure continues. Children who survive develop a strong aversion to sweet foods and are noted to have remarkably good teeth. Treatment is complete removal of fructose, sucrose and sorbitol.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Essential fructosuria, one enzyme earlier, does nothing at all — the contrast is the whole lesson. Classical galactosemia is the identical mechanism with a different sugar: a trapped phosphorylated ester, sequestered phosphate, liver and kidney injury. Against von Gierke, which also gives hypoglycemia unresponsive to glucagon: this one is <span class="tell">provoked by a specific sugar and disappears entirely when that sugar is removed</span>, which no glycogenosis does.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">18</span>
+      <div class="name">Galactokinase deficiency</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">galactokinase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Galactose, Leloir pathway</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Galactokinase</span> makes galactose 1-phosphate. Without it, galactose accumulates unphosphorylated and the only route left open is aldose reductase, which reduces it to <span class="up">GALACTITOL</span> while spending NADPH. Galactitol cannot cross the lens membrane and cannot be metabolized any further, so it accumulates osmotically, draws water into the lens fibers, and they swell and opacify — producing <span class="tell">infantile CATARACTS and essentially nothing else</span>. The NADPH consumed may add a small oxidative component in the lens. The child presents with failure to fix and follow, or with an absent red reflex on the newborn examination.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Classical galactosemia produces cataracts by exactly the same galactitol mechanism, but adds liver disease, kidney disease and intellectual disability — because there <span class="up">Gal-1-P does form and accumulate</span>, and it is Gal-1-P, not galactose and not galactitol, that is cytotoxic. So <span class="tell">cataracts alone means the kinase; cataracts plus organ damage means the transferase</span>. This is the fructokinase-versus-aldolase-B logic repeated exactly. And the third carbohydrate cause of childhood cataract is diabetes, through the same aldose reductase acting on glucose instead.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">19</span>
+      <div class="name">Classical galactosemia</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">GALT · galactose-1-P uridyltransferase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Galactose, Leloir pathway</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">GALT</span> performs the middle step of the Leloir pathway, swapping UDP between sugars to convert galactose 1-phosphate plus UDP-glucose into glucose 1-phosphate plus UDP-galactose. Galactokinase upstream continues working normally, so <span class="up">Gal-1-P is produced and then dammed</span>, sequestering both inorganic phosphate and the cell's UDP pool and poisoning hepatocytes and renal tubular cells directly. Surplus galactose meanwhile spills into aldose reductase and becomes galactitol, giving cataracts by the same osmotic route as galactokinase deficiency. The presentation is a neonate who begins breast milk or lactose-containing formula and develops vomiting, poor feeding, failure to thrive, jaundice and hepatomegaly progressing towards cirrhosis, with hypoglycemia, a proximal renal tubular acidosis, cataracts and, untreated, intellectual disability. <span class="tell">Neonatal E. coli sepsis is characteristic</span>, because Gal-1-P impairs neutrophil function. It is on the newborn screen. Treatment is lifelong exclusion of galactose and lactose — but premature ovarian failure and speech and learning difficulties still occur, because the body synthesizes its own Gal-1-P from UDP-glucose regardless of what is eaten.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Galactokinase deficiency gives the cataracts alone and no systemic disease, for the reason given above. Hereditary fructose intolerance is its structural twin one pathway over and shares the trapped-phosphate mechanism almost step for step. Against lactose intolerance, which involves the same disaccharide but never leaves the lumen: <span class="tell">one is a gut symptom, the other is organ failure</span>, and the difference is only whether the sugar was absorbed.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">20</span>
+      <div class="name">Diabetic cataract, retinopathy and neuropathy</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">none — aldose reductase, unopposed</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Polyol (sorbitol) pathway</div>
+    </div>
+    <div class="body">
+      <p>Nothing is missing here either; an enzyme is simply running in a tissue that lacks its partner. <span class="lesion">Aldose reductase</span> reduces glucose to sorbitol, spending NADPH, and sorbitol dehydrogenase then oxidizes sorbitol to fructose, making NADH. Aldose reductase has a high K<sub>m</sub>, so at normal blood glucose almost nothing travels this road — but in sustained hyperglycemia the flux rises sharply. In the tissues that have little or no sorbitol dehydrogenase — <span class="tell">lens, retina, Schwann cells of peripheral nerve, and kidney</span> — sorbitol is produced and then <span class="up">trapped</span>, because it is polar and cannot diffuse back out. It accumulates osmotically, drawing water in and swelling the cell, and at the same time the <span class="dn">NADPH it consumes is drawn from the very pool that glutathione reduction depends on</span>, so the tissue is left less able to handle oxidative stress just as it is being osmotically stressed. That is the mechanism behind diabetic cataract, retinopathy, peripheral neuropathy and part of the nephropathy. Note also that all four of these tissues take up glucose independently of insulin, so their intracellular glucose tracks the blood level directly with nothing to buffer it.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Galactosemia and galactokinase deficiency use this same enzyme on a different substrate, producing galactitol instead of sorbitol — which is why <span class="tell">a cataract in a child has three carbohydrate causes</span>: galactokinase deficiency, classical galactosemia and diabetes. Against every genetic enzymopathy on this chart: nothing here is broken, so lowering the blood glucose reverses the flux, and glycemic control is the treatment.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ VIII ============ -->
+<section class="part" id="p8">
+  <div class="parthead"><span class="roman">VIII</span><h2>NADPH, and the things it defends</h2><span class="count">5 diseases</span></div>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">21</span>
+      <div class="name">G6PD deficiency</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">glucose 6-phosphate dehydrogenase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Pentose phosphate pathway</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">G6PD</span> is the rate-limiting committed step of the oxidative pentose phosphate pathway, and clinically its only job that matters is making NADPH. NADPH reduces glutathione; reduced glutathione detoxifies hydrogen peroxide. The red cell is uniquely exposed on all three counts: it carries oxygen for a living, it has no nucleus and so cannot replace the enzyme as the original protein degrades across its 120 days, and it has <span class="dn">no other source of NADPH at all</span>. When an oxidative load arrives — infection above all, plus fava beans, primaquine, dapsone, sulfonamides, nitrofurantoin, methylene blue, or diabetic ketoacidosis — glutathione cannot be regenerated, hemoglobin oxidizes and precipitates as <span class="up">HEINZ bodies</span>, and splenic macrophages bite those inclusions out, leaving <span class="tell">bite cells</span> on the smear. The clinical event is <span class="tell">jaundice with dark brown urine roughly a day after the trigger</span>, self-limiting over about a week as the oldest cells finish lysing. X-linked, so overwhelmingly males, and the commonest disease-producing enzyme defect in the world at some 400 million people, retained because it protects against falciparum malaria. The testing trap is essential: <span class="tell">do not assay during the episode</span> — the most deficient cells have already lysed and the reticulocytes replacing them are enzyme-rich, so the result reads falsely normal. Wait several weeks.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Pyruvate kinase deficiency is chronic, trigger-independent and shows no inclusions, is autosomal recessive, and has a high 2,3-BPG; G6PD is episodic, trigger-dependent, X-linked, with Heinz bodies and bite cells. Sickle cell is structural rather than oxidative. Two footnotes worth carrying: the severe Mediterranean variant can hemolyse chronically without any trigger at all, and methylene blue — the standard antidote for methemoglobinemia — is dangerous in G6PD deficiency, because it needs NADPH to work.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">22</span>
+      <div class="name">Thiamine deficiency</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">TPP — cofactor for four enzymes</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">PDH · TCA · PPP</div>
+    </div>
+    <div class="body">
+      <p>Thiamine pyrophosphate is a cofactor rather than an enzyme, and it serves <span class="lesion">four enzymes at once</span>: PDH E1, α-ketoglutarate dehydrogenase E1, branched-chain α-ketoacid dehydrogenase, and transketolase in the pentose phosphate pathway. Losing it therefore shuts the door from glycolysis into the TCA cycle and then stalls the cycle itself one step in, so <span class="up">pyruvate and lactate rise</span> and <span class="dn">oxidative ATP production collapses</span> in the tissues with the highest and least interruptible oxidative demand — brain and heart. Dry beriberi is the resulting symmetric peripheral neuropathy; wet beriberi is high-output cardiac failure with edema; Wernicke encephalopathy is the triad of confusion, ophthalmoplegia and ataxia, which if untreated becomes Korsakoff syndrome with confabulation and irreversible anterograde amnesia from mammillary body damage. The assay is elegant and worth remembering because it uses the fourth enzyme rather than the obvious ones: <span class="tell">red cell transketolase activity, measured before and after adding TPP</span>. Causes are alcoholism above all, then malnutrition, hyperemesis and bariatric surgery. Give <span class="tell">thiamine before glucose</span> in a malnourished or alcoholic patient, because a glucose load consumes what little thiamine remains and can precipitate Wernicke.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>Genetic PDH deficiency produces the same pyruvate block but is congenital, confined to one complex, and presents in the neonate; thiamine deficiency is acquired, reversible, hits four enzymes and adds the transketolase assay. Arsenic poisons three of the same complexes, but by binding lipoic acid rather than by removing TPP, and brings skin, nail and gastrointestinal findings with it. Biotin deficiency is the parallel case one enzyme over, impairing pyruvate carboxylase instead.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">23</span>
+      <div class="name">Chronic granulomatous disease</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">NADPH oxidase</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Respiratory burst</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">NADPH oxidase</span> sits in the phagosome membrane and spends NADPH to reduce molecular oxygen to superoxide — the respiratory burst, and the first step of the chain that yields hydrogen peroxide and then, through myeloperoxidase, hypochlorite. Without it the neutrophil can still find and engulf organisms perfectly well but <span class="dn">cannot kill them</span>. The failure is selective in an instructive way: it is worst against <span class="tell">catalase-POSITIVE organisms</span> — <em>Staphylococcus aureus</em>, <em>Serratia</em>, <em>Burkholderia cepacia</em>, <em>Nocardia</em>, <em>Aspergillus</em> — because catalase-negative organisms obligingly generate their own hydrogen peroxide, which the crippled phagocyte can still borrow and use, whereas catalase-positive organisms destroy that peroxide and leave the phagocyte with nothing at all. Clinically: severe, recurrent and persistent infections from infancy, with abscesses and <span class="up">granuloma formation</span>, since macrophages wall off what they cannot destroy. The test is the nitroblue tetrazolium reduction assay, which <span class="tell">stays YELLOW</span> because no superoxide is made to reduce the dye, or the more sensitive dihydrorhodamine flow cytometry, which shows no fluorescence. Most cases are X-linked. Manage with prophylactic trimethoprim-sulfamethoxazole, itraconazole and interferon-γ.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>G6PD deficiency starves the identical NADPH supply one pathway earlier, but its clinical face is hemolysis rather than infection — because the red cell has no alternative source of NADPH while the neutrophil's shortfall only becomes visible under maximal burst demand. The two diseases meet at the extreme: <span class="tell">severe G6PD deficiency can produce a CGD-like susceptibility to infection</span>, which is the clearest demonstration that these are one supply chain with two failure points.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">24</span>
+      <div class="name">ALS (Lou Gehrig disease)</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">SOD1 — point mutation</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">ROS clearance</div>
+    </div>
+    <div class="body">
+      <p><span class="lesion">Superoxide dismutase</span> converts superoxide to hydrogen peroxide, the first step in disposing of the radical that mitochondria leak continuously; catalase and glutathione peroxidase then finish the job, the latter using the glutathione that NADPH keeps reduced. About a fifth of familial ALS carries a point mutation in SOD1. The critical point, and the reason this entry breaks the pattern of every other one on this chart, is that the harm does not come from loss of the reaction — <span class="tell">measured dismutase activity is often near normal, which is exactly why assaying it does not diagnose the disease</span> — but from a toxic gain of function, in which the misfolded protein aggregates and poisons motor neurons. Clinically: progressive degeneration of both upper and lower motor neurons together, so the patient shows spasticity and hyperreflexia alongside atrophy and fasciculations in the same limb, with sensation preserved and, usually, cognition preserved as well.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>In G6PD deficiency and chronic granulomatous disease the missing activity <em>is</em> the disease; in SOD1 ALS the missing activity is largely beside the point and the misfolded protein is the disease. That single distinction is what the card is really testing, because it is the one place in this material where <span class="tell">the mechanism you would predict from the pathway is the wrong answer</span>.</p>
+    </div>
+  </article>
+
+  <article class="dz">
+    <div class="rail">
+      <span class="num">25</span>
+      <div class="name">Rhabdomyolysis on a statin</div>
+      <span class="lbl">Protein lost</span>
+      <div class="prot">none — CYP3A4 inhibited</div>
+      <span class="lbl">Pathway</span>
+      <div class="path">Cytochrome P450</div>
+    </div>
+    <div class="body">
+      <p>Another entry with no missing protein, running through the same NADPH economy. The <span class="lesion">cytochrome P450</span> monooxygenases spend NADPH and molecular oxygen to hydroxylate lipophilic substrates and make them excretable, and CYP3A4 handles a large fraction of prescribed drugs, including most statins. Add an inhibitor — <span class="tell">grapefruit juice</span>, an azole antifungal, a macrolide, a protease inhibitor, or certain calcium channel blockers — and the statin is no longer cleared at the expected rate, so <span class="up">plasma levels climb into the toxic range</span> and skeletal muscle is injured. The patient develops myalgia and proximal weakness with a rising CK, and in severe cases frank <span class="tell">rhabdomyolysis with myoglobinuria, hyperkalemia and acute kidney injury</span>.</p>
+      <p class="against"><span class="h">Against the look-alikes</span>McArdle and Tarui also present with muscle pain, a raised CK and myoglobinuria, but those are lifelong and provoked by <em>exertion</em>, while this appears in an adult after a new prescription or a change in diet. Enzyme induction is the mirror image of the same interaction — rifampin, phenytoin, carbamazepine and St John's wort accelerate CYP3A4 and produce <span class="tell">therapeutic failure rather than toxicity</span>, which is the same pharmacology read backwards.</p>
+    </div>
+  </article>
+</section>
+
+<footer>
+  <span>TouroCOM · Medical Biochemistry &amp; Genetics I</span>
+  <span>Lectures 9–15, Dr Binstock</span>
+  <span>Companion to the Carbohydrate Metabolism wall chart</span>
+  <span>⌘P prints one disease per block</span>
+</footer>
+
+</div>
+
+<button id="theme" aria-label="Toggle light and dark">◐ theme</button>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  root.setAttribute('data-theme', mq.matches?'dark':'light');
+  mq.addEventListener('change',function(e){root.setAttribute('data-theme',e.matches?'dark':'light');});
+  btn.addEventListener('click',function(){
+    root.setAttribute('data-theme', root.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>

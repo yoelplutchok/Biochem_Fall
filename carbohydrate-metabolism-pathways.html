@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carbohydrate Metabolism — Pathway by Pathway</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+:root{
+  --paper:#F2F5F4; --surface:#FFFFFF; --sunk:#E8EEEC; --tint:#F7FAF9;
+  --ink:#0E1513; --ink2:#44514E; --ink3:#75827F;
+  --rule:#CDD7D4; --rule2:#E2E9E7;
+  --accent:#0A5E5C; --accent2:#0E7A73; --accent-soft:#DBEAE8;
+  --enz:#9E3527; --enz-bg:#F8E6E1;
+  --cost:#875311; --cost-bg:#F6EFDE;
+  --gain:#1A6B3B; --gain-bg:#E3F0E7;
+  --on:#1A6B3B; --off:#9E3527;
+  --serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+html[data-theme="dark"]{
+  --paper:#0B1110; --surface:#131A19; --sunk:#18211F; --tint:#101817;
+  --ink:#E2EAE8; --ink2:#93A29F; --ink3:#6D7C79;
+  --rule:#293533; --rule2:#1C2625;
+  --accent:#54BFBA; --accent2:#6FD3CD; --accent-soft:#0F2E2C;
+  --enz:#F0857A; --enz-bg:#2C1714;
+  --cost:#DEAC57; --cost-bg:#291F10;
+  --gain:#63CE89; --gain-bg:#122A1C;
+  --on:#63CE89; --off:#F0857A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px 90px}
+
+header.mast{padding:64px 0 30px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.4vw,60px);line-height:1.04;letter-spacing:-.022em;margin:0 0 16px}
+h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.standfirst{font-size:17.5px;color:var(--ink2);max-width:64ch;margin:0;line-height:1.6}
+.mastmeta{display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--ink3);letter-spacing:.04em}
+.mastmeta b{color:var(--ink2);font-weight:500}
+
+.legend{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:22px 26px;margin:30px 0 0}
+.legend h2{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0 0 14px;font-weight:500}
+.legend p{margin:0 0 12px;font-size:16px;color:var(--ink2);max-width:80ch}
+.legend p:last-child{margin-bottom:0}
+
+.enz{color:var(--enz);font-weight:600;font-family:var(--sans);font-size:.955em}
+.cost{background:var(--cost-bg);color:var(--cost);font-weight:600;padding:.06em .28em;border-radius:2px}
+.gain{background:var(--gain-bg);color:var(--gain);font-weight:600;padding:.06em .28em;border-radius:2px}
+.key{background:var(--accent-soft);color:var(--accent);font-weight:600;padding:.06em .3em;border-radius:2px;box-shadow:inset 0 -1px 0 var(--accent2)}
+.on{color:var(--on);font-weight:600}
+.off{color:var(--off);font-weight:600}
+
+nav.toc{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);margin-top:34px;display:flex;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a{flex:none;padding:13px 16px;font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--ink3);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav.toc a:hover{color:var(--accent);border-bottom-color:var(--accent2)}
+nav.toc a .n{font-family:var(--mono);color:var(--rule);margin-right:7px;font-size:11px}
+
+section.part{padding-top:56px}
+.parthead{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.parthead .roman{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.08em}
+.parthead h2{font-family:var(--sans);font-weight:600;font-size:21px;letter-spacing:-.01em;margin:0;flex:1}
+.parthead .count{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+
+article.pw{display:grid;grid-template-columns:212px 1fr;gap:34px;padding:32px 0;border-bottom:1px solid var(--rule2);break-inside:avoid;page-break-inside:avoid}
+article.pw:last-child{border-bottom:none}
+.rail{border-left:2px solid var(--accent);padding-left:15px}
+.rail .num{font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.08em;display:block;margin-bottom:9px}
+.rail .name{font-family:var(--sans);font-weight:600;font-size:16.5px;line-height:1.25;letter-spacing:-.01em;margin-bottom:12px}
+.rail .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:3px}
+.rail .where{font-family:var(--sans);font-size:13px;color:var(--ink2);line-height:1.35;margin-bottom:12px}
+.rail .rate{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--enz);line-height:1.35}
+.body p{margin:0 0 15px;max-width:76ch}
+.body p:last-child{margin-bottom:0}
+p.overview{font-size:17.5px;color:var(--ink);border-left:2px solid var(--accent2);padding-left:16px;background:var(--tint);padding-top:10px;padding-bottom:10px;padding-right:14px}
+p.overview .h{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;font-weight:500}
+p.reg{border-left:2px solid var(--rule);padding-left:16px;margin-top:18px;font-size:16px;color:var(--ink2)}
+p.reg .h{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;font-weight:500}
+p.reg .enz,p.reg .key,p.reg .cost,p.reg .gain{font-size:.95em}
+
+footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:11.5px;color:var(--ink3);display:flex;flex-wrap:wrap;gap:8px 26px}
+#theme{position:fixed;right:16px;bottom:16px;z-index:40;background:var(--surface);color:var(--ink2);border:1px solid var(--rule);border-radius:3px;padding:8px 13px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+#theme:hover{color:var(--accent);border-color:var(--accent2)}
+#theme:focus-visible,nav.toc a:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+@media (max-width:820px){
+  body{font-size:16.5px}
+  .wrap{padding:0 18px 60px}
+  article.pw{grid-template-columns:1fr;gap:16px}
+  .rail{border-left:none;border-top:2px solid var(--accent);padding-left:0;padding-top:12px}
+  .rail .where,.rail .rate{display:inline-block;margin-right:14px}
+}
+@media print{
+  :root{--paper:#fff;--surface:#fff;--tint:#fff}
+  nav.toc,#theme{display:none}
+  body{font-size:10.5pt}
+  article.pw{padding:14pt 0}
+  section.part{padding-top:20pt}
+  header.mast{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">Companion to the Wall Chart · Lectures 9–15</div>
+  <h1>Every pathway,<br><em>start to finish, then what controls it</em></h1>
+  <p class="standfirst">Twenty-one pathways in prose. Each opens by naming what the pathway takes in and what it hands out, then walks the steps in order with the enzyme and the chemistry at each one, and only once the pathway is finished does it turn to what switches the thing on and off. No diseases anywhere — this is the normal machinery on its own.</p>
+  <div class="mastmeta">
+    <span><b>21</b> pathways</span>
+    <span><b>5</b> sections</span>
+    <span><b>Convention</b> 3 ATP per NADH, 2 per FADH₂</span>
+  </div>
+</header>
+
+<div class="legend">
+  <h2>How to read a paragraph</h2>
+  <p>Every entry runs in the same three movements. The <span class="key">overview</span> states the pathway as a single transformation — this takes X to Y, here, for this reason. The <span class="key">walk-through</span> then takes the steps in order, naming the <span class="enz">enzyme</span> and saying what the chemistry actually does, with <span class="cost">what the step spends</span> and <span class="gain">what it makes</span> marked as they arise. The <span class="key">regulation</span> paragraph comes last and never earlier, so the pathway is complete in your head before anything starts turning it up or down; inside it, <span class="on">activators</span> and <span class="off">inhibitors</span> are marked.</p>
+  <p>Where a step is rate-limiting, committed, or irreversible, that is said out loud, because those three properties are what decide where the regulation can sit at all.</p>
+</div>
+
+<nav class="toc">
+  <a href="#p1"><span class="n">I</span>Glucose in, glucose apart</a>
+  <a href="#p2"><span class="n">II</span>Pyruvate and the cycle</a>
+  <a href="#p3"><span class="n">III</span>Making and storing glucose</a>
+  <a href="#p4"><span class="n">IV</span>The other sugars</a>
+  <a href="#p5"><span class="n">V</span>NADPH</a>
+</nav>
+
+<!-- ================= I ================= -->
+<section class="part" id="p1">
+  <div class="parthead"><span class="roman">I</span><h2>Glucose in, and glucose taken apart</h2><span class="count">5 pathways</span></div>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">01</span>
+      <div class="name">Digestion and absorption</div>
+      <span class="lbl">Where</span>
+      <div class="where">Mouth → lumen → brush border → enterocyte → portal blood</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">brush-border disaccharidases</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This pathway takes <b>dietary starch, glycogen and disaccharides</b> and delivers <b>three free monosaccharides into the portal vein</b>. Nothing larger than a single sugar can cross the intestinal wall, so the whole sequence is a controlled demolition, and it happens in two places: in the lumen by secreted enzymes, and at the membrane by anchored ones.</p>
+      <p>Starch and glycogen are α-1,4 chains carrying α-1,6 branches. <span class="enz">Salivary α-amylase</span> starts the work in the mouth and <span class="enz">pancreatic α-amylase</span> finishes it in the duodenum, and both are <span class="key">endoglycosidases</span> — they cut α-1,4 bonds in the middle of a chain but cannot cut across a branch point. What emerges therefore still carries every branch the starch began with, and those branched leftovers are the dextrins, alongside maltose and maltotriose. Cellulose is skipped entirely, because its bonds are β-1,4 and no human enzyme cleaves that linkage, so it passes through as fiber. The finishing is done at the brush border by the <span class="enz">oligosaccharidases and disaccharidases</span> — lactase, sucrase-isomaltase and maltase-glucoamylase — anchored in the enterocyte membrane facing the lumen, and only these produce the free monosaccharides a transporter will accept. Absorption then happens across two membranes with two different mechanisms. At the apical membrane, <span class="enz">SGLT-1</span> lets two sodium ions run down their electrochemical gradient and uses that energy to drag one glucose or galactose <em>up</em> its own concentration gradient, which is <span class="key">secondary active transport</span>: SGLT-1 hydrolyzes no ATP itself, and the <span class="enz">Na⁺/K⁺ ATPase</span> on the basolateral side <span class="cost">spends the ATP</span> that keeps intracellular sodium low and the gradient alive. Fructose gets no such help and simply diffuses in on <span class="enz">GLUT5</span>. All three sugars then leave the far side of the cell through <span class="enz">GLUT2</span> into the portal vein — which is why the liver sees every absorbed sugar before the rest of the body does.</p>
+      <p class="reg"><span class="h">What controls it</span>There is no allosteric or hormonal control anywhere in this sequence. What sets the rate is <span class="on">enzyme availability at the brush border</span> and <span class="on">the sodium gradient</span> maintained by the basolateral pump, and the practical consequence is that the rate-limiting step for any disaccharide is its own membrane-bound enzyme, not amylase. Secretion of pancreatic amylase is stimulated by <span class="on">cholecystokinin</span> when a meal reaches the duodenum, with <span class="on">secretin</span> driving the bicarbonate that holds the duodenum at the pH amylase needs — regulation of supply and of working conditions, rather than of catalysis.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">02</span>
+      <div class="name">Getting glucose out of the blood</div>
+      <span class="lbl">Where</span>
+      <div class="where">Every plasma membrane · GLUT family</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">tissue-dependent — transporter or kinase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This pathway takes <b>glucose in blood</b> and delivers <b>glucose 6-phosphate inside the cell</b>. It is two moves — carriage across the membrane, then phosphorylation to trap it — and the kinetics of both are tissue-specific, which is what guarantees the brain a steady supply while the liver takes only what arrives.</p>
+      <p>Carriage is <span class="key">facilitated diffusion down the gradient</span> through the GLUT family, and the family divides on two questions: whether the carrier is saturated at normal blood glucose, and whether insulin moves it. <span class="enz">GLUT1</span>, in the red cell, at the blood–brain barrier and in fetal tissue, is saturated at normal levels, so it works at <span class="key">zero-order</span> and runs flat out whatever the blood does — basal uptake never falters. <span class="enz">GLUT3</span>, in neurons and placenta, has the highest affinity of the family and is likewise zero-order, so the brain is served first and steadily. <span class="enz">GLUT2</span>, in liver, β-cell, kidney tubule and gut epithelium, is the opposite: low affinity, high capacity, bidirectional and <span class="key">first-order</span>, so uptake is simply proportional to concentration and the liver takes exactly what the portal vein delivers, no more. <span class="enz">GLUT4</span>, in skeletal muscle, cardiac muscle and adipose, is the only one that physically <em>moves</em> — it sits in intracellular vesicles until insulin brings it to the surface. <span class="enz">GLUT5</span> is a fructose carrier and not a glucose carrier at all. Once inside, the sugar is trapped by phosphorylation, and here too there are two enzymes with opposite jobs. <span class="enz">Hexokinase</span>, in every cell, has a K<sub>m</sub> near 0.1 mM and a low V<sub>max</sub>, so it is already half-saturated far below normal blood glucose and runs at full rate all the time, serving the resting cell. <span class="enz">Glucokinase</span>, in liver and β-cell only, has a K<sub>m</sub> near 10 mM and a high V<sub>max</sub>, so it barely works at a normal 5 mM and engages only when portal glucose surges after a meal, then clears the load fast. Either way the added negative charge means the product can no longer be carried back out by GLUT, so the step is an <span class="key">entry toll, not an energy-yielding step</span>. This pairing is also the β-cell's glucose sensor: GLUT2 delivers in proportion to the blood level, glucokinase engages only once that level is high, glycolysis raises ATP, the ATP-sensitive K⁺ channel closes, the membrane depolarizes, voltage-gated Ca²⁺ channels open, and insulin vesicles fuse.</p>
+      <p class="reg"><span class="h">What controls it</span>GLUT4 alone is hormonally controlled: <span class="on">insulin</span> acts through IRS, PI3K, PIP₃ and Akt to fuse GLUT4 vesicles with the surface, and in muscle <span class="on">exercise</span> does the same thing through AMPK without any insulin at all. The two kinases are controlled by entirely different mechanisms, and naming the mechanism is worth as much as naming the effector. Hexokinase runs on <span class="key">product inhibition</span>: <span class="off">glucose 6-phosphate</span> binds allosterically and shuts it down, so a cell that is not consuming G6P stops importing more. Glucokinase is not inhibited by its product at all; it is controlled by <span class="key">transcriptional induction and physical sequestration</span> — <span class="on">insulin</span> induces more enzyme rather than a faster one, while <span class="off">fructose 6-phosphate</span> activates the regulatory protein GKRP, which binds glucokinase and holds it in the nucleus away from substrate, and <span class="on">rising glucose</span> displaces F6P from GKRP so the enzyme is released into the cytosol.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">03</span>
+      <div class="name">Glycolysis</div>
+      <span class="lbl">Where</span>
+      <div class="where">Cytosol · every cell · fed state, insulin high</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">PFK-1 — also the committed step</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This pathway takes <b>one glucose</b> and delivers <b>two pyruvate</b>, plus a net of <b>2 ATP and 2 NADH</b>. It pays two ATP up front to prime the sugar and collects four back. None of it needs oxygen or a mitochondrion, which is why the red cell, having neither, lives on it entirely.</p>
+      <p><span class="enz">Hexokinase</span>, or glucokinase in liver and β-cell, puts a phosphate on carbon 6, <span class="cost">spending 1 ATP</span>, and this step is irreversible. <span class="enz">Phosphoglucose isomerase</span> then converts the aldose to a ketose, moving the carbonyl from carbon 1 to carbon 2, which frees carbon 1 to accept the next phosphate. <span class="enz">PFK-1</span> attaches that phosphate, <span class="cost">spending the second and last ATP</span>, and this is the irreversible, rate-limiting, <span class="key">committed step of the whole of carbohydrate metabolism</span>: fructose 1,6-bisphosphate has no use except glycolysis, so once it exists the carbon is committed, whereas everything above this point could still have gone to glycogen or the pentose phosphate pathway. <span class="enz">Aldolase A</span> then performs an aldol cleavage splitting the six-carbon sugar into two three-carbon pieces, glyceraldehyde 3-phosphate and DHAP, and <span class="enz">triose phosphate isomerase</span> converts the DHAP to G3P so both halves continue — meaning <span class="key">everything below this point happens twice per glucose</span>. <span class="enz">Glyceraldehyde 3-phosphate dehydrogenase</span> carries out the only oxidation in the pathway: the aldehyde is oxidized to a carboxylic acid, NAD⁺ takes the two electrons and <span class="gain">becomes NADH</span>, and the energy released is captured by attaching free inorganic phosphate as a high-energy acyl phosphate. <span class="enz">Phosphoglycerate kinase</span> hands that acyl phosphate straight to ADP, <span class="gain">making 1 ATP</span> by substrate-level phosphorylation — the phosphate comes off the substrate itself, so neither oxygen nor an electron transport chain is involved. <span class="enz">Phosphoglycerate mutase</span> shifts the remaining phosphate from carbon 3 to carbon 2, positioning it for the dehydration that follows, and <span class="enz">enolase</span> removes a molecule of water, which forces the phosphate onto an enol — and it is the enol's tendency to tautomerize to a ketone that makes that phosphate the highest-energy one in the pathway. <span class="enz">Pyruvate kinase</span> hands it to ADP, <span class="gain">making the second ATP</span>, and the enol product immediately tautomerizes to pyruvate; that tautomerization is what makes the reaction so far downhill and therefore irreversible. In the red cell there is one detour worth naming: <span class="enz">bisphosphoglycerate mutase</span> diverts 1,3-BPG to 2,3-bisphosphoglycerate, the molecule that lowers hemoglobin's oxygen affinity, which rejoins the pathway at 3-phosphoglycerate at the cost of that triose's ATP.</p>
+      <p class="reg"><span class="h">What controls it</span>All three irreversible steps are regulated, and PFK-1 carries most of the weight. Its control is <span class="key">purely allosteric — PFK-1 is never phosphorylated</span>; the hormones act one level up, on PFK-2, the enzyme that makes its main activator. On: <span class="on">AMP and ADP</span>, since adenylate kinase converts two ADP into ATP plus AMP so AMP rises steeply as ATP falls, making it the most sensitive low-energy signal the cell has; <span class="on">fructose 2,6-bisphosphate</span>, the single most important activator, which also blunts the inhibition by ATP; and <span class="on">insulin</span>, which activates PFK-2 and so raises F2,6BP. Off: <span class="off">ATP</span>, binding a site separate from the catalytic one and raising the K<sub>m</sub> for F6P; <span class="off">citrate</span>, exported from a well-supplied TCA cycle, reporting that the cycle cannot absorb more carbon; and <span class="off">glucagon</span>, which phosphorylates PFK-2 and lowers F2,6BP. Pyruvate kinase is controlled two ways: <span class="on">fructose 1,6-bisphosphate</span> activates it by feed-forward, so the exit valve opens in anticipation of the traffic PFK-1 has just committed, and in the <em>liver isoform only</em>, <span class="off">glucagon</span> acting through cAMP and PKA phosphorylates and inactivates it, with <span class="off">ATP</span> and <span class="off">alanine</span> reinforcing that inhibition. Hexokinase and glucokinase are controlled as described one pathway above.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">04</span>
+      <div class="name">The anaerobic exit</div>
+      <span class="lbl">Where</span>
+      <div class="where">Cytosol · no mitochondria or oxygen needed</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">no enzyme — the redox state itself</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This pathway takes <b>pyruvate and NADH</b> and delivers <b>lactate and NAD⁺</b>. It is a single reaction, and its purpose is not to make lactate — it is to <span class="key">get NAD⁺ back</span>. Glycolysis consumes NAD⁺ at the GAPDH step, a cell holds only a small fixed pool of it, and without a way to reoxidize the NADH glycolysis stops within seconds.</p>
+      <p><span class="enz">Lactate dehydrogenase</span> reduces pyruvate to lactate and in the same motion oxidizes the NADH made at the GAPDH step back to NAD⁺, <span class="cost">spending 1 NADH</span> and <span class="gain">making 1 NAD⁺</span>. That regenerated NAD⁺ returns to GAPDH, which is the only reason the reaction exists. The reaction is freely reversible and its equilibrium sits about 25 to 1 toward lactate. The bookkeeping consequence is worth stating plainly: GAPDH running twice per glucose <span class="gain">makes 2 NADH</span>, and LDH running twice <span class="cost">spends both of them again</span>, so anaerobic glycolysis produces <span class="key">no net NADH at all</span> and the entire anaerobic return is the 2 substrate-level ATP. Making lactate is not a way of storing energy; it is the price of keeping NAD⁺ available. The lactate itself is exported to the liver, where the Cori cycle turns it back into glucose. It is also worth being precise about the word anaerobic, because it does not mean an absence of oxygen: what lactate reports is that <span class="key">glycolytic flux has outrun the rate at which mitochondria can oxidize pyruvate</span>, and oxygen may be entirely adequate. The chain runs at the rate ADP and inorganic phosphate arrive, not at the rate substrate arrives, so if ATP demand is low, ADP is low, ATP synthase turns slowly, the proton gradient backs up and electron flow slows; matrix NADH and acetyl-CoA then rise and switch PDH off from the inside. The choice is therefore never lactate versus the electron transport chain — it is lactate versus glycolysis stopping altogether.</p>
+      <p class="reg"><span class="h">What controls it</span>There is <span class="key">no allosteric effector on this enzyme at all</span>. The reaction sits near equilibrium, so the control is the redox state itself, acting by mass action: anything that raises the <span class="on">NADH/NAD⁺ ratio</span> pushes it toward lactate. In practice that means <span class="on">hypoxia</span>, because the chain cannot reoxidize NADH, and <span class="on">ethanol</span>, which floods the cytosol with NADH from two dehydrogenase steps. Nothing pushes it the other way except restoring the cell's capacity to oxidize NADH.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">05</span>
+      <div class="name">The two NADH shuttles</div>
+      <span class="lbl">Where</span>
+      <div class="where">Inner mitochondrial membrane</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">neither shuttle is regulated</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>These take <b>cytosolic NADH made in glycolysis</b> and deliver <b>its electrons into the electron transport chain</b>. The inner membrane has no transporter for NAD⁺ or NADH, so the molecule itself never crosses; only the electrons are handed across. Which shuttle a tissue owns is the entire reason the textbook total is 38 ATP in some tissues and 36 in others.</p>
+      <p>The <span class="key">glycerol 3-phosphate shuttle</span> loads the electrons by reducing DHAP to glycerol 3-phosphate in the cytosol, then hands them to <span class="enz">FAD</span> on a flavoprotein embedded in the membrane. They are rebuilt inside as <span class="cost">FADH₂ — so the NADH is gone for good</span> — and enter at Complex II, which skips Complex I and therefore loses one proton-pumping site, making each cytosolic NADH worth <span class="gain">2 ATP</span>. The carbon returns to the cytosol as DHAP, and the shuttle is one-way. It operates in skeletal muscle and brain. The <span class="key">malate–aspartate shuttle</span> loads the electrons by reducing oxaloacetate to malate in the cytosol; malate crosses on the malate–α-ketoglutarate carrier and mitochondrial malate dehydrogenase <span class="gain">remakes NADH</span> inside, which enters at Complex I for the full proton yield, making each cytosolic NADH worth <span class="gain">3 ATP</span>. The carbon returns as aspartate, made by AST and exported on the glutamate–aspartate carrier, and the whole shuttle is <span class="key">reversible</span> — which is exactly why gluconeogenesis can run it backwards to deliver NADH into the cytosol where its GAPDH step needs one. It operates in liver, heart and kidney. Note that in both cases the cytosolic NADH is <em>spent</em>: the shuttle does not carry the molecule across, it hands off the electrons and leaves NAD⁺ behind in the cytosol, which is precisely what glycolysis needed.</p>
+      <p class="reg"><span class="h">What controls it</span><span class="key">Neither shuttle is regulated.</span> There is no allosteric control here at all and no hormone acts on either one. The only variable is which tissue you are standing in, and the only true constraint is that both run in the direction the redox gradient and the carriers permit.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ================= II ================= -->
+<section class="part" id="p2">
+  <div class="parthead"><span class="roman">II</span><h2>Pyruvate, and the cycle it feeds</h2><span class="count">3 pathways</span></div>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">06</span>
+      <div class="name">Pyruvate's four exits</div>
+      <span class="lbl">Where</span>
+      <div class="where">Cytosol and mitochondrial matrix</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">whichever exit is being asked for</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This is the branch point rather than a pathway: it takes <b>one pyruvate</b> and delivers it to <b>one of four destinations</b>, each with a different bill. Only one of the four is irreversible, and taking that one means the carbon can never be glucose again.</p>
+      <p>The first exit is the <span class="enz">PDH complex</span>, which converts pyruvate to acetyl-CoA, <span class="gain">making 1 NADH</span> and <span class="cost">releasing 1 CO₂</span>, and is <span class="key">irreversible — there is no way back</span>. The second is <span class="enz">pyruvate carboxylase</span>, which converts pyruvate to oxaloacetate, <span class="cost">spending 1 ATP</span> and <span class="cost">fixing 1 CO₂</span>; this is the anaplerotic route and the road to glucose. The third is <span class="enz">lactate dehydrogenase</span>, which converts pyruvate to lactate and <span class="cost">spends 1 NADH</span> to regenerate NAD⁺, freely reversible and feeding the Cori cycle. The fourth is <span class="enz">ALT</span>, a transamination to alanine, which uses <span class="key">no cofactor and costs nothing at all</span>, and sends the carbon to the liver on the glucose–alanine cycle. Read the four together and the symmetry is the point: the first two move <span class="key">carbon dioxide in opposite directions</span> — PDH releases it, pyruvate carboxylase fixes it — and the next two move <span class="key">NADH in opposite directions</span>, since lactate dehydrogenase spends exactly what PDH would have made. And because only the PDH route is one-way, anything whose metabolism ends at acetyl-CoA is <span class="key">ketogenic and never gluconeogenic</span> — which is why even-chain fatty acids, the great majority of dietary fat, cannot make a single molecule of glucose.</p>
+      <p class="reg"><span class="h">What controls it</span>There is no single regulator of the branch point; each exit carries its own control, and they are described with their own pathways. What decides between them in practice is the cell's state: <span class="on">a high energy charge with a full TCA cycle</span> closes PDH and pushes carbon toward lactate; <span class="on">a high acetyl-CoA from fat oxidation</span> opens pyruvate carboxylase and pushes it toward glucose; <span class="on">a high NADH/NAD⁺ ratio</span> pushes it toward lactate by mass action; and <span class="on">muscle proteolysis in a fast</span> pushes it toward alanine for export.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">07</span>
+      <div class="name">The pyruvate dehydrogenase complex</div>
+      <span class="lbl">Where</span>
+      <div class="where">Mitochondrial matrix</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">the complex itself — irreversible</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>pyruvate, 3 carbons</b> and delivers <b>acetyl-CoA, 2 carbons</b>, with the third lost as CO₂ and <b>1 NADH</b> made. It belongs to neither glycolysis nor the TCA cycle — it is the bridge between them, and it is <span class="key">the hinge of metabolism: the point past which carbohydrate carbon can never go back to being glucose</span>.</p>
+      <p>Pyruvate is carried in on the mitochondrial pyruvate carrier, and the reaction is an <span class="key">oxidative decarboxylation done in three handoffs</span> by three enzymes using five vitamin-derived cofactors. <span class="enz">E1</span>, carrying thiamine pyrophosphate, strips carbon 1 off as CO₂ and holds the remaining two-carbon fragment. <span class="enz">E2</span>, carrying lipoic acid on a swinging arm, oxidizes that fragment and transfers it to coenzyme A, producing acetyl-CoA. <span class="enz">E3</span>, carrying FAD, reoxidizes the lipoic acid so the arm can swing again and passes the electrons on to NAD⁺, which <span class="gain">becomes NADH</span>. The five cofactors are TPP from B1, lipoic acid, coenzyme A from B5, FAD from B2 and NAD⁺ from B3 — and α-ketoglutarate dehydrogenase in the TCA cycle is built to the same three-enzyme plan with the same five, which is why anything that disables one disables both. Per glucose the step runs twice, <span class="gain">yielding 2 NADH, worth 6 ATP</span>, and it costs nothing. Its real price is paid elsewhere, in its irreversibility.</p>
+      <p class="reg"><span class="h">What controls it</span>Two layers. The <span class="key">covalent</span> layer is a dedicated kinase and phosphatase: <span class="enz">PDH kinase</span> phosphorylates E1 and switches the complex <span class="off">off</span>, while <span class="enz">PDH phosphatase</span> strips the phosphate and switches it <span class="on">on</span>. The <span class="key">allosteric</span> layer works by controlling that kinase, and it is turned on by exactly the signals meaning the cycle is already full. Activating the complex: <span class="on">pyruvate</span> itself, which inhibits PDH kinase, so a rising substrate load pries its own gate open; <span class="on">ADP and NAD⁺</span>, the low-energy and oxidized signals saying the cycle has room; <span class="on">Ca²⁺</span>, which activates PDH phosphatase in contracting muscle, so the same calcium that triggers contraction also opens fuel oxidation; and <span class="on">insulin</span>, which activates the phosphatase. Inactivating it: <span class="off">NADH and acetyl-CoA</span>, which are the products and which both activate PDH kinase — this is the switch that closes the gate whenever glycolysis outruns oxidation, and it is why lactate accumulates with plenty of oxygen present — and <span class="off">ATP</span>, which activates the kinase because energy is already abundant.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">08</span>
+      <div class="name">The TCA cycle</div>
+      <span class="lbl">Where</span>
+      <div class="where">Mitochondrial matrix</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">isocitrate dehydrogenase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>one acetyl-CoA, 2 carbons</b> and delivers <b>2 CO₂, 3 NADH, 1 FADH₂ and 1 GTP</b> — twelve ATP per turn, twenty-four per glucose. Oxaloacetate is regenerated exactly, so the ring closes and the cycle is catalytic rather than consumed. Read the ledger and one thing stands out: <span class="key">every cofactor entry is a "makes" — nothing in the cycle costs an ATP, an NADH or anything else</span>.</p>
+      <p><span class="enz">Citrate synthase</span> condenses the two-carbon acetyl group onto four-carbon oxaloacetate to give six-carbon citrate, releasing CoASH. <span class="enz">Aconitase</span> then isomerizes citrate to isocitrate, moving the hydroxyl to a carbon that can be oxidized, and uses no cofactor. <span class="enz">Isocitrate dehydrogenase</span>, the rate-limiting step, oxidatively decarboxylates it to five-carbon α-ketoglutarate, <span class="gain">making 1 NADH</span> and <span class="cost">releasing the first CO₂</span>. <span class="enz">α-ketoglutarate dehydrogenase</span> — the same three-enzyme, five-cofactor architecture as PDH — does it again to give four-carbon succinyl-CoA, <span class="gain">making a second NADH</span> and <span class="cost">releasing the second CO₂</span>. From here the carbon count is fixed at four and the remaining steps are oxidations that rebuild oxaloacetate. <span class="enz">Succinate thiokinase</span> cleaves the thioester and captures its energy as <span class="gain">1 GTP</span> by substrate-level phosphorylation. <span class="enz">Succinate dehydrogenase</span> oxidizes succinate to fumarate, <span class="gain">making 1 FADH₂</span> — and this enzyme <em>is</em> Complex II of the electron transport chain, so its FAD is a permanently bound prosthetic group and the electrons go straight into the chain rather than being released on a diffusible carrier. <span class="enz">Fumarase</span> adds water across the double bond to give malate, and <span class="enz">malate dehydrogenase</span> oxidizes it back to oxaloacetate, <span class="gain">making the third NADH</span> and closing the ring. The two carbons arriving on acetyl-CoA are matched by the two CO₂ leaving at the two decarboxylations, so oxaloacetate is regenerated exactly. Note also that the cycle is <span class="key">amphibolic</span>: citrate leaves for the cytosol to make fat, α-ketoglutarate interconverts with glutamate, succinyl-CoA goes to heme, malate goes to NADPH by way of malic enzyme, and oxaloacetate goes to glucose — and anything drawn off has to be put back, which is what makes pyruvate carboxylase anaplerotic.</p>
+      <p class="reg"><span class="h">What controls it</span>Control is <span class="key">entirely allosteric and reports the energy state</span>; there is no hormonal or covalent control of the cycle itself. Turning it on: <span class="on">ADP</span> at isocitrate dehydrogenase, <span class="on">Ca²⁺</span> at isocitrate dehydrogenase and α-ketoglutarate dehydrogenase in contracting muscle, and simply <span class="on">a supply of NAD⁺</span>. Turning it off: <span class="off">ATP and NADH</span> broadly across the regulated steps, <span class="off">succinyl-CoA</span> on both citrate synthase and α-ketoglutarate dehydrogenase, and <span class="off">citrate</span> on citrate synthase. Beyond the effectors there are two hard substrate constraints that matter more in practice than any of them: the cycle cannot run faster than the electron transport chain reoxidizes its NADH, so <span class="key">it is ultimately paced by oxygen and by ADP availability</span>; and <span class="off">oxaloacetate is the limiting substrate</span>, held low because citrate synthase consumes it as fast as malate dehydrogenase makes it.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ================= III ================= -->
+<section class="part" id="p3">
+  <div class="parthead"><span class="roman">III</span><h2>Making glucose, storing glucose</h2><span class="count">4 pathways</span></div>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">09</span>
+      <div class="name">Gluconeogenesis</div>
+      <span class="lbl">Where</span>
+      <div class="where">Liver mainly; kidney cortex and gut as backup · cytosol, mitochondrion and ER</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">fructose 1,6-bisphosphatase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>three-carbon precursors — lactate, alanine, glycerol</b> and delivers <b>free glucose to the blood</b>, at a cost of <b>4 ATP, 2 GTP and 2 NADH per glucose</b>. Seven of the ten glycolytic steps simply run backwards on the same enzymes; the three irreversible ones cannot, so <span class="key">four bypass enzymes exist purely to get around them</span>, and those four carry all the regulation. Two three-carbon units make one glucose, so everything up to fructose 1,6-bisphosphate runs twice.</p>
+      <p><span class="enz">Pyruvate carboxylase</span>, mitochondrial and biotin-dependent, carboxylates pyruvate to the four-carbon oxaloacetate, <span class="cost">spending 1 ATP</span> and <span class="cost">fixing 1 CO₂</span>; biotin is covalently attached to a lysine and physically carries the CO₂ to the substrate. Oxaloacetate has no transporter, so it is reduced to malate by mitochondrial malate dehydrogenase, crosses on the dicarboxylate carrier, and cytosolic malate dehydrogenase turns it back — and that round trip is not wasted, because it <span class="key">moves a reducing equivalent from the matrix into the cytosol</span>, which is exactly where the GAPDH step below will need one. <span class="enz">PEP carboxykinase</span> then takes that carbon straight back off, <span class="cost">spending 1 GTP</span> and <span class="cost">releasing the CO₂</span>; the decarboxylation is what drives the reaction, since losing CO₂ generates an enolate that immediately grabs the γ-phosphate of GTP. No carbon is gained across those two steps — the CO₂ is a temporary handle, paid for twice — and the point of the exercise is to create a molecule whose decarboxylation is energetic enough to force a phosphate on. From PEP the pathway runs backwards on glycolytic enzymes: <span class="enz">enolase</span> and <span class="enz">phosphoglycerate mutase</span> in reverse to 3-phosphoglycerate, then <span class="enz">phosphoglycerate kinase</span> putting the ATP back that glycolysis collected here, <span class="cost">spending 1 ATP</span>, then <span class="enz">GAPDH</span> running as a reduction that undoes the one oxidation of glycolysis, <span class="cost">spending 1 NADH</span> and releasing the phosphate as free P<sub>i</sub>. <span class="enz">Aldolase</span> rejoins the two three-carbon units into one six-carbon sugar — and glycerol from adipose triglyceride enters exactly here, through glycerol kinase and glycerol 3-phosphate to DHAP, which is why it is a cheaper precursor than pyruvate: it skips both carboxylation steps. <span class="enz">Fructose 1,6-bisphosphatase</span>, the rate-limiting bypass, is a plain hydrolysis that knocks the phosphate off with water and throws it away as P<sub>i</sub>, which is what makes the step irreversible and also why <span class="key">no ATP comes back</span>. <span class="enz">Phosphoglucose isomerase</span> reverses to glucose 6-phosphate, and finally <span class="enz">glucose 6-phosphatase</span> performs four moves in the endoplasmic reticulum: a translocase carries G6P into the ER lumen, the phosphatase in the ER membrane strips the phosphate, free glucose is carried back to the cytosol, and GLUT2 releases it into the blood. Six high-energy phosphates and two NADH to build one glucose against a net return of two for burning it — the pathway is expensive on purpose, and that excess is what makes it irreversible overall and stops it simply undoing glycolysis.</p>
+      <p class="reg"><span class="h">What controls it</span>Each bypass is controlled differently, and naming the mechanism matters as much as the effector. <span class="enz">Pyruvate carboxylase</span> is allosteric with a single dominant activator: <span class="on">acetyl-CoA</span>, which is <span class="key">obligatory</span> — the enzyme has almost no activity without it. When fat is being burned, acetyl-CoA accumulates and switches on the first step of glucose synthesis, so the fat supplies both the signal and the ATP the pathway will spend. <span class="enz">PEP carboxykinase</span> is controlled by <span class="key">induction rather than allostery</span> — the amount of enzyme changes, not its activity — and is induced by <span class="on">cortisol</span>, which also breaks down muscle protein for glucogenic amino acids and adipose triglyceride for glycerol, and by <span class="on">glucagon</span> acting through cAMP and CREB on the promoter. <span class="enz">Fructose 1,6-bisphosphatase</span> carries the reciprocal half of the fructose 2,6-bisphosphate switch: on by <span class="on">ATP</span> and by <span class="on">glucagon</span>, which phosphorylates PFK-2 and so lowers F2,6BP and lifts the brake; off by <span class="off">AMP</span>, the low-energy signal, and by <span class="off">fructose 2,6-bisphosphate</span> — the very same metabolite that activates PFK-1, acting here in reverse. That single metabolite is what flips the liver between the two directions, because lowering it simultaneously removes PFK-1's activator and removes this enzyme's inhibitor. Overall the hormones are <span class="on">glucagon</span> and <span class="on">cortisol</span> on, <span class="off">insulin</span> off.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">10</span>
+      <div class="name">Glycogen synthesis</div>
+      <span class="lbl">Where</span>
+      <div class="where">Cytosol · liver and muscle · fed state, insulin high</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">glycogen synthase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>glucose 6-phosphate</b> and delivers <b>branched glycogen</b> — roughly 100 g in liver and 500 g in muscle — at a cost of about <b>two high-energy phosphates per residue stored</b>. Glycogen is the right molecule for storage for one reason above all: it is a single large polymer, so a hundred grams exerts almost no osmotic pull where a hundred grams of free glucose would burst the cell.</p>
+      <p><span class="enz">Phosphoglucomutase</span> moves the phosphate from carbon 6 to carbon 1 by way of a glucose-1,6-bisphosphate intermediate, giving glucose 1-phosphate. <span class="enz">UDP-glucose pyrophosphorylase</span> then activates it: UTP attacks the phosphate and pyrophosphate leaves, <span class="cost">spending 1 UTP, worth about 2 ATP</span> — and a separate pyrophosphatase immediately hydrolyzes that PP<sub>i</sub> to two P<sub>i</sub>, which is what makes the step effectively irreversible. This is where storing glucose actually costs something, and the product, UDP-glucose, is the activated donor, since <span class="key">sugar is always added from a UDP-sugar</span>. <span class="enz">Glycogen synthase</span>, the rate-limiting enzyme, adds glucose in α-1,4 linkage to the <span class="key">non-reducing end</span> of an existing chain, releasing UDP. It cannot start a chain from nothing: the primer is <span class="enz">glycogenin</span>, a protein that glucosylates its own tyrosine to make the first few residues and then stays buried at the core of the finished molecule permanently. Finally <span class="enz">branching enzyme</span>, a glucosyl 4:6 transferase, lifts a block of about seven residues off the end of a growing chain and reattaches it through carbon 6 of a residue further in, creating an α-1,6 branch roughly every six to eight residues. Branching is worth its own enzyme for two reasons: it multiplies the non-reducing ends available to both synthase and phosphorylase, so both directions run faster, and it makes the molecule soluble so it can be stored at all. Note that <span class="key">nothing in glycogen metabolism, built or broken, makes or spends a single NADH</span>.</p>
+      <p class="reg"><span class="h">What controls it</span>Glycogen synthase has two layers. The <span class="key">allosteric</span> layer is activation by <span class="on">glucose 6-phosphate</span>, in both liver and muscle, which is a direct report that glucose is arriving faster than it is being burned. The <span class="key">covalent</span> layer is phosphorylation, and it runs the opposite way from phosphorylase: <span class="on">insulin</span> acts through PI3K and Akt, Akt phosphorylates and inactivates GSK3 so GSK3 stops phosphorylating the synthase, and protein phosphatase 1 then strips the phosphates already there, leaving the enzyme <span class="key">dephosphorylated and active</span>. Turning it off, <span class="off">PKA phosphorylation</span> — glucagon in liver, epinephrine in muscle — inactivates it, and this is the same burst that switches phosphorylase on. That is the naming trap worth fixing now: <span class="key">"a" is the active form of both enzymes, but synthase a is DEphosphorylated while phosphorylase a is phosphorylated</span>. One PKA burst puts the same phosphate on both and gets opposite results, which is precisely the mechanism guaranteeing synthesis and breakdown can never run at once.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">11</span>
+      <div class="name">Glycogenolysis</div>
+      <span class="lbl">Where</span>
+      <div class="where">Cytosol · liver for blood glucose, muscle for its own contraction</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">glycogen phosphorylase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>branched glycogen</b> and delivers <b>glucose 6-phosphate</b> — which in liver becomes blood glucose and in muscle enters its own glycolysis. It is <span class="key">not the reverse of synthesis</span>: it has its own enzymes and its own chemistry, and it costs no ATP at all. Liver glycogen holds blood glucose up for about sixteen to eighteen hours of fasting; muscle glycogen lasts about four hours of heavy exercise.</p>
+      <p><span class="enz">Glycogen phosphorylase</span>, the rate-limiting enzyme, performs <span class="key">phosphorolysis rather than hydrolysis</span>: inorganic phosphate, not water, attacks the α-1,4 bond, so the residue comes off already carrying a phosphate as glucose 1-phosphate. It works inward from the non-reducing ends and stops four residues short of every branch, and its coenzyme is pyridoxal phosphate from vitamin B6, whose own phosphate acts as the acid–base catalyst. What remains is a limit dextrin, and <span class="enz">debranching enzyme</span> clears it with two activities on one polypeptide: a 4:4 transferase lifts three of the last four residues onto a nearby chain, keeping them in α-1,4 linkage, and an α-1,6-glucosidase then hydrolyzes the single residue left at the branch point, releasing it as <span class="key">free glucose</span>. Branch points are sparse, so that route accounts for under ten percent of the yield and over ninety percent leaves as glucose 1-phosphate. <span class="enz">Phosphoglucomutase</span> then moves the phosphate back to the 6-position and into the general hexose pool. From there the tissues diverge: liver has <span class="enz">glucose 6-phosphatase</span> and releases free glucose to the blood, while muscle has none and can only send the G6P into its own glycolysis — which is why muscle holds five times the liver's glycogen and contributes exactly nothing to blood sugar. The phosphorolysis detail is worth the ledger entry: because the glucose arrives already phosphorylated, muscle skips the hexokinase toll and <span class="gain">nets 3 ATP</span> per glycogen residue where blood glucose <span class="gain">nets only 2</span>. Running in parallel and answerable to none of this regulation is a lysosomal side channel, in which glycogen delivered by autophagy is digested by <span class="enz">acid α-1,4-glucosidase</span>.</p>
+      <p class="reg"><span class="h">What controls it</span>Covalent control through PKA, plus direct allosteric effectors — and muscle has two shortcuts that bypass PKA entirely. Turning it on: <span class="on">phosphorylase kinase</span>, activated by PKA downstream of cAMP and Gs, driven by glucagon at the hepatocyte or epinephrine at the β-adrenergic receptor in either tissue; <span class="on">Ca²⁺–calmodulin</span> in <em>muscle only</em>, where calmodulin is a permanent subunit of phosphorylase kinase, so the calcium released to trigger contraction also activates fuel supply with no hormone and no cAMP needed; and <span class="on">AMP</span>, again in <em>muscle only</em>, acting on unphosphorylated phosphorylase b, so a muscle whose ATP has fallen can break down its own glycogen without waiting for a signal. Turning it off: <span class="off">glucose 6-phosphate</span> and <span class="off">ATP</span> in both tissues, the fed-state and high-energy-charge signals, and <span class="off">free glucose</span> in <em>liver only</em> — glucose binds the a form and makes it a better substrate for the phosphatase, so the enzyme switches itself off when blood glucose is adequate. That last one is the hepatic glucose sensor.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">12</span>
+      <div class="name">Ethanol</div>
+      <span class="lbl">Where</span>
+      <div class="where">95% liver · cytosol, then mitochondrion</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">alcohol dehydrogenase — fixed rate, zero-order</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>ethanol</b> and delivers <b>acetyl-CoA</b>, and along the way it dumps <b>2 NADH into the cytosol per molecule</b>. That number is the pathway: everything downstream of drinking follows not from a toxin acting on tissues but from <span class="key">a cytosol suddenly flooded with reducing equivalents</span>.</p>
+      <p><span class="enz">Alcohol dehydrogenase</span>, cytosolic, oxidizes the alcohol to acetaldehyde and NAD⁺ takes the two electrons, <span class="gain">making 1 NADH</span>. It is essentially unregulated and runs at a fixed rate set by enzyme quantity, which is why blood alcohol falls <span class="key">linearly rather than exponentially</span>. <span class="enz">Aldehyde dehydrogenase</span>, mitochondrial, oxidizes acetaldehyde to acetate and reduces a second NAD⁺, <span class="gain">making a second NADH</span>; this is the enzyme disulfiram blocks and the one many people of East Asian ancestry carry an inactive variant of, which is why acetaldehyde — the reactive, protein-adducting intermediate — accumulates and produces flushing. <span class="enz">Acetyl-CoA synthetase</span> then activates the acetate to the thioester, <span class="cost">cleaving ATP all the way to AMP plus pyrophosphate, so this costs two high-energy phosphates rather than one</span>. Running in parallel is <span class="enz">MEOS</span>, the CYP2E1 member of the P450 family, induced by chronic drinking, which handles the same substrate but <span class="cost">spends NADPH</span> instead of making NADH — the same reaction with the opposite entry in the ledger and a different cofactor entirely. The consequence of the two dehydrogenase steps is not itself a reaction but it is the thing to carry away: the cytosolic NADH/NAD⁺ ratio rises sharply, and every NAD⁺-dependent dehydrogenase sitting near equilibrium is now pushed toward its reduced product by mass action alone. Three of those happen to be the entry points of gluconeogenesis — lactate dehydrogenase is pushed toward lactate so pyruvate is consumed, malate dehydrogenase toward malate so oxaloacetate is consumed, and glycerol 3-phosphate dehydrogenase toward glycerol 3-phosphate so DHAP is consumed.</p>
+      <p class="reg"><span class="h">What controls it</span>There is essentially <span class="key">no regulation of the first and rate-limiting step</span>: alcohol dehydrogenase has no allosteric effectors and is saturated at any drinking concentration, so it operates at zero-order kinetics and the rate depends only on how much enzyme exists. The one lever that does move is <span class="on">induction of MEOS/CYP2E1</span> by chronic intake, which raises total clearance capacity and is the basis of metabolic tolerance. Aldehyde dehydrogenase is turned <span class="off">off pharmacologically by disulfiram</span> and is genetically absent or slow in a large fraction of the population. Beyond that, the true rate constraint is the supply of <span class="off">NAD⁺</span> itself, since both dehydrogenases require it and both are consuming it.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ================= IV ================= -->
+<section class="part" id="p4">
+  <div class="parthead"><span class="roman">IV</span><h2>The sugars that are not glucose</h2><span class="count">4 pathways</span></div>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">13</span>
+      <div class="name">Fructose</div>
+      <span class="lbl">Where</span>
+      <div class="where">Liver, kidney, intestine · GLUT5 uptake, insulin-independent</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">fructokinase — and nothing after it</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>dietary fructose</b> and delivers it <b>into glycolysis as DHAP and glyceraldehyde 3-phosphate</b>, at a cost of <b>2 ATP</b>. The clinically important thing is not the chemistry but <span class="key">where it joins</span>: in the liver it enters <em>below</em> PFK-1, walking straight past the only real brake in carbohydrate metabolism.</p>
+      <p><span class="enz">Fructokinase</span> phosphorylates carbon 1, not carbon 6, <span class="cost">spending 1 ATP</span> — which is why the product cannot be handled by any of the glucose enzymes and needs its own aldolase. It has a low K<sub>m</sub>, so it works at any dietary concentration, and it is present in liver, kidney and intestine but <em>not</em> in skeletal muscle, adipose or the red cell. <span class="enz">Aldolase B</span> then cleaves fructose 1-phosphate into DHAP and free glyceraldehyde; the DHAP is already a glycolytic intermediate and joins directly. <span class="enz">Triose kinase</span> phosphorylates the other half, <span class="cost">spending a second ATP</span>, to give glyceraldehyde 3-phosphate. Both halves are now below the PFK-1 brake, and since <span class="key">there is no regulated step anywhere between fructose and pyruvate</span>, flux is unlimited: the carbon runs down to acetyl-CoA, leaves the mitochondrion as citrate and feeds fatty acid synthesis, while the glyceraldehyde half can also be reduced to glycerol and phosphorylated by glycerol kinase — which liver has and adipose does not — to supply the triglyceride backbone, with the product leaving as VLDL. Contrast the muscle route, which has no fructokinase at all: there <span class="enz">hexokinase</span> makes fructose 6-phosphate, which enters <em>above</em> PFK-1 and is throttled like any other glycolytic carbon. Same sugar, opposite consequence, decided entirely by which side of PFK-1 it lands on.</p>
+      <p class="reg"><span class="h">What controls it</span>This is the pathway defined by the <span class="key">absence</span> of control. Fructokinase is not allosterically regulated and is not hormonally regulated, and with its low K<sub>m</sub> it is saturated at any realistic intake, so the rate is set purely by <span class="on">how much fructose arrives</span>. Nothing downstream of it in the liver route is regulated either. Uptake on GLUT5 is likewise <span class="key">insulin-independent</span>, so the pathway does not even respond to the fed–fasted signal.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">14</span>
+      <div class="name">Galactose and lactose</div>
+      <span class="lbl">Where</span>
+      <div class="where">Jejunal brush border, then liver and brain</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">GALT</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>dietary galactose</b> and delivers <b>glucose 6-phosphate</b>, at a cost of <b>1 ATP</b> and no reducing equivalents. It is four steps whose whole purpose is to convert galactose into something glycolysis already recognizes, and the epimerase in the middle also runs backwards to supply galactose when the diet contains none.</p>
+      <p><span class="enz">Lactase</span>, a β-galactosidase of the jejunal brush border, splits dietary lactose into galactose and glucose, and this is the main dietary source. <span class="enz">Galactokinase</span> then phosphorylates galactose on carbon 1, <span class="cost">spending 1 ATP</span>. <span class="enz">GALT</span>, galactose 1-phosphate uridyltransferase, performs an <span class="key">exchange rather than a synthesis</span>: the uridyl group is swapped off UDP-glucose onto galactose 1-phosphate, releasing glucose 1-phosphate at the same time — so no high-energy phosphate is spent here, because UDP-glucose already carried it. <span class="enz">UDP-galactose 4-epimerase</span> then inverts the hydroxyl at carbon 4 using a tightly bound NAD⁺ that is oxidized and re-reduced within the same catalytic cycle, so <span class="key">no net NADH is made or spent</span> — the step looks like a redox step and is not. Run the other way, this same enzyme supplies UDP-galactose for glycolipids and glycoproteins when there is none in the diet, which is why galactose is not a dietary essential. Finally <span class="enz">phosphoglucomutase</span> moves the phosphate to the 6-position, delivering glucose 6-phosphate into the general hexose pool for glycolysis, or for release as blood glucose in the liver. Lactose synthesis runs the opposite way in the Golgi of the lactating breast: <span class="enz">lactose synthase</span> is two proteins, where protein A is an ordinary galactosyltransferase found in most tissues and protein B is <span class="key">α-lactalbumin</span>, made only in the lactating gland, which alters the enzyme's specificity so it transfers galactose onto glucose.</p>
+      <p class="reg"><span class="h">What controls it</span>There is no allosteric regulation of any step and no hormonal control of the pathway itself. Flux is set by <span class="on">substrate arrival</span> and by <span class="on">enzyme quantity</span>. The one genuine regulatory switch in the story sits at the far end, in the breast: <span class="on">prolactin</span> induces α-lactalbumin, which is what turns on lactose synthesis at parturition, and <span class="off">progesterone</span> suppresses it during pregnancy — which is why milk production begins only after the placenta is delivered.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">15</span>
+      <div class="name">The polyol (sorbitol) pathway</div>
+      <span class="lbl">Where</span>
+      <div class="where">Seminal vesicle, liver, ovary — and lens, retina, nerve, kidney with only the first enzyme</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">aldose reductase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>glucose</b> and delivers <b>fructose</b>, in two reactions, <span class="key">without spending a single ATP</span>. What it does cost is NADPH. The tissue distribution of the <em>second</em> enzyme is the entire story, because a tissue with only the first cannot finish the job.</p>
+      <p><span class="enz">Aldose reductase</span>, the rate-limiting step, reduces the aldehyde of glucose to an alcohol, giving sorbitol and <span class="cost">spending 1 NADPH</span> — and that is the same NADPH glutathione reductase needs, so heavy flux here drains the cell's antioxidant defense at the same time as it loads it osmotically. Sorbitol is a polyol: it is osmotically active and it cannot cross a membrane, so wherever it is made it stays. <span class="enz">Sorbitol dehydrogenase</span> then oxidizes the alcohol back to a ketone, giving fructose and <span class="gain">making 1 NADH</span>. That second enzyme is <span class="key">present in seminal vesicle, liver and ovary</span> — which is how sperm are supplied with the fructose they run on — and <span class="key">absent or very low in lens, retina, peripheral nerve and kidney</span>. The fructose produced then goes on to fructokinase or straight into glycolysis. Read the two steps as a ledger and note the trap: NADPH out at the first, NADH in at the second, two consecutive steps with two different cofactors moving in opposite directions.</p>
+      <p class="reg"><span class="h">What controls it</span><span class="key">There are no allosteric effectors at all.</span> Control is by substrate concentration and by which tissue you are standing in, and by nothing else. Aldose reductase has a <span class="key">high K<sub>m</sub> for glucose</span>, so it is nearly idle at normal blood sugar; the single activator is therefore <span class="on">hyperglycemia</span>, acting purely by substrate drive, and with no brake anywhere the flux rises in proportion to how far above normal the glucose sits. Note also that the tissues lacking the second enzyme are insulin-independent for glucose uptake, so their intracellular glucose tracks the blood level directly, with nothing to buffer it.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">16</span>
+      <div class="name">Mannose</div>
+      <span class="lbl">Where</span>
+      <div class="where">Cytosol</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">hexokinase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>dietary mannose</b> and delivers <b>fructose 6-phosphate</b> into glycolysis, at a cost of <b>1 ATP</b>. Two steps and it is over. It is worth knowing as the third epimer — <span class="key">mannose is the C-2 epimer of glucose, galactose the C-4 epimer</span> — and as a reminder that hexokinase is not fussy about which hexose it phosphorylates.</p>
+      <p><span class="enz">Hexokinase</span>, the same broad-specificity enzyme that handles glucose and that handles fructose in muscle, phosphorylates mannose to mannose 6-phosphate, <span class="cost">spending 1 ATP</span>. <span class="enz">Phosphomannose isomerase</span> then carries out a ketose–aldose isomerization at carbon 2, which converts the mannose configuration into the fructose one and gives fructose 6-phosphate, joining glycolysis <em>above</em> PFK-1 — so unlike the liver's fructose route, this carbon is fully throttled by the normal brake. The reaction is reversible, which also lets the cell make mannose 6-phosphate from glycolytic intermediates for glycoprotein synthesis, and mannose 6-phosphate is the tag that routes newly made hydrolases to the lysosome.</p>
+      <p class="reg"><span class="h">What controls it</span>Nothing regulates this pathway specifically. Hexokinase carries its usual <span class="off">product inhibition by glucose 6-phosphate</span>, and because mannose 6-phosphate feeds into that same hexose pool the step is throttled indirectly by the cell's general phosphorylated-hexose load. Beyond that the rate is set by <span class="on">substrate availability</span>, which is small — mannose is a minor dietary sugar.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ================= V ================= -->
+<section class="part" id="p5">
+  <div class="parthead"><span class="roman">V</span><h2>NADPH, and the things it defends</h2><span class="count">5 pathways</span></div>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">17</span>
+      <div class="name">The pentose phosphate pathway</div>
+      <span class="lbl">Where</span>
+      <div class="where">Cytosol · all cells; most active in liver, adrenal cortex, lactating breast, red cell</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">G6PD — also the committed step</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>glucose 6-phosphate</b> and delivers <b>2 NADPH and ribose 5-phosphate</b>, and then folds whatever carbon is left back into glycolysis. It <span class="key">makes no ATP and spends none</span>. It runs in two halves: an irreversible oxidative half that banks the NADPH, and a fully reversible non-oxidative half that shuffles carbon without spending anything.</p>
+      <p><span class="enz">Glucose 6-phosphate dehydrogenase</span> oxidizes carbon 1 from a hemiacetal to a lactone and reduces NADP⁺, <span class="gain">making the first NADPH</span>. This is the irreversible, rate-limiting, committed step: past here the carbon will lose a CO₂ and cannot return as glucose. <span class="enz">6-phosphogluconolactonase</span> then opens the lactone ring with a molecule of water — that is the whole reaction, <span class="key">no electrons move and no NADPH is made here</span>, which is exactly how people arrive at three NADPH per G6P instead of two. <span class="enz">6-phosphogluconate dehydrogenase</span> performs an oxidative decarboxylation: carbon 1 leaves as <span class="cost">CO₂</span> and a second NADP⁺ is reduced, <span class="gain">making the second NADPH</span>, six carbons in and five out. The product is ribulose 5-phosphate, and the oxidative half ends there with two NADPH banked. The non-oxidative half begins with <span class="enz">phosphopentose isomerase</span> converting ribulose 5-phosphate to ribose 5-phosphate, which goes on through PRPP to purines and pyrimidines; in parallel an <span class="enz">epimerase</span> makes xylulose 5-phosphate, and the two five-carbon sugars feed the shuffling enzymes together. <span class="enz">Transketolase</span>, which carries its two-carbon unit on thiamine pyrophosphate, and <span class="enz">transaldolase</span>, which moves three carbons, between them interconvert three-, four-, five-, six- and seven-carbon sugars, folding carbon of any chain length back into glycolysis as fructose 6-phosphate and glyceraldehyde 3-phosphate. Because this half is <span class="key">fully reversible</span>, a cell that needs ribose but not NADPH can run it backwards out of glycolytic intermediates and never touch the oxidative half at all.</p>
+      <p class="reg"><span class="h">What controls it</span>The <span class="key">NADP⁺/NADPH ratio itself is the control</span>, so the pathway runs exactly as fast as the cell is spending its reducing power and no faster. There is no hormone acting acutely and no covalent modification anywhere. On: <span class="on">NADP⁺</span>, because the cell having spent its NADPH means the substrate for this reaction is abundant — supply follows demand directly — and <span class="on">insulin</span>, which induces transcription of the enzyme, making this a fed-state pathway. Off: <span class="off">NADPH</span>, by straightforward product inhibition competing with NADP⁺.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">18</span>
+      <div class="name">Glutathione and the ROS chain</div>
+      <span class="lbl">Where</span>
+      <div class="where">Every cell · mitochondrion, cytosol, peroxisome</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">glutathione reductase — the regeneration step</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>the superoxide that leaks out of the electron transport chain</b> and delivers <b>water</b>, spending <b>1 NADPH per hydrogen peroxide cleared</b>. About one percent of the oxygen going through the chain leaks — roughly a hundred million radicals a day — and three enzymes clear the products in sequence, the last of which runs on NADPH.</p>
+      <p>The leak itself is not an enzyme and not regulated: semiquinone intermediates at Complex I and Complex III hand single electrons to O₂, an unavoidable side effect of moving electrons one at a time, giving superoxide. <span class="enz">Superoxide dismutase</span> then performs a <span class="key">dismutation</span> — two superoxide anions and two protons give one hydrogen peroxide and one O₂, meaning one molecule is oxidized while the other is reduced — and exists as MnSOD in the mitochondrion, Cu-Zn SOD1 in the cytoplasm and an extracellular Cu-Zn form. Hydrogen peroxide is dangerous for what it can become rather than for what it is. <span class="enz">Glutathione peroxidase</span>, a selenium enzyme whose active-site selenocysteine is what makes it fast enough to matter, reduces the peroxide to two waters, paying for it by <span class="cost">oxidizing two molecules of reduced glutathione</span> into one GSSG joined by a disulfide bond. <span class="enz">Glutathione reductase</span>, an FAD enzyme and the rate-limiting step, then puts the two GSH back by reducing that disulfide, with the electrons coming from <span class="cost">1 NADPH</span> by way of the enzyme's FAD. <span class="key">This one reaction is the whole dependency</span>: no pentose phosphate pathway means no NADPH, which means no reduced glutathione, which means the peroxide is never cleared. Running in parallel, <span class="enz">catalase</span> in the peroxisomes of almost every cell also turns hydrogen peroxide into water and oxygen, with no radical intermediate and no cofactor at all. And if hydrogen peroxide meets a transition metal before an enzyme reaches it, <span class="key">Fenton chemistry</span> takes over: Fe²⁺ plus H₂O₂ gives the hydroxyl radical, hydroxide and Fe³⁺, and superoxide then reduces that Fe³⁺ back to Fe²⁺ so the catalyst regenerates and the reaction runs on. The hydroxyl radical is the species that actually does the damage.</p>
+      <p class="reg"><span class="h">What controls it</span>None of the three enzymes carries a classical allosteric switch; the chain is <span class="key">substrate-driven and supply-limited</span>, and what regulates it in practice is the availability of its two inputs. On: <span class="on">NADPH supply from the pentose phosphate pathway</span>, which sets how fast glutathione reductase can run, and <span class="on">rising peroxide</span>, which simply drives the peroxidase harder. Transcriptionally, <span class="on">the Nrf2 pathway</span> induces these defenses in response to oxidative stress. Off: anything that <span class="off">competes for NADPH</span> — most notably the polyol pathway and cytochrome P450 — and <span class="off">limited selenium availability</span>, which caps the peroxidase directly.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">19</span>
+      <div class="name">Cytochrome P450</div>
+      <span class="lbl">Where</span>
+      <div class="where">ER membrane for drugs; mitochondria for steroids, bile acids, vitamin D</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">the monooxygenase step</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>a lipophilic substrate, oxygen and NADPH</b> and delivers <b>a hydroxylated, more polar product plus water</b> — R–H + O₂ + NADPH + H⁺ → R–OH + H₂O + NADP⁺. One oxygen atom goes into the substrate as a hydroxyl and the other is reduced to water, which is <span class="key">what monooxygenase means</span>. The product can be excreted, and that is the entire point when R is a drug.</p>
+      <p><span class="enz">NADPH–cytochrome P450 reductase</span>, a flavoprotein of the ER membrane, takes the electrons first, because NADPH cannot reach the heme directly: the reductase loads the two electrons onto FAD and FMN and passes them one at a time, <span class="cost">spending 1 NADPH</span> — which amounts to a short electron transport chain sitting in the endoplasmic reticulum. The reduced heme of the P450 enzyme then performs the monooxygenase step: molecular oxygen binds the reduced iron and is split, one atom is inserted into the substrate as a hydroxyl, and the other takes two electrons and two protons and <span class="cost">leaves as water</span>. That is phase I — a functional group has been added. If the phase I product is still not polar enough, <span class="key">phase II conjugation</span> attaches glucuronate, sulfate or an acetyl group, raising molecular weight and water solubility and forcing biliary or renal excretion. Worth noting that the system activates as readily as it inactivates: cyclophosphamide is a prodrug that P450 converts into the form that cross-links DNA.</p>
+      <p class="reg"><span class="h">What controls it</span>Regulation is by <span class="key">induction and inhibition — the amount of enzyme, or its blockade — and not by allostery</span>, and both directions are drug interactions with real clinical weight. On: <span class="on">induction</span> by St John's wort, rifampin, phenytoin and carbamazepine, which increases enzyme synthesis so a co-administered drug is cleared faster and its effect falls. Off: <span class="off">inhibition</span> by grapefruit furanocoumarins, macrolides and azole antifungals, which blocks the enzyme so a co-administered drug is cleared more slowly and its level climbs. Because induction takes days to build and days to wear off while inhibition is immediate, the two also differ in how quickly a change in regimen shows up.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">20</span>
+      <div class="name">The respiratory burst</div>
+      <span class="lbl">Where</span>
+      <div class="where">Neutrophil and macrophage · inside the phagolysosome</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">NADPH oxidase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>oxygen and NADPH</b> and delivers <b>hypochlorous acid inside a sealed compartment</b>. It is the phagocyte's killing mechanism, and it is <span class="key">deliberate radical chemistry — the same species the rest of the body spends NADPH defending against, manufactured on purpose</span>.</p>
+      <p>An opsonized organism, with antibody or complement bound at a receptor, is engulfed by receptor-mediated endocytosis and sealed into a phagosome, which then fuses with lysosomes. <span class="enz">NADPH oxidase</span>, the rate-limiting enzyme, assembles on the phagolysosome membrane from cytosolic and membrane subunits and moves electrons from NADPH onto molecular oxygen, <span class="cost">spending 1 NADPH</span> and <span class="gain">making superoxide</span> inside the vacuole — and the sudden jump in oxygen consumption is what gives the burst its name. <span class="enz">Superoxide dismutase</span> then performs the same dismutation as everywhere else in the body, put to the opposite purpose, giving hydrogen peroxide. <span class="enz">Myeloperoxidase</span> combines that peroxide with chloride to make <span class="key">hypochlorous acid — bleach, manufactured on site</span>, and myeloperoxidase is also what makes pus green. Nitric oxide joins in here as well: NO reacts with superoxide to give peroxynitrite and further hydroxyl radical, which is also bactericidal.</p>
+      <p class="reg"><span class="h">What controls it</span>The control is <span class="key">assembly rather than allostery</span>: the oxidase exists as separate cytosolic and membrane components and is inactive until they are brought together, so the switch is physical. On: <span class="on">phagocytosis itself and receptor engagement</span>, which trigger phosphorylation of the cytosolic subunits by PKC and their translocation to the membrane; <span class="on">interferon-γ</span>, which primes the system; and <span class="on">bacterial peptides and complement fragments</span>, which prime circulating cells. Off: the burst is <span class="off">self-limiting</span>, since the subunits disassemble once signaling stops, and the whole system depends on <span class="off">NADPH supply</span>, which in the phagocyte comes from the pentose phosphate pathway just as it does in the red cell.</p>
+    </div>
+  </article>
+
+  <article class="pw">
+    <div class="rail">
+      <span class="num">21</span>
+      <div class="name">Nitric oxide</div>
+      <span class="lbl">Where</span>
+      <div class="where">Endothelium (eNOS), neurons (nNOS), induced macrophage (iNOS)</div>
+      <span class="lbl">Rate-limiting</span>
+      <div class="rate">nitric oxide synthase</div>
+    </div>
+    <div class="body">
+      <p class="overview"><span class="h">Overview</span>This takes <b>arginine, oxygen and NADPH</b> and delivers <b>nitric oxide and citrulline</b>, and the gas then diffuses into the neighboring smooth muscle cell and <b>lowers its calcium</b>. A large part of cardiovascular pharmacology acts on one end of this cascade or the other.</p>
+      <p><span class="enz">Nitric oxide synthase</span> hydroxylates a guanidino nitrogen of arginine and then cleaves it, releasing NO and citrulline and <span class="cost">spending 1 NADPH</span>; the citrulline goes on to the urea cycle. The three isoforms differ in how they are switched: eNOS and nNOS are both calcium–calmodulin dependent, so they fire in brief pulses whenever intracellular calcium rises, while <span class="key">iNOS is calcium-independent</span> — it is transcribed on demand and then runs continuously, which is why it makes far more NO. The gas diffuses out and binds the heme iron of <span class="enz">soluble guanylate cyclase</span>, breaking that iron's bond to a histidine and pulling the protein into its active shape, so cGMP rises. <span class="enz">Protein kinase G</span> then phosphorylates targets that lower cytosolic calcium — it activates the sarcoplasmic reticulum calcium pump and opens potassium channels — and as calcium falls, the calcium–calmodulin-dependent myosin light chain kinase goes quiet, the light chain is dephosphorylated, and the muscle relaxes. The end point is <span class="key">smooth muscle relaxation and vasodilation</span>. Nitric oxide also maintains hippocampal long-term potentiation and, through iNOS, kills bacteria in macrophages.</p>
+      <p class="reg"><span class="h">What controls it</span>Two quite different modes at the synthase, and a separate set of controls at the far end. eNOS and nNOS are controlled <span class="key">acutely by calcium</span>: <span class="on">shear stress and acetylcholine</span> raise endothelial calcium and activate eNOS, which is the basis of flow-mediated dilation. iNOS is controlled <span class="key">by transcription</span>, so its output is large and sustained: <span class="on">LPS and interferon-γ</span> induce it during infection, where the sustained output is bactericidal and, in sepsis, is also what causes vasodilatory shock. Inhibiting the synthase: <span class="off">uric acid</span>, which inhibits eNOS and is the link between hyperuricemia, fructose intake and hypertension, and <span class="off">asymmetric dimethylarginine</span>, a competitive analogue of arginine that accumulates in renal failure. At the downstream end the signal is terminated by <span class="enz">phosphodiesterase-5</span>, which hydrolyzes cGMP to 5′-GMP, and both the making and the breaking are drug targets: <span class="on">nitrates</span> release NO directly so more cGMP is <em>made</em>, while <span class="on">sildenafil</span> blocks PDE-5 so the cGMP already there is not <em>destroyed</em>. Both raise cGMP by different routes, which is why taking them together stacks the two effects.</p>
+    </div>
+  </article>
+</section>
+
+<footer>
+  <span>TouroCOM · Medical Biochemistry &amp; Genetics I</span>
+  <span>Lectures 9–15, Dr Binstock</span>
+  <span>Companion to the Carbohydrate Metabolism wall chart</span>
+  <span>⌘P prints one pathway per block</span>
+</footer>
+
+</div>
+
+<button id="theme" aria-label="Toggle light and dark">◐ theme</button>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  root.setAttribute('data-theme', mq.matches?'dark':'light');
+  mq.addEventListener('change',function(e){root.setAttribute('data-theme',e.matches?'dark':'light');});
+  btn.addEventListener('click',function(){
+    root.setAttribute('data-theme', root.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>
