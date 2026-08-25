@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carbohydrate Metabolism — Findings Readout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --paper:#F2F5F4;--surface:#FFFFFF;--tint:#F7FAF9;
+  --ink:#0E1513;--ink2:#44514E;--ink3:#75827F;
+  --rule:#CDD7D4;--rule2:#E2E9E7;
+  --accent:#0A5E5C;--accent2:#0E7A73;--enz:#9E3527;--keybg:#DEECEA;
+  --serif:"IBM Plex Serif",Georgia,serif;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+html[data-theme="dark"]{
+  --paper:#0B1110;--surface:#131A19;--tint:#101817;
+  --ink:#E2EAE8;--ink2:#93A29F;--ink3:#6D7C79;
+  --rule:#293533;--rule2:#1C2625;
+  --accent:#54BFBA;--accent2:#6FD3CD;--enz:#F0857A;--keybg:#0F2E2C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px}
+header.mast{padding:64px 0 28px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(32px,5vw,56px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px}
+h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.standfirst{font-family:var(--serif);font-size:17px;color:var(--ink2);max-width:64ch;margin:0;line-height:1.6}
+.mastmeta{display:flex;flex-wrap:wrap;gap:22px;margin-top:24px;font-family:var(--mono);font-size:11.5px;color:var(--ink3)}
+.mastmeta b{color:var(--ink2);font-weight:500}
+.legend{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px 24px;margin:28px 0 0}
+.legend h2{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0 0 12px;font-weight:500}
+.legend p{font-family:var(--serif);font-size:15.5px;color:var(--ink2);line-height:1.58;margin:0 0 11px;max-width:82ch}
+.legend p:last-child{margin-bottom:0}
+nav.toc{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);margin-top:30px;display:flex;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a{flex:none;padding:12px 15px;font-size:12.5px;font-weight:500;color:var(--ink3);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav.toc a:hover{color:var(--accent);border-bottom-color:var(--accent2)}
+nav.toc a .n{font-family:var(--mono);color:var(--rule);margin-right:6px;font-size:11px}
+section.part{padding-top:48px}
+.parthead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--ink);padding-bottom:9px}
+.parthead .roman{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:600}
+.parthead h2{font-weight:600;font-size:20px;letter-spacing:-.01em;margin:0;flex:1}
+.parthead .count{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+article.dz{padding:30px 0 24px;border-bottom:1px solid var(--rule2)}
+article.dz:last-child{border-bottom:none}
+.dzhead{border-left:2px solid var(--accent);padding-left:15px;margin-bottom:20px}
+.dzhead .num{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.08em}
+.dzhead h3{font-size:23px;font-weight:600;letter-spacing:-.015em;margin:4px 0 5px;line-height:1.2}
+.dzhead .def{font-size:14.5px;color:var(--ink2)}
+.dzhead .def b{color:var(--enz);font-weight:600}
+.blk{margin-top:22px}
+.blk > .bh{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);font-weight:500;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--rule2)}
+.cols{column-count:2;column-gap:44px}
+.f{break-inside:avoid;page-break-inside:avoid;margin:0 0 17px}
+.f.key{background:var(--keybg);border-left:2px solid var(--accent2);padding:11px 14px 12px;border-radius:2px;margin-bottom:19px}
+.f.key h4{color:var(--accent)}
+.f .tag{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500;display:block;margin-bottom:5px}
+.f h4{font-size:17px;font-weight:600;letter-spacing:-.012em;line-height:1.3;margin:0 0 4px;color:var(--ink)}
+.f p{font-family:var(--serif);font-size:15.5px;line-height:1.52;color:var(--ink2);margin:0}
+footer{margin-top:56px;padding-top:22px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:11.5px;color:var(--ink3);display:flex;flex-wrap:wrap;gap:8px 24px}
+#theme{position:fixed;right:16px;bottom:16px;z-index:40;background:var(--surface);color:var(--ink2);border:1px solid var(--rule);border-radius:3px;padding:8px 13px;cursor:pointer;font-family:var(--mono);font-size:11px}
+#theme:hover{color:var(--accent);border-color:var(--accent2)}
+#theme:focus-visible,nav.toc a:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+@media (max-width:900px){.cols{column-count:1}}
+@media (max-width:800px){.wrap{padding:0 16px 60px}.dzhead h3{font-size:21px}.f h4{font-size:16.5px}}
+@media print{
+  :root{--paper:#fff;--surface:#fff;--tint:#fff}
+  nav.toc,#theme{display:none}
+  body{font-size:9.5pt}
+  article.dz{padding:12pt 0}
+  section.part{padding-top:16pt}
+  header.mast{padding-top:0}
+  .cols{column-count:2;column-gap:24pt}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">Companion to the Wall Chart · Lectures 9–15</div>
+  <h1>What changes,<br><em>what stays normal, and why</em></h1>
+  <p class="standfirst">Twenty-five diseases as findings rather than narrative. Each names the protein and the pathway in one line, then states what actually moves, with the reason underneath it, before stating what holds steady and why. Only the findings that carry weight or need explaining are listed.</p>
+  <div class="mastmeta">
+    <span><b>25</b> diseases</span>
+    <span><b>296</b> findings</span>
+    <span><b>Changed first</b>, unchanged second</span>
+    <span><b>No comparisons</b> — each disease stands alone</span>
+  </div>
+</header>
+
+<div class="legend">
+  <h2>How to read it</h2>
+  <p>Every finding is a heading that states the direction in words, with the mechanism in a sentence or two beneath it. Nothing is encoded in a symbol, so a heading can be read on its own and still say something complete.</p>
+  <p>A few findings in each disease are set off in colour and tagged. Those are the ones that pin the diagnosis down — the value a question turns on, or the one that would separate this from whatever else was on the list.</p>
+  <p>The findings that stay normal are not filler. In most of these diseases the negative is what carries the diagnosis, and the reason a value holds steady is usually a sharper statement of the mechanism than the abnormal value beside it.</p>
+</div>
+
+<nav class="toc">
+  <a href="#s1"><span class="n">I</span>Digestion</a>
+  <a href="#s2"><span class="n">II</span>Glycolysis</a>
+  <a href="#s3"><span class="n">III</span>Pyruvate to acetyl-CoA</a>
+  <a href="#s4"><span class="n">IV</span>Gluconeogenesis</a>
+  <a href="#s5"><span class="n">V</span>Glycogen</a>
+  <a href="#s6"><span class="n">VI</span>Ethanol &amp; methanol</a>
+  <a href="#s7"><span class="n">VII</span>The other sugars</a>
+  <a href="#s8"><span class="n">VIII</span>NADPH</a>
+</nav>
+
+<section class="part" id="s1">
+  <div class="parthead"><span class="roman">I</span><h2>Digestion</h2><span class="count">1</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">01</span><h3>Lactose intolerance</h3>
+      <div class="def"><b>Lactase</b> — brush-border disaccharidase, carbohydrate digestion</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>A high stool osmotic gap</h4><p>Unabsorbed lactose stays in the lumen as a small osmotically active solute and holds water there.</p></div>
+        <div class="f"><h4>A low stool pH</h4><p>Colonic bacteria ferment the lactose to short-chain fatty acids, which acidify the stool.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>High breath hydrogen</h4><p>Human cells make no H₂. Every ppm came from bacteria fermenting lactose that reached the colon — which is why the test is specific.</p></div>
+        <div class="f"><h4>More stool, more flatus, more bloating</h4><p>Osmotic water retention plus fermentation gas (H₂, CO₂, methane) distending the bowel.</p></div>
+        <div class="f"><h4>Reducing substances present in the stool</h4><p>Intact lactose is a reducing sugar and passes through undigested.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>Absorbing and handling glucose is entirely normal. The failure is upstream, at splitting the disaccharide.</p></div>
+        <div class="f"><h4>Serum electrolytes and pH stay normal</h4><p>The sugar never crosses the epithelium, so there is no systemic metabolic consequence.</p></div>
+        <div class="f"><h4>The intestinal biopsy is normal in the primary form</h4><p>Villous architecture is normal and only the enzyme is absent. Lactase sits at the villus tip, so it is the first brush-border activity lost to any mucosal injury and the last to recover, which is why secondary deficiency follows gastroenteritis or celiac disease and shows that underlying damage on biopsy.</p></div>
+        <div class="f"><h4>Growth and nutrition stay normal</h4><p>Only one sugar is affected and the calorie loss is small.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="s2">
+  <div class="parthead"><span class="roman">II</span><h2>Glycolysis</h2><span class="count">2</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">02</span><h3>Pyruvate kinase deficiency</h3>
+      <div class="def"><b>Pyruvate kinase</b> (PKLR, R isoform) — final step of glycolysis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Red cell ATP falls</h4><p>The last ATP-generating step is lost, and the red cell has no mitochondria and no alternative source.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>2,3-BPG rises</h4><p>The block sits at the end, so 1,3-BPG dams and spills into the Rapoport–Luebering shunt.</p></div>
+        <div class="f"><h4>The oxygen dissociation curve shifts right</h4><p>2,3-BPG lowers hemoglobin's O₂ affinity, so unloading improves and symptoms are milder than the hemoglobin predicts.</p></div>
+        <div class="f"><h4>Hemoglobin falls</h4><p>ATP failure stops the Na⁺/K⁺ ATPase; cells dehydrate, stiffen and are destroyed in the spleen.</p></div>
+        <div class="f"><h4>Reticulocytes rise</h4><p>Marrow compensation. Rises further after splenectomy, because the released cells now survive in circulation.</p></div>
+        <div class="f"><h4>Indirect bilirubin rises</h4><p>Heme catabolism from extravascular hemolysis.</p></div>
+        <div class="f"><h4>LDH rises</h4><p>Released from lysed cells. This reflects hemolysis, not glycolytic flux.</p></div>
+        <div class="f"><h4>Haptoglobin falls</h4><p>Consumed binding whatever hemoglobin is freed into plasma. The fall is modest rather than dramatic, because the destruction is mainly extravascular, inside splenic macrophages.</p></div>
+        <div class="f"><h4>Pyruvate and lactate inside the red cell fall</h4><p>Their production is the step that is blocked.</p></div>
+        <div class="f"><h4>Echinocytes appear on the smear</h4><p>Membrane dehydration and rigidity. Prominent after splenectomy.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>Hepatic output runs on glycogenolysis and gluconeogenesis, and gluconeogenesis bypasses this enzyme entirely at PEPCK.</p></div>
+        <div class="f"><h4>Serum lactate stays normal</h4><p>Red cells contribute almost nothing to the whole-body lactate pool, and every other tissue is unaffected.</p></div>
+        <div class="f"><h4>Muscle and brain function stay normal</h4><p>Those tissues express PKM, a separate gene, at full activity.</p></div>
+        <div class="f"><h4>The Coombs test stays negative</h4><p>The hemolysis is metabolic, not antibody-mediated.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Osmotic fragility stays normal</h4><p>Membrane proteins are structurally normal and no spherocytes form.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>A whole-blood enzyme assay reads falsely normal</h4><p>Leukocytes and platelets express PKM2 at normal activity. White cells must be removed or the result reads normal.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">03</span><h3>PFK-1 deficiency (Tarui, GSD VII)</h3>
+      <div class="def"><b>Phosphofructokinase-1, M subunit</b> — committed step of glycolysis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Muscle PFK-1 activity falls to zero</h4><p>Mature skeletal muscle builds the tetramer from M alone.</p></div>
+        <div class="f"><h4>Red cell PFK-1 activity falls to about half</h4><p>The red-cell enzyme is an M/L hybrid, so the L subunit partially compensates.</p></div>
+        <div class="f"><h4>Lactate fails to rise with exercise</h4><p>Lactate is a glycolytic product and glycolysis is what is blocked, so ischemic forearm testing produces no rise.</p></div>
+        <div class="f"><h4>Ammonia rises with exercise</h4><p>The purine nucleotide cycle runs in place of glycolysis.</p></div>
+        <div class="f"><h4>CK rises</h4><p>ATP-starved fibers cannot maintain their membranes and leak.</p></div>
+        <div class="f"><h4>Myoglobin appears in serum and urine</h4><p>Rhabdomyolysis on exertion.</p></div>
+        <div class="f"><h4>Uric acid rises after exercise</h4><p>ATP is degraded to AMP faster than it can be rebuilt, and surplus AMP is broken down to urate.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>A glucose load makes exercise tolerance worse</h4><p>Muscle cannot use the glucose, and the insulin it provokes suppresses the free fatty acids and ketones the fiber was actually running on. Feeding before exercise removes the only fuel still available.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>2,3-BPG falls</h4><p>The block sits far upstream of 1,3-BPG, so less substrate reaches the shunt. The curve left-shifts.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Reticulocytes and bilirubin rise</h4><p>Half activity shortens red-cell survival and the marrow compensates.</p></div>
+        <div class="f"><h4>Hemoglobin falls mildly</h4><p>Compensated hemolysis rather than overt anemia.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>The liver builds its enzyme from the L subunit, and hepatic output depends on glycogenolysis and gluconeogenesis regardless.</p></div>
+        <div class="f"><h4>Cognition stays normal</h4><p>Brain PFK-1 is built largely from the P and L subunits and retains substantial activity.</p></div>
+        <div class="f"><h4>Muscle at rest and low intensity works normally</h4><p>Oxidative phosphorylation on fatty acids covers the demand without needing fast glycolysis.</p></div>
+        <div class="f"><h4>Glycogen structure stays normal</h4><p>Branching and debranching enzymes are untouched.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="s3">
+  <div class="parthead"><span class="roman">III</span><h2>Pyruvate to acetyl-CoA</h2><span class="count">2</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">04</span><h3>PDH complex deficiency</h3>
+      <div class="def"><b>PDH E1α</b> (PDHA1, X-linked) — pyruvate into the TCA cycle</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood lactate rises</h4><p>Pyruvate cannot become acetyl-CoA, so it dams and exits through LDH.</p></div>
+        <div class="f"><h4>Blood pyruvate rises</h4><p>Nothing downstream is consuming it.</p></div>
+        <div class="f"><h4>Alanine rises</h4><p>ALT transaminates the surplus pyruvate. The reaction is near-equilibrium and has no gate, so alanine tracks pyruvate.</p></div>
+        <div class="f"><h4>Tissue acetyl-CoA falls</h4><p>Its only route from carbohydrate is the blocked step.</p></div>
+        <div class="f"><h4>Brain ATP falls</h4><p>The brain runs almost wholly on glucose oxidation, and every alternative fuel must still pass this gate.</p></div>
+        <div class="f"><h4>The anion gap widens</h4><p>Lactate is the unmeasured anion.</p></div>
+        <div class="f"><h4>Structural brain lesions develop</h4><p>Corpus callosum agenesis, cerebral atrophy, Leigh lesions — energy failure during a period of rapid development.</p></div>
+        <div class="f"><h4>IV dextrose makes it worse</h4><p>Glucose enters above the block, so the added carbon partitions straight into more lactate.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>A ketogenic diet makes it better</h4><p>Ketone bodies are metabolized directly to acetyl-CoA and enter beyond the closed door.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>The lactate to pyruvate ratio does not rise</h4><p>Both rise together. The ratio is set by cytosolic NADH/NAD⁺, which is untouched here, so it stays at or below its normal 10–20.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood glucose stays normal</h4><p>Gluconeogenesis is entirely intact; pyruvate carboxylase and PEPCK are unaffected.</p></div>
+        <div class="f"><h4>Ammonia stays normal</h4><p>Oxaloacetate and therefore aspartate are available, so the urea cycle runs.</p></div>
+        <div class="f"><h4>Fatty acid oxidation and ketone production stay normal</h4><p>Nothing upstream of acetyl-CoA in the fat pathway is affected, so ketones remain available and may rise as an alternative fuel.</p></div>
+        <div class="f"><h4>Supplemental oxygen changes nothing</h4><p>The block is enzymatic, not a delivery problem, so supplemental O₂ changes nothing.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">05</span><h3>Arsenic poisoning</h3>
+      <div class="def"><b>Lipoic acid</b> bound by arsenite; <b>GAPDH</b> subverted by arsenate — pyruvate into the TCA cycle</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood lactate and pyruvate rise</h4><p>Arsenite locks both thiols of lipoic acid, disabling PDH E2 and α-KGDH, so pyruvate dams and the cycle stalls one step in.</p></div>
+        <div class="f"><h4>The net ATP yield of glycolysis falls from two to zero</h4><p>Arsenate substitutes for inorganic phosphate at GAPDH. The arsenate ester hydrolyzes spontaneously, so the phosphoglycerate kinase ATP is never collected.</p></div>
+        <div class="f"><h4>Oxidative ATP production falls</h4><p>Three lipoate-dependent complexes are disabled simultaneously.</p></div>
+        <div class="f"><h4>Branched-chain ketoacids rise</h4><p>BCKDH carries lipoate too and is taken out with the others.</p></div>
+        <div class="f"><h4>The anion gap widens</h4><p>Lactate.</p></div>
+        <div class="f"><h4>The QT interval lengthens</h4><p>Direct effect on repolarization; torsades is the acute cardiac risk.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Garlic breath and rice-water stools appear</h4><p>Volatile arsenicals in expired air; secretory and mucosal injury in the gut.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Mees' lines, hyperkeratosis and hyperpigmentation appear</h4><p>Arsenic binds keratin sulfhydryls; nail and skin changes appear weeks to months after exposure.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Urine arsenic is high on a 24-hour collection</h4><p>The confirmatory test. Hair and nails record older exposure.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>Gluconeogenesis is largely intact — no bypass enzyme depends on lipoate.</p></div>
+        <div class="f"><h4>Supplemental oxygen changes nothing</h4><p>The lesion is enzyme poisoning, not hypoxia.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="s4">
+  <div class="parthead"><span class="roman">IV</span><h2>Gluconeogenesis</h2><span class="count">2</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">06</span><h3>Pyruvate carboxylase deficiency</h3>
+      <div class="def"><b>Pyruvate carboxylase</b> (biotin-dependent) — first step of gluconeogenesis and main anaplerotic refill</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose falls during fasting</h4><p>With no oxaloacetate, gluconeogenesis cannot start.</p></div>
+        <div class="f"><h4>Blood lactate rises</h4><p>Pyruvate dams. Acetyl-CoA and NADH then accumulate, activate PDH kinase and shut PDH off as well, so the aerobic exit closes too.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The lactate to pyruvate ratio rises above 25</h4><p>Loss of oxaloacetate breaks the malate–aspartate shuttle, so cytosolic NADH accumulates and drives LDH.</p></div>
+        <div class="f"><h4>Alanine rises</h4><p>ALT transaminates surplus pyruvate. Alanine tracks pyruvate; there is no separate alanine ratio.</p></div>
+        <div class="f"><h4>Mitochondrial NADH falls</h4><p>The cycle is not turning to generate it, so the matrix is relatively oxidized while the cytosol is reduced.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The beta-hydroxybutyrate to acetoacetate ratio falls</h4><p>Reports the oxidized matrix. Paired with the high lactate:pyruvate, it is the fingerprint of NADH stranded on the wrong side of the membrane.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Ammonia rises</h4><p>Aspartate donates the second urea nitrogen and comes from oxaloacetate. No oxaloacetate, no aspartate, stalled urea cycle.</p></div>
+        <div class="f"><h4>Citrulline rises</h4><p>Citrulline backs up behind argininosuccinate synthetase, the step that needs aspartate. Lysine and proline rise alongside it, while glutamine falls as it is consumed carrying nitrogen.</p></div>
+        <div class="f"><h4>Ketones rise</h4><p>Acetyl-CoA cannot enter the cycle without a carrier, so it is diverted to ketone bodies.</p></div>
+        <div class="f"><h4>Brain ATP falls</h4><p>The cycle cannot accept acetyl-CoA, and neurons depend most on oxidative ATP.</p></div>
+        <div class="f"><h4>The anion gap widens</h4><p>Lactate plus ketones.</p></div>
+        <div class="f"><h4>IV dextrose corrects the glucose but not the acidosis</h4><p>Dextrose removes the demand on the missing enzyme but adds carbon behind a closed door, so lactate and alanine persist or rise.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Liver size and glycogen stores stay normal</h4><p>Glycogen synthesis and breakdown are untouched.</p></div>
+        <div class="f"><h4>Hemoglobin and red cell survival stay normal</h4><p>The red cell performs no gluconeogenesis and has no TCA cycle to refill.</p></div>
+        <div class="f"><h4>Fatty acid oxidation stays normal</h4><p>Intact — which is why ketones are available and why acetyl-CoA is abundant.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">07</span><h3>Von Gierke, GSD Ia and Ib</h3>
+      <div class="def"><b>Glucose 6-phosphatase</b> (Ib: G6P translocase) — shared final step of gluconeogenesis and glycogenolysis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose falls severely within three to four hours of a feed</h4><p>Both routes to free glucose pass through this one enzyme, so losing it closes them together.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood lactate rises</h4><p>Accumulated G6P is forced down glycolysis to pyruvate and then lactate. It also serves as an alternative brain fuel, which is why these children tolerate low glucose.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Ketones stay inappropriately low for the degree of hypoglycemia</h4><p>Lactate substitutes as fuel and insulin is not fully suppressed, so the hypoglycemia is characteristically non-ketotic.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Uric acid rises</h4><p>G6P is pushed into the pentose phosphate pathway to ribose 5-P and PRPP, driving purine turnover. Lactate additionally competes with urate at the renal transporter.</p></div>
+        <div class="f"><h4>Triglycerides and cholesterol rise</h4><p>Surplus G6P runs to acetyl-CoA, leaves as citrate and feeds lipogenesis. Eruptive xanthomas follow.</p></div>
+        <div class="f"><h4>The liver becomes massively enlarged</h4><p>Glycogen and fat accumulate together. Doll-like face and protuberant abdomen.</p></div>
+        <div class="f"><h4>The kidneys enlarge</h4><p>The enzyme is expressed there too, so the same accumulation occurs.</p></div>
+        <div class="f"><h4>Growth slows</h4><p>Chronic energy deficit through childhood.</p></div>
+        <div class="f"><h4>Glucagon produces no rise in glucose</h4><p>Glucagon mobilizes glycogen normally, but the exit step that releases free glucose is missing.</p></div>
+        <div class="f"><h4>Neutrophils fall in type Ib only</h4><p>The translocase is also required in neutrophils. Recurrent infection and inflammatory bowel disease follow.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Glycogen structure stays normal</h4><p>Branching is normal. The glycogen is merely abundant, not malformed.</p></div>
+        <div class="f"><h4>Spleen size stays normal</h4><p>Deposition is hepatic and renal, following where the enzyme is expressed.</p></div>
+        <div class="f"><h4>CK and muscle function stay normal</h4><p>Muscle glycogenolysis feeds its own glycolysis and never needed this enzyme.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="s5">
+  <div class="parthead"><span class="roman">V</span><h2>Glycogen</h2><span class="count">6</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">08</span><h3>GSD 0</h3>
+      <div class="def"><b>Glycogen synthase</b> — glycogen synthesis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood glucose rises after a meal</h4><p>There is no reservoir to store it in, so a meal's glucose has nowhere to go.</p></div>
+        <div class="f"><h4>Lactate rises after a meal</h4><p>The unstorable surplus overflows into glycolysis and runs to lactate.</p></div>
+        <div class="f"><h4>Blood glucose falls during fasting</h4><p>Nothing was stored, so a few hours later there is nothing to draw on.</p></div>
+        <div class="f"><h4>Ketones rise during fasting</h4><p>Fatty acid oxidation is intact, so the hypoglycemia is ketotic.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Liver glycogen content falls markedly</h4><p>The defect itself — this is a deficiency of glycogen, not a storage of it.</p></div>
+        <div class="f"><h4>Exertional syncope and arrhythmia occur in the muscle form</h4><p>Cardiac and skeletal muscle cannot store glycogen, giving cardiomyopathy and sudden death risk on exertion.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Liver size stays normal</h4><p>Nothing accumulates, so there is nothing to enlarge it.</p></div>
+        <div class="f"><h4>Fasting lactate stays normal</h4><p>Gluconeogenesis is intact and G6P is not accumulating.</p></div>
+        <div class="f"><h4>Uric acid and triglycerides stay normal</h4><p>No G6P backlog to divert into PRPP or lipogenesis.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">09</span><h3>Andersen, GSD IV</h3>
+      <div class="def"><b>Branching enzyme</b> (glucosyl 4:6 transferase) — glycogen synthesis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Glycogen is built long and unbranched</h4><p>No α-1,6 branches are created, so chains grow straight and resemble plant amylopectin.</p></div>
+        <div class="f"><h4>Glycogen solubility falls</h4><p>Branching is what keeps glycogen hydrated. An unbranched glucan precipitates.</p></div>
+        <div class="f"><h4>Transaminases rise</h4><p>The insoluble deposit behaves as a foreign body inside hepatocytes and provokes inflammation.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The liver enlarges, then becomes cirrhotic</h4><p>Inflammation progresses to fibrosis and cirrhosis, typically fatal by around five years without transplant.</p></div>
+        <div class="f"><h4>Spleen size and portal pressure rise</h4><p>Consequences of established cirrhosis.</p></div>
+        <div class="f"><h4>INR rises</h4><p>Loss of hepatic synthetic function; albumin falls in parallel.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood glucose stays largely normal</h4><p>The small amount of glycogen present is still mobilizable and gluconeogenesis is untouched. The disease is structural, not energetic.</p></div>
+        <div class="f"><h4>Lactate, uric acid and triglycerides stay normal</h4><p>There is no G6P accumulation to divert into those routes.</p></div>
+        <div class="f"><h4>CK stays normal in the classic hepatic form</h4><p>Muscle is usually spared in the form that presents in infancy.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">10</span><h3>Cori (Forbes), GSD III</h3>
+      <div class="def"><b>Debranching enzyme</b> (4:4 transferase + α-1,6-glucosidase) — glycogenolysis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose falls mildly</h4><p>Phosphorylase strips a chain only to within four residues of a branch and then halts, so release stops there.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Ketones rise</h4><p>Fatty acid oxidation is intact, so the hypoglycemia is ketotic.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Glycogen accumulates with short outer chains</h4><p>A limit dextrin accumulates because branch points cannot be cleared.</p></div>
+        <div class="f"><h4>The liver enlarges</h4><p>Limit dextrin accumulation.</p></div>
+        <div class="f"><h4>Transaminases rise</h4><p>Hepatocyte distension. Usually improves after puberty.</p></div>
+        <div class="f"><h4>CK rises in type IIIa</h4><p>The same enzyme serves muscle, so myopathy and cardiomyopathy appear in the subtype that involves it.</p></div>
+        <div class="f"><h4>Growth slows during childhood</h4><p>Recovers with age as hepatic demand falls relative to body size.</p></div>
+        <div class="f"><h4>A high-protein diet works</h4><p>Gluconeogenic machinery is fully available to convert the amino acids into glucose.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood lactate stays normal</h4><p>Gluconeogenesis is intact and no G6P backlog forms.</p></div>
+        <div class="f"><h4>Uric acid stays normal</h4><p>No PRPP overproduction, since G6P is not accumulating.</p></div>
+        <div class="f"><h4>Triglycerides stay normal or rise only mildly</h4><p>No large overflow of G6P into lipogenesis.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">11</span><h3>McArdle, GSD V</h3>
+      <div class="def"><b>Myophosphorylase</b> (PYGM) — muscle glycogenolysis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Lactate fails to rise with exercise</h4><p>Muscle cannot mobilize its own glycogen, so no substrate reaches glycolysis during ischemic forearm testing.</p></div>
+        <div class="f"><h4>Ammonia rises with exercise</h4><p>The purine nucleotide cycle runs in place of glycolysis.</p></div>
+        <div class="f"><h4>CK is high even at rest</h4><p>Ongoing membrane instability in fibers that cannot meet their own ATP demand.</p></div>
+        <div class="f"><h4>Myoglobin appears in the urine</h4><p>Rhabdomyolysis on exertion, with risk of acute kidney injury from cast nephropathy.</p></div>
+        <div class="f"><h4>Muscle glycogen content rises</h4><p>It is deposited normally and simply cannot be retrieved.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>A second wind arrives after about ten minutes</h4><p>Fatty acid delivery and hepatic glucose output ramp up and take over the work glycogen should have done.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>Liver phosphorylase is PYGL, a different gene, and is fully functional.</p></div>
+        <div class="f"><h4>Liver size stays normal</h4><p>Hepatic glycogen turnover is normal.</p></div>
+        <div class="f"><h4>Cognition stays normal</h4><p>The brain does not depend on muscle glycogen.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Hemoglobin and reticulocytes stay normal</h4><p>The red cell holds no glycogen and does not use this isoform.</p></div>
+        <div class="f"><h4>Glycogen structure stays normal</h4><p>Branching enzymes are untouched; only the quantity rises.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">12</span><h3>Hers, GSD VI (and GSD IX)</h3>
+      <div class="def"><b>Liver phosphorylase</b> (PYGL); GSD IX, <b>phosphorylase kinase</b> — hepatic glycogenolysis</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose falls mildly</h4><p>The liver cannot break down its own glycogen, but the deficiency is characteristically partial.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Ketones rise</h4><p>Fatty acid oxidation is intact, so the hypoglycemia is ketotic.</p></div>
+        <div class="f"><h4>The liver enlarges, often markedly</h4><p>Glycogen accumulates because it cannot be mobilized.</p></div>
+        <div class="f"><h4>Liver glycogen content rises</h4><p>Structurally normal glycogen, simply not retrievable.</p></div>
+        <div class="f"><h4>Transaminases rise</h4><p>Hepatocyte distension. Improves with age.</p></div>
+        <div class="f"><h4>Growth slows mildly</h4><p>Chronic mild limitation of hepatic glucose output.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood lactate stays normal</h4><p>Gluconeogenesis is fully intact and defends the blood sugar.</p></div>
+        <div class="f"><h4>Uric acid and triglycerides stay normal</h4><p>No G6P backlog to divert into PRPP or lipogenesis.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>CK and muscle function stay normal</h4><p>Muscle uses PYGM, a separate gene.</p></div>
+        <div class="f"><h4>Glycogen structure stays normal</h4><p>Branching and debranching are normal.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">13</span><h3>Pompe, GSD II</h3>
+      <div class="def"><b>Acid α-1,4-glucosidase</b> (acid maltase) — lysosomal glycogen degradation</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Glycogen accumulates inside lysosomes</h4><p>Glycogen delivered to lysosomes by autophagy cannot be digested, so it accumulates in the compartment that cannot clear it.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The heart becomes massively enlarged</h4><p>Cardiac muscle turns over the most glycogen; swelling lysosomes distort and destroy the contractile apparatus.</p></div>
+        <div class="f"><h4>Muscle tone falls</h4><p>Lysosomal rupture destroys fibers, giving the floppy infant.</p></div>
+        <div class="f"><h4>CK rises</h4><p>Ongoing muscle destruction.</p></div>
+        <div class="f"><h4>The tongue enlarges</h4><p>Macroglossia from glycogen accumulation in the same muscle type.</p></div>
+        <div class="f"><h4>Diaphragm strength falls</h4><p>Disproportionately early involvement; the presenting feature in late-onset forms.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The ECG shows a short PR and high-voltage QRS</h4><p>Glycogen-laden myocardium alters conduction and voltage. Characteristic of the infantile form.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood glucose stays normal</h4><p>Cytoplasmic glycogenolysis and gluconeogenesis are entirely untouched.</p></div>
+        <div class="f"><h4>Glycogen structure stays normal</h4><p>Normal branching. Only its location is wrong.</p></div>
+        <div class="f"><h4>Blood lactate stays normal</h4><p>No cytosolic pathway is blocked.</p></div>
+        <div class="f"><h4>Uric acid and triglycerides stay normal</h4><p>No G6P accumulation anywhere.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="s6">
+  <div class="parthead"><span class="roman">VI</span><h2>Ethanol and methanol</h2><span class="count">2</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">14</span><h3>Alcoholic hypoglycemia</h3>
+      <div class="def">No enzyme lost — <b>ADH and ALDH</b> raise the cytosolic NADH:NAD⁺ ratio</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>The cytosolic NADH to NAD+ ratio rises</h4><p>Each of the two oxidation steps reduces an NAD⁺, so two NADH are generated per molecule of ethanol.</p></div>
+        <div class="f"><h4>Blood glucose falls, but only during fasting</h4><p>Pyruvate, oxaloacetate and DHAP are all pushed to their reduced products, stripping all three gluconeogenic entry substrates at once.</p></div>
+        <div class="f"><h4>Lactate rises</h4><p>LDH is near equilibrium and is driven toward lactate by mass action.</p></div>
+        <div class="f"><h4>Uric acid rises</h4><p>Lactate competes with urate at the renal excretion transporter.</p></div>
+        <div class="f"><h4>Triglycerides and hepatic fat rise</h4><p>DHAP is diverted to glycerol 3-phosphate, supplying the triglyceride backbone.</p></div>
+        <div class="f"><h4>Beta-hydroxybutyrate rises</h4><p>The raised NADH pushes acetoacetate toward β-hydroxybutyrate.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The urine ketone test reads falsely low</h4><p>The test detects acetoacetate, not β-hydroxybutyrate, so it reads low in a deeply ketotic patient.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The AST to ALT ratio rises above two to one</h4><p>Alcohol depletes pyridoxal phosphate, and ALT depends on it more heavily than AST.</p></div>
+        <div class="f"><h4>The anion gap widens</h4><p>Lactate plus ketoacids.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood glucose stays normal in a fed patient</h4><p>Glycogenolysis requires no NAD⁺, so full glycogen stores fully protect. Fasting is a precondition.</p></div>
+        <div class="f"><h4>Every enzyme activity stays normal</h4><p>Nothing is missing or inhibited. Only the redox balance has moved.</p></div>
+        <div class="f"><h4>Everything returns to normal once the ethanol clears</h4><p>The shift is fully reversible because no protein was damaged.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">15</span><h3>Methanol poisoning</h3>
+      <div class="def">No enzyme lost — <b>ADH and ALDH</b> convert methanol to formate</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Formate accumulates</h4><p>The actual toxin. Methanol itself is comparatively inert.</p></div>
+        <div class="f"><h4>Serum pH falls</h4><p>Severe metabolic acidosis from formate plus the lactate generated behind the blocked respiratory chain.</p></div>
+        <div class="f"><h4>The anion gap widens</h4><p>Formate is the unmeasured anion.</p></div>
+        <div class="f"><h4>Lactate rises</h4><p>Formate inhibits cytochrome c oxidase, forcing an anaerobic shift.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Visual acuity falls</h4><p>Formate concentrates in the optic nerve. Patients describe a snowstorm; the disc may be hyperemic.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The osmolar gap comes first, the anion gap second</h4><p>The parent alcohol is osmotically active; as it is converted, the osmolar gap closes and the anion gap opens.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Nothing happens for the first twelve to twenty-four hours</h4><p>Toxicity requires the metabolite to accumulate, so the patient looks well at first.</p></div>
+        <div class="f"><h4>Cytosolic NADH rises</h4><p>Each of the two oxidation steps reduces an NAD⁺.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>The gluconeogenic enzymes themselves are intact.</p></div>
+        <div class="f"><h4>Everything looks normal in the first hours</h4><p>Nothing toxic has been made yet, which is what makes early presentation deceptive.</p></div>
+        <div class="f"><h4>Methanol is cleared unchanged once fomepizole is given</h4><p>Blocking ADH means methanol is excreted unchanged rather than converted, so the level falls slowly and harmlessly.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="s7">
+  <div class="parthead"><span class="roman">VII</span><h2>The sugars that are not glucose</h2><span class="count">5</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">16</span><h3>Essential fructosuria</h3>
+      <div class="def"><b>Fructokinase</b> — fructose entry</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood fructose rises</h4><p>Never phosphorylated, so never trapped inside a cell.</p></div>
+        <div class="f"><h4>Urine fructose rises</h4><p>Freely filtered and incompletely reabsorbed.</p></div>
+        <div class="f"><h4>Reducing substances appear in the urine</h4><p>Fructose is a reducing sugar. This is usually how the condition is found.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>The urine glucose dipstick stays negative</h4><p>The dipstick is specific for glucose, so a positive reducing test with a negative dipstick indicates the sugar is not glucose.</p></div>
+        <div class="f"><h4>Blood glucose stays normal</h4><p>Glucose handling is untouched.</p></div>
+        <div class="f"><h4>ATP and inorganic phosphate stay normal</h4><p>No phosphorylated intermediate forms, so no phosphate is sequestered.</p></div>
+        <div class="f"><h4>Uric acid stays normal</h4><p>ATP is never depleted, so no AMP is degraded to urate.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Liver and kidney function stay normal</h4><p>Nothing is trapped inside cells to injure them.</p></div>
+        <div class="f"><h4>Growth and development stay normal</h4><p>The condition is benign and needs no treatment.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">17</span><h3>Hereditary fructose intolerance</h3>
+      <div class="def"><b>Aldolase B</b> — fructose entry</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Fructose 1-phosphate accumulates inside cells</h4><p>Fructokinase upstream is fast and unregulated, so F1P is made at speed and cannot be cleared.</p></div>
+        <div class="f"><h4>Intracellular inorganic phosphate falls</h4><p>Every molecule of F1P formed locks up one Pi.</p></div>
+        <div class="f"><h4>ATP falls</h4><p>Cannot be regenerated without free phosphate.</p></div>
+        <div class="f"><h4>Uric acid rises</h4><p>AMP accumulates as ATP falls and is degraded to urate.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood glucose falls about thirty minutes after fructose</h4><p>Low ATP and trapped phosphate inhibit both glycogen phosphorylase and gluconeogenesis, closing both hepatic routes to glucose.</p></div>
+        <div class="f"><h4>Glucagon produces no rise in glucose</h4><p>Glycogenolysis is inhibited, so the hormone has nothing to act on.</p></div>
+        <div class="f"><h4>Lactate rises</h4><p>Energy failure and pyruvate accumulation.</p></div>
+        <div class="f"><h4>Transaminases and bilirubin rise</h4><p>Hepatocyte injury from phosphate sequestration.</p></div>
+        <div class="f"><h4>INR rises</h4><p>Loss of hepatic synthetic function; albumin falls in parallel.</p></div>
+        <div class="f"><h4>Proximal renal tubular dysfunction develops</h4><p>Aminoaciduria, phosphaturia and renal tubular acidosis, from the same phosphate trapping in tubular cells.</p></div>
+        <div class="f"><h4>Reducing substances appear in the urine</h4><p>Fructose spills into the urine.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Everything stays normal while fructose is avoided</h4><p>The substrate must be present for anything to happen. Removing fructose, sucrose and sorbitol resolves the disease.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Blood glucose stays normal on breast milk</h4><p>Lactose contains no fructose, so infants are well until weaning.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Dental caries are notably absent</h4><p>Survivors develop a strong aversion to sweet foods.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">18</span><h3>Galactokinase deficiency</h3>
+      <div class="def"><b>Galactokinase</b> — Leloir pathway</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood and urine galactose rise</h4><p>It cannot be phosphorylated, so it accumulates free and is filtered.</p></div>
+        <div class="f"><h4>Reducing substances appear in the urine</h4><p>Galactose is a reducing sugar.</p></div>
+        <div class="f"><h4>Galactitol accumulates in the lens</h4><p>Aldose reductase reduces the excess galactose, and no dehydrogenase can take galactitol any further.</p></div>
+        <div class="f"><h4>Cataracts develop in infancy</h4><p>Trapped galactitol is osmotically active, draws water into lens fibers and aggregates their proteins. Presents as failure to fix and follow, or an absent red reflex.</p></div>
+        <div class="f"><h4>Lens NADPH falls modestly</h4><p>Spent by aldose reductase, adding a small oxidative component.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Galactose 1-phosphate is never formed</h4><p>None is formed at all, and that single absence is why no organ is injured.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Liver function stays normal</h4><p>Nothing is trapped intracellularly to sequester phosphate.</p></div>
+        <div class="f"><h4>Kidney function stays normal</h4><p>Same reason.</p></div>
+        <div class="f"><h4>Blood glucose stays normal</h4><p>Glucose handling is untouched.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Cognitive development stays normal</h4><p>No CNS injury occurs. Growth and development are normal.</p></div>
+        <div class="f"><h4>The urine glucose dipstick stays negative</h4><p>Specific for glucose.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">19</span><h3>Classical galactosemia</h3>
+      <div class="def"><b>GALT</b> (galactose 1-phosphate uridyltransferase) — Leloir pathway</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Galactose 1-phosphate accumulates in red cells</h4><p>Galactokinase upstream still works at full rate, so the intermediate is made and then dammed. This is both the cause of the disease and the marker followed on treatment.</p></div>
+        <div class="f"><h4>Blood glucose falls</h4><p>Gal-1-P inhibits phosphoglucomutase, which glycogenolysis needs, on top of the liver injury itself.</p></div>
+        <div class="f"><h4>Transaminases and bilirubin rise</h4><p>Hepatocyte injury from phosphate and UDP sequestration. Progresses to cirrhosis untreated.</p></div>
+        <div class="f"><h4>INR rises</h4><p>Loss of hepatic synthetic function.</p></div>
+        <div class="f"><h4>Galactitol accumulates in the lens</h4><p>Overflow galactose is reduced by aldose reductase, producing cataracts.</p></div>
+        <div class="f"><h4>Proximal renal tubular dysfunction develops</h4><p>Aminoaciduria and renal tubular acidosis from injury to tubular cells by the same trapped ester.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The risk of neonatal E. coli sepsis rises</h4><p>Gal-1-P impairs neutrophil function. Characteristic enough to prompt testing on its own.</p></div>
+        <div class="f"><h4>Red cell GALT activity is low</h4><p>The confirmatory assay, after newborn screening flags it.</p></div>
+        <div class="f"><h4>Reducing substances appear in the urine</h4><p>Galactose spills into the urine.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Ovarian insufficiency and learning difficulty occur despite treatment</h4><p>The body synthesizes its own Gal-1-P from UDP-glucose regardless of what is eaten, so these are not fully preventable.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>The urine glucose dipstick stays negative</h4><p>Specific for glucose, so it misses the galactose entirely.</p></div>
+        <div class="f"><h4>Fatty acid oxidation and ketones stay normal</h4><p>Untouched by the defect.</p></div>
+        <div class="f"><h4>Liver, kidney and lens recover on a galactose-free diet</h4><p>Removing the substrate stops Gal-1-P forming, and those injuries resolve.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">20</span><h3>Diabetic cataract, retinopathy and neuropathy</h3>
+      <div class="def">No enzyme lost — <b>aldose reductase</b> unopposed where sorbitol dehydrogenase is absent (polyol pathway)</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Sorbitol accumulates inside the affected cells</h4><p>In lens, retina, Schwann cells and kidney. Aldose reductase has a high Kₘ and no allosteric brake, so flux rises in proportion to hyperglycemia, and those tissues cannot oxidize the product onward.</p></div>
+        <div class="f"><h4>Water is drawn osmotically into those cells</h4><p>Sorbitol is polar and cannot cross the membrane, so it is trapped and holds water.</p></div>
+        <div class="f"><h4>Tissue NADPH falls</h4><p>Consumed by aldose reductase at the first step.</p></div>
+        <div class="f"><h4>Reduced glutathione falls</h4><p>Glutathione reductase needs the NADPH the polyol pathway has just spent.</p></div>
+        <div class="f"><h4>Oxidative injury rises</h4><p>Antioxidant defense weakens at the same moment the osmotic load rises.</p></div>
+        <div class="f"><h4>Nerve conduction velocity falls</h4><p>Schwann cell swelling and secondary demyelination.</p></div>
+        <div class="f"><h4>Cataracts develop</h4><p>Lens fiber swelling with protein aggregation.</p></div>
+        <div class="f"><h4>HbA1c rises</h4><p>Non-enzymatic glycation runs alongside and records the same glucose exposure.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Enzyme quantity and activity stay normal</h4><p>Nothing is deficient. Only the substrate is elevated, which is why glycemic control reverses the flux.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Sorbitol stays normal in seminal vesicle, liver and ovary</h4><p>Those tissues have sorbitol dehydrogenase and clear it onward to fructose.</p></div>
+        <div class="f"><h4>ATP stays normal</h4><p>The pathway spends no ATP at either step.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="s8">
+  <div class="parthead"><span class="roman">VIII</span><h2>NADPH</h2><span class="count">5</span></div>
+  <article class="dz">
+    <div class="dzhead"><span class="num">21</span><h3>G6PD deficiency</h3>
+      <div class="def"><b>Glucose 6-phosphate dehydrogenase</b> (X-linked) — oxidative pentose phosphate pathway</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Red cell NADPH falls</h4><p>This pathway is the red cell's only source, and with no nucleus it cannot replace the enzyme as the protein degrades.</p></div>
+        <div class="f"><h4>Reduced glutathione falls</h4><p>Glutathione reductase has no NADPH with which to regenerate it.</p></div>
+        <div class="f"><h4>Hydrogen peroxide and hydroxyl radical accumulate</h4><p>Peroxide goes uncleared, and heme iron drives it on to the hydroxyl radical by Fenton chemistry.</p></div>
+        <div class="f"><h4>Heinz bodies form</h4><p>Oxidized hemoglobin cysteines cross-link and the protein precipitates onto the inner membrane.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Bite cells appear on the smear</h4><p>Splenic macrophages bite the Heinz bodies out of passing cells.</p></div>
+        <div class="f"><h4>Hemoglobin falls in episodes</h4><p>Combined intravascular lysis and splenic destruction, roughly a day after the trigger.</p></div>
+        <div class="f"><h4>Reticulocytes rise</h4><p>Marrow response over the following week.</p></div>
+        <div class="f"><h4>Indirect bilirubin and LDH rise</h4><p>Heme catabolism and cell lysis.</p></div>
+        <div class="f"><h4>Haptoglobin falls</h4><p>Consumed binding free hemoglobin.</p></div>
+        <div class="f"><h4>The urine turns dark brown</h4><p>Hemoglobin freed intravascularly is filtered.</p></div>
+        <div class="f"><h4>The episode ends itself within about a week</h4><p>The oldest and most deficient cells lyse first and are replaced by enzyme-rich young cells.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>The pathway makes no ATP and consumes very little glucose.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The enzyme assay reads falsely normal during the crisis</h4><p>The deficient cells have already lysed and reticulocytes have high activity. Wait several weeks before testing.</p></div>
+        <div class="f"><h4>The Coombs test stays negative</h4><p>The hemolysis is oxidative, not immune.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The blood count stays normal between episodes</h4><p>In the common variants there is no baseline hemolysis without a trigger.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">22</span><h3>Thiamine deficiency</h3>
+      <div class="def"><b>Thiamine pyrophosphate</b> — cofactor for PDH E1, α-KGDH, BCKDH and transketolase</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Blood lactate and pyruvate rise</h4><p>E1 cannot decarboxylate pyruvate, so it dams and exits through LDH.</p></div>
+        <div class="f"><h4>ATP falls in brain and heart</h4><p>Two consecutive oxidative steps are lost, and these tissues have the highest and least interruptible oxidative demand.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Red cell transketolase activity is low</h4><p>The diagnostic assay, measured before and after adding TPP. A large activation on adding TPP confirms the deficiency.</p></div>
+        <div class="f"><h4>Branched-chain ketoacids rise</h4><p>BCKDH is TPP-dependent as well.</p></div>
+        <div class="f"><h4>Flux through the cycle stalls at alpha-ketoglutarate</h4><p>The cycle stalls one step in, compounding the block at its entrance.</p></div>
+        <div class="f"><h4>Dry beriberi develops</h4><p>Symmetric peripheral neuropathy from axonal energy failure.</p></div>
+        <div class="f"><h4>Wet beriberi develops</h4><p>High-output cardiac failure with edema, from myocardial energy failure and peripheral vasodilation.</p></div>
+        <div class="f"><h4>Wernicke encephalopathy develops</h4><p>Confusion, ophthalmoplegia and ataxia from energy failure in mammillary bodies and periaqueductal gray.</p></div>
+        <div class="f"><h4>Korsakoff syndrome develops</h4><p>Confabulation and irreversible anterograde amnesia once mammillary damage is established.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>A glucose load makes it acutely worse</h4><p>Glucose consumes the last remaining thiamine, which is why thiamine is given first.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>Gluconeogenesis is largely intact; no bypass enzyme is TPP-dependent.</p></div>
+        <div class="f"><h4>The enzyme proteins themselves stay normal</h4><p>The apoenzymes are present and functional. Only the cofactor is missing, so repletion restores activity.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">23</span><h3>Chronic granulomatous disease</h3>
+      <div class="def"><b>NADPH oxidase</b> (most often gp91phox, X-linked) — the respiratory burst</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Superoxide production in the phagolysosome falls</h4><p>The complex cannot assemble from its cytosolic and membrane subunits, so no electrons reach O₂.</p></div>
+        <div class="f"><h4>Hydrogen peroxide falls</h4><p>Superoxide dismutase has no substrate.</p></div>
+        <div class="f"><h4>Hypochlorous acid falls</h4><p>Myeloperoxidase has no peroxide to work with, so the killing cascade is dark end to end.</p></div>
+        <div class="f"><h4>Intracellular killing fails</h4><p>The organism is engulfed normally and then survives inside the phagocyte.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Infections with catalase-positive organisms rise</h4><p>Catalase-negative organisms generate their own H₂O₂, which the crippled phagocyte can borrow; catalase-positive ones destroy it and leave the cell with nothing.</p></div>
+        <div class="f"><h4>Granulomas form</h4><p>Persisting live organisms drive continuous macrophage recruitment and epithelioid transformation.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The nitroblue tetrazolium test stays yellow</h4><p>No superoxide is made to reduce the dye to blue formazan.</p></div>
+        <div class="f"><h4>The dihydrorhodamine test shows no fluorescence</h4><p>Same failure, read by flow cytometry. More sensitive and now the preferred test.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>Blood glucose stays normal</h4><p>NADPH is being spent, not the glucose supply failing.</p></div>
+        <div class="f"><h4>The neutrophil count stays normal</h4><p>Production, chemotaxis and margination are all normal.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Phagocytosis and phagolysosome fusion stay normal</h4><p>Recognition, engulfment and fusion are intact. Only killing fails.</p></div>
+        <div class="f"><h4>Immunoglobulins stay normal</h4><p>B- and T-cell function are normal, though levels may be raised from chronic antigenic stimulation.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">24</span><h3>ALS (Lou Gehrig disease), SOD1 familial form</h3>
+      <div class="def"><b>Cu-Zn superoxide dismutase 1</b> — misfolded, not absent (ROS clearance)</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>Misfolded SOD1 aggregates accumulate</h4><p>Point substitutions destabilize the fold. The aggregates sequester chaperones, disrupt mitochondria and impair axonal transport.</p></div>
+        <div class="f"><h4>Motor neuron survival falls</h4><p>Motor neurons have the longest axons and highest metabolic load in the nervous system and tolerate that burden least.</p></div>
+        <div class="f"><h4>Upper motor neuron signs appear</h4><p>Spasticity and hyperreflexia, from corticospinal degeneration.</p></div>
+        <div class="f"><h4>Lower motor neuron signs appear</h4><p>Atrophy and fasciculations, in the same limb as the upper signs — the combination is the diagnostic pattern.</p></div>
+        <div class="f"><h4>EMG shows denervation potentials</h4><p>Fibrillations and fasciculations across multiple root and nerve territories.</p></div>
+        <div class="f"><h4>Respiratory muscle strength falls</h4><p>Progressive diaphragm and intercostal denervation; the eventual cause of death.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f key"><span class="tag">Pins it down</span><h4>Dismutase activity itself stays normal</h4><p>Largely intact. The harm is a toxic gain of function, not loss of the reaction, which is exactly why an enzyme assay cannot diagnose this.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Sensation stays normal</h4><p>Sensory neurons are not affected.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Eye movements and bladder control stay normal</h4><p>Characteristically preserved until very late.</p></div>
+        <div class="f"><h4>Cognition usually stays normal</h4><p>Preserved in most patients, though a frontotemporal dementia overlap exists in a minority.</p></div>
+      </div>
+    </div>
+  </article>
+  <article class="dz">
+    <div class="dzhead"><span class="num">25</span><h3>Rhabdomyolysis on a statin</h3>
+      <div class="def">No enzyme lost — <b>CYP3A4</b> inhibited (cytochrome P450)</div></div>
+    <div class="blk"><div class="bh">What changes</div>
+      <div class="cols">
+        <div class="f"><h4>The statin's plasma concentration rises</h4><p>Grapefruit furanocoumarins, macrolides, azoles, protease inhibitors or certain calcium channel blockers block the clearance route.</p></div>
+        <div class="f"><h4>CK rises, often above ten thousand</h4><p>Depleted mevalonate-pathway products destabilize the myocyte membrane and impair its mitochondria, and fibers lyse.</p></div>
+        <div class="f"><h4>Myoglobin appears in serum and urine</h4><p>Released from lysed fibers and freely filtered.</p></div>
+        <div class="f"><h4>Potassium and phosphate rise</h4><p>Both are principally intracellular and are released in bulk from damaged muscle.</p></div>
+        <div class="f"><h4>Creatinine rises</h4><p>Filtered myoglobin precipitates as casts and is directly nephrotoxic to tubular cells.</p></div>
+        <div class="f"><h4>Calcium falls</h4><p>Deposits in damaged muscle. May rebound to hypercalcemia during recovery as it is mobilized.</p></div>
+        <div class="f"><h4>Uric acid rises</h4><p>Purine released from lysed muscle and degraded.</p></div>
+        <div class="f"><h4>The anion gap widens</h4><p>Organic acids released from muscle plus developing renal failure.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>The urine dipstick is positive for blood with no red cells on microscopy</h4><p>The dipstick detects heme, and myoglobin carries one. The discrepancy is the tell.</p></div>
+      </div>
+    </div>
+    <div class="blk"><div class="bh">What stays normal</div>
+      <div class="cols">
+        <div class="f"><h4>The CYP3A4 gene and protein stay normal</h4><p>The enzyme is inhibited, not absent, so clearance returns once the interacting drug is withdrawn.</p></div>
+        <div class="f"><h4>Blood glucose stays normal</h4><p>No carbohydrate pathway is involved.</p></div>
+        <div class="f key"><span class="tag">Pins it down</span><h4>Muscle was normal before the interaction</h4><p>The patient tolerated the statin alone. Onset follows a new prescription or a change in diet.</p></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<footer>
+  <span>TouroCOM · Medical Biochemistry &amp; Genetics I</span>
+  <span>Lectures 9–15, Dr Binstock</span>
+  <span>Companion to the Carbohydrate Metabolism wall chart</span>
+</footer>
+
+</div>
+
+<button id="theme" aria-label="Toggle light and dark">theme</button>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  root.setAttribute('data-theme', mq.matches?'dark':'light');
+  mq.addEventListener('change',function(e){root.setAttribute('data-theme',e.matches?'dark':'light');});
+  btn.addEventListener('click',function(){
+    root.setAttribute('data-theme', root.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>
