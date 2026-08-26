@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carbohydrate Metabolism — Step-by-Step Diagrams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#F2F5F4; --surface:#FFFFFF; --sunk:#E8EEEC; --tint:#F7FAF9;
+  --ink:#0E1513; --ink2:#44514E; --ink3:#75827F;
+  --rule:#CDD7D4; --rule2:#E2E9E7;
+  --accent:#0A5E5C; --accent2:#0E7A73; --accent-soft:#DBEAE8;
+  --enz:#9E3527; --enz-bg:#F8E6E1;
+  --cost:#875311; --cost-bg:#F6EFDE;
+  --gain:#1A6B3B; --gain-bg:#E3F0E7;
+  --dz:#9E3527; --dz-bg:#F8E6E1; --dz-border:#E0B2A8;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+html[data-theme="dark"]{
+  --paper:#0B1110; --surface:#131A19; --sunk:#18211F; --tint:#101817;
+  --ink:#E2EAE8; --ink2:#93A29F; --ink3:#6D7C79;
+  --rule:#293533; --rule2:#1C2625;
+  --accent:#54BFBA; --accent2:#6FD3CD; --accent-soft:#0F2E2C;
+  --enz:#F0857A; --enz-bg:#2C1714;
+  --cost:#DEAC57; --cost-bg:#291F10;
+  --gain:#63CE89; --gain-bg:#122A1C;
+  --dz:#F0857A; --dz-bg:#2C1714; --dz-border:#5A2B24;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 90px}
+
+/* ---------- home ---------- */
+header.mast{padding:52px 0 26px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-weight:700;font-size:clamp(28px,4.6vw,42px);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px}
+.standfirst{font-size:16px;color:var(--ink2);max-width:62ch;margin:0}
+.secblock{padding-top:36px}
+.sechead{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:8px;margin-bottom:14px}
+.sechead .roman{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
+.sechead h2{font-size:17px;font-weight:600;margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.card{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:13px 15px}
+.card:hover{border-color:var(--accent2)}
+.card .n{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.08em;display:block;margin-bottom:4px}
+.card .nm{font-weight:600;font-size:15.5px;line-height:1.3;display:block;margin-bottom:4px}
+.card .io{font-size:12.5px;color:var(--ink2);line-height:1.4;display:block}
+
+/* ---------- pathway view ---------- */
+.back{display:inline-block;margin:22px 0 0;font-size:13.5px;color:var(--accent);text-decoration:none;font-weight:500}
+.back:hover{text-decoration:underline}
+.pwhead{padding:14px 0 16px;border-bottom:2px solid var(--ink)}
+.pwhead h1{font-size:clamp(24px,4vw,34px);margin:0 0 8px}
+.pwmeta{font-family:var(--mono);font-size:11.5px;color:var(--ink3);display:flex;flex-wrap:wrap;gap:6px 20px;margin-bottom:10px}
+.pwmeta b{color:var(--ink2);font-weight:500}
+.pwio{font-size:15.5px;color:var(--ink2);max-width:70ch;margin:0}
+
+.controls{position:sticky;top:0;z-index:15;background:var(--paper);border-bottom:1px solid var(--rule);padding:10px 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.btn{font-family:var(--sans);font-size:13.5px;font-weight:600;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:5px;padding:8px 14px;cursor:pointer}
+.btn:hover{border-color:var(--accent2);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+html[data-theme="dark"] .btn.primary{color:#06211F}
+.btn.primary:hover{background:var(--accent2);border-color:var(--accent2);color:#fff}
+html[data-theme="dark"] .btn.primary:hover{color:#06211F}
+.btn.primary:disabled{opacity:.45;cursor:default}
+.btn.dztoggle.on{background:var(--dz-bg);border-color:var(--dz-border);color:var(--dz)}
+.counter{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-left:auto}
+
+.dg{max-width:640px;margin:26px auto 0;cursor:pointer}
+.dg.done{cursor:default}
+.hint{text-align:center;font-size:14px;color:var(--ink3);border:1.5px dashed var(--rule);border-radius:8px;padding:26px 16px;margin-top:10px}
+
+.unit{display:none}
+.unit.shown{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+.node{border:1.5px solid var(--ink);border-radius:8px;background:var(--surface);padding:11px 16px;text-align:center;font-weight:600;font-size:16px;line-height:1.4}
+.node .sub{display:block;font-weight:400;font-size:13px;color:var(--ink2);margin-top:3px}
+
+.step{display:grid;grid-template-columns:1fr 26px 1fr;gap:0 12px;min-height:64px;padding:6px 0}
+.step .badges{text-align:right;padding-top:14px}
+.step .mid{position:relative}
+.step .mid::before{content:"";position:absolute;left:50%;top:0;bottom:9px;width:2px;margin-left:-1px;background:var(--ink3)}
+.step .mid::after{content:"";position:absolute;left:50%;bottom:0;margin-left:-6px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid var(--ink3)}
+.step .lbl{padding-top:12px}
+.enzyme{color:var(--enz);font-weight:600;font-size:14.5px;line-height:1.35;display:block}
+.note{font-size:13.5px;color:var(--ink2);line-height:1.45;margin-top:3px}
+.badge{display:inline-block;font-size:12.5px;font-weight:600;border-radius:4px;padding:2px 8px;margin:2px 0 2px 4px;white-space:nowrap}
+.badge.cost{background:var(--cost-bg);color:var(--cost)}
+.badge.gain{background:var(--gain-bg);color:var(--gain)}
+
+.xcard{background:var(--tint);border-left:3px solid var(--accent2);border-radius:0 6px 6px 0;padding:11px 15px;font-size:14px;color:var(--ink2);line-height:1.5;margin:12px 0}
+.hcard{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:22px 0 6px;text-align:center}
+
+.bcard{border:1.5px dashed var(--rule);border-radius:8px;background:var(--surface);padding:12px 15px;margin:10px 0}
+.brow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bfrom,.bprod{border:1.5px solid var(--ink);border-radius:6px;padding:6px 11px;font-weight:600;font-size:14.5px;background:var(--surface)}
+.bfrom{border-color:var(--rule);color:var(--ink2);font-weight:500}
+.bmid{flex:1;min-width:110px;text-align:center}
+.bmid .enzyme{font-size:13.5px}
+.bmid .ar{display:block;color:var(--ink3);line-height:.6;font-size:18px;letter-spacing:-1px}
+.bcard .note{margin-top:8px}
+.bcard .badges{margin-top:4px}
+.bcard .badge{margin:2px 4px 2px 0}
+
+/* diseases */
+.dzwrap{display:none;margin:4px 0 10px}
+body.showdz .unit.shown .dzwrap{display:block}
+.dzchips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.dzchip{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--dz);background:var(--dz-bg);border:1px solid var(--dz-border);border-radius:99px;padding:5px 13px;cursor:pointer}
+.dzchip::before{content:"▸ "}
+.dzchip.open::before{content:"▾ "}
+.dzpanel{display:none;background:var(--surface);border:1px solid var(--dz-border);border-left:3px solid var(--dz);border-radius:0 6px 6px 0;padding:12px 16px;margin-top:8px;text-align:left}
+.dzpanel.open{display:block;animation:fade .25s ease}
+.dzpanel h4{margin:0 0 7px;font-size:14.5px;color:var(--dz)}
+.dzpanel ul{margin:0;padding-left:18px}
+.dzpanel li{font-size:13.5px;color:var(--ink2);line-height:1.5;margin-bottom:4px}
+.dzpanel .src{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:8px;display:block}
+.dzpanel .flag{font-size:12.5px;color:var(--cost);background:var(--cost-bg);border-radius:4px;padding:4px 8px;display:inline-block;margin-top:6px}
+
+.donecard{text-align:center;font-size:14px;color:var(--gain);background:var(--gain-bg);border-radius:8px;padding:12px 16px;margin-top:14px;display:none;font-weight:600}
+.donecard.shown{display:block;animation:fade .3s ease}
+
+footer{margin-top:70px;padding-top:20px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:11px;color:var(--ink3);display:flex;flex-wrap:wrap;gap:6px 24px}
+#theme{position:fixed;right:16px;bottom:16px;z-index:40;background:var(--surface);color:var(--ink2);border:1px solid var(--rule);border-radius:3px;padding:8px 13px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+#theme:hover{color:var(--accent);border-color:var(--accent2)}
+
+@media (max-width:560px){
+  .step{grid-template-columns:22px 1fr;min-height:auto}
+  .step .badges{grid-column:2;text-align:left;padding-top:0;order:3;padding-left:0}
+  .step .badge{margin:2px 4px 2px 0}
+  .step .mid{grid-row:1 / span 2;min-height:58px}
+  .step .lbl{padding-top:8px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<button id="theme" aria-label="Toggle light and dark">◐ theme</button>
+
+<script>
+/* =========================================================
+   DATA
+   Pathway steps follow carbohydrate-metabolism-pathways.html.
+   Disease content is taken only from the lecture slides
+   (Binstock, Lectures 8–15); each panel cites its slide.
+   Unit kinds: n = node · s = arrow step · b = branch card ·
+   x = note card · h = sub-heading
+========================================================= */
+const SECTIONS=[
+  ["I","Glucose in, and glucose taken apart"],
+  ["II","Pyruvate, and the cycle it feeds"],
+  ["III","Making glucose, storing glucose"],
+  ["IV","The sugars that are not glucose"],
+  ["V","NADPH, and the things it defends"]
+];
+
+const P=[
+/* ---------------- 01 ---------------- */
+{id:"01",sec:0,name:"Digestion and absorption",
+ where:"Mouth → lumen → brush border → enterocyte → portal blood",rate:"brush-border disaccharidases",
+ io:"Takes dietary starch, glycogen and disaccharides. Delivers free glucose, galactose and fructose into the portal vein.",
+ u:[
+  {k:"n",t:"Dietary starch, glycogen, disaccharides"},
+  {k:"s",e:"Salivary α-amylase",p:"Shorter α-1,4 chains",note:"Mouth. Cuts α-1,4 bonds inside the chain. Cannot cut branch points or disaccharides."},
+  {k:"x",t:"Stomach: no carbohydrate digestion at all. HCl inactivates salivary amylase."},
+  {k:"s",e:"Pancreatic α-amylase",p:"Dextrins + maltose + maltotriose",note:"Duodenum — works only after pancreatic bicarbonate neutralizes the chyme. Branches (α-1,6) survive as dextrins. Cellulose (β-1,4) is never digested; it passes as fiber."},
+  {k:"s",e:"Brush-border disaccharidases",p:"Free glucose + galactose + fructose",note:"Membrane-bound, facing the lumen. Maltase (α-1,4) · isomaltase (α-1,6) · sucrase (α-1,2 → glucose + fructose) · lactase (β-1,4 → glucose + galactose). Rate-limiting step."},
+  {k:"s",e:"SGLT-1 — apical membrane",p:"Glucose / galactose inside the enterocyte",cost:["ATP (Na⁺/K⁺ pump)"],note:"2 Na⁺ run down their gradient and drag 1 sugar up its own — secondary active transport. The basolateral Na⁺/K⁺ ATPase spends the ATP that keeps the Na⁺ gradient alive."},
+  {k:"b",f:"Fructose",e:"GLUT5 — apical",p:"Inside the enterocyte",note:"Facilitated diffusion. No sodium, no energy."},
+  {k:"s",e:"GLUT2 — basolateral membrane",p:"All three sugars → portal vein → liver",note:"Facilitated diffusion down the gradient. The liver sees every absorbed sugar before the rest of the body does."},
+  {k:"x",t:"The kidney reuses the same design: SGLT-2 (proximal convoluted tubule) reabsorbs ~90% of the ~180 g of glucose filtered per day; SGLT-1 (proximal straight tubule) takes the last ~10%."}
+ ],
+ dz:[
+  {at:4,name:"Lactose intolerance (lactase deficiency)",src:"Lecture 8, slides 46–48",body:[
+    "Primary lactase deficiency — the most common; presents with diarrhea, bloating, cramps; can increase with age.",
+    "Secondary — from intestinal injury; lactase is the first activity lost and the last to recover.",
+    "Undigested lactose → osmotically active compounds → water drawn into the large intestine → osmotic diarrhea.",
+    "Bacterial fermentation → CO₂, H₂ (can be measured), lactic acid → diarrhea, cramps, flatulence. Stool acidity can be measured in infants.",
+    "Up to 75% of the world has some lactose intolerance — ~90% of adults of Asian or African descent, ~25% of Northern European descent."]},
+  {at:4,name:"Other disaccharidase deficiencies",src:"Lecture 8, slide 47",body:[
+    "Intestinal disease — colitis (inflamed colon), gastroenteritis, cystic fibrosis (lactase activity can be lower in CF mucosa).",
+    "Malnutrition — kwashiorkor: not enough digestive enzymes can be made.",
+    "Drug-induced — Augmentin, clindamycin destroy the intestinal flora that help digest fiber and undigested carbohydrate.",
+    "Acquired — severe diarrhea → loss of enzymes."]},
+  {at:8,name:"SGLT-2 inhibitors (canagliflozin, dapagliflozin)",src:"Lecture 8, slide 30",body:[
+    "Block renal glucose reabsorption → glucose leaves in the urine → blood glucose falls without stimulating insulin.",
+    "Effective treatment of type 2 diabetes; also weight loss, lower blood pressure, higher HDL."]}
+ ]},
+
+/* ---------------- 02 ---------------- */
+{id:"02",sec:0,name:"Getting glucose out of the blood",
+ where:"Every plasma membrane · GLUT family",rate:"tissue-dependent — transporter or kinase",
+ io:"Takes glucose in blood. Delivers glucose 6-phosphate inside the cell. Two moves: carry it across, then trap it with a phosphate.",
+ u:[
+  {k:"n",t:"Glucose in blood"},
+  {k:"b",f:"Blood",e:"GLUT1",p:"Red cell · blood–brain barrier · fetal tissue",note:"Saturated at normal blood glucose — zero-order, runs flat out. Basal uptake never falters. Not insulin sensitive."},
+  {k:"b",f:"Blood",e:"GLUT3",p:"Neurons · placenta",note:"Highest affinity of the family; also zero-order. The brain is served first and steadily."},
+  {k:"b",f:"Blood",e:"GLUT2",p:"Liver · β-cell · kidney tubule · gut",note:"Low affinity, high capacity, works in both directions — first-order, so the liver takes exactly what arrives, no more."},
+  {k:"b",f:"Blood",e:"GLUT4",p:"Skeletal + cardiac muscle · adipose",note:"The only one that moves: sits in vesicles until insulin brings it to the surface. In muscle, exercise (AMPK) does the same with no insulin."},
+  {k:"x",t:"GLUT5 carries fructose, not glucose."},
+  {k:"s",e:"Hexokinase — every cell",p:"Glucose 6-phosphate",cost:["1 ATP"],note:"Km ~0.1 mM, low Vmax — already at full rate at low glucose. Inhibited by its own product, G6P. The phosphate traps the sugar: GLUT cannot carry it back out."},
+  {k:"b",f:"Glucose (liver, β-cell)",e:"Glucokinase",p:"Glucose 6-phosphate",note:"Km ~10 mM, high Vmax — idle at a normal 5 mM, engages after a meal and clears the load fast. Not product-inhibited; GKRP holds it in the nucleus until glucose rises."},
+  {k:"x",t:"β-cell glucose sensor: GLUT2 delivers glucose in proportion to blood level → glucokinase engages when the level is high → glycolysis raises ATP → ATP closes the K⁺ channel → membrane depolarizes → Ca²⁺ enters → insulin is secreted."}
+ ],
+ dz:[]},
+
+/* ---------------- 03 ---------------- */
+{id:"03",sec:0,name:"Glycolysis",
+ where:"Cytosol · every cell · fed state",rate:"PFK-1 — also the committed step",
+ io:"Takes one glucose. Delivers two pyruvate, plus a net 2 ATP and 2 NADH. Pays 2 ATP up front, collects 4 back. No oxygen or mitochondrion needed.",
+ u:[
+  {k:"n",t:"Glucose"},
+  {k:"s",e:"Hexokinase / glucokinase",p:"Glucose 6-phosphate",cost:["1 ATP"],note:"Irreversible."},
+  {k:"s",e:"Phosphoglucose isomerase",p:"Fructose 6-phosphate",note:"Aldose → ketose. Frees carbon 1 for the next phosphate."},
+  {k:"s",e:"PFK-1",p:"Fructose 1,6-bisphosphate",cost:["1 ATP"],note:"Irreversible. Rate-limiting. The committed step — F1,6BP has no use except glycolysis."},
+  {k:"s",e:"Aldolase A",p:"DHAP + glyceraldehyde 3-phosphate",note:"One 6-carbon sugar split into two 3-carbon pieces."},
+  {k:"s",e:"Triose phosphate isomerase",p:"2 × glyceraldehyde 3-phosphate",note:"DHAP → G3P, so both halves continue. Everything below runs twice per glucose."},
+  {k:"s",e:"Glyceraldehyde 3-phosphate dehydrogenase",p:"1,3-bisphosphoglycerate",gain:["1 NADH ×2"],note:"The only oxidation in the pathway. Free inorganic phosphate is attached as a high-energy phosphate."},
+  {k:"b",f:"1,3-BPG (red cell only)",e:"Bisphosphoglycerate mutase",p:"2,3-BPG",note:"Lowers hemoglobin's oxygen affinity. Rejoins at 3-phosphoglycerate — that triose's ATP is given up."},
+  {k:"s",e:"Phosphoglycerate kinase",p:"3-phosphoglycerate",gain:["1 ATP ×2"],note:"Substrate-level phosphorylation — no oxygen, no electron transport chain."},
+  {k:"s",e:"Phosphoglycerate mutase",p:"2-phosphoglycerate",note:"Phosphate moved from carbon 3 to carbon 2."},
+  {k:"s",e:"Enolase",p:"Phosphoenolpyruvate",note:"Removes water — makes the highest-energy phosphate in the pathway."},
+  {k:"s",e:"Pyruvate kinase",p:"Pyruvate",gain:["1 ATP ×2"],note:"Irreversible. The enol → ketone shift is what makes it one-way. Activated feed-forward by F1,6BP."},
+  {k:"x",t:"Net per glucose: 2 ATP + 2 NADH. Anaerobic total: 2 ATP. Aerobic, with a shuttle: 8 ATP before pyruvate even enters a mitochondrion."}
+ ],
+ dz:[
+  {at:11,name:"Pyruvate kinase deficiency",src:"Lecture 9, slide 38",body:[
+    "The red cell depends on glycolysis for its ATP → ATP production falls.",
+    "Damage to the RBC → lysis → hemolytic anemia.",
+    "The liver shows no effect — it can still make ATP through the electron transport chain."]}
+ ]},
+
+/* ---------------- 04 ---------------- */
+{id:"04",sec:0,name:"The anaerobic exit",
+ where:"Cytosol · no mitochondria or oxygen needed",rate:"no enzyme — the redox state itself",
+ io:"Takes pyruvate and NADH. Delivers lactate and NAD⁺. One reaction; the point is getting NAD⁺ back so glycolysis can keep running.",
+ u:[
+  {k:"n",t:"Pyruvate + NADH"},
+  {k:"s",e:"Lactate dehydrogenase",p:"Lactate + NAD⁺",cost:["1 NADH"],gain:["1 NAD⁺"],note:"Freely reversible; equilibrium ~25:1 toward lactate. The purpose is the NAD⁺, not the lactate."},
+  {k:"x",t:"The NAD⁺ returns to the GAPDH step, so glycolysis continues. Without it, glycolysis stops within seconds — the cell holds only a small fixed NAD⁺ pool."},
+  {k:"x",t:"Bookkeeping: GAPDH makes 2 NADH per glucose and LDH spends both — no net NADH. The entire anaerobic return is the 2 substrate-level ATP."},
+  {k:"b",f:"Lactate",e:"blood → liver",p:"Glucose (Cori cycle)",note:"The liver turns the lactate back into glucose."}
+ ],
+ dz:[
+  {at:1,name:"Lactic acidosis",src:"Lecture 9, slide 50",body:[
+    "Lactate above ~5 mM (normal is ~0.5–1 mM).",
+    "The most common type of metabolic acidosis; increase in anion gap.",
+    "Occurs under decreased O₂ (hypoxia) → anaerobic metabolism: myocardial infarction, pulmonary embolism, shock.",
+    "Measuring lactate levels can be a measure of these conditions, e.g. shock."]},
+  {at:1,name:"Warburg effect (cancer)",src:"Lecture 9, slides 63–65",body:[
+    "Tumors consume large amounts of glucose → lactate even in the presence of mitochondria.",
+    "Glucose → lactate gives 2 ATP vs 36–38 via mitochondria, so ~19 glucose are needed for the same energy — hence the huge glucose consumption.",
+    "Cancer cells raise expression and activity of hexokinase, PFK-1 and pyruvate kinase.",
+    "FDG-PET: ¹⁸F-fluorodeoxyglucose is a non-metabolizable glucose derivative preferentially taken up by tumor cells — used to find tumors and follow treatment response.",
+    "Newer reading: aerobic glycolysis occurs in non-dividing tumor cells and reduces ROS production — protection from ROS damage rather than an energy strategy."]}
+ ]},
+
+/* ---------------- 05 ---------------- */
+{id:"05",sec:0,name:"The two NADH shuttles",
+ where:"Inner mitochondrial membrane",rate:"neither shuttle is regulated",
+ io:"Takes cytosolic NADH from glycolysis. Delivers its electrons into the electron transport chain. The NADH molecule itself never crosses.",
+ u:[
+  {k:"x",t:"The inner membrane has no transporter for NAD⁺/NADH — only the electrons are handed across. Which shuttle a tissue owns is why the total is 38 ATP in some tissues and 36 in others."},
+  {k:"h",t:"Glycerol 3-phosphate shuttle · skeletal muscle and brain · 2 ATP per NADH"},
+  {k:"b",f:"Cytosolic NADH",e:"reduces DHAP",p:"Glycerol 3-phosphate",note:"The electrons are loaded onto the sugar; NAD⁺ stays behind in the cytosol."},
+  {k:"b",f:"Glycerol 3-P",e:"membrane flavoprotein (FAD)",p:"FADH₂ inside",note:"Enters the chain at Complex II — skips Complex I, so each cytosolic NADH is worth 2 ATP. One-way; the carbon returns as DHAP."},
+  {k:"h",t:"Malate–aspartate shuttle · liver, heart, kidney · 3 ATP per NADH"},
+  {k:"b",f:"Cytosolic NADH",e:"cytosolic malate dehydrogenase",p:"Oxaloacetate → malate"},
+  {k:"b",f:"Malate",e:"malate–α-ketoglutarate carrier",p:"Into the matrix"},
+  {k:"b",f:"Malate (matrix)",e:"mitochondrial malate dehydrogenase",p:"NADH remade inside",note:"Enters at Complex I — the full 3 ATP. The carbon returns as aspartate (via AST). Reversible — gluconeogenesis runs it backwards."},
+  {k:"x",t:"Either way the cytosolic NADH is spent: NAD⁺ is left behind in the cytosol — exactly what glycolysis needed. Neither shuttle is regulated."}
+ ],
+ dz:[]},
+
+/* ---------------- 06 ---------------- */
+{id:"06",sec:1,name:"Pyruvate's four exits",
+ where:"Cytosol and mitochondrial matrix",rate:"whichever exit is being asked for",
+ io:"Takes one pyruvate. Delivers it to one of four destinations. Only one exit is irreversible.",
+ u:[
+  {k:"n",t:"Pyruvate — the branch point"},
+  {k:"b",f:"Pyruvate",e:"PDH complex",p:"Acetyl-CoA",gain:["1 NADH"],cost:["1 CO₂ released"],note:"Irreversible — past here the carbon can never be glucose again."},
+  {k:"b",f:"Pyruvate",e:"Pyruvate carboxylase",p:"Oxaloacetate",cost:["1 ATP","1 CO₂ fixed"],note:"Anaplerotic — refills the TCA pool. The road to glucose."},
+  {k:"b",f:"Pyruvate",e:"Lactate dehydrogenase",p:"Lactate",cost:["1 NADH"],note:"Freely reversible. Feeds the Cori cycle."},
+  {k:"b",f:"Pyruvate",e:"ALT — transamination",p:"Alanine",note:"No cofactor, costs nothing. Sends carbon to the liver on the glucose–alanine cycle."},
+  {k:"x",t:"Symmetry: exits 1 and 2 move CO₂ in opposite directions; exits 1 and 3 move NADH in opposite directions. Because only PDH is one-way, anything ending at acetyl-CoA is ketogenic and never gluconeogenic — even-chain fats cannot make glucose."}
+ ],
+ dz:[]},
+
+/* ---------------- 07 ---------------- */
+{id:"07",sec:1,name:"The pyruvate dehydrogenase complex",
+ where:"Mitochondrial matrix",rate:"the complex itself — irreversible",
+ io:"Takes pyruvate (3 carbons). Delivers acetyl-CoA (2 carbons) — the third carbon leaves as CO₂ and 1 NADH is made. The bridge between glycolysis and the TCA cycle, and the point of no return.",
+ u:[
+  {k:"n",t:"Pyruvate",sub:"carried into the matrix on the mitochondrial pyruvate carrier"},
+  {k:"s",e:"E1 — thiamine pyrophosphate (vitamin B1)",p:"CO₂ off · 2-carbon fragment held",note:"Decarboxylation: carbon 1 leaves as CO₂."},
+  {k:"s",e:"E2 — lipoic acid, on a swinging arm",p:"Acetyl-CoA",note:"Oxidizes the fragment and transfers it to coenzyme A (from B5)."},
+  {k:"s",e:"E3 — FAD (B2)",p:"NADH",gain:["1 NADH"],note:"Reoxidizes the lipoate so the arm can swing again; the electrons pass to NAD⁺ (B3)."},
+  {k:"x",t:"Five cofactors, five vitamins: TPP (B1) · lipoic acid · CoA (B5) · FAD (B2) · NAD⁺ (B3). α-Ketoglutarate dehydrogenase is built to the same plan — whatever disables one disables both. Runs twice per glucose: 2 NADH, worth 6 ATP."},
+  {k:"x",t:"Switch: PDH kinase phosphorylates E1 → OFF (kinase turned on by NADH, acetyl-CoA, ATP). PDH phosphatase strips the phosphate → ON (phosphatase turned on by Ca²⁺ in working muscle, and insulin). Pyruvate itself inhibits the kinase."}
+ ],
+ dz:[
+  {at:1,name:"Thiamine (B1) deficiency",src:"Lecture 10, slide 8 · Lecture 14, slides 34–35",body:[
+    "TPP is E1's cofactor — vitamin deficiency lowers PDH activity.",
+    "Thiamine deficiency → beriberi → heart failure; and Wernicke encephalopathy (details on the pentose phosphate pathway page, at transketolase)."]},
+  {at:2,name:"Arsenic poisoning",src:"Lecture 10, slide 16",body:[
+    "Targets lipoic acid — inhibits the lipoic-acid enzymes: PDH, α-ketoglutarate DH, branched-chain α-ketoacid DH.",
+    "Pyruvate → lactate → lactic acidosis.",
+    "Affects the brain: neurological disturbances and death."]},
+  {at:3,name:"PDHC deficiency",src:"Lecture 10, slides 14–15",body:[
+    "Most common biochemical cause of congenital lactic acidosis.",
+    "Pyruvate cannot become acetyl-CoA, so it is shunted to lactate (via LDH) and alanine — abnormal lactate buildup.",
+    "Severe lethargy, poor feeding, tachypnea — especially during illness, stress, or high carbohydrate intake.",
+    "ATP falls: the NADH from PDH is lost, and acetyl-CoA stops feeding the TCA cycle.",
+    "Neurological problems — the brain relies on the TCA cycle for energy.",
+    "Most common cause: X-linked E1-alpha gene."]}
+ ]},
+
+/* ---------------- 08 ---------------- */
+{id:"08",sec:1,name:"The TCA cycle",
+ where:"Mitochondrial matrix",rate:"isocitrate dehydrogenase",
+ io:"Takes one acetyl-CoA (2 carbons). Delivers 2 CO₂, 3 NADH, 1 FADH₂ and 1 GTP — 12 ATP per turn, 24 per glucose. Oxaloacetate is regenerated exactly, so the ring closes.",
+ u:[
+  {k:"n",t:"Acetyl-CoA (2C) + oxaloacetate (4C)"},
+  {k:"s",e:"Citrate synthase",p:"Citrate (6C)",note:"Condensation; CoASH released. Citrate can shuttle to the cytosol → fatty acid synthesis — the reason sugars are fattening."},
+  {k:"s",e:"Aconitase",p:"Isocitrate",note:"Moves the hydroxyl to a carbon that can be oxidized. No cofactor."},
+  {k:"s",e:"Isocitrate dehydrogenase",p:"α-Ketoglutarate (5C)",gain:["1 NADH"],cost:["1 CO₂"],note:"Rate-limiting step of the cycle. On: ADP, Ca²⁺. Off: ATP, NADH."},
+  {k:"s",e:"α-Ketoglutarate dehydrogenase",p:"Succinyl-CoA (4C)",gain:["1 NADH"],cost:["1 CO₂"],note:"Same 3-enzyme, 5-cofactor build as PDH. Succinyl-CoA also goes to heme."},
+  {k:"s",e:"Succinate thiokinase",p:"Succinate",gain:["1 GTP"],note:"Substrate-level phosphorylation from the high-energy thioester."},
+  {k:"s",e:"Succinate dehydrogenase",p:"Fumarate",gain:["1 FADH₂"],note:"This enzyme IS Complex II — the one TCA enzyme in the inner membrane, not the matrix."},
+  {k:"s",e:"Fumarase",p:"Malate",note:"Adds water across the double bond."},
+  {k:"s",e:"Malate dehydrogenase",p:"Oxaloacetate — the ring closes",gain:["1 NADH"],note:"Runs uphill; pulled forward only because citrate synthase consumes OAA the moment it appears. OAA is the limiting substrate of the whole cycle."},
+  {k:"x",t:"Per turn: 3 NADH (9 ATP) + 1 FADH₂ (2 ATP) + 1 GTP = 12 ATP; 24 per glucose. Order: Our City Is Kept Safe And Sound From Malice — OAA, citrate, isocitrate, α-KG, succinyl-CoA, succinate, fumarate, malate."},
+  {k:"x",t:"The cycle is amphibolic — exits: citrate → fat · α-KG ↔ glutamate · succinyl-CoA → heme · malate → NADPH (malic enzyme) · OAA → glucose. Whatever is drawn off must be put back (pyruvate carboxylase)."}
+ ],
+ dz:[
+  {at:4,name:"Arsenic poisoning",src:"Lecture 10, slides 16, 26",body:[
+    "α-Ketoglutarate dehydrogenase uses lipoic acid, like PDH — arsenic inhibits both.",
+    "Pyruvate → lactate: lactic acidosis; neurological disturbances and death."]}
+ ]},
+
+/* ---------------- 09 ---------------- */
+{id:"09",sec:2,name:"Gluconeogenesis",
+ where:"Liver mainly; kidney cortex and gut as backup",rate:"fructose 1,6-bisphosphatase",
+ io:"Takes lactate, alanine or glycerol. Delivers free glucose to the blood, at 4 ATP + 2 GTP + 2 NADH per glucose. Purpose: hold fasting blood sugar at 70–110 mg/dL (>126 fasting = diabetic).",
+ u:[
+  {k:"n",t:"Precursors → pyruvate",sub:"lactate (Cori cycle) · alanine (glucose–alanine cycle) · glycerol from fat, which enters later at DHAP"},
+  {k:"s",e:"Pyruvate carboxylase — mitochondrial, biotin",p:"Oxaloacetate",cost:["1 ATP ×2","CO₂ fixed"],note:"Bypass 1 of pyruvate kinase. Acetyl-CoA is an obligatory activator — burning fat switches on glucose synthesis."},
+  {k:"s",e:"Malate round trip",p:"Oxaloacetate in the cytosol",note:"OAA has no transporter: reduced to malate, crosses, reoxidized. The trip also carries out the reducing equivalent the GAPDH step will need."},
+  {k:"s",e:"PEP carboxykinase",p:"Phosphoenolpyruvate",cost:["1 GTP ×2","CO₂ released"],note:"Bypass 2. Losing the CO₂ powers the phosphorylation. Induced (more enzyme) by cortisol and glucagon."},
+  {k:"s",e:"Seven glycolytic enzymes in reverse",p:"Two trioses → fructose 1,6-bisphosphate",cost:["1 ATP ×2","1 NADH ×2"],note:"Phosphoglycerate kinase pays back an ATP; GAPDH runs as a reduction, spending an NADH. Glycerol enters here via DHAP — skipping both carboxylations."},
+  {k:"s",e:"Fructose 1,6-bisphosphatase",p:"Fructose 6-phosphate",note:"Rate-limiting bypass. Plain hydrolysis — the phosphate is thrown away as Pi, so no ATP comes back. Off: AMP, F2,6BP. On: ATP, glucagon."},
+  {k:"s",e:"Phosphoglucose isomerase",p:"Glucose 6-phosphate"},
+  {k:"s",e:"Glucose 6-phosphatase — ER membrane, liver (not muscle)",p:"Free glucose → blood (GLUT2)",note:"Four moves: translocase carries G6P into the ER → phosphatase strips the phosphate → glucose returns to the cytosol → GLUT2 releases it to the blood."},
+  {k:"x",t:"Bill per glucose: 4 ATP + 2 GTP + 2 NADH — six high-energy phosphates, paid for by fat oxidation (one C16 ≈ 130 ATP). Everything up to F1,6BP runs twice. Hormones: glucagon and cortisol on, insulin off."}
+ ],
+ dz:[
+  {at:1,name:"Pyruvate carboxylase deficiency",src:"Lecture 11, slides 21, 28–29",body:[
+    "Presents in infancy — seizures, failure to thrive, developmental delays.",
+    "Labs: hypoglycemia, hyperalaninemia, lactic acidosis; glucose corrects with IV glucose.",
+    "Biotin deficiency (rare) can also impair this step."]},
+  {at:7,name:"Von Gierke disease — GSD type Ia",src:"Lecture 11, slides 43–46 · Lecture 12, slide 55",body:[
+    "Genetic deficiency of liver glucose 6-phosphatase; autosomal recessive. Type Ib = the G6P transporter (translocase).",
+    "Most common glycogen storage disease (~25% of cases); the first enzyme defect ever identified in a metabolic disorder.",
+    "Severe fasting hypoglycemia — lethargy, seizures, brain damage.",
+    "Hepatomegaly (also kidney enlargement); liver glycogen stores increased, structure normal.",
+    "Hyperlipidemia — acetyl-CoA pushed to triglycerides; doll-like face from excess cheek fat.",
+    "Lactic acidosis — the block forces glycolysis forward → lactate.",
+    "Hyperuricemia — more nucleic acid production → uric acid, and lactic acid interferes with the kidney filtering uric acid out.",
+    "Treatment: cannot fast — frequent meals, nocturnal gastric glucose infusions or uncooked cornstarch."]}
+ ]},
+
+/* ---------------- 10 ---------------- */
+{id:"10",sec:2,name:"Glycogen synthesis",
+ where:"Cytosol · liver and muscle · fed state",rate:"glycogen synthase",
+ io:"Takes glucose 6-phosphate. Delivers branched glycogen (~100 g liver, ~500 g muscle), at about 2 high-energy phosphates per residue stored.",
+ u:[
+  {k:"n",t:"Glucose 6-phosphate"},
+  {k:"s",e:"Phosphoglucomutase",p:"Glucose 1-phosphate",note:"Phosphate moved from carbon 6 to carbon 1."},
+  {k:"s",e:"UDP-glucose pyrophosphorylase",p:"UDP-glucose",cost:["1 UTP (≈2 ATP)"],note:"The PPi released is split at once by pyrophosphatase — that makes the step irreversible. Sugar is always added from a UDP-sugar."},
+  {k:"s",e:"Glycogenin — the primer",p:"First few residues",note:"Glucosylates its own tyrosine, then stays buried at the core of the finished molecule. Synthase cannot start a chain from nothing."},
+  {k:"s",e:"Glycogen synthase",p:"Chain grows α-1,4 at the non-reducing end",note:"Rate-limiting. Active DEphosphorylated (insulin, via Akt → GSK3 off, PP1 strips phosphates); PKA phosphorylation (glucagon/epinephrine) turns it off. Allosteric on: glucose 6-phosphate."},
+  {k:"s",e:"Branching enzyme — glucosyl 4:6 transferase",p:"α-1,6 branch every 6–8 residues",note:"Lifts a block of ~7 residues onto carbon 6 further in. More non-reducing ends = faster in both directions, and branching keeps the molecule soluble."},
+  {k:"x",t:"Nothing in glycogen metabolism, built or broken, makes or spends a single NADH. Naming trap: 'a' is the active form of both enzymes — but synthase a is DEphosphorylated while phosphorylase a is phosphorylated."}
+ ],
+ dz:[
+  {at:4,name:"GSD type 0 — glycogen synthase deficiency (very rare)",src:"Lecture 12, slides 31–32",body:[
+    "Muscle form (GYS1 gene, autosomal recessive): early childhood — muscle pain, weakness or fainting after moderate activity; arrhythmia; increased risk of cardiac arrest and sudden death, particularly after physical activity.",
+    "Liver form (GYS2 gene, autosomal recessive): infancy — hypoglycemia after long fasting; ketosis from fat breakdown; improves when food is eaten."]},
+  {at:5,name:"GSD type IV — Andersen disease",src:"Lecture 12, slide 33",body:[
+    "Branching enzyme (glucosyl 4:6 transferase) deficiency.",
+    "Amylopectinosis — abnormal glycogen with long outer branches; loses its solubility.",
+    "Failure to thrive — growth and mental development decline.",
+    "Hepatosplenomegaly; progressive cirrhosis; muscle hypotonia.",
+    "Death typically by five years of age."]}
+ ]},
+
+/* ---------------- 11 ---------------- */
+{id:"11",sec:2,name:"Glycogenolysis",
+ where:"Cytosol · liver for blood glucose, muscle for its own contraction",rate:"glycogen phosphorylase",
+ io:"Takes branched glycogen. Delivers glucose 6-phosphate — blood glucose in liver, fuel for contraction in muscle. Not the reverse of synthesis; costs no ATP.",
+ u:[
+  {k:"n",t:"Glycogen"},
+  {k:"s",e:"Glycogen phosphorylase — coenzyme B6 (PLP)",p:"Glucose 1-phosphate (>90% of the yield)",note:"Rate-limiting. Phosphorolysis, not hydrolysis: Pi attacks the α-1,4 bond, so the residue comes off already phosphorylated. Works inward from the non-reducing ends and stops 4 residues from every branch."},
+  {k:"s",e:"Debranching enzyme — one protein, two activities",p:"Limit dextrin cleared · 1 free glucose per branch",note:"4:4 transferase moves 3 of the last 4 residues onto a nearby chain; α-1,6 glucosidase then frees the single residue at the branch point (<10% of the yield)."},
+  {k:"s",e:"Phosphoglucomutase",p:"Glucose 6-phosphate"},
+  {k:"b",f:"G6P — liver",e:"Glucose 6-phosphatase",p:"Blood glucose",note:"Holds blood sugar up for ~16–18 hours of fasting."},
+  {k:"b",f:"G6P — muscle",e:"no G6Pase",p:"Its own glycolysis only",note:"Contributes nothing to blood sugar. Nets 3 ATP per residue (the hexokinase toll is skipped). Lasts ~4 hours of heavy exercise — the 20-mile wall; after that, fatty acids pay."},
+  {k:"b",f:"Glycogen (by autophagy)",e:"Lysosomal acid α-1,4-glucosidase",p:"Glucose",note:"A parallel lysosomal channel, answerable to none of the regulation above."},
+  {k:"x",t:"Control: PKA (glucagon in liver, epinephrine in muscle) turns phosphorylase ON. Muscle shortcuts with no hormone: Ca²⁺–calmodulin (contraction itself) and AMP. Off: G6P and ATP in both tissues; free glucose in liver only — the hepatic glucose sensor."}
+ ],
+ dz:[
+  {at:1,name:"GSD type V — McArdle disease",src:"Lecture 12, slide 60",body:[
+    "Skeletal muscle phosphorylase (myophosphorylase) deficiency; autosomal recessive; the liver enzyme is normal.",
+    "Muscle cramps upon exercise; NO rise in blood lactate after exercise.",
+    "Myoglobinemia and myoglobinuria.",
+    "Benign — normal mental development. Muscle glycogen high, structure normal."]},
+  {at:1,name:"GSD type VI — Hers disease",src:"Lecture 12, slide 61",body:[
+    "Liver phosphorylase deficiency — usually only partial; complete would be fatal.",
+    "Extreme hepatomegaly.",
+    "Hypoglycemia milder than in type Ia."]},
+  {at:2,name:"GSD type III — Cori disease",src:"Lecture 12, slides 58–59",body:[
+    "Debranching enzyme deficiency; autosomal recessive (1:100,000; 1:5,400 North African Jews).",
+    "Abnormal glycogen with very short outer chains.",
+    "Hepatomegaly, fasting hypoglycemia, myopathy.",
+    "Treatment: frequent high-carbohydrate meals with cornstarch; a high-protein diet also works — it drives gluconeogenesis.",
+    "Mnemonic ABCD: Andersen = Branching, Cori = Debranching."]},
+  {at:4,name:"Von Gierke disease — GSD type Ia",src:"Lecture 12, slide 55",body:[
+    "Liver G6Ptase deficiency — glycogen is broken down but the glucose cannot be released.",
+    "Severe fasting hypoglycemia; hepatomegaly; liver glycogen increased, normal structure.",
+    "Lactic acidosis — the block forces glycolysis forward; hyperuricemia — lactic acid blocks renal uric acid excretion; hyperlipidemia.",
+    "Full details on the gluconeogenesis page."]},
+  {at:6,name:"GSD type II — Pompe disease",src:"Lecture 12, slide 56",body:[
+    "Lysosomal acid α-1,4-glucosidase (acid maltase, GAA) deficiency — the ONLY glycogen storage disease that is a lysosomal storage disease.",
+    "Glycogen accumulates in lysosomes; blood glucose normal, glycogen structure normal.",
+    "Generalized — liver, muscle and heart: muscle weakness, cardiomegaly ('Pompe affects the pump').",
+    "Autosomal recessive (~1/40,000). Slide says 'gene therapy available (Myozyme)'."],
+   flag:"Slide wording kept as-is, but Myozyme is enzyme replacement therapy, not gene therapy."}
+ ]},
+
+/* ---------------- 12 ---------------- */
+{id:"12",sec:2,name:"Ethanol",
+ where:"95% liver · cytosol, then mitochondrion",rate:"alcohol dehydrogenase — fixed rate, zero-order",
+ io:"Takes ethanol. Delivers acetyl-CoA — and dumps 2 NADH into the cytosol per molecule. That number is the whole story.",
+ u:[
+  {k:"n",t:"Ethanol",sub:"95% metabolized in the liver"},
+  {k:"s",e:"Alcohol dehydrogenase — cytosol",p:"Acetaldehyde",gain:["1 NADH"],note:"Unregulated and saturated at any drinking concentration — zero-order, so blood alcohol falls linearly, not exponentially."},
+  {k:"s",e:"Aldehyde dehydrogenase — mitochondria",p:"Acetate",gain:["1 NADH"]},
+  {k:"s",e:"Acetyl-CoA synthetase",p:"Acetyl-CoA",cost:["ATP → AMP + PPi (2 bonds)"]},
+  {k:"b",f:"Ethanol",e:"MEOS (CYP2E1) — induced by chronic drinking",p:"Acetaldehyde",cost:["1 NADPH"],note:"Same reaction, opposite ledger entry. Induction raises clearance capacity — the basis of metabolic tolerance."},
+  {k:"x",t:"The consequence: cytosolic NADH/NAD⁺ rises sharply. Mass action pushes pyruvate → lactate, oxaloacetate → malate, and DHAP → glycerol 3-phosphate — all three gluconeogenic entry substrates consumed at once."}
+ ],
+ dz:[
+  {at:1,name:"Methanol poisoning",src:"Lecture 11, slide 52",body:[
+    "Methanol travels the same enzymes → formaldehyde — toxic to the optic nerve and can produce blindness.",
+    "In high doses, may be fatal."]},
+  {at:5,name:"Hypoglycemia",src:"Lecture 11, slides 52–54",body:[
+    "Gluconeogenic precursors removed (pyruvate → lactate, OAA → malate) → gluconeogenesis inhibited.",
+    "Low blood glucose → rapid heartbeat; agitation, impaired judgment, combativeness.",
+    "Risk increased when fasting and in those taking insulin.",
+    "Heavy drinkers with no food deplete their glycogen stores within a few hours — then hypoglycemia."]},
+  {at:5,name:"Lactic acidosis and gout",src:"Lecture 11, slides 52–53",body:[
+    "Lactate rises → metabolic acidosis → hyperventilation (respiratory compensation).",
+    "The acidity decreases uric acid excretion → gout (uric acid deposits in joints)."]},
+  {at:5,name:"Fatty liver and hyperlipidemia",src:"Lecture 11, slide 53",body:[
+    "Fatty acid oxidation is inhibited → fatty liver and rising triglycerides.",
+    "TG increase → more VLDL → hyperlipidemia."]},
+  {at:5,name:"Ketoacidosis",src:"Lecture 11, slide 53",body:[
+    "TCA cycle slows → acetyl-CoA diverted to ketone bodies → acidosis."]}
+ ]},
+
+/* ---------------- 13 ---------------- */
+{id:"13",sec:3,name:"Fructose",
+ where:"Liver, kidney, intestine · GLUT5 uptake, insulin-independent",rate:"fructokinase — and nothing after it",
+ io:"Takes dietary fructose (mostly from sucrose). Delivers it into glycolysis as DHAP and glyceraldehyde 3-phosphate, at 2 ATP. In the liver it enters BELOW PFK-1 — past the only real brake.",
+ u:[
+  {k:"n",t:"Fructose",sub:"sucrose split by sucrase at the brush border → glucose + fructose · uptake on GLUT5, insulin-independent"},
+  {k:"s",e:"Fructokinase — liver, kidney, intestine",p:"Fructose 1-phosphate",cost:["1 ATP"],note:"Phosphorylates carbon 1 — so none of the glucose enzymes can touch the product. Low Km, unregulated. Not in muscle, adipose or the red cell."},
+  {k:"s",e:"Aldolase B",p:"DHAP + glyceraldehyde",note:"DHAP is already a glycolytic intermediate and joins directly."},
+  {k:"s",e:"Triose kinase",p:"Glyceraldehyde 3-phosphate",cost:["1 ATP"]},
+  {k:"x",t:"Both halves land BELOW PFK-1. No regulated step exists between fructose and pyruvate, so flux is unlimited: carbon runs to acetyl-CoA → citrate → fat, and the glyceraldehyde half can become glycerol 3-phosphate — the triglyceride backbone — leaving as VLDL."},
+  {k:"b",f:"Fructose — muscle",e:"Hexokinase",p:"Fructose 6-phosphate",note:"Muscle has no fructokinase. F6P enters ABOVE PFK-1 and is throttled like any glucose carbon. Same sugar, opposite consequence."}
+ ],
+ dz:[
+  {at:1,name:"Essential fructosuria",src:"Lecture 13, slide 9",body:[
+    "Fructokinase deficiency — fructose cannot be metabolized.",
+    "Fructose eliminated in the urine; detected as a reducing sugar.",
+    "Benign."]},
+  {at:2,name:"Hereditary fructose intolerance (HFI)",src:"Lecture 13, slide 10",body:[
+    "Aldolase B deficiency; seen after a baby starts eating food or formula.",
+    "Fructose 1-phosphate accumulates in the liver; Pi and ATP fall, AMP rises.",
+    "Gluconeogenesis falls (high AMP) → hypoglycemia; AMP → uric acid → hyperuricemia.",
+    "Hepatic failure and death if untreated.",
+    "Therapy: remove fructose and sucrose from the diet."]},
+  {at:4,name:"High-fructose diet",src:"Lecture 13, slides 12–15",body:[
+    "Gout — fructokinase drains ATP → ADP → AMP; AMP deaminase → uric acid.",
+    "Hypertension — uric acid blocks eNO synthase → less NO → less vasodilation. Children drinking high-fructose soft drinks show more hypertension.",
+    "Obesity and dyslipidemia — carbon → citrate → fat → VLDL; glyceraldehyde → glycerol 3-phosphate → triglycerides.",
+    "Metabolic syndrome — fructose 1-phosphate promotes serine-phosphorylated IRS-1, the INACTIVE form of the insulin signal → insulin insensitivity."]}
+ ]},
+
+/* ---------------- 14 ---------------- */
+{id:"14",sec:3,name:"Galactose and lactose",
+ where:"Jejunal brush border, then liver and brain",rate:"GALT",
+ io:"Takes dietary galactose (from lactose). Delivers glucose 6-phosphate, at 1 ATP. Four steps to turn galactose into something glycolysis recognizes.",
+ u:[
+  {k:"n",t:"Lactose — milk sugar",sub:"galactose β-1,4 glucose"},
+  {k:"s",e:"Lactase — a β-galactosidase, jejunal brush border",p:"Galactose + glucose",note:"The main dietary source of galactose."},
+  {k:"s",e:"Galactokinase",p:"Galactose 1-phosphate",cost:["1 ATP"]},
+  {k:"b",f:"Galactose (unphosphorylated)",e:"Aldose reductase",p:"Galactitol",note:"The only other road. Nothing can metabolize galactitol and no membrane lets it out."},
+  {k:"s",e:"GALT — galactose 1-P uridyltransferase",p:"UDP-galactose + glucose 1-phosphate",note:"An exchange, not a synthesis: the uridyl group is swapped off UDP-glucose. No high-energy phosphate spent."},
+  {k:"s",e:"UDP-galactose 4-epimerase",p:"UDP-glucose",note:"Flips the hydroxyl at carbon 4. Uses a tightly bound NAD⁺ — no net NADH made or spent. Runs backwards to supply UDP-galactose for glycolipids and glycoproteins when the diet has none."},
+  {k:"s",e:"Phosphoglucomutase",p:"Glucose 6-phosphate",note:"Into the general hexose pool — glycolysis, or blood glucose in the liver."},
+  {k:"x",t:"Reverse direction, in the lactating breast (Golgi): lactose synthase = protein A (an ordinary galactosyltransferase) + protein B (α-lactalbumin, made only in the lactating gland). Prolactin induces it; progesterone suppresses it — milk begins only after the placenta is delivered."}
+ ],
+ dz:[
+  {at:1,name:"Lactose intolerance",src:"Lecture 13, slide 34",body:[
+    "Lactase deficiency — primary (most common, presents with diarrhea, bloating, cramps; can increase with age) or secondary (intestinal injury; first activity lost, last to recover).",
+    "Full details on the digestion page."]},
+  {at:2,name:"Galactokinase deficiency (non-classical galactosemia)",src:"Lecture 13, slide 32",body:[
+    "Rare autosomal recessive disorder.",
+    "Galactosemia and galactosuria; NO galactose 1-phosphate accumulation in tissues.",
+    "Galactitol accumulates (via aldose reductase) → can lead to cataract formation."]},
+  {at:4,name:"Classical galactosemia (GALT deficiency)",src:"Lecture 13, slide 33",body:[
+    "Uridyltransferase deficiency; autosomal recessive, ~1:50,000. Symptoms need >50% loss of activity.",
+    "Galactose 1-phosphate increases in tissues; galactose appears in blood and urine.",
+    "Mental retardation (slide wording) — infants need immediate treatment; newborns ingest up to 1 g galactose per day in milk.",
+    "Liver and kidney damage, and cataracts.",
+    "Part of the NYS newborn screening panel."]}
+ ]},
+
+/* ---------------- 15 ---------------- */
+{id:"15",sec:3,name:"The polyol (sorbitol) pathway",
+ where:"Seminal vesicle, liver, ovary — lens, retina, nerve, kidney have only the first enzyme",rate:"aldose reductase",
+ io:"Takes glucose. Delivers fructose, in two reactions, without spending any ATP. What it does spend is NADPH — and the tissue distribution of the second enzyme is the entire story.",
+ u:[
+  {k:"n",t:"Glucose"},
+  {k:"s",e:"Aldose reductase",p:"Sorbitol",cost:["1 NADPH"],note:"Rate-limiting. High Km — nearly idle at normal blood glucose; driven purely by hyperglycemia. Also reduces galactose → galactitol by the identical chemistry."},
+  {k:"x",t:"Sorbitol is osmotically active and cannot cross a membrane — wherever it is made, it stays."},
+  {k:"s",e:"Sorbitol dehydrogenase",p:"Fructose",gain:["1 NADH"],note:"Present in seminal vesicle, liver and ovary — how sperm are supplied with fructose. Low or absent in lens, retina, peripheral nerve and kidney."},
+  {k:"x",t:"Ledger trap: NADPH out at the first step, NADH in at the second — two consecutive steps, two different cofactors, opposite directions. No ATP anywhere."}
+ ],
+ dz:[
+  {at:2,name:"Diabetic sorbitol complications",src:"Lecture 13, slides 25–26",body:[
+    "Lens, nerve and kidney have low or absent sorbitol dehydrogenase — sorbitol made there is trapped.",
+    "Hyperglycemia → high intracellular glucose → sorbitol accumulates → osmotic effect → swelling of cells of the retina, lens and nerves.",
+    "Peripheral neuropathy, diabetic retinopathy and macular edema → poor vision.",
+    "High glucose also glycosylates proteins."]},
+  {at:2,name:"Dietary sorbitol",src:"Lecture 13, slide 24",body:[
+    "10–50 g (or more) can cause gastrointestinal problems.",
+    "A natural laxative — diarrhea, irritable bowel syndrome, bloating, flatulence."]}
+ ]},
+
+/* ---------------- 16 ---------------- */
+{id:"16",sec:3,name:"Mannose",
+ where:"Cytosol",rate:"hexokinase",
+ io:"Takes dietary mannose. Delivers fructose 6-phosphate into glycolysis, at 1 ATP. Two steps and it is over.",
+ u:[
+  {k:"n",t:"Mannose",sub:"the C-2 epimer of glucose (galactose is the C-4 epimer)"},
+  {k:"s",e:"Hexokinase",p:"Mannose 6-phosphate",cost:["1 ATP"],note:"The same broad-specificity enzyme — hexokinase is not fussy about which hexose."},
+  {k:"s",e:"Phosphomannose isomerase",p:"Fructose 6-phosphate",note:"Joins glycolysis ABOVE PFK-1 — fully throttled by the normal brake, unlike the liver's fructose route. Reversible: also supplies mannose 6-phosphate for glycoproteins — the tag that routes hydrolases to the lysosome."}
+ ],
+ dz:[]},
+
+/* ---------------- 17 ---------------- */
+{id:"17",sec:4,name:"The pentose phosphate pathway",
+ where:"Cytosol · all cells; most active in liver, adrenal cortex, lactating breast, red cell",rate:"G6PD — also the committed step",
+ io:"Takes glucose 6-phosphate. Delivers 2 NADPH and ribose 5-phosphate, then folds leftover carbon back into glycolysis. Makes no ATP and spends none. The red cell's ONLY source of NADPH.",
+ u:[
+  {k:"n",t:"Glucose 6-phosphate"},
+  {k:"h",t:"Oxidative half — irreversible"},
+  {k:"s",e:"Glucose 6-phosphate dehydrogenase (G6PD)",p:"6-Phosphogluconolactone",gain:["1 NADPH"],note:"Rate-limiting, committed step. Control is the NADP⁺/NADPH ratio itself — the pathway runs exactly as fast as the cell spends its reducing power."},
+  {k:"s",e:"6-Phosphogluconolactonase",p:"6-Phosphogluconate",note:"Just opens the ring with water. No electrons move, no NADPH here — the classic trap."},
+  {k:"s",e:"6-Phosphogluconate dehydrogenase",p:"Ribulose 5-phosphate",gain:["1 NADPH"],cost:["1 CO₂"],note:"Oxidative decarboxylation: six carbons in, five out. Two NADPH now banked."},
+  {k:"h",t:"Non-oxidative half — fully reversible"},
+  {k:"s",e:"Phosphopentose isomerase",p:"Ribose 5-phosphate",note:"→ PRPP → purines and pyrimidines. In parallel, an epimerase makes xylulose 5-phosphate."},
+  {k:"s",e:"Transketolase (TPP) + transaldolase",p:"Fructose 6-P + glyceraldehyde 3-P → glycolysis",note:"Interconverts 3–7 carbon sugars with no ATP. A cell needing ribose but not NADPH runs this half backwards and never touches the oxidative half."},
+  {k:"x",t:"The second NADPH source in the body: malic enzyme — malate → pyruvate + NADPH — most important in the liver for fatty acid synthesis."}
+ ],
+ dz:[
+  {at:2,name:"G6PD deficiency",src:"Lecture 14, slides 24–29, 41",body:[
+    "X-linked; the most common disease-producing genetic abnormality; more than 400 variants. Up to 20% of the population in Africa, 4–30% around the Mediterranean, common in Southeast Asia.",
+    "Less NADPH → glutathione cannot stay reduced → H₂O₂ is not removed → ROS rise.",
+    "Membrane lipids oxidized → fragility and leakage → hemolysis → hemolytic anemia and jaundice; damaged RBCs removed by macrophages in spleen and liver.",
+    "Hemoglobin oxidized → disulfide bonds → precipitates as Heinz bodies.",
+    "Presentation: hemolytic anemia, weakness, tachycardia, jaundice, hematuria; Heinz bodies on the smear.",
+    "Triggers: infection (the most common), stress needing detoxification, excess physical activity, fava beans (favism), mothballs; drugs — antimalarials (primaquine), sulfonamide antibiotics (UTI drugs; PCP treatment in HIV-positive patients), some antipyretics (not acetaminophen).",
+    "Treatment: phototherapy for hyperbilirubinemia in infants. Prevention: avoid the oxidative triggers."]},
+  {at:7,name:"Thiamine deficiency — Wernicke encephalopathy",src:"Lecture 14, slides 34–35",body:[
+    "Transketolase needs thiamine — red-cell transketolase activity is used to measure thiamine status in blood.",
+    "Thiamine deficiency → beriberi → heart failure.",
+    "Wernicke encephalopathy: ataxia, ocular abnormalities, and disproportionate memory loss with confusion.",
+    "Often associated with alcoholism, due to poor nutrition."]}
+ ]},
+
+/* ---------------- 18 ---------------- */
+{id:"18",sec:4,name:"Glutathione and the ROS chain",
+ where:"Every cell · mitochondrion, cytosol, peroxisome",rate:"glutathione reductase — the regeneration step",
+ io:"Takes the superoxide that leaks from the electron transport chain. Delivers water, spending 1 NADPH per hydrogen peroxide cleared.",
+ u:[
+  {k:"n",t:"Superoxide (O₂•⁻)",sub:"~1% of ETC oxygen leaks at Complexes I and III — about a hundred million radicals a day"},
+  {k:"s",e:"Superoxide dismutase — MnSOD (mitochondria), Cu-Zn SOD1 (cytosol)",p:"Hydrogen peroxide + O₂",note:"A dismutation: one molecule oxidized, the other reduced."},
+  {k:"s",e:"Glutathione peroxidase — selenium",p:"2 H₂O",cost:["2 GSH → GSSG"],note:"The peroxide is cleared by oxidizing two reduced glutathiones into one disulfide-linked GSSG."},
+  {k:"s",e:"Glutathione reductase — FAD",p:"2 GSH restored",cost:["1 NADPH"],note:"Rate-limiting. The whole dependency: no PPP → no NADPH → no reduced glutathione → the peroxide is never cleared."},
+  {k:"b",f:"H₂O₂",e:"Catalase — peroxisome",p:"H₂O + O₂",note:"Parallel route. No cofactor, no radical intermediate."},
+  {k:"b",f:"H₂O₂ + Fe²⁺",e:"Fenton chemistry",p:"Hydroxyl radical (OH•)",note:"The species that actually does the damage. Superoxide re-reduces the Fe³⁺, so the catalyst regenerates and the reaction runs on."}
+ ],
+ dz:[
+  {at:1,name:"ALS — SOD1 mutation",src:"Lecture 15, slide 14",body:[
+    "Cu-Zn SOD1 deficiency → progressive neurodegenerative disorder: amyotrophic lateral sclerosis (Lou Gehrig's disease).",
+    "Most cases carry a single point mutation (one amino acid)."]},
+  {at:5,name:"What ROS damages",src:"Lecture 15, slides 11–12",body:[
+    "Lipids — membrane peroxidation → gradients collapse → cell death; oxidation of LDL → cardiovascular disease.",
+    "Proteins — side-chain oxidation, cross-linking, fragmentation; in the RBC, denatured hemoglobin precipitates as Heinz bodies → hemolytic anemia.",
+    "DNA — guanosine → 8-hydroxydeoxyguanosine (~10,000 lesions per cell per day) → mutations and carcinogenesis; aging."]}
+ ]},
+
+/* ---------------- 19 ---------------- */
+{id:"19",sec:4,name:"Cytochrome P450",
+ where:"ER membrane for drugs; mitochondria for steroids, bile acids, vitamin D",rate:"the monooxygenase step",
+ io:"Takes a lipophilic substrate, oxygen and NADPH. Delivers a hydroxylated, more polar product plus water: R–H + O₂ + NADPH → R–OH + H₂O.",
+ u:[
+  {k:"n",t:"Lipophilic substrate R–H",sub:"drug, toxin, steroid, bile acid, vitamin D"},
+  {k:"s",e:"NADPH–cytochrome P450 reductase — FAD/FMN flavoprotein",p:"Electrons delivered one at a time to the heme",cost:["1 NADPH"],note:"NADPH cannot reach the heme directly — this is a short electron transport chain sitting in the ER membrane."},
+  {k:"s",e:"Cytochrome P450 — monooxygenase",p:"R–OH + H₂O",note:"O₂ is split: one atom goes into the substrate as a hydroxyl, the other is reduced to water. Phase I — a functional group added."},
+  {k:"s",e:"Phase II conjugation",p:"Glucuronate / sulfate / acetyl adduct → bile or urine",note:"Bigger and more water-soluble → excreted."},
+  {k:"x",t:"Scale: CYP1–3 biotransform 70–80% of all drugs in clinical use; CYP3A4 alone over half. Mitochondrial P450s handle steroids (adrenal cortex, ovary, testis, placenta), bile acids (liver), vitamin D (kidney); CYP2E1 is MEOS."}
+ ],
+ dz:[
+  {at:2,name:"Drug interactions (induction / inhibition)",src:"Lecture 15, slides 29, 31–32",body:[
+    "Induction — more enzyme made → a co-administered drug is cleared faster, its effect falls. St John's wort + cyclosporine → cyclosporine metabolized to subtherapeutic levels (anti-rejection failure).",
+    "Inhibition — the enzyme is blocked → the co-administered drug's level climbs → toxicity. Grapefruit + statins → high statin levels → rhabdomyolysis.",
+    "P450 also activates prodrugs: cyclophosphamide → its active DNA-crosslinking form."]}
+ ]},
+
+/* ---------------- 20 ---------------- */
+{id:"20",sec:4,name:"The respiratory burst",
+ where:"Neutrophil and macrophage · inside the phagolysosome",rate:"NADPH oxidase",
+ io:"Takes oxygen and NADPH. Delivers hypochlorous acid inside a sealed compartment — deliberate radical chemistry, made on purpose to kill.",
+ u:[
+  {k:"n",t:"Opsonized organism engulfed",sub:"antibody/complement at a receptor → phagosome → fuses with lysosomes → phagolysosome"},
+  {k:"s",e:"NADPH oxidase — assembles from cytosolic + membrane subunits",p:"Superoxide inside the vacuole",cost:["1 NADPH"],note:"The sudden jump in O₂ consumption is the 'burst'. The switch is assembly itself, triggered by phagocytosis and PKC."},
+  {k:"s",e:"Superoxide dismutase",p:"Hydrogen peroxide",note:"The same dismutation as everywhere else, put to the opposite purpose."},
+  {k:"s",e:"Myeloperoxidase + Cl⁻",p:"Hypochlorous acid (HOCl)",note:"Bleach, manufactured on site. Myeloperoxidase is also what makes pus green."},
+  {k:"x",t:"NO joins in: NO + superoxide → peroxynitrite and hydroxyl radical — also bactericidal. The NADPH comes from the pentose phosphate pathway, just as in the red cell."}
+ ],
+ dz:[
+  {at:1,name:"Chronic granulomatous disease (CGD)",src:"Lecture 15, slide 39",body:[
+    "NADPH oxidase deficiency — ROS cannot be formed in the phagolysosome to kill bacteria.",
+    "Granulomas: nodules of inflammation holding sequestered bacteria that were never destroyed.",
+    "Severe persistent infections."]}
+ ]},
+
+/* ---------------- 21 ---------------- */
+{id:"21",sec:4,name:"Nitric oxide",
+ where:"Endothelium (eNOS) · neurons (nNOS) · induced macrophage (iNOS)",rate:"nitric oxide synthase",
+ io:"Takes arginine, oxygen and NADPH. Delivers nitric oxide and citrulline — and the gas lowers calcium in the neighboring smooth muscle cell.",
+ u:[
+  {k:"n",t:"Arginine + O₂ + NADPH"},
+  {k:"s",e:"Nitric oxide synthase",p:"NO + citrulline",cost:["1 NADPH"],note:"eNOS and nNOS fire in Ca²⁺–calmodulin pulses. iNOS is transcribed on demand, calcium-independent, and runs continuously — far more NO. Citrulline goes on to the urea cycle."},
+  {k:"s",e:"NO diffuses into smooth muscle → soluble guanylate cyclase",p:"cGMP rises",note:"NO binds the heme iron and pulls the enzyme into its active shape."},
+  {k:"s",e:"Protein kinase G",p:"Ca²⁺ falls → relaxation, vasodilation",note:"Activates the SR calcium pump and opens K⁺ channels; myosin light chain kinase goes quiet, the muscle relaxes."},
+  {k:"s",e:"Phosphodiesterase-5",p:"cGMP → 5′-GMP — signal ends"},
+  {k:"x",t:"Four jobs, asked as a set: endothelium-derived relaxing factor · neurotransmitter (LTP — short-term to long-term memory) · macrophage bactericide (iNOS, induced by LPS and interferon-γ) · inhibitor of platelet aggregation."}
+ ],
+ dz:[
+  {at:4,name:"Sildenafil (Viagra)",src:"Lecture 15, slide 43",body:[
+    "Inhibits phosphodiesterase-5, so cGMP is not broken down.",
+    "cGMP stays high → vasodilation stays high in the corpus cavernosum → maintains erection."]}
+ ]}
+];
+
+/* =========================================================
+   APP
+========================================================= */
+const app=document.getElementById("app");
+const revealed={}; // id -> count of shown units
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+function badges(u){
+  let h="";
+  (u.cost||[]).forEach(b=>h+='<span class="badge cost">– '+esc(b)+'</span>');
+  (u.gain||[]).forEach(b=>h+='<span class="badge gain">+ '+esc(b)+'</span>');
+  return h;
+}
+
+function dzHTML(pw,idx){
+  const list=pw.dz.filter(d=>d.at===idx);
+  if(!list.length)return"";
+  let h='<div class="dzwrap"><div class="dzchips">';
+  list.forEach((d,i)=>{h+='<button class="dzchip" data-dz="'+idx+'-'+i+'">'+esc(d.name)+'</button>';});
+  h+='</div>';
+  list.forEach((d,i)=>{
+    h+='<div class="dzpanel" id="dzp-'+idx+'-'+i+'"><h4>'+esc(d.name)+'</h4><ul>';
+    d.body.forEach(b=>h+='<li>'+esc(b)+'</li>');
+    h+='</ul>';
+    if(d.flag)h+='<span class="flag">⚠ '+esc(d.flag)+'</span>';
+    h+='<span class="src">From the slides · '+esc(d.src)+'</span></div>';
+  });
+  return h+'</div>';
+}
+
+function unitHTML(pw,u,idx){
+  let inner="";
+  if(u.k==="n"){
+    inner='<div class="node">'+esc(u.t)+(u.sub?'<span class="sub">'+esc(u.sub)+'</span>':"")+'</div>';
+  }else if(u.k==="s"){
+    inner='<div class="step"><div class="badges">'+badges(u)+'</div><div class="mid"></div><div class="lbl"><span class="enzyme">'+esc(u.e)+'</span>'+(u.note?'<div class="note">'+esc(u.note)+'</div>':"")+'</div></div><div class="node">'+esc(u.p)+'</div>';
+  }else if(u.k==="b"){
+    inner='<div class="bcard"><div class="brow"><span class="bfrom">'+esc(u.f)+'</span><span class="bmid"><span class="enzyme">'+esc(u.e)+'</span><span class="ar">⟶</span></span><span class="bprod">'+esc(u.p)+'</span></div>'+((u.cost||u.gain)?'<div class="badges">'+badges(u)+'</div>':"")+(u.note?'<div class="note">'+esc(u.note)+'</div>':"")+'</div>';
+  }else if(u.k==="x"){
+    inner='<div class="xcard">'+esc(u.t)+'</div>';
+  }else if(u.k==="h"){
+    inner='<div class="hcard">'+esc(u.t)+'</div>';
+  }
+  return '<div class="unit" data-i="'+idx+'">'+inner+dzHTML(pw,idx)+'</div>';
+}
+
+function renderHome(){
+  document.title="Carbohydrate Metabolism — Step-by-Step Diagrams";
+  let h='<header class="mast"><div class="eyebrow">Companion to the wall chart · Lectures 8–15 · Dr Binstock</div>'+
+  '<h1>Every pathway as a diagram,<br>one step per click</h1>'+
+  '<p class="standfirst">Pick a pathway. The diagram starts blank; each click reveals the next step. The disease toggle stays off until you want it — when it is on, each disease appears at the exact step it breaks, and opens to show its effects, taken word-for-word from the lecture slides.</p></header>';
+  SECTIONS.forEach((s,si)=>{
+    const items=P.filter(p=>p.sec===si);
+    h+='<section class="secblock"><div class="sechead"><span class="roman">'+s[0]+'</span><h2>'+esc(s[1])+'</h2></div><div class="cards">';
+    items.forEach(p=>{
+      h+='<a class="card" href="#'+p.id+'"><span class="n">'+p.id+' · '+p.u.length+' steps'+(p.dz.length?' · '+p.dz.length+' disease'+(p.dz.length>1?'s':''):'')+'</span><span class="nm">'+esc(p.name)+'</span><span class="io">'+esc(p.io.split(". Deliver")[0].replace(/^Takes /,"")+" → "+(p.io.match(/Delivers? ([^.]+)/)||["",""])[1])+'</span></a>';
+    });
+    h+='</div></section>';
+  });
+  h+='<footer><span>TouroCOM · Medical Biochemistry &amp; Genetics I</span><span>Pathways from the pathway-by-pathway guide · diseases from the slides only</span></footer>';
+  app.innerHTML=h;
+  window.scrollTo(0,0);
+}
+
+function renderPathway(pw){
+  document.title=pw.name+" — diagram";
+  if(revealed[pw.id]===undefined)revealed[pw.id]=0;
+  let h='<a class="back" href="#">← All pathways</a>'+
+  '<div class="pwhead"><h1>'+esc(pw.name)+'</h1>'+
+  '<div class="pwmeta"><span><b>Where</b> '+esc(pw.where)+'</span><span><b>Rate-limiting</b> '+esc(pw.rate)+'</span></div>'+
+  '<p class="pwio">'+esc(pw.io)+'</p></div>'+
+  '<div class="controls">'+
+  '<button class="btn primary" id="next">Next step</button>'+
+  '<button class="btn" id="all">Show all</button>'+
+  '<button class="btn" id="reset">Start over</button>'+
+  '<button class="btn dztoggle" id="dz">Diseases: off</button>'+
+  '<span class="counter" id="ctr"></span></div>'+
+  '<div class="dg" id="dg"><div class="hint" id="hint">Click anywhere here (or "Next step") to reveal the first step.</div>';
+  pw.u.forEach((u,i)=>{h+=unitHTML(pw,u,i);});
+  h+='<div class="donecard" id="done">Pathway complete.</div></div>'+
+  '<footer><span>'+esc(pw.name)+'</span><span>Diseases cite their lecture slide</span></footer>';
+  app.innerHTML=h;
+  window.scrollTo(0,0);
+
+  const dg=document.getElementById("dg"),units=[...dg.querySelectorAll(".unit")],
+        hint=document.getElementById("hint"),ctr=document.getElementById("ctr"),
+        next=document.getElementById("next"),done=document.getElementById("done"),
+        dzBtn=document.getElementById("dz");
+
+  function sync(scroll){
+    const n=revealed[pw.id];
+    units.forEach((el,i)=>el.classList.toggle("shown",i<n));
+    hint.style.display=n?"none":"";
+    ctr.textContent="Step "+n+" of "+units.length;
+    const finished=n>=units.length;
+    next.disabled=finished;
+    done.classList.toggle("shown",finished);
+    dg.classList.toggle("done",finished);
+    if(scroll&&n){units[n-1].scrollIntoView({block:"nearest",behavior:"smooth"});}
+  }
+  function advance(){
+    if(revealed[pw.id]<units.length){revealed[pw.id]++;sync(true);}
+  }
+  next.addEventListener("click",advance);
+  document.getElementById("all").addEventListener("click",()=>{revealed[pw.id]=units.length;sync(false);});
+  document.getElementById("reset").addEventListener("click",()=>{revealed[pw.id]=0;sync(false);window.scrollTo({top:0,behavior:"smooth"});});
+  dg.addEventListener("click",e=>{
+    const chip=e.target.closest(".dzchip");
+    if(chip){
+      const p=document.getElementById("dzp-"+chip.dataset.dz);
+      p.classList.toggle("open");chip.classList.toggle("open");
+      return;
+    }
+    if(e.target.closest(".dzpanel"))return;
+    advance();
+  });
+  dzBtn.addEventListener("click",()=>{
+    document.body.classList.toggle("showdz");
+    dzBtn.classList.toggle("on");
+    dzBtn.textContent="Diseases: "+(document.body.classList.contains("showdz")?"on":"off");
+  });
+  dzBtn.classList.toggle("on",document.body.classList.contains("showdz"));
+  dzBtn.textContent="Diseases: "+(document.body.classList.contains("showdz")?"on":"off");
+  sync(false);
+}
+
+function route(){
+  const id=location.hash.replace("#","");
+  const pw=P.find(p=>p.id===id);
+  if(pw)renderPathway(pw);else renderHome();
+}
+window.addEventListener("hashchange",route);
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key==="Enter"){
+    const b=document.getElementById("next");
+    if(b&&!b.disabled&&!e.target.closest("button, a")){b.click();e.preventDefault();}
+  }
+});
+route();
+
+/* theme */
+(function(){
+  const root=document.documentElement,btn=document.getElementById("theme");
+  const mq=window.matchMedia("(prefers-color-scheme: dark)");
+  root.setAttribute("data-theme",mq.matches?"dark":"light");
+  mq.addEventListener("change",e=>root.setAttribute("data-theme",e.matches?"dark":"light"));
+  btn.addEventListener("click",()=>root.setAttribute("data-theme",root.getAttribute("data-theme")==="dark"?"light":"dark"));
+})();
+</script>
+</body>
+</html>
