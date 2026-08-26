@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carbohydrate Metabolism — Disease Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#F2F5F4; --surface:#FFFFFF; --sunk:#E8EEEC; --tint:#F7FAF9;
+  --ink:#0E1513; --ink2:#44514E; --ink3:#75827F;
+  --rule:#CDD7D4; --rule2:#E2E9E7;
+  --accent:#0A5E5C; --accent2:#0E7A73; --accent-soft:#DBEAE8;
+  --dz:#9E3527; --dz-bg:#F8E6E1; --dz-border:#E0B2A8;
+  --cost:#875311; --cost-bg:#F6EFDE;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+html[data-theme="dark"]{
+  --paper:#0B1110; --surface:#131A19; --sunk:#18211F; --tint:#101817;
+  --ink:#E2EAE8; --ink2:#93A29F; --ink3:#6D7C79;
+  --rule:#293533; --rule2:#1C2625;
+  --accent:#54BFBA; --accent2:#6FD3CD; --accent-soft:#0F2E2C;
+  --dz:#F0857A; --dz-bg:#2C1714; --dz-border:#5A2B24;
+  --cost:#DEAC57; --cost-bg:#291F10;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 90px}
+
+header.mast{padding:52px 0 26px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-weight:700;font-size:clamp(28px,4.6vw,42px);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px}
+.standfirst{font-size:16px;color:var(--ink2);max-width:64ch;margin:0}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.toc a{font-size:12.5px;font-weight:500;color:var(--ink2);background:var(--surface);border:1px solid var(--rule);border-radius:99px;padding:5px 13px;text-decoration:none}
+.toc a:hover{color:var(--accent);border-color:var(--accent2)}
+
+.secblock{padding-top:38px}
+.sechead{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:8px;margin-bottom:14px}
+.sechead h2{font-size:17px;font-weight:600;margin:0}
+.sechead .count{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-left:auto}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:12px;align-items:start}
+@media (max-width:880px){.grid{grid-template-columns:1fr}}
+
+.card{position:relative;background:var(--surface);border:1px solid var(--dz-border);border-left:3px solid var(--dz);border-radius:0 6px 6px 0;padding:13px 16px 11px}
+.card h3{margin:0 0 8px;font-size:15.5px;color:var(--dz);line-height:1.3;padding-right:96px}
+.tag{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:3px 7px;text-decoration:none;white-space:nowrap}
+.tag:hover{text-decoration:underline}
+.enzline{background:var(--sunk);border-radius:5px;padding:7px 10px;font-size:13.5px;color:var(--ink2);line-height:1.45;margin:0 0 8px}
+.enzline b{color:var(--ink);font-weight:600}
+.enzline .lb{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:2px}
+.card ul{margin:0;padding-left:17px}
+.card li{font-size:13.5px;color:var(--ink2);line-height:1.5;margin-bottom:4px}
+.card li b{color:var(--ink);font-weight:600}
+.src{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:8px;display:block}
+.notecard{font-size:12.5px;color:var(--cost);background:var(--cost-bg);border-radius:4px;padding:4px 8px;display:inline-block;margin-top:6px}
+
+footer{margin-top:70px;padding-top:20px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:11px;color:var(--ink3);display:flex;flex-wrap:wrap;gap:6px 24px}
+#theme{position:fixed;right:16px;bottom:16px;z-index:40;background:var(--surface);color:var(--ink2);border:1px solid var(--rule);border-radius:3px;padding:8px 13px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+#theme:hover{color:var(--accent);border-color:var(--accent2)}
+@media print{.toc,#theme{display:none}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">Companion to the diagrams · Lectures 8–15 · Dr Binstock</div>
+  <h1>Every disease, one box each</h1>
+  <p class="standfirst">Each box names the enzyme affected, what that enzyme does and in which pathway, then the basic downstream results — energy, blood sugar, lactate, hemolysis. Content comes only from the lecture slides; every box cites its slide. The green tag opens that pathway&rsquo;s step-by-step diagram.</p>
+  <nav class="toc">
+    <a href="#digestion">Digestion &amp; transport</a>
+    <a href="#glycolysis">Glycolysis &amp; lactate</a>
+    <a href="#pdhtca">PDH &amp; TCA</a>
+    <a href="#gng">Gluconeogenesis &amp; alcohol</a>
+    <a href="#glycogen">Glycogen storage diseases</a>
+    <a href="#sugars">The other sugars</a>
+    <a href="#nadph">PPP &amp; NADPH</a>
+  </nav>
+</header>
+
+<!-- ================= Digestion ================= -->
+<section class="secblock" id="digestion">
+  <div class="sechead"><h2>Digestion and transport</h2><span class="count">3 boxes</span></div>
+  <div class="grid">
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#01">Digestion</a>
+    <h3>Lactose intolerance</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Lactase</b> (β-galactosidase), brush border — splits lactose into glucose + galactose in digestion.</p>
+    <ul>
+      <li>Undigested lactose → osmotically active → water drawn into the large intestine → <b>osmotic diarrhea</b>, bloating, cramps.</li>
+      <li>Bacterial fermentation → CO₂, H₂ (measurable), lactic acid → flatulence; acidic stools in infants.</li>
+      <li>Primary (most common, can increase with age) or secondary (intestinal injury — first activity lost, last to recover).</li>
+    </ul>
+    <span class="src">From the slides · Lecture 8, slides 46–48</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#01">Digestion</a>
+    <h3>Secondary disaccharidase deficiencies</h3>
+    <p class="enzline"><span class="lb">Enzymes affected</span><b>Brush-border disaccharidases</b> (maltase, sucrase, isomaltase, lactase) — the last step of carbohydrate digestion.</p>
+    <ul>
+      <li>Same result as lactose intolerance: incomplete digestion → <b>osmotic diarrhea</b>, cramps, flatulence.</li>
+      <li>Causes: colitis, gastroenteritis, cystic fibrosis; kwashiorkor (can&rsquo;t make enough enzymes); drugs (Augmentin, clindamycin kill intestinal flora); severe diarrhea (loss of enzymes).</li>
+    </ul>
+    <span class="src">From the slides · Lecture 8, slide 47</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#01">Digestion</a>
+    <h3>SGLT-2 inhibitors (canagliflozin, dapagliflozin)</h3>
+    <p class="enzline"><span class="lb">Target</span><b>SGLT-2</b>, proximal convoluted tubule — reabsorbs ~90% of the ~180 g of glucose the kidney filters daily.</p>
+    <ul>
+      <li>Blocked reabsorption → glucose lost in urine → <b>blood glucose falls without any insulin</b>.</li>
+      <li>Treats type 2 diabetes; also weight loss, lower blood pressure, higher HDL.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 8, slide 30</span>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= Glycolysis ================= -->
+<section class="secblock" id="glycolysis">
+  <div class="sechead"><h2>Glycolysis and lactate</h2><span class="count">3 boxes</span></div>
+  <div class="grid">
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#03">Glycolysis</a>
+    <h3>Pyruvate kinase deficiency</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Pyruvate kinase</b> — last enzyme of glycolysis: PEP → pyruvate, making ATP by substrate-level phosphorylation.</p>
+    <ul>
+      <li>The red cell lives on glycolysis → <b>ATP production falls</b>.</li>
+      <li>RBC damage → lysis → <b>hemolytic anemia</b>.</li>
+      <li>Liver unaffected — it still makes ATP through the ETC.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 9, slide 38</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#04">Anaerobic exit</a>
+    <h3>Lactic acidosis</h3>
+    <p class="enzline"><span class="lb">Enzyme involved</span><b>Lactate dehydrogenase</b> — pyruvate + NADH → lactate + NAD⁺, the anaerobic exit that keeps glycolysis running.</p>
+    <ul>
+      <li>Lactate above ~5 mM (normal 0.5–1) → <b>most common metabolic acidosis</b>, raised anion gap.</li>
+      <li>Driven by hypoxia → anaerobic metabolism: myocardial infarction, pulmonary embolism, shock.</li>
+      <li>Lactate level is used as a measure of those conditions.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 9, slide 50</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#04">Anaerobic exit</a>
+    <h3>Warburg effect (cancer)</h3>
+    <p class="enzline"><span class="lb">Enzymes involved</span><b>Hexokinase, PFK-1, pyruvate kinase</b> — the rate-limiting glycolysis enzymes, over-expressed in tumors.</p>
+    <ul>
+      <li>Glucose → lactate even with mitochondria present: <b>2 ATP instead of 36–38</b> → needs ~19× the glucose → huge consumption.</li>
+      <li>That appetite is what FDG-PET reads: ¹⁸F-fluorodeoxyglucose is taken up but can&rsquo;t be metabolized.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 9, slides 63–65</span>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= PDH / TCA ================= -->
+<section class="secblock" id="pdhtca">
+  <div class="sechead"><h2>PDH and the TCA cycle</h2><span class="count">2 boxes</span></div>
+  <div class="grid">
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#07">PDH complex</a>
+    <h3>PDHC deficiency</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>PDH complex</b> — pyruvate → acetyl-CoA + NADH, the bridge from glycolysis into the TCA cycle.</p>
+    <ul>
+      <li>Pyruvate shunted to lactate and alanine → <b>congenital lactic acidosis</b> (most common biochemical cause).</li>
+      <li><b>ATP falls</b> — the NADH is lost and acetyl-CoA stops feeding the TCA cycle → neurological problems (the brain runs on TCA).</li>
+      <li>Severe lethargy, poor feeding, tachypnea — worse with illness, stress, high-carb intake. X-linked E1-alpha.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 10, slides 14–15</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#07">PDH complex</a>
+    <h3>Arsenic poisoning</h3>
+    <p class="enzline"><span class="lb">Enzymes affected</span><b>PDH, α-ketoglutarate DH, branched-chain α-ketoacid DH</b> — the lipoic-acid enzymes (PDH and α-KG DH are the two big NADH makers of pyruvate oxidation and the TCA cycle).</p>
+    <ul>
+      <li>Pyruvate → lactate → <b>lactic acidosis</b>; ATP production drops.</li>
+      <li>Affects the brain: neurological disturbances and death.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 10, slides 16, 26</span>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= Gluconeogenesis / alcohol ================= -->
+<section class="secblock" id="gng">
+  <div class="sechead"><h2>Gluconeogenesis and alcohol</h2><span class="count">4 boxes</span></div>
+  <div class="grid">
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#09">Gluconeogenesis</a>
+    <h3>Pyruvate carboxylase deficiency</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Pyruvate carboxylase</b> (biotin, mitochondrial) — pyruvate → oxaloacetate, the first step of gluconeogenesis.</p>
+    <ul>
+      <li><b>Hypoglycemia</b> — glucose can&rsquo;t be built; corrects with IV glucose.</li>
+      <li>Backed-up pyruvate → <b>lactic acidosis</b> and hyperalaninemia.</li>
+      <li>Infancy: seizures, failure to thrive, developmental delays.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 11, slides 21, 28–29</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#09">Gluconeogenesis</a>
+    <h3>Von Gierke disease — GSD type Ia</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Glucose 6-phosphatase</b> (liver ER) — G6P → free glucose, the final release step of BOTH gluconeogenesis and glycogenolysis.</p>
+    <ul>
+      <li><b>Severe fasting hypoglycemia</b> — lethargy, seizures, brain damage. Cannot fast: frequent meals, nocturnal glucose, cornstarch.</li>
+      <li>Trapped G6P → liver glycogen builds up (normal structure) → <b>hepatomegaly</b>; kidney enlargement too.</li>
+      <li>Glycolysis forced forward → <b>lactic acidosis</b>; lactate blocks renal uric acid excretion → <b>hyperuricemia</b>.</li>
+      <li>Acetyl-CoA pushed to triglycerides → <b>hyperlipidemia</b>; doll-like face.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 11, slides 43–46 · Lecture 12, slide 55</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#12">Ethanol</a>
+    <h3>Alcohol (heavy drinking)</h3>
+    <p class="enzline"><span class="lb">Enzymes involved</span><b>Alcohol DH + aldehyde DH</b> — ethanol → acetaldehyde → acetate, dumping 2 NADH into the cytosol per ethanol.</p>
+    <ul>
+      <li>NADH pushes pyruvate → lactate and OAA → malate → gluconeogenic precursors gone → <b>hypoglycemia</b> (worst fasting or on insulin; glycogen empties in hours).</li>
+      <li>Lactate rises → <b>lactic acidosis</b>; the acidity blocks uric acid excretion → <b>gout</b>.</li>
+      <li>Fat oxidation inhibited → <b>fatty liver</b>, TG → VLDL → hyperlipidemia; acetyl-CoA → ketone bodies → more acidosis.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 11, slides 52–54</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#12">Ethanol</a>
+    <h3>Methanol poisoning</h3>
+    <p class="enzline"><span class="lb">Enzymes involved</span><b>Alcohol DH + aldehyde DH</b> — the same two enzymes carry methanol → formaldehyde → formate.</p>
+    <ul>
+      <li>Formaldehyde is <b>toxic to the optic nerve → blindness</b>.</li>
+      <li>High doses may be fatal.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 11, slide 52</span>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= Glycogen ================= -->
+<section class="secblock" id="glycogen">
+  <div class="sechead"><h2>Glycogen storage diseases</h2><span class="count">6 boxes · Ia is under gluconeogenesis</span></div>
+  <div class="grid">
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#10">Glycogen synthesis</a>
+    <h3>GSD type 0 — glycogen synthase deficiency</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Glycogen synthase</b> — adds glucose (α-1,4) from UDP-glucose to the growing chain; the rate-limiting step of glycogen synthesis.</p>
+    <ul>
+      <li>No glycogen store to draw on between meals.</li>
+      <li><b>Liver form</b> (GYS2): fasting <b>hypoglycemia</b> + ketosis from fat breakdown; improves with food.</li>
+      <li><b>Muscle form</b> (GYS1): pain, weakness, syncope after activity; arrhythmia, risk of cardiac arrest and sudden death.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 12, slides 31–32</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#10">Glycogen synthesis</a>
+    <h3>GSD type IV — Andersen disease</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Branching enzyme</b> (glucosyl 4:6 transferase) — makes the α-1,6 branches that keep glycogen soluble and multiply its ends.</p>
+    <ul>
+      <li>Glycogen with long outer branches → <b>insoluble</b> (amylopectinosis).</li>
+      <li>Failure to thrive; hepatosplenomegaly; <b>progressive cirrhosis</b>; muscle hypotonia.</li>
+      <li>Death typically by age five.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 12, slide 33</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#11">Glycogenolysis</a>
+    <h3>GSD type II — Pompe disease</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Lysosomal acid α-1,4-glucosidase</b> (acid maltase) — digests the glycogen delivered to lysosomes by autophagy.</p>
+    <ul>
+      <li>Glycogen accumulates in lysosomes — the <b>only lysosomal</b> glycogen storage disease.</li>
+      <li><b>Blood glucose normal</b> — the cytosolic pathway is intact.</li>
+      <li>Liver, muscle and heart: muscle weakness, <b>cardiomegaly</b> (&ldquo;Pompe affects the pump&rdquo;).</li>
+    </ul>
+    <span class="src">From the slides · Lecture 12, slide 56</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#11">Glycogenolysis</a>
+    <h3>GSD type III — Cori disease</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Debranching enzyme</b> — 4:4 transferase + α-1,6 glucosidase, clears the branch points glycogen phosphorylase can&rsquo;t reach in glycogenolysis.</p>
+    <ul>
+      <li>Glycogen with very short outer chains — only partly usable.</li>
+      <li><b>Fasting hypoglycemia</b>, hepatomegaly, myopathy.</li>
+      <li>Treated with frequent high-carb meals + cornstarch; high protein works too (drives gluconeogenesis). ABCD: Andersen-Branching, Cori-Debranching.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 12, slides 58–59</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#11">Glycogenolysis</a>
+    <h3>GSD type V — McArdle disease</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Muscle glycogen phosphorylase</b> — cleaves α-1,4 bonds with Pi → glucose 1-phosphate; the rate-limiting step of glycogenolysis.</p>
+    <ul>
+      <li>Muscle can&rsquo;t tap its glycogen for energy → <b>cramps on exercise</b>; myoglobinemia and myoglobinuria.</li>
+      <li><b>No rise in blood lactate after exercise</b> — no glycogen-fed glycolysis to make it.</li>
+      <li>Liver enzyme normal, so blood sugar is fine; benign, normal mental development.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 12, slide 60</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#11">Glycogenolysis</a>
+    <h3>GSD type VI — Hers disease</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Liver glycogen phosphorylase</b> — the same rate-limiting glycogenolysis step, in the tissue that guards blood sugar.</p>
+    <ul>
+      <li>Liver glycogen can&rsquo;t be broken down → <b>extreme hepatomegaly</b>.</li>
+      <li><b>Hypoglycemia milder than type Ia</b> — the deficiency is usually only partial (complete would be fatal), and gluconeogenesis still works.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 12, slide 61</span>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= Other sugars ================= -->
+<section class="secblock" id="sugars">
+  <div class="sechead"><h2>The other sugars</h2><span class="count">6 boxes</span></div>
+  <div class="grid">
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#13">Fructose</a>
+    <h3>Essential fructosuria</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Fructokinase</b> (liver, kidney, intestine) — fructose → fructose 1-phosphate, the entry step of fructose metabolism.</p>
+    <ul>
+      <li>Fructose can&rsquo;t be metabolized → eliminated in urine (detected as a reducing sugar).</li>
+      <li><b>Benign</b> — nothing toxic accumulates.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 13, slide 9</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#13">Fructose</a>
+    <h3>Hereditary fructose intolerance (HFI)</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Aldolase B</b> — splits fructose 1-phosphate into DHAP + glyceraldehyde, the second step of fructose metabolism.</p>
+    <ul>
+      <li>F1-P accumulates in the liver, trapping phosphate → <b>Pi and ATP fall, AMP rises</b>.</li>
+      <li>High AMP blocks gluconeogenesis → <b>hypoglycemia</b>; AMP → uric acid → <b>hyperuricemia</b>.</li>
+      <li>Appears when a baby starts food or formula; hepatic failure and death if fructose + sucrose aren&rsquo;t removed from the diet.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 13, slide 10</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#13">Fructose</a>
+    <h3>High-fructose diet</h3>
+    <p class="enzline"><span class="lb">Enzyme involved</span><b>Fructokinase</b> — fast, unregulated, and its products enter glycolysis BELOW PFK-1, past the only real brake.</p>
+    <ul>
+      <li>ATP drained → AMP → uric acid → <b>gout</b>; uric acid blocks eNOS → less NO → <b>hypertension</b>.</li>
+      <li>Unbraked carbon → citrate → fat → VLDL → <b>obesity and dyslipidemia</b>.</li>
+      <li>F1-P → inactive (serine-phosphorylated) IRS-1 → insulin insensitivity → <b>metabolic syndrome</b>.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 13, slides 12–15</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#14">Galactose</a>
+    <h3>Galactokinase deficiency</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Galactokinase</b> — galactose → galactose 1-phosphate, the entry step of galactose metabolism.</p>
+    <ul>
+      <li>Galactosemia and galactosuria; <b>no Gal 1-P accumulation</b> in tissues.</li>
+      <li>Galactose shunted by aldose reductase → <b>galactitol → cataracts</b>.</li>
+      <li>Rare, autosomal recessive; much milder than classical galactosemia.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 13, slide 32</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#14">Galactose</a>
+    <h3>Classical galactosemia</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>GALT</b> (uridyltransferase) — swaps galactose 1-P onto UDP, releasing glucose 1-P; the step that brings galactose into the glucose pool.</p>
+    <ul>
+      <li><b>Galactose 1-P accumulates in tissues</b>; galactose in blood and urine.</li>
+      <li>Mental retardation (slide wording), <b>liver and kidney damage, cataracts</b>.</li>
+      <li>Newborns drink up to 1 g galactose/day in milk → immediate treatment needed; on the NYS newborn screen.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 13, slide 33</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#15">Polyol pathway</a>
+    <h3>Diabetic sorbitol complications</h3>
+    <p class="enzline"><span class="lb">Enzymes involved</span><b>Aldose reductase</b> makes sorbitol from glucose (spending NADPH); <b>sorbitol dehydrogenase</b>, which would clear it, is low or absent in lens, retina, nerve and kidney.</p>
+    <ul>
+      <li>Hyperglycemia → sorbitol made and trapped → <b>osmotic swelling</b> of lens, retina and nerve cells.</li>
+      <li><b>Peripheral neuropathy, diabetic retinopathy, macular edema → poor vision</b>.</li>
+      <li>High glucose also glycosylates proteins.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 13, slides 25–26</span>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= PPP / NADPH ================= -->
+<section class="secblock" id="nadph">
+  <div class="sechead"><h2>The pentose phosphate pathway and NADPH</h2><span class="count">7 boxes</span></div>
+  <div class="grid">
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#17">Pentose phosphate</a>
+    <h3>G6PD deficiency</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Glucose 6-phosphate dehydrogenase</b> — the rate-limiting first step of the PPP, making NADPH; the red cell&rsquo;s ONLY NADPH source.</p>
+    <ul>
+      <li>Less NADPH → glutathione stays oxidized → H₂O₂ not cleared → <b>ROS rise</b>.</li>
+      <li>Membrane lipids and hemoglobin oxidized → <b>Heinz bodies</b>, lysis → <b>hemolytic anemia, jaundice</b>.</li>
+      <li>Triggered by infection (most common), fava beans, antimalarials, sulfonamides, mothballs.</li>
+      <li>X-linked; the most common disease-producing genetic abnormality.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 14, slides 24–29</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#17">Pentose phosphate</a>
+    <h3>Thiamine deficiency — Wernicke, beriberi</h3>
+    <p class="enzline"><span class="lb">Enzymes affected</span><b>Transketolase</b> (2-carbon transfers in the PPP — the blood assay for thiamine) plus <b>PDH E1 and α-KG DH</b> (energy production).</p>
+    <ul>
+      <li>Beriberi → <b>heart failure</b>.</li>
+      <li>Wernicke encephalopathy: <b>ataxia, ocular abnormalities, memory loss with confusion</b>.</li>
+      <li>Often from alcoholism (poor nutrition).</li>
+    </ul>
+    <span class="src">From the slides · Lecture 14, slides 34–35 · Lecture 10, slide 8</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#17">Pentose phosphate</a>
+    <h3>Sickle cell disease (contrast with G6PD)</h3>
+    <p class="enzline"><span class="lb">Not an enzyme defect</span><b>Hemoglobin β chain</b> — Glu → Val at position 6 gives HbS. On the slides as the comparison case for RBC instability.</p>
+    <ul>
+      <li>Deoxygenated HbS clumps into tactoids → <b>sickled RBC → vaso-occlusive crisis</b>.</li>
+      <li>Anemia, severe pain, splenic sequestration, infections, strokes.</li>
+      <li>Prevented by avoiding hypoxia (heavy exercise, altitude, infection); hydroxyurea raises HbF.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 14, slide 41</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#18">Glutathione / ROS</a>
+    <h3>ALS — SOD1 mutation</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>Cu-Zn superoxide dismutase (SOD1)</b>, cytosolic — converts superoxide → H₂O₂ in the ROS defense chain.</p>
+    <ul>
+      <li>Superoxide not cleared → <b>progressive neurodegeneration</b>: amyotrophic lateral sclerosis (Lou Gehrig&rsquo;s disease).</li>
+      <li>Most cases carry a single point mutation (one amino acid).</li>
+    </ul>
+    <span class="src">From the slides · Lecture 15, slide 14</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#20">Respiratory burst</a>
+    <h3>Chronic granulomatous disease (CGD)</h3>
+    <p class="enzline"><span class="lb">Enzyme affected</span><b>NADPH oxidase</b> — spends NADPH to make superoxide inside the phagolysosome: the respiratory burst that kills bacteria.</p>
+    <ul>
+      <li>No ROS in the phagolysosome → <b>bacteria engulfed but not killed</b>.</li>
+      <li><b>Granulomas</b> — inflammation nodules holding sequestered, undestroyed bacteria.</li>
+      <li>Severe persistent infections.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 15, slide 39</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#19">Cytochrome P450</a>
+    <h3>P450 drug interactions</h3>
+    <p class="enzline"><span class="lb">Enzymes involved</span><b>Cytochrome P450 (CYP) monooxygenases</b> — use NADPH to hydroxylate drugs (phase I) so they can be excreted; CYP1–3 handle 70–80% of drugs.</p>
+    <ul>
+      <li><b>Induction</b> → co-drug cleared faster → subtherapeutic: St John&rsquo;s wort + cyclosporine (anti-rejection failure).</li>
+      <li><b>Inhibition</b> → co-drug level climbs → toxic: grapefruit + statins → <b>rhabdomyolysis</b>.</li>
+      <li>Also activates prodrugs: cyclophosphamide → its DNA-crosslinking form.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 15, slides 29, 31–32</span>
+  </div>
+
+  <div class="card">
+    <a class="tag" href="carbohydrate-pathway-diagrams.html#21">Nitric oxide</a>
+    <h3>Sildenafil (Viagra)</h3>
+    <p class="enzline"><span class="lb">Target</span><b>Phosphodiesterase-5</b> — hydrolyzes cGMP, ending the NO → cGMP vasodilation signal in smooth muscle.</p>
+    <ul>
+      <li>PDE-5 blocked → <b>cGMP stays high → vasodilation stays high</b> in the corpus cavernosum.</li>
+      <li>Maintains erection.</li>
+    </ul>
+    <span class="src">From the slides · Lecture 15, slide 43</span>
+  </div>
+
+  </div>
+</section>
+
+<footer>
+  <span>TouroCOM · Medical Biochemistry &amp; Genetics I</span>
+  <span>31 boxes · slides only, each cites its lecture and slide</span>
+  <span><a href="carbohydrate-pathway-diagrams.html" style="color:inherit">Step-by-step diagrams →</a></span>
+</footer>
+
+</div>
+<button id="theme" aria-label="Toggle light and dark">◐ theme</button>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById("theme");
+  var mq=window.matchMedia("(prefers-color-scheme: dark)");
+  root.setAttribute("data-theme",mq.matches?"dark":"light");
+  mq.addEventListener("change",function(e){root.setAttribute("data-theme",e.matches?"dark":"light");});
+  btn.addEventListener("click",function(){root.setAttribute("data-theme",root.getAttribute("data-theme")==="dark"?"light":"dark");});
+})();
+</script>
+</body>
+</html>
