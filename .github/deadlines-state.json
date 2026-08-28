@@ -161,6 +161,22 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1454893",
+   "name": "Pre-Lab Quiz 1 of 2 /Week 5 - Scoliosis",
+   "course": "OMM",
+   "due": "2026-09-02T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454893",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1454895",
+   "name": "Pre-Lab Quiz 2 of 2/ Week 5 -Thoracic Spine/Fryette's",
+   "course": "OMM",
+   "due": "2026-09-02T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454895",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1447628",
    "name": "Canvas quiz MSK - Shoulder, Wrist and Hand",
    "course": "PHYS DIAG",
