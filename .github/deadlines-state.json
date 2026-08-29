@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1447645",
-   "name": "Medicine & Horsemanship - SIGN UP & Completed Registration & Release form via docusign DUE by NOON 7/30/2026",
-   "course": "PHYS DIAG",
-   "due": "2026-07-30T12:00:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=07&year=2026#assignment_1447645",
-   "exact_time": true
-  },
-  {
    "uid": "event-assignment-1454892",
    "name": "Pre-lab 1 H&P Quiz",
    "course": "OMM",
