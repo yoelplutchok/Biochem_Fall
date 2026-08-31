@@ -265,6 +265,14 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1474540",
+   "name": "Video Assgmt & Peer Review (Fall 2026)",
+   "course": "ETHICS",
+   "due": "2026-10-26T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=10&year=2026#assignment_1474540",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1466493",
    "name": "Globular and Fibrous proteins Self-Assessment Quiz",
    "course": "BIOCHEM",
@@ -334,6 +342,14 @@
    "course": "BIOCHEM",
    "due": "2026-12-13T23:59:00-05:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=12&year=2026#assignment_1466430",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1474525",
+   "name": "Lec 2- 8/11",
+   "course": "ETHICS",
+   "due": "2026-12-16T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=12&year=2026#assignment_1474525",
    "exact_time": false
   }
  ],
