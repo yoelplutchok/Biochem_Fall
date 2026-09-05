@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1454892",
-   "name": "Pre-lab 1 H&P Quiz",
-   "course": "OMM",
-   "due": "2026-08-05T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=08&year=2026#assignment_1454892",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1470611",
    "name": "Week 1 Quiz 1 - Physio I Body Fluids, Fluid Membranes, and Active transport",
    "course": "PHYSIO",
