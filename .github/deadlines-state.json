@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1470615",
-   "name": "Week 2 Quiz 2 - Physio I Osmosis, and Action potentials",
-   "course": "PHYSIO",
-   "due": "2026-08-16T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=08&year=2026#assignment_1470615",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1466438",
    "name": "New Week 1 Enzyme and ETC Self-Assessment Quiz",
    "course": "BIOCHEM",
