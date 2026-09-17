@@ -1,30 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1466438",
-   "name": "New Week 1 Enzyme and ETC Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-08-17T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=08&year=2026#assignment_1466438",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466474",
-   "name": "Week 1 Overview Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-08-17T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=08&year=2026#assignment_1466474",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466475",
-   "name": "Week 1 Signal Transduction and Carb dig Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-08-17T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=08&year=2026#assignment_1466475",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1443268",
    "name": "Pre-lab Quiz",
    "course": "ANATOMY",
