@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1443268",
-   "name": "Pre-lab Quiz",
-   "course": "ANATOMY",
-   "due": "2026-08-18T13:00:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168934&month=08&year=2026#assignment_1443268",
-   "exact_time": true
-  },
-  {
    "uid": "event-assignment-1469721",
    "name": "SDL 1 SOAP Note Submission",
    "course": "PHYS DIAG",
