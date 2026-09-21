@@ -201,14 +201,6 @@
    "exact_time": false
   },
   {
-   "uid": "event-assignment-1466493",
-   "name": "Globular and Fibrous proteins Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-11-01T23:59:00-05:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466493",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1466494",
    "name": "Week 12 Cholesterol and lipoprotein Self-Assessment Quiz",
    "course": "BIOCHEM",
@@ -222,6 +214,14 @@
    "course": "BIOCHEM",
    "due": "2026-11-02T23:59:00-05:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466444",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466493",
+   "name": "Globular and Fibrous proteins Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-11-16T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466493",
    "exact_time": false
   },
   {
