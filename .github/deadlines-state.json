@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1447627",
-   "name": "Canvas quiz Skin, Hair, and Nails",
-   "course": "PHYS DIAG",
-   "due": "2026-08-25T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=08&year=2026#assignment_1447627",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1454903",
    "name": "Pre-Lab 4 Quiz- Neuromuscular Physiology",
    "course": "OMM",
