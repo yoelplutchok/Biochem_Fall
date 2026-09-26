@@ -9,30 +9,6 @@
    "exact_time": false
   },
   {
-   "uid": "event-assignment-1466442",
-   "name": "Week  3 Gluconeogenesis and Glycogen Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-08-31T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=08&year=2026#assignment_1466442",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466486",
-   "name": "Week 3 Glycolysis and TCA Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-08-31T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=08&year=2026#assignment_1466486",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466428",
-   "name": "Week 4 Monosaccharides, HMP NADPH 1 Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-08-31T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=08&year=2026#assignment_1466428",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1447629",
    "name": "Canvas Quiz Musculoskeletal and Elbow Weekly Quiz",
    "course": "PHYS DIAG",
@@ -81,35 +57,11 @@
    "exact_time": false
   },
   {
-   "uid": "event-assignment-1466480",
-   "name": "Week 5 DNA comp Rep Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-09-14T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466480",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466445",
-   "name": "Week 5 DNA Repair Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-09-14T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466445",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1447625",
    "name": "Canvas quiz MSK - Knee, Ankle and Foot",
    "course": "PHYS DIAG",
    "due": "2026-09-15T23:59:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=09&year=2026#assignment_1447625",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466426",
-   "name": "Week 6 RNA types and synthesis Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-09-15T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466426",
    "exact_time": false
   },
   {
@@ -137,10 +89,90 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1454896",
+   "name": "Pre-Lab 8 Quiz- Autonomic and Viscerosomatic Consideration",
+   "course": "OMM",
+   "due": "2026-09-23T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454896",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466438",
+   "name": "New Week 1 Enzyme and ETC Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466438",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466442",
+   "name": "Week  3 Gluconeogenesis and Glycogen Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466442",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466474",
+   "name": "Week 1 Overview Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466474",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466475",
+   "name": "Week 1 Signal Transduction and Carb dig Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466475",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466486",
+   "name": "Week 3 Glycolysis and TCA Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466486",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466428",
+   "name": "Week 4 Monosaccharides, HMP NADPH 1 Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466428",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466480",
+   "name": "Week 5 DNA comp Rep Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466480",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466445",
+   "name": "Week 5 DNA Repair Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466445",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1466426",
+   "name": "Week 6 RNA types and synthesis Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-09-29T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466426",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1466459",
    "name": "Week 7 Genetic code Self-Assessment Quiz",
    "course": "BIOCHEM",
-   "due": "2026-09-22T23:59:00-04:00",
+   "due": "2026-09-29T23:59:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466459",
    "exact_time": false
   },
@@ -148,16 +180,8 @@
    "uid": "event-assignment-1466440",
    "name": "Week 7 Protein Translation Self-Assessment Quiz",
    "course": "BIOCHEM",
-   "due": "2026-09-22T23:59:00-04:00",
+   "due": "2026-09-29T23:59:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=09&year=2026#assignment_1466440",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1454896",
-   "name": "Pre-Lab 8 Quiz- Autonomic and Viscerosomatic Consideration",
-   "course": "OMM",
-   "due": "2026-09-23T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454896",
    "exact_time": false
   },
   {
