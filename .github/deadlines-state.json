@@ -177,11 +177,35 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1447634",
+   "name": "Canvas quiz AMA BP Measurement Refresher/ Quiz",
+   "course": "PHYS DIAG",
+   "due": "2026-10-06T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1447634",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1447626",
+   "name": "Canvas Quiz Vitals, BMI, General survey, PVS and Pain - Part 1",
+   "course": "PHYS DIAG",
+   "due": "2026-10-06T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1447626",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1466448",
    "name": "Week 4 NADPH 2 and Glycoprotein Self-Assessment Quiz",
    "course": "BIOCHEM",
    "due": "2026-10-06T23:59:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=10&year=2026#assignment_1466448",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1447630",
+   "name": "Canvas quiz Introduction to the Chest, Thorax and Pulmonary Canvas Quiz",
+   "course": "PHYS DIAG",
+   "due": "2026-10-13T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1447630",
    "exact_time": false
   },
   {
