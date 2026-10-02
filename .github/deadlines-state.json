@@ -1,22 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1447629",
-   "name": "Canvas Quiz Musculoskeletal and Elbow Weekly Quiz",
-   "course": "PHYS DIAG",
-   "due": "2026-09-01T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=09&year=2026#assignment_1447629",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1454888",
-   "name": "Pre-Lab 2 Quiz- Gross Motion",
-   "course": "OMM",
-   "due": "2026-09-01T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454888",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1454893",
    "name": "Pre-Lab-5 Quiz 1 of 2 - Scoliosis",
    "course": "OMM",
