@@ -145,14 +145,6 @@
    "exact_time": false
   },
   {
-   "uid": "event-assignment-1447634",
-   "name": "Canvas quiz AMA BP Measurement Refresher/ Quiz",
-   "course": "PHYS DIAG",
-   "due": "2026-10-06T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1447634",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1447626",
    "name": "Canvas Quiz Vitals, BMI, General survey, PVS and Pain - Part 1",
    "course": "PHYS DIAG",
@@ -166,6 +158,14 @@
    "course": "BIOCHEM",
    "due": "2026-10-06T23:59:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=10&year=2026#assignment_1466448",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1447634",
+   "name": "Canvas quiz AMA BP Measurement Refresher/ Quiz",
+   "course": "PHYS DIAG",
+   "due": "2026-10-09T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1447634",
    "exact_time": false
   },
   {
