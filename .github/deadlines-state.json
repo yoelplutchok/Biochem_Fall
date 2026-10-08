@@ -177,6 +177,46 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1470609",
+   "name": "1st  Quiz = Physio I Cardiology & Clinical Disorders - Weeks 10,11",
+   "course": "PHYSIO",
+   "due": "2026-10-18T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=10&year=2026#assignment_1470609",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1559119",
+   "name": "2nd Quiz - Physio I Cardiology & Clinical Disorders - Weeks 10,11",
+   "course": "PHYSIO",
+   "due": "2026-10-18T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=10&year=2026#assignment_1559119",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470620",
+   "name": "3rd Quiz - Physio I Cardiology & Clinical Disorders - Weeks 10,11",
+   "course": "PHYSIO",
+   "due": "2026-10-18T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=10&year=2026#assignment_1470620",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1559120",
+   "name": "4th Quiz - Physio I Cardiology & Clinical Disorders - Week 10, 11",
+   "course": "PHYSIO",
+   "due": "2026-10-18T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=10&year=2026#assignment_1559120",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470605",
+   "name": "5th Quiz - Physio I Cardiology & Clinical Disorders- Week 10, 11",
+   "course": "PHYSIO",
+   "due": "2026-10-18T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=10&year=2026#assignment_1470605",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1466491",
    "name": "Week 10  Lipid digestion fatty and TAG and degradation Self-Assessment Quiz",
    "course": "BIOCHEM",
