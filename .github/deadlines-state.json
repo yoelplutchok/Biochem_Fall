@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1447628",
-   "name": "Canvas quiz MSK - Shoulder, Wrist and Hand",
-   "course": "PHYS DIAG",
-   "due": "2026-09-08T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=09&year=2026#assignment_1447628",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1454901",
    "name": "Pre Lab-6 Quiz- Physiology of Treatment Modalities- ME, CS and HVLA",
    "course": "OMM",
@@ -230,6 +222,14 @@
    "course": "BIOCHEM",
    "due": "2026-10-19T23:59:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=10&year=2026#assignment_1466479",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1559982",
+   "name": "OSCE II  - Chest and Thorax Examination Review",
+   "course": "PHYS DIAG",
+   "due": "2026-10-20T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1559982",
    "exact_time": false
   },
   {
