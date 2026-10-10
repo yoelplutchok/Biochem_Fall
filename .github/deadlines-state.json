@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1454901",
-   "name": "Pre Lab-6 Quiz- Physiology of Treatment Modalities- ME, CS and HVLA",
-   "course": "OMM",
-   "due": "2026-09-09T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454901",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1447625",
    "name": "Canvas quiz MSK - Knee, Ankle and Foot",
    "course": "PHYS DIAG",
