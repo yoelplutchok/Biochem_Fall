@@ -161,6 +161,14 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1454897",
+   "name": "Lecture 11 Quiz- Lymphatics",
+   "course": "OMM",
+   "due": "2026-10-14T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=10&year=2026#assignment_1454897",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1470609",
    "name": "1st  Quiz = Physio I Cardiology & Clinical Disorders - Weeks 10,11",
    "course": "PHYSIO",
@@ -225,11 +233,35 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1470608",
+   "name": "Quiz 12a - Physio I Pulmonary Medicine  & Clinical Disorders - Week 12a",
+   "course": "PHYSIO",
+   "due": "2026-10-25T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=10&year=2026#assignment_1470608",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470607",
+   "name": "Quiz 12b - Physio I Pulmonary Medicine  & Clinical Disorders - Week 12b",
+   "course": "PHYSIO",
+   "due": "2026-10-25T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=10&year=2026#assignment_1470607",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1474540",
    "name": "Video Assgmt & Peer Review (Fall 2026)",
    "course": "ETHICS",
    "due": "2026-10-26T23:59:00-04:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=10&year=2026#assignment_1474540",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470616",
+   "name": "Quiz 13 - Physio I Pulmonary Medicine  & Clinical Disorders - Week 13",
+   "course": "PHYSIO",
+   "due": "2026-11-01T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=11&year=2026#assignment_1470616",
    "exact_time": false
   },
   {
@@ -246,6 +278,30 @@
    "course": "BIOCHEM",
    "due": "2026-11-02T23:59:00-05:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466444",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470601",
+   "name": "Week 14a Quiz Physio I GI Physiology",
+   "course": "PHYSIO",
+   "due": "2026-11-08T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=11&year=2026#assignment_1470601",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470617",
+   "name": "Week 14b Quiz Physio I GI Physiology",
+   "course": "PHYSIO",
+   "due": "2026-11-08T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=11&year=2026#assignment_1470617",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470621",
+   "name": "Week 15 Quiz Physio I GI Physiology",
+   "course": "PHYSIO",
+   "due": "2026-11-15T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=11&year=2026#assignment_1470621",
    "exact_time": false
   },
   {
@@ -270,6 +326,14 @@
    "course": "BIOCHEM",
    "due": "2026-11-23T23:59:00-05:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466463",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1470603",
+   "name": "Quiz 17 - Physio I Renal Physiology & Clinical Disorders - Week 17",
+   "course": "PHYSIO",
+   "due": "2026-11-29T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=11&year=2026#assignment_1470603",
    "exact_time": false
   },
   {
