@@ -273,6 +273,14 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1447624",
+   "name": "Canvas Quiz Cardiology 1",
+   "course": "PHYS DIAG",
+   "due": "2026-11-03T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=11&year=2026#assignment_1447624",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1470601",
    "name": "Week 14a Quiz Physio I GI Physiology",
    "course": "PHYSIO",
