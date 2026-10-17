@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1454904",
-   "name": "Pre-Lab 7 Quiz-Clinical Ribs",
-   "course": "OMM",
-   "due": "2026-09-16T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454904",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1547461",
    "name": "Week 7-  Physio I Autonomic & Clinical Disorders",
    "course": "PHYSIO",
