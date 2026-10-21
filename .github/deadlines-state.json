@@ -1,22 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1547461",
-   "name": "Week 7-  Physio I Autonomic & Clinical Disorders",
-   "course": "PHYSIO",
-   "due": "2026-09-20T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=09&year=2026#assignment_1547461",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1515221",
-   "name": "Week 6 - Physio I Skeletal Physiology",
-   "course": "PHYSIO",
-   "due": "2026-09-20T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=09&year=2026#assignment_1515221",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1454896",
    "name": "Pre-Lab 8 Quiz- Autonomic and Viscerosomatic Consideration",
    "course": "OMM",
