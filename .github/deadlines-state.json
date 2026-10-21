@@ -249,6 +249,22 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1454890",
+   "name": "Pre-Lab Quiz 13 one of two- Psoas/Lumbar content",
+   "course": "OMM",
+   "due": "2026-10-28T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=10&year=2026#assignment_1454890",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1454891",
+   "name": "Pre-lab Quiz 13 two of two Clinical Lumbar Spine",
+   "course": "OMM",
+   "due": "2026-10-28T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=10&year=2026#assignment_1454891",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1470616",
    "name": "Quiz 13 - Physio I Pulmonary Medicine  & Clinical Disorders - Week 13",
    "course": "PHYSIO",
