@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1454896",
-   "name": "Pre-Lab 8 Quiz- Autonomic and Viscerosomatic Consideration",
-   "course": "OMM",
-   "due": "2026-09-23T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=09&year=2026#assignment_1454896",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1466438",
    "name": "New Week 1 Enzyme and ETC Self-Assessment Quiz",
    "course": "BIOCHEM",
