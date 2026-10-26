@@ -209,14 +209,6 @@
    "exact_time": false
   },
   {
-   "uid": "event-assignment-1474540",
-   "name": "Video Assgmt & Peer Review (Fall 2026)",
-   "course": "ETHICS",
-   "due": "2026-10-26T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=10&year=2026#assignment_1474540",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1454890",
    "name": "Pre-Lab Quiz 13 one of two- Psoas/Lumbar content",
    "course": "OMM",
@@ -318,6 +310,14 @@
    "course": "BIOCHEM",
    "due": "2026-11-23T23:59:00-05:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466463",
+   "exact_time": false
+  },
+  {
+   "uid": "event-assignment-1474540",
+   "name": "Video Assgmt & Peer Review (Fall 2026)",
+   "course": "ETHICS",
+   "due": "2026-11-26T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=11&year=2026#assignment_1474540",
    "exact_time": false
   },
   {
