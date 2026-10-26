@@ -225,6 +225,14 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1474540",
+   "name": "Video Assgmt & Peer Review (Fall 2026)",
+   "course": "ETHICS",
+   "due": "2026-10-28T23:59:00-04:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=10&year=2026#assignment_1474540",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1470607",
    "name": "Quiz 13a - Physio I Pulmonary Medicine  & Clinical Disorders - Week 13a",
    "course": "PHYSIO",
@@ -310,14 +318,6 @@
    "course": "BIOCHEM",
    "due": "2026-11-23T23:59:00-05:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466463",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1474540",
-   "name": "Video Assgmt & Peer Review (Fall 2026)",
-   "course": "ETHICS",
-   "due": "2026-11-26T23:59:00-05:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=11&year=2026#assignment_1474540",
    "exact_time": false
   },
   {
