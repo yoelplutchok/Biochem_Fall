@@ -249,6 +249,62 @@
    "exact_time": false
   },
   {
+   "uid": "event-calendar-event-620920",
+   "name": "Touro College of Osteopathic Medicine (Middletown) Fall 2026 Course Evaluations",
+   "course": "PHYS DIAG",
+   "due": "2026-12-11T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=12&year=2026#calendar_event_620920",
+   "exact_time": true
+  },
+  {
+   "uid": "event-calendar-event-620922",
+   "name": "Touro College of Osteopathic Medicine (Middletown) Fall 2026 Course Evaluations",
+   "course": "HISTO",
+   "due": "2026-12-11T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168932&month=12&year=2026#calendar_event_620922",
+   "exact_time": true
+  },
+  {
+   "uid": "event-calendar-event-620925",
+   "name": "Touro College of Osteopathic Medicine (Middletown) Fall 2026 Course Evaluations",
+   "course": "OMM",
+   "due": "2026-12-11T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=12&year=2026#calendar_event_620925",
+   "exact_time": true
+  },
+  {
+   "uid": "event-calendar-event-620926",
+   "name": "Touro College of Osteopathic Medicine (Middletown) Fall 2026 Course Evaluations",
+   "course": "ANATOMY",
+   "due": "2026-12-11T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168934&month=12&year=2026#calendar_event_620926",
+   "exact_time": true
+  },
+  {
+   "uid": "event-calendar-event-620955",
+   "name": "Touro College of Osteopathic Medicine (Middletown) Fall 2026 Course Evaluations",
+   "course": "PHYSIO",
+   "due": "2026-12-11T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168930&month=12&year=2026#calendar_event_620955",
+   "exact_time": true
+  },
+  {
+   "uid": "event-calendar-event-620990",
+   "name": "Touro College of Osteopathic Medicine (Middletown) Fall 2026 Course Evaluations",
+   "course": "BIOCHEM",
+   "due": "2026-12-11T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=12&year=2026#calendar_event_620990",
+   "exact_time": true
+  },
+  {
+   "uid": "event-calendar-event-621007",
+   "name": "Touro College of Osteopathic Medicine (Middletown) Fall 2026 Course Evaluations",
+   "course": "ETHICS",
+   "due": "2026-12-11T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168929&month=12&year=2026#calendar_event_621007",
+   "exact_time": true
+  },
+  {
    "uid": "event-assignment-1466436",
    "name": "Week 10 Overview and Acid base Quiz (Not For credit)",
    "course": "BIOCHEM",
