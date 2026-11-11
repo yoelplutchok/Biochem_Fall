@@ -225,6 +225,14 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1466488",
+   "name": "Week 18 AA Inborn and Heme Self-Assessment Quiz",
+   "course": "BIOCHEM",
+   "due": "2026-11-23T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=11&year=2026#assignment_1466488",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1470603",
    "name": "Quiz 17 - Physio I Renal Physiology & Clinical Disorders - Week 17",
    "course": "PHYSIO",
@@ -289,27 +297,11 @@
    "exact_time": true
   },
   {
-   "uid": "event-assignment-1466436",
-   "name": "Week 10 Overview and Acid base Quiz (Not For credit)",
-   "course": "BIOCHEM",
-   "due": "2026-12-13T23:59:00-05:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=12&year=2026#assignment_1466436",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1466492",
    "name": "Week 17 Nitrogen balance and Urea Self-Assessment Quiz",
    "course": "BIOCHEM",
    "due": "2026-12-13T23:59:00-05:00",
    "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=12&year=2026#assignment_1466492",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466488",
-   "name": "Week 18 AA Inborn and Heme Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-12-13T23:59:00-05:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=12&year=2026#assignment_1466488",
    "exact_time": false
   },
   {
