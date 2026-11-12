@@ -233,6 +233,14 @@
    "exact_time": false
   },
   {
+   "uid": "event-assignment-1447633",
+   "name": "Canvas Behavioral Medicine Quiz",
+   "course": "PHYS DIAG",
+   "due": "2026-11-24T23:59:00-05:00",
+   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=11&year=2026#assignment_1447633",
+   "exact_time": false
+  },
+  {
    "uid": "event-assignment-1470603",
    "name": "Quiz 17 - Physio I Renal Physiology & Clinical Disorders - Week 17",
    "course": "PHYSIO",
