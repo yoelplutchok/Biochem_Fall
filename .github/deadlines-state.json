@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1447630",
-   "name": "Canvas quiz Introduction to the Chest, Thorax and Pulmonary Canvas Quiz",
-   "course": "PHYS DIAG",
-   "due": "2026-10-13T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1447630",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1454897",
    "name": "Lecture 11 Quiz- Lymphatics",
    "course": "OMM",
