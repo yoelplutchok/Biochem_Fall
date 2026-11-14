@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1454897",
-   "name": "Lecture 11 Quiz- Lymphatics",
-   "course": "OMM",
-   "due": "2026-10-14T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168933&month=10&year=2026#assignment_1454897",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1470609",
    "name": "1st  Quiz = Physio I Cardiology & Clinical Disorders - Weeks 10,11",
    "course": "PHYSIO",
