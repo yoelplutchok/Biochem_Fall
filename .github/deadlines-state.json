@@ -1,22 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1466491",
-   "name": "Week 10  Lipid digestion fatty and TAG and degradation Self-Assessment Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-10-19T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=10&year=2026#assignment_1466491",
-   "exact_time": false
-  },
-  {
-   "uid": "event-assignment-1466479",
-   "name": "Week 10 Overview and Acid base Quiz",
-   "course": "BIOCHEM",
-   "due": "2026-10-19T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168928&month=10&year=2026#assignment_1466479",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1559982",
    "name": "OSCE II  - Chest and Thorax Examination Review",
    "course": "PHYS DIAG",
