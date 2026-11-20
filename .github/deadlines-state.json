@@ -1,14 +1,6 @@
 {
  "events": [
   {
-   "uid": "event-assignment-1559982",
-   "name": "OSCE II  - Chest and Thorax Examination Review",
-   "course": "PHYS DIAG",
-   "due": "2026-10-20T23:59:00-04:00",
-   "url": "https://touro.instructure.com/calendar?include_contexts=course_168926&month=10&year=2026#assignment_1559982",
-   "exact_time": false
-  },
-  {
    "uid": "event-assignment-1454889",
    "name": "Pre-Lab Quiz 12- Lumbar Spine",
    "course": "OMM",
